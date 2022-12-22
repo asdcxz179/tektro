@@ -7,6 +7,20 @@ return [
     'roles' => '角色',
     'suppliers' => '供應商管理',
 
+    'info' => '資訊',
+    'news' => '最新消息',
+    'talents' => '人才招募',
+
+    'abouts' => '關於我們',
+
+    'product_label' => '產品品牌',
+    'product_brands' => '品牌',
+    'product_categories' => '分類',
+    'product_tags' => '標籤',
+    'product_keywords' => '關鍵字',
+    'products' => '產品',    
+
+
     'test' => '測試',
     'template' => '模板',
   ],

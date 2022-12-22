@@ -35,6 +35,45 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
         //操作紀錄
         Route::resource('/audits', Controllers\Backend\AuditController::class);
 
+        //資訊
+        Route::group(['prefix' => 'info'],function () {
+            //最新消息
+            Route::resource('/news', Controllers\Backend\UserController::class);
+            Route::put('/news/status/{news}', [Controllers\Backend\UserController::class, 'status'])->name('news.status');
+            //人才招募
+            Route::get('/talents/select', [Controllers\Backend\UserController::class, 'select'])->name('talents.select');
+            Route::resource('/talents', Controllers\Backend\UserController::class);  
+            Route::put('/talents/status/{talents}', [Controllers\Backend\UserController::class, 'status'])->name('talents.status');
+        });   
+        
+        //關於我們
+        Route::resource('/abouts', Controllers\Backend\UserController::class);
+        Route::put('/abouts/status/{about}', [Controllers\Backend\UserController::class, 'status'])->name('abouts.status');
+
+        //產品品牌
+        Route::group(['prefix' => 'product_label'],function () {
+            //品牌
+            Route::get('/product_brands/select', [Controllers\Backend\UserController::class, 'select'])->name('product_brands.select');
+            Route::resource('/product_brands', Controllers\Backend\UserController::class);
+            Route::put('/product_brands/status/{product_brand}', [Controllers\Backend\UserController::class, 'status'])->name('product_brands.status');
+            //分類
+            Route::get('/product_categories/select', [Controllers\Backend\UserController::class, 'select'])->name('product_categories.select');
+            Route::resource('/product_categories', Controllers\Backend\UserController::class);  
+            Route::put('/product_categories/status/{product_category}', [Controllers\Backend\UserController::class, 'status'])->name('product_categories.status');
+            //標籤
+            Route::get('/product_tags/select', [Controllers\Backend\UserController::class, 'select'])->name('product_tags.select');
+            Route::resource('/product_tags', Controllers\Backend\UserController::class);  
+            Route::put('/product_tags/status/{product_tag}', [Controllers\Backend\UserController::class, 'status'])->name('product_tags.status');
+            //關鍵字
+            Route::get('/product_keywords/select', [Controllers\Backend\UserController::class, 'select'])->name('product_keywords.select');
+            Route::resource('/product_keywords', Controllers\Backend\UserController::class);  
+            Route::put('/product_keywords/status/{product_keyword}', [Controllers\Backend\UserController::class, 'status'])->name('product_keywords.status');
+            //產品
+            Route::get('/products/select', [Controllers\Backend\UserController::class, 'select'])->name('products.select');
+            Route::resource('/products', Controllers\Backend\UserController::class);  
+            Route::put('/products/status/{product}', [Controllers\Backend\UserController::class, 'status'])->name('products.status');
+        });          
+
         Route::group(['prefix' => 'users_setting'],function () {
             //新增管理員
             Route::resource('/users', Controllers\Backend\UserController::class);
