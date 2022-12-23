@@ -10,7 +10,7 @@ use DataTables;
 use Exception;
 use DB;
 
-class NewsController extends Controller
+class CommonController extends Controller
 {
     public function __construct() {
         $this->name = 'users';

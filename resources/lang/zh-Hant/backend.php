@@ -7,6 +7,8 @@ return [
     'roles' => '角色',
     'suppliers' => '供應商管理',
 
+    'homes' => '首頁',
+
     'info' => '資訊',
     'news' => '最新消息',
     'talents' => '人才招募',
@@ -20,6 +22,17 @@ return [
     'product_keywords' => '關鍵字',
     'products' => '產品',    
 
+    'assist' => '支援',
+    'support_categories' => '技術分類',
+    'supports' => '技術手冊',
+    'video_settings' => '影音分享',
+    'commons' => '常見問題',
+
+    'connect' => '聯絡我們',
+    'contacts' => '聯絡我們表單',
+    'contact_settings' => '聯絡我們設定', 
+
+    'communities' => '經銷商', 
 
     'test' => '測試',
     'template' => '模板',
