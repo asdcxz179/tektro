@@ -13,7 +13,7 @@ use DB;
 class ProductTagController extends Controller
 {
     public function __construct() {
-        $this->name = 'users';
+        $this->name = 'product_tags';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
@@ -65,8 +65,7 @@ class ProductTagController extends Controller
         try{
             DB::beginTransaction();
 
-            $data = CrudModel::create(array_merge($validatedData, ['password' => bcrypt($request->password)]));
-            $data->syncRoles($validatedData['roles']);
+            $data = CrudModel::create($validatedData);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -111,10 +110,6 @@ class ProductTagController extends Controller
     public function update(Request $request, $id)
     {
         $this->authorize('edit '.$this->name);
-        $this->rules = array_merge($this->rules, [
-            'email'         => ['required', 'string', 'email', 'max:255', 'unique:App\Models\User,email,'.$id],
-            'password'      => ['nullable', 'string', 'confirmed', 'min:6'],
-        ]);
         $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
         
         try{

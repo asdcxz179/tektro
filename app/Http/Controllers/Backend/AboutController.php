@@ -65,8 +65,7 @@ class AboutController extends Controller
         try{
             DB::beginTransaction();
 
-            $data = CrudModel::create(array_merge($validatedData, ['password' => bcrypt($request->password)]));
-            $data->syncRoles($validatedData['roles']);
+            $data = CrudModel::create($validatedData);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -111,23 +110,13 @@ class AboutController extends Controller
     public function update(Request $request, $id)
     {
         $this->authorize('edit '.$this->name);
-        $this->rules = array_merge($this->rules, [
-            'email'         => ['required', 'string', 'email', 'max:255', 'unique:App\Models\User,email,'.$id],
-            'password'      => ['nullable', 'string', 'confirmed', 'min:6'],
-        ]);
         $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
         
         try{
             DB::beginTransaction();
 
-            if(isset($validatedData['password'])){
-                $validatedData['password'] =  bcrypt($request->password);
-            }else{
-                unset($validatedData['password']);
-            }
             $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
-            $data->syncRoles($validatedData['roles']);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
