@@ -15,6 +15,18 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->comment('名稱');
+            $table->string('description')->nullable()->comment('描述');
+            $table->string('content')->nullable()->comment('內容');
+            $table->text('details')->nullable()->comment('details');
+            $table->text('technology')->nullable()->comment('technology');
+            $table->text('test_reviews')->nullable()->comment('test_reviews');
+            $table->text('related_products')->nullable()->comment('related_products');
+
+            $table->string('banner')->nullable()->comment('banner');
+
+            $table->tinyInteger('sort')->default(0)->nullable()->comment('排序');
+            $table->tinyInteger('status')->default(1)->comment('狀態');                 
             $table->timestamps();
         });
     }

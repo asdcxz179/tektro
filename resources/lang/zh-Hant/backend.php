@@ -58,4 +58,98 @@ return [
     'name' => '角色名稱',
     'permissions' => '角色權限'
   ],
+
+  'product_brands' => [
+    'name' => '名稱',
+    'advertise_title' => '廣告標題',
+    'advertise_subtitle' => '廣告副標題',
+    'below_advertise_title' => '下方廣告標題',
+    'below_advertise_subtitle' => '下方廣告副標題',
+
+    'banner' => '橫幅',
+    'advertise_image' => '廣告圖片',
+    'advertise_link' => '廣告連結',
+    'below_advertise_image' => '下方廣告圖片',
+    'below_advertise_switch' => '下方廣告按鈕顏色',
+    'below_advertise_link' => '下方廣告連結',
+
+    'sort' => '排序',
+    'status' => '狀態',
+  ],
+  'product_categories' => [
+    'name' => '名稱',
+    'path' => '圖片(60 x 60)',
+
+    'sort' => '排序',
+    'status' => '狀態',
+  ],
+  'product_tags' => [
+    'name' => '名稱',
+    'path' => '圖片(60 x 60)',
+
+    'sort' => '排序',
+    'status' => '狀態',   
+  ],
+  'product_keywords' => [
+    'name' => '名稱',
+
+    'sort' => '排序',
+    'status' => '狀態',
+  ],
+  'products' => [
+    'name' => '名稱',
+    'description' => '描述',
+    'content' => '內容',
+    'details' => 'details',
+    'technology' => 'technology',
+    'test_reviews' => 'test_reviews',
+    'related_products' => 'related_products',
+
+    'banner' => 'banner',
+
+    'sort' => '排序',
+    'status' => '狀態',   
+
+    'product_image' => '圖片',
+    'product_images' => [
+      '*' => '檔案',  
+    ],
+    'product_file' => '檔案',
+    'product_files' => [
+      '*' => [
+        'name' => '名稱',
+        'file_name' => '檔案名稱',
+        'path' => '檔案',
+    
+        'sort' => '排序',  
+      ]
+    ]    
+  ],
+  'support_categories' => [
+    'name' => '名稱',
+            
+    'sort' => '排序',
+    'status' => '狀態',   
+  ],
+  'support_file_types' => [
+    'name' => '名稱',
+  ],
+  'supports' => [
+    'name' => '名稱',
+
+    'sort' => '排序',
+    'status' => '狀態',   
+
+    'support_files' => [
+      '*' => [
+        'name' => '名稱',
+        'file_name' => '檔案名稱',
+        'path' => '檔案',
+    
+        'sort' => '排序',
+        'status' => '狀態',   
+      ]
+    ]
+  ],
+
 ];

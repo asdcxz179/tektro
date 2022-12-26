@@ -16,12 +16,13 @@ class ProductCategoryController extends Controller
         $this->name = 'users';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
-            'name' => ['required', 'string', 'max:150'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:App\Models\User'],
-            'roles' => ['required', 'array'],
-            'roles.*' => ['string', 'exists:App\Models\Role,id'],
-            'password' => ['required', 'string', 'confirmed', 'min:6'],
-            'status' => ['required', 'boolean'],
+            //使用多語系        
+            'name' => ['required', 'string', 'max:100'],
+            //公用
+            'path' => ['nullable', 'string'],
+            //通用
+            'sort' => ['required', 'numeric', 'max:127'],
+            'status' => ['required', 'boolean'],        
         ];
         $this->messages = []; 
         $this->attributes = __("backend.{$this->name}");   
@@ -97,10 +98,8 @@ class ProductCategoryController extends Controller
     { 
         $this->authorize('edit '.$this->name);
         $data = CrudModel::findOrFail($id);
-        $roles = Role::all();
-        return view($this->view.'.edit',compact('data', 'roles'));
+        return view($this->view.'.edit',compact('data'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -111,10 +110,6 @@ class ProductCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->authorize('edit '.$this->name);
-        $this->rules = array_merge($this->rules, [
-            'email'         => ['required', 'string', 'email', 'max:255', 'unique:App\Models\User,email,'.$id],
-            'password'      => ['nullable', 'string', 'confirmed', 'min:6'],
-        ]);
         $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
         
         try{

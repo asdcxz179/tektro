@@ -15,13 +15,23 @@ class ProductBrandController extends Controller
     public function __construct() {
         $this->name = 'users';
         $this->view = 'backend.'.$this->name;
-        $this->rules = [            
-            'name' => ['required', 'string', 'max:150'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:App\Models\User'],
-            'roles' => ['required', 'array'],
-            'roles.*' => ['string', 'exists:App\Models\Role,id'],
-            'password' => ['required', 'string', 'confirmed', 'min:6'],
-            'status' => ['required', 'boolean'],
+        $this->rules = [    
+            //使用多語系        
+            'name' => ['required', 'string', 'max:100'],
+            'advertise_title' => ['nullable', 'string', 'max:100'],
+            'advertise_subtitle' => ['nullable', 'string', 'max:100'],
+            'below_advertise_title' => ['nullable', 'string', 'max:100'],
+            'below_advertise_subtitle' => ['nullable', 'string', 'max:100'],
+            //公用
+            'banner' => ['nullable', 'string'],
+            'advertise_image' => ['nullable', 'string'],
+            'advertise_link' => ['nullable', 'string', 'max:255'],
+            'below_advertise_image' => ['nullable', 'string'],
+            'below_advertise_switch' => ['nullable', 'string', 'max:100'],
+            'below_advertise_link' => ['nullable', 'string', 'max:255'],
+            //通用
+            'sort' => ['required', 'numeric', 'max:127'],
+            'status' => ['required', 'boolean'],        
         ];
         $this->messages = []; 
         $this->attributes = __("backend.{$this->name}");   
@@ -64,8 +74,11 @@ class ProductBrandController extends Controller
         try{
             DB::beginTransaction();
 
-            $data = CrudModel::create(array_merge($validatedData, ['password' => bcrypt($request->password)]));
-            $data->syncRoles($validatedData['roles']);
+            $data = CrudModel::create(array_merge($validatedData, 
+                $this->dealfile($validatedData['banner'], 'banner'),
+                $this->dealfile($validatedData['advertise_image'], 'advertise_image'),
+                $this->dealfile($validatedData['below_advertise_image'], 'below_advertise_image'),
+            ));
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -97,8 +110,7 @@ class ProductBrandController extends Controller
     { 
         $this->authorize('edit '.$this->name);
         $data = CrudModel::findOrFail($id);
-        $roles = Role::all();
-        return view($this->view.'.edit',compact('data', 'roles'));
+        return view($this->view.'.edit',compact('data'));
     }
 
     /**
@@ -111,23 +123,17 @@ class ProductBrandController extends Controller
     public function update(Request $request, $id)
     {
         $this->authorize('edit '.$this->name);
-        $this->rules = array_merge($this->rules, [
-            'email'         => ['required', 'string', 'email', 'max:255', 'unique:App\Models\User,email,'.$id],
-            'password'      => ['nullable', 'string', 'confirmed', 'min:6'],
-        ]);
         $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
         
         try{
             DB::beginTransaction();
 
-            if(isset($validatedData['password'])){
-                $validatedData['password'] =  bcrypt($request->password);
-            }else{
-                unset($validatedData['password']);
-            }
             $data = CrudModel::findOrFail($id);
-            $data->update($validatedData);
-            $data->syncRoles($validatedData['roles']);
+            $data->update(array_merge($validatedData, 
+                $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),
+                $this->dealfile($validatedData['advertise_image'], 'advertise_image', $data, 'advertise_image'),
+                $this->dealfile($validatedData['below_advertise_image'], 'below_advertise_image', $data, 'below_advertise_image'),                
+            ));
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('product_tags', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->comment('名稱');
+            
+            $table->string('path')->comment('圖片(60 x 60)');
+
+            $table->tinyInteger('sort')->default(0)->nullable()->comment('排序');
+            $table->tinyInteger('status')->default(1)->comment('狀態');                 
             $table->timestamps();
         });
     }

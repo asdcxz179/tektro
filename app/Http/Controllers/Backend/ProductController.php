@@ -16,12 +16,29 @@ class ProductController extends Controller
         $this->name = 'users';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
-            'name' => ['required', 'string', 'max:150'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:App\Models\User'],
-            'roles' => ['required', 'array'],
-            'roles.*' => ['string', 'exists:App\Models\Role,id'],
-            'password' => ['required', 'string', 'confirmed', 'min:6'],
-            'status' => ['required', 'boolean'],
+            //使用多語系        
+            'name' => ['required', 'string', 'max:100'],
+            'description' => ['nullable', 'string', 'max:100'],
+            'content' => ['nullable', 'string', 'max:100'],
+            'details' => ['nullable', 'string'],
+            'technology' => ['nullable', 'string'],
+            'test_reviews' => ['nullable', 'string'],
+            'related_products' => ['nullable', 'string'],
+            //公用
+            'banner' => ['nullable', 'string'],
+            //通用
+            'sort' => ['required', 'numeric', 'max:127'],
+            'status' => ['required', 'boolean'],     
+     
+            //產品圖片
+            'product_images' => ['nullable', 'array'],
+            'product_images.*' => ['nullable', 'string'],
+            //產品檔案
+            'product_files' => ['nullable', 'array'],
+            'product_files.*.name' => ['required', 'string', 'max:100'],
+            'product_files.*.path' => ['nullable', 'string'],
+            'product_files.*.sort' => ['required', 'numeric', 'max:127'],
+            
         ];
         $this->messages = []; 
         $this->attributes = __("backend.{$this->name}");   
@@ -97,8 +114,7 @@ class ProductController extends Controller
     { 
         $this->authorize('edit '.$this->name);
         $data = CrudModel::findOrFail($id);
-        $roles = Role::all();
-        return view($this->view.'.edit',compact('data', 'roles'));
+        return view($this->view.'.edit',compact('data'));
     }
 
     /**

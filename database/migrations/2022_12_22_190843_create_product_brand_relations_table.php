@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('product_brand_relations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_brand_id')->constrained()->onDelete('cascade');
+            $table->morphs('model');
             $table->timestamps();
         });
     }

@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('support_file_types', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 50)->comment('名稱')->unique();
             $table->timestamps();
         });
+
+        DB::table('support_file_types')->insert(['name' => '使用手冊']);
+        DB::table('support_file_types')->insert(['name' => 'bom清單']);
     }
 
     /**

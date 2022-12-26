@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('supports', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('support_category_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('name')->comment('名稱');
+
+            $table->tinyInteger('sort')->default(0)->nullable()->comment('排序');
+            $table->tinyInteger('status')->default(1)->comment('狀態');            
             $table->timestamps();
         });
     }

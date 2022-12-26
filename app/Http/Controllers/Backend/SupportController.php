@@ -16,12 +16,18 @@ class SupportController extends Controller
         $this->name = 'users';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
-            'name' => ['required', 'string', 'max:150'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:App\Models\User'],
-            'roles' => ['required', 'array'],
-            'roles.*' => ['string', 'exists:App\Models\Role,id'],
-            'password' => ['required', 'string', 'confirmed', 'min:6'],
-            'status' => ['required', 'boolean'],
+            //使用多語系        
+            'name' => ['required', 'string', 'max:100'],
+            //公用
+            //通用
+            'sort' => ['required', 'numeric', 'max:127'],
+            'status' => ['required', 'boolean'],     
+     
+            //檔案
+            'support_files' => ['nullable', 'array'],
+            'support_files.*.name' => ['required', 'string', 'max:100'],
+            'support_files.*.path' => ['nullable', 'string'],
+            'support_files.*.sort' => ['required', 'numeric', 'max:127'],
         ];
         $this->messages = []; 
         $this->attributes = __("backend.{$this->name}");   
@@ -97,8 +103,7 @@ class SupportController extends Controller
     { 
         $this->authorize('edit '.$this->name);
         $data = CrudModel::findOrFail($id);
-        $roles = Role::all();
-        return view($this->view.'.edit',compact('data', 'roles'));
+        return view($this->view.'.edit',compact('data'));
     }
 
     /**
