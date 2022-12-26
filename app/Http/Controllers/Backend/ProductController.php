@@ -35,13 +35,13 @@ class ProductController extends Controller
             'product_images.*' => ['nullable', 'string'],
             //產品檔案
             'product_files' => ['nullable', 'array'],
-            'product_files.*.name' => ['required', 'string', 'max:100'],
+            'product_files.*.name.*' => ['nullable', 'string', 'max:100'],
             'product_files.*.path' => ['nullable', 'string'],
-            'product_files.*.sort' => ['required', 'numeric', 'max:127'],
+            'product_files.*.sort' => ['nullable', 'numeric', 'max:127'],
             
         ];
         $this->messages = []; 
-        $this->attributes = Arr::dot(__("backend.{$this->name}"));
+        $this->attributes = [Arr::dot(__("backend.{$this->name}"))];
     }
 
     public function index(Request $request)
@@ -80,7 +80,18 @@ class ProductController extends Controller
         try{
             DB::beginTransaction();
 
-            $data = CrudModel::create($validatedData);
+            $data = CrudModel::create(array_merge($validatedData, 
+                $this->dealfile($validatedData['banner'], 'banner'),
+            ));
+            $relation = 'product_images';
+            $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
+
+            $relation = 'product_files';
+            foreach($validatedData[$relation] as &$value){
+                $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+            }
+            $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation]);
+
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -131,7 +142,18 @@ class ProductController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::findOrFail($id);
-            $data->update($validatedData);
+            $data->update(array_merge($validatedData, 
+                $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),           
+            ));
+
+            $relation = 'product_images';
+            $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
+
+            $relation = 'product_files';
+            foreach($validatedData[$relation] as &$value){
+                $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+            }
+            $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation]);            
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

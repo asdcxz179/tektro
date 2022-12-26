@@ -112,7 +112,7 @@ return [
     'status' => '狀態',   
 
     'product_images' => [
-      '*' => '檔案(可多筆)',  
+      '*' => '圖片(可多筆)',  
     ],
     'product_file' => '檔案',
     'product_files' => [
@@ -146,6 +146,7 @@ return [
     'sort' => '排序',
     'status' => '狀態',   
 
+    'support_file' => '檔案',
     'support_files' => [
       '*' => [
         'name' => '名稱',

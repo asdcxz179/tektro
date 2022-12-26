@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User as crudModel;
+use App\Models\ProductKeyword as crudModel;
 use DataTables;
 use Exception;
 use DB;
@@ -13,7 +13,7 @@ use Illuminate\Support\Arr;
 class ProductKeywordController extends Controller
 {
     public function __construct() {
-        $this->name = 'users';
+        $this->name = 'product_keywords';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        

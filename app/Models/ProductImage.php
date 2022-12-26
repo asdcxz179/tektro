@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductImage extends Model
 {
     use HasFactory;
-    use \Spatie\Translatable\HasTranslations;
+    use \App\Traits\ModelShareTrait;
 
     /**
      * The attributes that are mass assignable.

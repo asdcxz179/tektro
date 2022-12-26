@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     use \Spatie\Translatable\HasTranslations;
-
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -45,11 +45,11 @@ class Product extends Model
         'related_products',
     ];
 
-    public function images(){
+    public function product_images(){
         return $this->hasMany(ProductImage::class);
     }   
 
-    public function file(){
+    public function product_files(){
         return $this->hasMany(ProductFile::class);
     } 
 }

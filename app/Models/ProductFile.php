@@ -9,6 +9,7 @@ class ProductFile extends Model
 {
     use HasFactory;
     use \Spatie\Translatable\HasTranslations;
+    use \App\Traits\ModelShareTrait;
 
     /**
      * The attributes that are mass assignable.

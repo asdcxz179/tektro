@@ -24,63 +24,17 @@
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.name.*") }}</label>
                                 <input type="text" value="{{ $data->getTranslation('name', $language->lang) }}" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.description.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('description', $language->lang) }}" name="description[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.description.*") }}">
-                            </div>                            
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.content.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('content', $language->lang) }}" name="content[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.content.*") }}">
-                            </div>                            
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.details.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('details', $language->lang) }}" name="details[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.details.*") }}">
-                            </div>                            
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.technology.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('technology', $language->lang) }}" name="technology[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.technology.*") }}">
-                            </div>                            
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.test_reviews.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('test_reviews', $language->lang) }}" name="test_reviews[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.test_reviews.*") }}">
-                            </div>              
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.related_products.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('related_products', $language->lang) }}" name="related_products[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.related_products.*") }}">
-                            </div>                                             
+                            </div>                                          
                         </div>
                     </div>
                     @endforeach
                 </div>
                 <div class="block-content tab-content">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>{{ __("backend.$routeNameData.banner") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
-                            <fieldset class="image">
-                                @isset($data->banner)
-                                <input value="{{ asset($data->banner) }}" checked type="checkbox" />{{ asset($data->banner) }}
-                                @endisset
-
-                                <input type="file" name="banner" accept="image/*" />    
-                            </fieldset>  
-                        </div>               
-                        <div class="form-group col-md-6">
-                            <label>{{ __("backend.$routeNameData.product_images.*") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 236, 'height' => 236]) }}</div> -->
-                            <fieldset class="image">
-                                @isset($data->product_images)
-                                    @foreach($data->product_images as $value)
-                                    <input value="{{ asset($value['path']) }}" checked type="checkbox" />{{ asset($value['path']) }}
-                                    @endforeach
-                                @endisset                                
-                                <input type="file" multiple data-allow-reorder="true" name="product_images[]" accept="image/*" />       
-                            </fieldset>  
-                        </div>            
+                    <div class="form-row">   
+                        @foreach($support_files_type_data as $type)         
                         <div class="form-group col-md-12">
                             <div class="form-row">
-                                <h2 class="content-heading  col-md-12">{{ __("backend.$routeNameData.product_file") }}</h2>
+                                <h2 class="content-heading  col-md-12">{{ $type->name }}</h2>
                             </div>    
                             <div class="form-row">
                                 <div class="form-group col-md-12 text-right">
@@ -89,38 +43,40 @@
                                     </button>                                          
                                 </div>
                             </div>          
-                            @isset($data->product_files)
-                            @foreach($data->product_files as $key => $value)                     
+                            @isset($data->support_files)
+                            @foreach($data->support_files as $key => $value)      
+                            @if($type->id == $value->support_file_type_id)
                             <div class="add form-row"> 
-                                <input type="hidden" name="product_files[{{ $key }}][id]" value="{{ $value->id }}">
                                 @foreach($languageData as $language) 
                                 <div class="form-group col-md-2">
-                                    <label>{{ __("backend.$routeNameData.product_files.*.name") }}({{ $language->name }})</label>
-                                    <input type="text" value="{{ $value->getTranslation('name', $language->lang) }}" name="product_files[{{ $key }}][name][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.product_files.*.name") }}">
+                                    <label>{{ __("backend.$routeNameData.support_files.*.name") }}({{ $language->name }})</label>
+                                    <input type="text" value="{{ $value->getTranslation('name', $language->lang) }}" name="support_files{{ $type->key }}[{{ $key }}][name][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.support_files.*.name") }}">
                                 </div>  
                                 @endforeach                            
                                 <div class="form-group col-md-3">
-                                    <label>{{ __("backend.$routeNameData.product_files.*.sort") }}</label>                                    
-                                    <input type="text" value="{{ $value->sort }}" name="product_files[{{ $key }}][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
+                                    <label>{{ __("backend.$routeNameData.support_files.*.sort") }}</label>                                    
+                                    <input type="text" value="{{ $value->sort }}" name="support_files{{ $type->key }}[{{ $key }}][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
                                 </div>                                   
                                 <div class="form-group col-md-4 filepond-dom">
-                                    <label>{{ __("backend.$routeNameData.product_files.*.path") }}</label>                                    
+                                    <label>{{ __("backend.$routeNameData.support_files.*.path") }}</label>                                    
                                     <fieldset class="image">        
                                         @isset($value->path)
                                         <input value="{{ asset($value->path) }}" checked type="checkbox" />{{ asset($value->path) }}
                                         @endisset                                                                
-                                        <input type="file" name="product_files[{{ $key }}][path]"/>    
+                                        <input type="file" name="support_files{{ $type->key }}[{{ $key }}][path]"/>    
                                     </fieldset>  
                                 </div>  
-                                <div class="form-group col-md-1 justify-content-center align-items-end d-none delete">
+                                <div class="form-group col-md-1 justify-content-center align-items-end d-flex delete">
                                     <button type="button" class="rm-btn btn btn-danger mr-5 mb-5">
                                         <i class="fa fa-times"></i>
                                     </button>    
                                 </div>                                  
                             </div>   
+                            @endif
                             @endforeach
                             @endisset                                                                                                               
-                        </div>                                                 
+                        </div>          
+                        @endforeach                                           
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" value="{{ $data->sort }}" placeholder="{{ __("backend.$routeNameData.sort") }}">
@@ -152,6 +108,15 @@ $(function() {
     var formEdit = $('#form-edit');
     document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item))
     $(".nav-item a").eq(0).click();
+    $(".form-group").each(function(){
+        let checked = true;
+        $(this).children('.add').each(function(){
+            if(checked){
+                $(this).find('.delete').addClass('d-none').removeClass('d-flex'); 
+                checked = false;
+            }
+        })
+    })
     formEdit.ajaxForm({
         beforeSubmit: function(arr, $form, options) {    
             formEdit.find('button[type=submit]').attr('disabled',true);
