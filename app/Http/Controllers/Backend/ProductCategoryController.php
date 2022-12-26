@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User as crudModel;
-use App\Models\Role;
 use DataTables;
 use Exception;
 use DB;
@@ -32,7 +31,7 @@ class ProductCategoryController extends Controller
     {
         $this->authorize('read '.$this->name);
         if ($request->ajax()) {
-            $data = CrudModel::whereNotIn('email', explode(',', env('SUPER_ADMIN')));
+            $data = CrudModel::query();
             return Datatables::eloquent($data)
                 ->make(true);
         }
@@ -47,8 +46,7 @@ class ProductCategoryController extends Controller
     public function create()
     {
         $this->authorize('create '.$this->name);
-        $roles = Role::all();
-        return view($this->view.'.create', compact('roles'));
+        return view($this->view.'.create');
     }
 
     /**
@@ -65,8 +63,7 @@ class ProductCategoryController extends Controller
         try{
             DB::beginTransaction();
 
-            $data = CrudModel::create(array_merge($validatedData, ['password' => bcrypt($request->password)]));
-            $data->syncRoles($validatedData['roles']);
+            $data = CrudModel::create($validatedData);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -115,14 +112,8 @@ class ProductCategoryController extends Controller
         try{
             DB::beginTransaction();
 
-            if(isset($validatedData['password'])){
-                $validatedData['password'] =  bcrypt($request->password);
-            }else{
-                unset($validatedData['password']);
-            }
             $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
-            $data->syncRoles($validatedData['roles']);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

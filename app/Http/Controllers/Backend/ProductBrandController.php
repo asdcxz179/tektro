@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User as crudModel;
-use App\Models\Role;
 use DataTables;
 use Exception;
 use DB;
@@ -41,7 +40,7 @@ class ProductBrandController extends Controller
     {
         $this->authorize('read '.$this->name);
         if ($request->ajax()) {
-            $data = CrudModel::whereNotIn('email', explode(',', env('SUPER_ADMIN')));
+            $data = CrudModel::query();
             return Datatables::eloquent($data)
                 ->make(true);
         }
@@ -56,8 +55,7 @@ class ProductBrandController extends Controller
     public function create()
     {
         $this->authorize('create '.$this->name);
-        $roles = Role::all();
-        return view($this->view.'.create', compact('roles'));
+        return view($this->view.'.create');
     }
 
     /**
