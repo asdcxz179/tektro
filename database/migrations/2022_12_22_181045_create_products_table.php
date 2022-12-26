@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('名稱');
+            $table->string('name')->nullable()->comment('名稱');
             $table->string('description')->nullable()->comment('描述');
             $table->string('content')->nullable()->comment('內容');
             $table->text('details')->nullable()->comment('details');

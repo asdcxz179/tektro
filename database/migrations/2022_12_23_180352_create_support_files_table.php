@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('support_id')->constrained()->onDelete('cascade');
             $table->foreignId('support_file_type_id')->constrained()->onDelete('cascade');
-            $table->string('name')->comment('名稱');
+            $table->string('name')->nullable()->comment('名稱');
 
             $table->string('file_name')->nullable()->comment('檔案名稱');
             $table->string('path', 150)->nullable()->comment('路徑');

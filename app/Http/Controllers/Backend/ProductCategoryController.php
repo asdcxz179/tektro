@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User as crudModel;
+use App\Models\ProductCategory as crudModel;
 use DataTables;
 use Exception;
 use DB;
@@ -12,11 +12,11 @@ use DB;
 class ProductCategoryController extends Controller
 {
     public function __construct() {
-        $this->name = 'users';
+        $this->name = 'product_categories';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name' => ['required', 'string', 'max:100'],
+            'name.*' => ['required', 'string', 'max:100'],
             //公用
             'path' => ['nullable', 'string'],
             //通用
@@ -63,6 +63,7 @@ class ProductCategoryController extends Controller
         try{
             DB::beginTransaction();
 
+            dd($validatedData);
             $data = CrudModel::create($validatedData);
 
             DB::commit();

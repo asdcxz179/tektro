@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('support_file_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50)->comment('名稱')->unique();
+            $table->string('name', 50)->nullable()->comment('名稱')->unique();
             $table->timestamps();
         });
 

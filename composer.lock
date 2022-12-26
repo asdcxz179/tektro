@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1aff9a20cfc3b47cc9e0dbb3cb8b6f5",
+    "content-hash": "da6facfa7f8beef9411a739e182e790c",
     "packages": [
         {
             "name": "altek/eventually",
@@ -4011,16 +4011,16 @@
         },
         {
             "name": "spatie/laravel-translatable",
-            "version": "6.1.0",
+            "version": "6.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-translatable.git",
-                "reference": "b0ee6e06c666dcfb97fb1b4ff141b34e59806f13"
+                "reference": "e001426def09342dd2723bf28c7a9313621f1d69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/b0ee6e06c666dcfb97fb1b4ff141b34e59806f13",
-                "reference": "b0ee6e06c666dcfb97fb1b4ff141b34e59806f13",
+                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/e001426def09342dd2723bf28c7a9313621f1d69",
+                "reference": "e001426def09342dd2723bf28c7a9313621f1d69",
                 "shasum": ""
             },
             "require": {
@@ -4080,7 +4080,7 @@
                 "translate"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-translatable/tree/6.1.0"
+                "source": "https://github.com/spatie/laravel-translatable/tree/6.2.0"
             },
             "funding": [
                 {
@@ -4088,7 +4088,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-10-21T08:44:08+00:00"
+            "time": "2022-12-23T10:18:49+00:00"
         },
         {
             "name": "symfony/console",
@@ -9174,5 +9174,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.1.0"
 }

@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class ProductCategory extends Model
 {
     use HasFactory;
+    use \Spatie\Translatable\HasTranslations;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'path',
+
+        'sort',
+        'status',
+    ];    
+
+    public $translatable = ['name'];
 }

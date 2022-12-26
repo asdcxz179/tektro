@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('product_brands', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('名稱');
+            $table->string('name')->nullable()->comment('名稱');
             $table->string('advertise_title')->nullable()->comment('廣告標題');
             $table->string('advertise_subtitle')->nullable()->comment('廣告副標題');
             $table->string('below_advertise_title')->nullable()->comment('下方廣告標題');
