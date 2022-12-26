@@ -10,7 +10,7 @@
             @csrf
             @method('PUT')
             <div class="block">
-                <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
+                <ul class="nav nav-tabs nav-tabs-block border" data-toggle="tabs" role="tablist">
                     @foreach($languageData as $language) 
                     <li class="nav-item">
                         <a class="nav-link" href="#btabs{{ $language->name }}">{{ $language->name }}</a>
@@ -29,12 +29,12 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="block-content tab-content">
+                <div class="block-content tab-content border">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.path") }}</label>    
                             <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div>
-                            <fieldset class="path">
+                            <fieldset class="image">
                                 @isset($data->path)
                                 <input value="{{ asset($data->path) }}" checked type="checkbox" />{{ asset($data->path) }}
                                 @endisset
@@ -71,7 +71,7 @@
 $(function() {
     var path = '{{ route('backend.'.$routeNameData.'.index') }}';
     var formEdit = $('#form-edit');
-    FilePond.create(document.querySelector('fieldset.path'))
+    document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item))
     $(".nav-item a").eq(0).click();
     formEdit.ajaxForm({
         beforeSubmit: function(arr, $form, options) {    

@@ -8,4 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 class ProductFile extends Model
 {
     use HasFactory;
+    use \Spatie\Translatable\HasTranslations;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'product_id',
+        'name',
+        'file_name',
+        'path',
+        'sort',
+    ];    
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
+    public $translatable = ['name'];
 }
+

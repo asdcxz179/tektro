@@ -71,6 +71,7 @@ return [
     'advertise_link' => '廣告連結',
     'below_advertise_image' => '下方廣告圖片',
     'below_advertise_switch' => '下方廣告按鈕顏色',
+    'below_advertise_switch_data' => [ '黑', '白' ],
     'below_advertise_link' => '下方廣告連結',
 
     'sort' => '排序',
@@ -100,19 +101,18 @@ return [
     'name' => ['*' => '名稱'],
     'description' => ['*' => '描述'],
     'content' => ['*' => '內容'],
-    'details' => ['*' => 'details'],
-    'technology' => ['*' => 'technology'],
-    'test_reviews' => ['*' => 'test_reviews'],
-    'related_products' => ['*' => 'related_products'],
+    'details' => ['*' => 'DETAILS'],
+    'technology' => ['*' => 'TECHNOLOGY'],
+    'test_reviews' => ['*' => 'TEST & REVIEWS'],
+    'related_products' => ['*' => 'RELATED PRODUCTS'],
 
     'banner' => 'banner',
 
     'sort' => '排序',
     'status' => '狀態',   
 
-    'product_image' => '圖片',
     'product_images' => [
-      '*' => '檔案',  
+      '*' => '檔案(可多筆)',  
     ],
     'product_file' => '檔案',
     'product_files' => [

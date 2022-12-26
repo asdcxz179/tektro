@@ -9,14 +9,14 @@
         <form id="form-create" action="{{ route('backend.'.$routeNameData.'.store') }}" method="post">
             @csrf
             <div class="block">
-                <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
+                <ul class="nav nav-tabs nav-tabs-block border" data-toggle="tabs" role="tablist">
                     @foreach($languageData as $language) 
                     <li class="nav-item">
                         <a class="nav-link" href="#btabs{{ $language->name }}">{{ $language->name }}</a>
                     </li>
                     @endforeach
                 </ul>
-                <div class="block-content tab-content">
+                <div class="block-content tab-content border">
                     @foreach($languageData as $language) 
                     <div class="tab-pane" id="btabs{{ $language->name }}" role="tabpanel">
                         <div class="form-row">
@@ -33,7 +33,7 @@
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.path") }}</label>    
                             <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div>
-                            <fieldset class="path">
+                            <fieldset class="image">
                                 <input type="file" name="path" accept="image/*" />    
                             </fieldset>  
                         </div>                         
@@ -66,7 +66,7 @@
 $(function() {
     var path = '{{ route('backend.'.$routeNameData.'.index') }}';
     var formCreate = $('#form-create');
-    FilePond.create(document.querySelector('fieldset.path'))
+    document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item))
     $(".nav-item a").eq(0).click();
     formCreate.ajaxForm({
         beforeSubmit: function(arr, $form, options) {

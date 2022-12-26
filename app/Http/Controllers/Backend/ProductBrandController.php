@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User as crudModel;
+use App\Models\ProductBrand as crudModel;
 use DataTables;
 use Exception;
 use DB;
@@ -13,7 +13,7 @@ use Illuminate\Support\Arr;
 class ProductBrandController extends Controller
 {
     public function __construct() {
-        $this->name = 'users';
+        $this->name = 'product_brands';
         $this->view = 'backend.'.$this->name;
         $this->rules = [    
             //使用多語系        
@@ -126,7 +126,7 @@ class ProductBrandController extends Controller
         
         try{
             DB::beginTransaction();
-
+            
             $data = CrudModel::findOrFail($id);
             $data->update(array_merge($validatedData, 
                 $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),
