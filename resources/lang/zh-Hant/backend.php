@@ -77,9 +77,13 @@ return [
     'status' => '狀態',
   ],
   'product_categories' => [
-    'name' => ['*' => '名稱'],
+    'name' => [
+      'zh-Hant' => '中文語系 名稱',
+      'en' => '英文語系 名稱',
+      '*' => '名稱',
+    ],
 
-    'path' => '圖片(60 x 60)',
+    'path' => '圖片',
 
     'sort' => '排序',
     'status' => '狀態',
@@ -87,16 +91,10 @@ return [
   'product_tags' => [
     'name' => ['*' => '名稱'],
     
-    'path' => '圖片(60 x 60)',
+    'path' => '圖片',
 
     'sort' => '排序',
     'status' => '狀態',   
-  ],
-  'product_keywords' => [
-    'name' => ['*' => '名稱'],
-
-    'sort' => '排序',
-    'status' => '狀態',
   ],
   'products' => [
     'name' => ['*' => '名稱'],
@@ -127,6 +125,12 @@ return [
       ]
     ]    
   ],
+  'product_keywords' => [
+    'name' => ['*' => '名稱'],
+
+    'sort' => '排序',
+    'status' => '狀態',
+  ],  
   'support_categories' => [
     'name' => ['*' => '名稱'],
             

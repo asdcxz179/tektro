@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('communities', function (Blueprint $table) {
             $table->id();
+            $table->string('facebook')->nullable()->comment('facebook');
+            $table->string('Instagram')->nullable()->comment('Instagram');            
+            $table->string('youtube')->nullable()->comment('youtube');            
             $table->timestamps();
         });
     }

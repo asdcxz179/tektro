@@ -43,5 +43,6 @@
   "status": "狀態",
   "image": "圖片",
   "pdf": "pdf",
+  "suggested_size": "圖片建議尺寸 :width x :height(px)",
   "language_id": "語系"
 }

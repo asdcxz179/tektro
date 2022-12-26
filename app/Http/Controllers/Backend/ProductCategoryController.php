@@ -17,7 +17,7 @@ class ProductCategoryController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name.*' => ['required', 'string', 'max:1'],
+            'name.*' => ['nullable', 'string', 'max:100'],
             //公用
             'path' => ['nullable', 'string'],
             //通用
@@ -64,8 +64,9 @@ class ProductCategoryController extends Controller
         try{
             DB::beginTransaction();
 
-            dd($validatedData);
-            $data = CrudModel::create($validatedData);
+            $data = CrudModel::create(array_merge($validatedData, 
+                $this->dealfile($validatedData['path'], 'path'),
+            ));
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -115,7 +116,9 @@ class ProductCategoryController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::findOrFail($id);
-            $data->update($validatedData);
+            $data->update(array_merge($validatedData, 
+                $this->dealfile($validatedData['path'], 'path', $data, 'path'),                
+            ));
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

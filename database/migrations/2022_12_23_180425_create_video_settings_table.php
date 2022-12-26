@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('video_settings', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable()->comment('名稱');
+
+            $table->string('youtube_key')->nullable()->comment('youtube_key');
+
+            $table->tinyInteger('sort')->default(0)->nullable()->comment('排序');
+            $table->tinyInteger('status')->default(1)->comment('狀態');                
             $table->timestamps();
         });
     }

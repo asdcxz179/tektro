@@ -17,7 +17,7 @@ class ProductKeywordController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name' => ['required', 'string', 'max:100'],
+            'name.*' => ['nullable', 'string', 'max:100'],
             //公用
             'path' => ['nullable', 'string'],
             //通用
@@ -113,7 +113,7 @@ class ProductKeywordController extends Controller
         
         try{
             DB::beginTransaction();
-
+            $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
 
             DB::commit();

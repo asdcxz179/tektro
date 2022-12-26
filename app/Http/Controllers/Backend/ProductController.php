@@ -17,13 +17,13 @@ class ProductController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name' => ['required', 'string', 'max:100'],
-            'description' => ['nullable', 'string', 'max:100'],
-            'content' => ['nullable', 'string', 'max:100'],
-            'details' => ['nullable', 'string'],
-            'technology' => ['nullable', 'string'],
-            'test_reviews' => ['nullable', 'string'],
-            'related_products' => ['nullable', 'string'],
+            'name.*' => ['nullable', 'string', 'max:100'],
+            'description.*' => ['nullable', 'string', 'max:100'],
+            'content.*' => ['nullable', 'string', 'max:100'],
+            'details.*' => ['nullable', 'string'],
+            'technology.*' => ['nullable', 'string'],
+            'test_reviews.*' => ['nullable', 'string'],
+            'related_products.*' => ['nullable', 'string'],
             //公用
             'banner' => ['nullable', 'string'],
             //通用

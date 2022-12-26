@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User as crudModel;
+use App\Models\ProductTag as crudModel;
 use DataTables;
 use Exception;
 use DB;
@@ -17,7 +17,7 @@ class ProductTagController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name' => ['required', 'string', 'max:100'],
+            'name.*' => ['nullable', 'string', 'max:100'],
             //公用
             'path' => ['nullable', 'string'],
             //通用
@@ -64,7 +64,9 @@ class ProductTagController extends Controller
         try{
             DB::beginTransaction();
 
-            $data = CrudModel::create($validatedData);
+            $data = CrudModel::create(array_merge($validatedData, 
+                $this->dealfile($validatedData['path'], 'path'),
+            ));
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -115,7 +117,10 @@ class ProductTagController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::findOrFail($id);
-            $data->update($validatedData);
+            $data->update(array_merge($validatedData, 
+                $this->dealfile($validatedData['path'], 'path', $data, 'path'),                
+            ));
+
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

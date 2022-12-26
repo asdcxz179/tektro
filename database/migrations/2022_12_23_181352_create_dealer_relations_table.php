@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('dealer_relations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('dealer_id')->constrained()->onDelete('cascade');
+            $table->morphs('model');            
             $table->timestamps();
         });
     }

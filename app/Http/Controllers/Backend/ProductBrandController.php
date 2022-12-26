@@ -17,11 +17,11 @@ class ProductBrandController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [    
             //使用多語系        
-            'name' => ['required', 'string', 'max:100'],
-            'advertise_title' => ['nullable', 'string', 'max:100'],
-            'advertise_subtitle' => ['nullable', 'string', 'max:100'],
-            'below_advertise_title' => ['nullable', 'string', 'max:100'],
-            'below_advertise_subtitle' => ['nullable', 'string', 'max:100'],
+            'name.*' => ['nullable', 'string', 'max:100'],
+            'advertise_title.*' => ['nullable', 'string', 'max:100'],
+            'advertise_subtitle.*' => ['nullable', 'string', 'max:100'],
+            'below_advertise_title.*' => ['nullable', 'string', 'max:100'],
+            'below_advertise_subtitle.*' => ['nullable', 'string', 'max:100'],
             //公用
             'banner' => ['nullable', 'string'],
             'advertise_image' => ['nullable', 'string'],

@@ -8,4 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class ProductTag extends Model
 {
     use HasFactory;
+    use \Spatie\Translatable\HasTranslations;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'path',
+
+        'sort',
+        'status',
+    ];    
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
+    public $translatable = ['name'];
 }

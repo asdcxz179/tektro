@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('area_id')->nullable()->comment('地區id')->constrained()->nullOnDelete();
+            $table->string('question')->nullable()->comment('問題');
+            $table->string('country')->nullable()->comment('國家');
+            $table->string('name')->nullable()->comment('姓名');
+            $table->string('email')->nullable()->comment('信箱');
+            $table->string('phone')->nullable()->comment('電話');
+            $table->string('content')->nullable()->comment('內容');
+      
             $table->timestamps();
         });
     }

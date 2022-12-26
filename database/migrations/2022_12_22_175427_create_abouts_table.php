@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable()->comment('名稱');
+            $table->text('content')->nullable()->comment('內容');
+
+            $table->string('banner')->nullable()->comment('描述');
+
+            $table->tinyInteger('sort')->default(0)->nullable()->comment('排序');
+            $table->tinyInteger('status')->default(1)->comment('狀態');                
             $table->timestamps();
         });
     }
