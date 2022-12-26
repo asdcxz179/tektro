@@ -8,6 +8,7 @@ use App\Models\User as crudModel;
 use DataTables;
 use Exception;
 use DB;
+use Illuminate\Support\Arr;
 
 class ProductController extends Controller
 {
@@ -40,7 +41,7 @@ class ProductController extends Controller
             
         ];
         $this->messages = []; 
-        $this->attributes = __("backend.{$this->name}");   
+        $this->attributes = Arr::dot(__("backend.{$this->name}"));
     }
 
     public function index(Request $request)

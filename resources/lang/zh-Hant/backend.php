@@ -60,11 +60,11 @@ return [
   ],
 
   'product_brands' => [
-    'name' => '名稱',
-    'advertise_title' => '廣告標題',
-    'advertise_subtitle' => '廣告副標題',
-    'below_advertise_title' => '下方廣告標題',
-    'below_advertise_subtitle' => '下方廣告副標題',
+    'name' => ['*' => '名稱'],
+    'advertise_title' => ['*' => '廣告標題'],
+    'advertise_subtitle' => ['*' => '廣告副標題'],
+    'below_advertise_title' => ['*' => '下方廣告標題'],
+    'below_advertise_subtitle' => ['*' => '下方廣告副標題'],
 
     'banner' => '橫幅',
     'advertise_image' => '廣告圖片',
@@ -77,33 +77,35 @@ return [
     'status' => '狀態',
   ],
   'product_categories' => [
-    'name' => '名稱',
+    'name' => ['*' => '名稱'],
+
     'path' => '圖片(60 x 60)',
 
     'sort' => '排序',
     'status' => '狀態',
   ],
   'product_tags' => [
-    'name' => '名稱',
+    'name' => ['*' => '名稱'],
+    
     'path' => '圖片(60 x 60)',
 
     'sort' => '排序',
     'status' => '狀態',   
   ],
   'product_keywords' => [
-    'name' => '名稱',
+    'name' => ['*' => '名稱'],
 
     'sort' => '排序',
     'status' => '狀態',
   ],
   'products' => [
-    'name' => '名稱',
-    'description' => '描述',
-    'content' => '內容',
-    'details' => 'details',
-    'technology' => 'technology',
-    'test_reviews' => 'test_reviews',
-    'related_products' => 'related_products',
+    'name' => ['*' => '名稱'],
+    'description' => ['*' => '描述'],
+    'content' => ['*' => '內容'],
+    'details' => ['*' => 'details'],
+    'technology' => ['*' => 'technology'],
+    'test_reviews' => ['*' => 'test_reviews'],
+    'related_products' => ['*' => 'related_products'],
 
     'banner' => 'banner',
 
@@ -126,16 +128,16 @@ return [
     ]    
   ],
   'support_categories' => [
-    'name' => '名稱',
+    'name' => ['*' => '名稱'],
             
     'sort' => '排序',
     'status' => '狀態',   
   ],
   'support_file_types' => [
-    'name' => '名稱',
+    'name' => ['*' => '名稱'],
   ],
   'supports' => [
-    'name' => '名稱',
+    'name' => ['*' => '名稱'],
 
     'sort' => '排序',
     'status' => '狀態',   

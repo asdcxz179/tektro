@@ -8,6 +8,7 @@ use App\Models\User as crudModel;
 use DataTables;
 use Exception;
 use DB;
+use Illuminate\Support\Arr;
 
 class TemplateController extends Controller
 {
@@ -24,15 +25,7 @@ class TemplateController extends Controller
             'language_id' => ['required', 'numeric'],
         ];
         $this->messages = [];
-        $this->attributes = [
-            'name' => __('name'),
-            'images' => __('image'),
-            'content' => __('content'),
-
-            'sort' => __('sort'),
-            'status' => __('status'),
-            'language_id' => __('language_id'),
-        ];
+        $this->attributes = Arr::dot(__("backend.{$this->name}"));
     }
 
     public function index(Request $request)

@@ -8,6 +8,7 @@ use App\Models\ProductCategory as crudModel;
 use DataTables;
 use Exception;
 use DB;
+use Illuminate\Support\Arr;
 
 class ProductCategoryController extends Controller
 {
@@ -16,7 +17,7 @@ class ProductCategoryController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name.*' => ['required', 'string', 'max:100'],
+            'name.*' => ['required', 'string', 'max:1'],
             //公用
             'path' => ['nullable', 'string'],
             //通用
@@ -24,7 +25,7 @@ class ProductCategoryController extends Controller
             'status' => ['required', 'boolean'],        
         ];
         $this->messages = []; 
-        $this->attributes = __("backend.{$this->name}");   
+        $this->attributes = Arr::dot(__("backend.{$this->name}"));
     }
 
     public function index(Request $request)
