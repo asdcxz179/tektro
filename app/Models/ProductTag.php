@@ -29,4 +29,15 @@ class ProductTag extends Model
     ];
 
     public $translatable = ['name'];
+
+
+    public function product_brands()
+    {
+        return $this->morphToMany(ProductBrand::class, 'model', 'product_brand_relations');
+    }     
+    
+    public function product()
+    {
+        return $this->morphToMany(Product::class, 'model', 'product_relations');
+    }   
 }

@@ -28,4 +28,9 @@ class ProductKeyword extends Model
     ];
 
     public $translatable = ['name'];
+
+    public function products()
+    {
+        return $this->morphToMany(Product::class, 'model', 'product_relations');
+    }       
 }

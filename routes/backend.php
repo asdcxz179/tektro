@@ -76,6 +76,7 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
         //支援
         Route::group(['prefix' => 'assist'],function () {
             //技術分類            
+            Route::get('/support_categories/select', [Controllers\Backend\SupportCategoryController::class, 'select'])->name('support_categories.select');
             Route::resource('/support_categories', Controllers\Backend\SupportCategoryController::class);
             Route::put('/support_categories/status/{support_category}', [Controllers\Backend\SupportCategoryController::class, 'status'])->name('support_categories.status');
             //技術手冊            

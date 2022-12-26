@@ -22,7 +22,9 @@ class ProductTagController extends Controller
             'path' => ['nullable', 'string'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
-            'status' => ['required', 'boolean'],     
+            'status' => ['required', 'boolean'],    
+            //多選
+            'product_brands' => ['nullable', 'array'],             
         ];
         $this->messages = []; 
         $this->attributes = Arr::dot(__("backend.{$this->name}"));
@@ -67,6 +69,7 @@ class ProductTagController extends Controller
             $data = CrudModel::create(array_merge($validatedData, 
                 $this->dealfile($validatedData['path'], 'path'),
             ));
+            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -120,7 +123,7 @@ class ProductTagController extends Controller
             $data->update(array_merge($validatedData, 
                 $this->dealfile($validatedData['path'], 'path', $data, 'path'),                
             ));
-
+            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
@@ -168,4 +171,22 @@ class ProductTagController extends Controller
             return response()->json(['message' => $e->getMessage()],422);
         }
     }    
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function select(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = CrudModel::where('name', 'like', "%{$request->search}%")
+                ->select(['id', 'name'])
+                ->limit(200)
+                ->get();
+            return $data;
+        }
+    }       
 }

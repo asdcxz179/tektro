@@ -30,6 +30,10 @@ class ProductController extends Controller
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],     
      
+            //多選
+            'product_categories' => ['nullable', 'array'],
+            'product_tags' => ['nullable', 'array'],
+
             //產品圖片
             'product_images' => ['nullable', 'array'],
             'product_images.*' => ['nullable', 'string'],
@@ -83,6 +87,10 @@ class ProductController extends Controller
             $data = CrudModel::create(array_merge($validatedData, 
                 $this->dealfile($validatedData['banner'], 'banner'),
             ));
+
+            $data->product_categories()->sync($validatedData['product_categories'] ?? []);
+            $data->product_tags()->sync($validatedData['product_tags'] ?? []);
+
             $relation = 'product_images';
             $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
 
@@ -146,6 +154,9 @@ class ProductController extends Controller
                 $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),           
             ));
 
+            $data->product_categories()->sync($validatedData['product_categories'] ?? []);
+            $data->product_tags()->sync($validatedData['product_tags'] ?? []);
+
             $relation = 'product_images';
             $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
 
@@ -153,7 +164,7 @@ class ProductController extends Controller
             foreach($validatedData[$relation] as &$value){
                 $value = array_merge($value, $this->dealfile($value['path'], 'path'));
             }
-            $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation]);            
+            $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation]);         
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
@@ -201,4 +212,22 @@ class ProductController extends Controller
             return response()->json(['message' => $e->getMessage()],422);
         }
     }    
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function select(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = CrudModel::where('name', 'like', "%{$request->search}%")
+                ->select(['id', 'name'])
+                ->limit(200)
+                ->get();
+            return $data;
+        }
+    }       
 }

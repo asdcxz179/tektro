@@ -493,7 +493,27 @@
                 });
                 $(document).on("click",".rm-btn",function() {
                     $(this).parents('.add').remove();
-                });                     
+                });    
+                
+                $('.js-select2').each(function(){
+                    $(this).select2({        		
+                        allowClear: true,	
+                        ajax: {
+                            url: $(this).data('url'),
+                            data: function (params) {
+                                return { search: params.term };
+                            },
+                            processResults: function(data, page) {                								
+                                return { 
+                                    results: data.map(item => { return { 
+                                        id: item.id,
+                                        text: item.name['zh-Hant']
+                                    } }) 
+                                }
+                            },
+                        }
+                    });
+                })                   
             });
         </script>
 

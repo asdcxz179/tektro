@@ -23,6 +23,8 @@ class ProductKeywordController extends Controller
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],     
+            //多選
+            'products' => ['nullable', 'array'],            
         ];
         $this->messages = []; 
         $this->attributes = Arr::dot(__("backend.{$this->name}"));
@@ -65,6 +67,7 @@ class ProductKeywordController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::create($validatedData);
+            $data->products()->sync($validatedData['products'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -115,6 +118,7 @@ class ProductKeywordController extends Controller
             DB::beginTransaction();
             $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
+            $data->products()->sync($validatedData['products'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
@@ -162,4 +166,22 @@ class ProductKeywordController extends Controller
             return response()->json(['message' => $e->getMessage()],422);
         }
     }    
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function select(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = CrudModel::where('name', 'like', "%{$request->search}%")
+                ->select(['id', 'name'])
+                ->limit(200)
+                ->get();
+            return $data;
+        }
+    }       
 }

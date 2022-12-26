@@ -52,4 +52,14 @@ class Product extends Model
     public function product_files(){
         return $this->hasMany(ProductFile::class);
     } 
+
+    public function product_categories()
+    {
+        return $this->morphedByMany(ProductCategory::class, 'model', 'product_relations');
+    } 
+
+    public function product_tags()
+    {
+        return $this->morphedByMany(ProductTag::class, 'model', 'product_relations');
+    } 
 }

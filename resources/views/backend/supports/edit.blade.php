@@ -30,7 +30,14 @@
                     @endforeach
                 </div>
                 <div class="block-content tab-content">
-                    <div class="form-row">   
+                    <div class="form-row">  
+                        <div class="form-group col-md-12">
+                            <label>{{ __("backend.$routeNameData.support_category_id") }}</label>
+                            <select data-url="{{ route('backend.support_categories.select') }}" class="js-select2 form-control" name="support_category_id" data-placeholder="{{ __("backend.$routeNameData.support_category_id") }}">
+                                <option value="{{ $data->support_category?->id }}" selected>{{ $data->support_category?->name }}</option>
+                                <option></option>
+                            </select>
+                        </div>                           
                         @foreach($support_files_type_data as $type)         
                         <div class="form-group col-md-12">
                             <div class="form-row">
@@ -130,26 +137,6 @@ $(function() {
             formEdit.find('button[type=submit]').attr('disabled',false);
         }
     });
-
-    $('.js-select2').each(function(){
-        $(this).select2({        		
-            allowClear: true,	
-            ajax: {
-                url: $(this).data('url'),
-                data: function (params) {
-                    return { search: params.term };
-                },
-                processResults: function(data, page) {                								
-                    return { 
-                        results: data.map(item => { return { 
-                            id: item.id,
-                            text: item.name
-                        } }) 
-                    }
-                },
-            }
-        });
-    })    
 });
 </script>    
 @endpush

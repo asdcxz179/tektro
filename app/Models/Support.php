@@ -32,6 +32,11 @@ class Support extends Model
         'name',
     ];
 
+
+    public function support_category(){
+        return $this->belongsTo(SupportCategory::class);
+    }    
+    
     public function support_files(){
         return $this->hasMany(SupportFile::class);
     } 

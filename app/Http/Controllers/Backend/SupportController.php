@@ -23,6 +23,8 @@ class SupportController extends Controller
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],     
+            //分類
+            'support_category_id' => ['nullable', 'string'],
         ];
         $support_files_type_data = SupportFileType::all();
         foreach($support_files_type_data as $type){
@@ -192,5 +194,5 @@ class SupportController extends Controller
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()],422);
         }
-    }    
+    }          
 }

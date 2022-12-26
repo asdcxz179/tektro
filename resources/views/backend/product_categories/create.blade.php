@@ -31,6 +31,12 @@
                 <div class="block-content tab-content">
                     <div class="form-row">
                         <div class="form-group col-md-6">
+                            <label>{{ __("backend.$routeNameData.product_brands") }}</label>
+                            <select data-url="{{ route('backend.product_brands.select') }}" class="js-select2 form-control" multiple name="product_brands[]" data-placeholder="{{ __("backend.$routeNameData.product_brands") }}">
+                                <option></option>
+                            </select>
+                        </div>                          
+                        <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.path") }}</label>    
                             <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div>
                             <fieldset class="image">
@@ -80,27 +86,7 @@ $(function() {
         complete: function() {
             formCreate.find('button[type=submit]').attr('disabled',false);
         }
-    });
-
-    $('.js-select2').each(function(){
-        $(this).select2({        		
-            allowClear: true,	
-            ajax: {
-                url: $(this).data('url'),
-                data: function (params) {
-                    return { search: params.term };
-                },
-                processResults: function(data, page) {                								
-                    return { 
-                        results: data.map(item => { return { 
-                            id: item.id,
-                            text: item.name
-                        } }) 
-                    }
-                },
-            }
-        });
-    })    
+    }); 
 });
 </script>
 @endpush

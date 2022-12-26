@@ -180,4 +180,22 @@ class ProductBrandController extends Controller
             return response()->json(['message' => $e->getMessage()],422);
         }
     }    
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function select(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = CrudModel::where('name', 'like', "%{$request->search}%")
+                ->select(['id', 'name'])
+                ->limit(200)
+                ->get();
+            return $data;
+        }
+    }       
 }

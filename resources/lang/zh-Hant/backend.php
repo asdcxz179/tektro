@@ -88,6 +88,8 @@ return [
 
     'sort' => '排序',
     'status' => '狀態',
+
+    'product_brands' => '品牌(可多選)'
   ],
   'product_tags' => [
     'name' => ['*' => '名稱'],
@@ -95,7 +97,9 @@ return [
     'path' => '圖片',
 
     'sort' => '排序',
-    'status' => '狀態',   
+    'status' => '狀態', 
+      
+    'product_brands' => '品牌(可多選)',
   ],
   'products' => [
     'name' => ['*' => '名稱'],
@@ -110,6 +114,9 @@ return [
 
     'sort' => '排序',
     'status' => '狀態',   
+
+    'product_categories' => '分類(可多選)',
+    'product_tags' => '標籤(可多選)',
 
     'product_images' => [
       '*' => '圖片(可多筆)',  
@@ -130,6 +137,8 @@ return [
 
     'sort' => '排序',
     'status' => '狀態',
+
+    'products' => '產品(可多選)',
   ],  
   'support_categories' => [
     'name' => ['*' => '名稱'],
@@ -145,6 +154,8 @@ return [
 
     'sort' => '排序',
     'status' => '狀態',   
+
+    'support_category_id' => '技術分類',
 
     'support_file' => '檔案',
     'support_files' => [

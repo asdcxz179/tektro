@@ -45,4 +45,14 @@ class ProductBrand extends Model
         'below_advertise_title',
         'below_advertise_subtitle',
     ];
+
+    public function product_categories()
+    {
+        return $this->morphedByMany(ProductCategory::class, 'model', 'product_relations');
+    } 
+
+    public function product_tags()
+    {
+        return $this->morphedByMany(ProductTag::class, 'model', 'product_relations');
+    }     
 }

@@ -75,26 +75,6 @@ $(function() {
             formEdit.find('button[type=submit]').attr('disabled',false);
         }
     });
-
-    $('.js-select2').each(function(){
-        $(this).select2({        		
-            allowClear: true,	
-            ajax: {
-                url: $(this).data('url'),
-                data: function (params) {
-                    return { search: params.term };
-                },
-                processResults: function(data, page) {                								
-                    return { 
-                        results: data.map(item => { return { 
-                            id: item.id,
-                            text: item.name
-                        } }) 
-                    }
-                },
-            }
-        });
-    })    
 });
 </script>    
 @endpush
