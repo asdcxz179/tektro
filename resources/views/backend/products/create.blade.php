@@ -28,25 +28,25 @@
                                 <label>{{ __("backend.$routeNameData.description.*") }}</label>
                                 <input type="text" name="description[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.description.*") }}">
                             </div>                            
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.content.*") }}</label>
-                                <input type="text" name="content[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.content.*") }}">
+                            <div class="form-group col-md-12">
+                                <label>{{ __("backend.$routeNameData.content.*") }}</label>                                
+                                <textarea name="content[{{ $language->lang }}]" class="form-control"></textarea>
                             </div>                            
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.details.*") }}</label>
-                                <input type="text" name="details[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.details.*") }}">
+                            <div class="form-group col-md-12">
+                                <label>{{ __("backend.$routeNameData.details.*") }}</label>                                
+                                <textarea name="details[{{ $language->lang }}]" class="form-control summernote"></textarea>
                             </div>                            
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.technology.*") }}</label>
-                                <input type="text" name="technology[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.technology.*") }}">
+                            <div class="form-group col-md-12">
+                                <label>{{ __("backend.$routeNameData.technology.*") }}</label>                                
+                                <textarea name="technology[{{ $language->lang }}]" class="form-control summernote"></textarea>
                             </div>                            
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.test_reviews.*") }}</label>
-                                <input type="text" name="test_reviews[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.test_reviews.*") }}">
+                            <div class="form-group col-md-12">
+                                <label>{{ __("backend.$routeNameData.test_reviews.*") }}</label>                                
+                                <textarea name="test_reviews[{{ $language->lang }}]" class="form-control summernote"></textarea>
                             </div>              
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.related_products.*") }}</label>
-                                <input type="text" name="related_products[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.related_products.*") }}">
+                            <div class="form-group col-md-12">
+                                <label>{{ __("backend.$routeNameData.related_products.*") }}</label>                                
+                                <textarea name="related_products[{{ $language->lang }}]" class="form-control summernote"></textarea>
                             </div>                                             
                         </div>
                     </div>
