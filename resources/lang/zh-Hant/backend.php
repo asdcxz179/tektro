@@ -253,4 +253,9 @@ return [
     'areas' => '地區(可多選)',
     'product_brands' => '品牌(可多選)',    
   ],    
+  'communities' => [
+    'facebook' => 'Facebook',
+    'instagram' => 'Instagram',
+    'youtube' => 'Youtube',
+  ]
 ];

@@ -13,45 +13,21 @@ use Illuminate\Support\Arr;
 class CommunityController extends Controller
 {
     public function __construct() {
-        $this->name = 'users';
+        $this->name = 'communities';
         $this->view = 'backend.'.$this->name;
-        $this->rules = [            
-            //使用多語系        
-            'country.*' => ['nullable', 'string', 'max:100'],
-            'company.*' => ['nullable', 'string', 'max:100'],
-            //公用
-            //通用
-            'sort' => ['required', 'numeric', 'max:127'],
-            'status' => ['required', 'boolean'],     
-
-            //多選
-            'areas' => ['nullable', 'array'],  
-            'product_brands' => ['nullable', 'array'],  
+        $this->rules = [        
+            'facebook' => ['nullable', 'string', 'max:150'],
+            'instagram' => ['nullable', 'string', 'max:150'],
+            'youtube' => ['nullable', 'string', 'max:150'],
         ];
         $this->messages = []; 
-        $this->attributes = Arr::dot(__("backend.{$this->name}"));
+        $this->attributes = Arr::dot(__("backend.{$this->name}")); 
     }
 
     public function index(Request $request)
     {
-        $this->authorize('read '.$this->name);
-        if ($request->ajax()) {
-            $data = CrudModel::query();
-            return Datatables::eloquent($data)
-                ->make(true);
-        }
-        return view($this->view.'.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $this->authorize('create '.$this->name);
-        return view($this->view.'.create');
+        $data = crudModel::where([ 'id' => '1' ])->first();
+        return view($this->view.'.edit',compact('data'));
     }
 
     /**
@@ -67,10 +43,8 @@ class CommunityController extends Controller
 
         try{
             DB::beginTransaction();
-
-            $data = CrudModel::create($validatedData);
-            $data->product_brands()->sync($validatedData['areas'] ?? []);
-            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
+            
+            $data = CrudModel::updateOrCreate([ 'id' => '1' ], $validatedData);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -79,96 +53,4 @@ class CommunityController extends Controller
             return response()->json(['message' => $e->getMessage()],422);
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $this->authorize('read '.$this->name);
-        return CrudModel::findOrFail($id); 
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    { 
-        $this->authorize('edit '.$this->name);
-        $data = CrudModel::findOrFail($id);
-        return view($this->view.'.edit',compact('data'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $this->authorize('edit '.$this->name);
-        $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
-        
-        try{
-            DB::beginTransaction();
-            
-            $data = CrudModel::findOrFail($id);
-            $data->update($validatedData);
-            $data->product_brands()->sync($validatedData['areas'] ?? []);
-            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
-
-            DB::commit();
-            return response()->json(['message' => __('edit').__('success')]);
-        } catch (Exception $e) {
-            DB::rollBack();
-            return response()->json(['message' => $e->getMessage()],422);
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $this->authorize('delete '.$this->name);
-        try{
-            $data = CrudModel::findOrFail($id);
-            $data->delete();
-            return response()->json(['message' => __('delete').__('success')]);
-        } catch (Exception $e) {
-            return response()->json(['message' => $e->getMessage()],422);
-        }
-    }
-    
-    /**
-     * status  the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function status(Request $request, $id)
-    {
-        $this->authorize('edit '.$this->name);
-        $validatedData = $request->validate(['status' => ['required', 'boolean']], [], ['status' => __('status'),]);
-        
-        try{
-            $data = CrudModel::findOrFail($id);
-            $data->update($validatedData);
-            return response()->json(['message' => __('edit').__('success')]);
-        } catch (Exception $e) {
-            return response()->json(['message' => $e->getMessage()],422);
-        }
-    }    
 }
