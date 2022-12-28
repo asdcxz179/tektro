@@ -1,21 +1,21 @@
 <?php
 
 return [
-    [ 'active' => 'homes/*', 'icon' => 'si si-call-in', 'title' => 'homes', 'child' =>
+    [ 'active' => 'homes/*', 'icon' => 'si si-home', 'title' => 'homes', 'child' =>
         [
             [ 'active' => 'users_setting/roles*', 'name' => 'roles', 'title' => 'roles', 'routeId' => 'role', 'permissions' => 'roles' ],
             [ 'active' => 'users_setting/users*', 'name' => 'users', 'title' => 'users', 'routeId' => 'user', 'permissions' => 'users' ],
         ]
     ],  
 
-    [ 'active' => 'info/*', 'icon' => 'si si-call-in', 'title' => 'info', 'child' =>
+    [ 'active' => 'info/*', 'icon' => 'si si-energy', 'title' => 'info', 'child' =>
         [
             [ 'active' => 'info/news*', 'name' => 'news', 'title' => 'news', 'routeId' => 'news', 'permissions' => 'news' ],
             [ 'active' => 'info/talents*', 'name' => 'talents', 'title' => 'talents', 'routeId' => 'talents', 'permissions' => 'talents' ],
         ]
     ],  
     [ 'active' => 'abouts*', 'icon' => 'si si-book-open', 'name' => 'abouts', 'title' => 'abouts', 'routeId' => 'about', 'permissions' => 'abouts' ],
-    [ 'active' => 'product_label/*', 'icon' => 'si si-call-in', 'title' => 'product_label', 'child' =>
+    [ 'active' => 'product_label/*', 'icon' => 'si si-handbag', 'title' => 'product_label', 'child' =>
         [
             [ 'active' => 'product_label/product_brands*'          ,'name' => 'product_brands'          , 'title' => 'product_brands'       , 'routeId' => 'product_brand'      , 'permissions' => 'product_brands' ],
             [ 'active' => 'product_label/product_categories*'      ,'name' => 'product_categories'      , 'title' => 'product_categories'   , 'routeId' => 'product_category'   , 'permissions' => 'product_categories' ],
@@ -24,7 +24,7 @@ return [
             [ 'active' => 'product_label/product_keywords*'        ,'name' => 'product_keywords'        , 'title' => 'product_keywords'     , 'routeId' => 'product_keyword'    , 'permissions' => 'product_keywords' ],
         ]
     ],       
-    [ 'active' => 'assist/*', 'icon' => 'si si-call-in', 'title' => 'assist', 'child' =>
+    [ 'active' => 'assist/*', 'icon' => 'fa fa-ticket', 'title' => 'assist', 'child' =>
         [
             [ 'active' => 'assist/support_categories*'             ,'name' => 'support_categories'      , 'title' => 'support_categories'   , 'routeId' => 'support_category'   , 'permissions' => 'support_categories' ],
             [ 'active' => 'assist/supports*'                       ,'name' => 'supports'                , 'title' => 'supports'             , 'routeId' => 'support'            , 'permissions' => 'supports' ],
