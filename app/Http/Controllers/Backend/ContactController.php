@@ -10,7 +10,7 @@ use Exception;
 use DB;
 use Illuminate\Support\Arr;
 
-class CommonController extends Controller
+class ContactController extends Controller
 {
     public function __construct() {
         $this->name = 'users';

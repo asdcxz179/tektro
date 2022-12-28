@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User as crudModel;
+use App\Models\Community as crudModel;
 use DataTables;
 use Exception;
 use DB;
@@ -17,12 +17,16 @@ class CommunityController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name' => ['required', 'string', 'max:100'],
+            'country.*' => ['nullable', 'string', 'max:100'],
+            'company.*' => ['nullable', 'string', 'max:100'],
             //公用
-            'path' => ['nullable', 'string'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],     
+
+            //多選
+            'areas' => ['nullable', 'array'],  
+            'product_brands' => ['nullable', 'array'],  
         ];
         $this->messages = []; 
         $this->attributes = Arr::dot(__("backend.{$this->name}"));
@@ -65,6 +69,8 @@ class CommunityController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::create($validatedData);
+            $data->product_brands()->sync($validatedData['areas'] ?? []);
+            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -116,6 +122,8 @@ class CommunityController extends Controller
             
             $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
+            $data->product_brands()->sync($validatedData['areas'] ?? []);
+            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

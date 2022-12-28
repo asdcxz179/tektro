@@ -31,8 +31,9 @@ return [
     'connect' => '聯絡我們',
     'contacts' => '聯絡我們表單',
     'contact_settings' => '聯絡我們設定', 
+    'dealers' => '經銷商', 
 
-    'communities' => '經銷商', 
+    'communities' => '社群管理', 
 
     'test' => '測試',
     'template' => '模板',
@@ -58,7 +59,37 @@ return [
     'name' => '角色名稱',
     'permissions' => '角色權限'
   ],
+  'news' => [
+    'name' => ['*' => '名稱'],
+    'description' => ['*' => '描述'],
+    'content' => ['*' => '內容'],
 
+    'show_date' => '顯示日期',
+    'banner' => '圖片',
+
+    'sort' => '排序',
+    'status' => '狀態',
+  ],
+  'talents' => [
+    'name' => ['*' => '名稱'],
+    'description' => ['*' => '描述'],
+    'content' => ['*' => '內容'],
+
+    'show_date' => '顯示日期',
+    'banner' => '圖片',
+
+    'sort' => '排序',
+    'status' => '狀態',
+  ],  
+  'abouts' => [
+    'name' => ['*' => '名稱'],
+    'content' => ['*' => '內容'],
+
+    'banner' => '圖片',
+
+    'sort' => '排序',
+    'status' => '狀態',
+  ],        
   'product_brands' => [
     'name' => ['*' => '名稱'],
     'advertise_title' => ['*' => '廣告標題'],
@@ -169,5 +200,53 @@ return [
       ]
     ]
   ],
+  'video_settings' => [
+    'name' => ['*' => '名稱'],
 
+    'youtube_key' => 'youtube_key',
+
+    'sort' => '排序',
+    'status' => '狀態',
+  ],    
+  'commons' => [
+    'name' => ['*' => '名稱'],
+    'content' => ['*' => '內容'],
+
+    'sort' => '排序',
+    'status' => '狀態',
+
+    'product_brands' => '品牌(可多選)',
+  ],  
+  'contacts' => [
+    'name' => ['*' => '名稱'],
+    'content' => ['*' => '內容'],
+
+    'sort' => '排序',
+    'status' => '狀態',
+
+    'product_brands' => '品牌(可多選)',
+  ],   
+  'contact_settings' => [
+    'name' => ['*' => '名稱'],
+    'content' => ['*' => '內容'],
+
+    'sort' => '排序',
+    'status' => '狀態',
+
+    'product_brands' => '品牌(可多選)',
+  ],   
+  'dealers' => [
+    'country' => ['*' => '國家'],
+    'company' => ['*' => '公司名'],
+
+    'phone' => '電話',
+    'email' => 'email',
+    'website' => 'website',
+
+    'sort' => '排序',
+    'status' => '狀態',
+
+    'areas' => '地區(可多選)',
+    'product_brands' => '品牌(可多選)',    
+  ],    
 ];

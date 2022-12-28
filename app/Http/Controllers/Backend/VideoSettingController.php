@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User as crudModel;
+use App\Models\VideoSetting as crudModel;
 use DataTables;
 use Exception;
 use DB;
@@ -13,13 +13,13 @@ use Illuminate\Support\Arr;
 class VideoSettingController extends Controller
 {
     public function __construct() {
-        $this->name = 'users';
+        $this->name = 'video_settings';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name' => ['required', 'string', 'max:100'],
+            'name.*' => ['nullable', 'string', 'max:100'],
             //公用
-            'path' => ['nullable', 'string'],
+            'youtube_key' => ['nullable', 'string'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],     

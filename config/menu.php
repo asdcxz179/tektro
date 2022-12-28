@@ -11,7 +11,7 @@ return [
     [ 'active' => 'info/*', 'icon' => 'si si-energy', 'title' => 'info', 'child' =>
         [
             [ 'active' => 'info/news*', 'name' => 'news', 'title' => 'news', 'routeId' => 'news', 'permissions' => 'news' ],
-            [ 'active' => 'info/talents*', 'name' => 'talents', 'title' => 'talents', 'routeId' => 'talents', 'permissions' => 'talents' ],
+            [ 'active' => 'info/talents*', 'name' => 'talents', 'title' => 'talents', 'routeId' => 'talent', 'permissions' => 'talents' ],
         ]
     ],  
     [ 'active' => 'abouts*', 'icon' => 'si si-book-open', 'name' => 'abouts', 'title' => 'abouts', 'routeId' => 'about', 'permissions' => 'abouts' ],
@@ -29,17 +29,17 @@ return [
             [ 'active' => 'assist/support_categories*'             ,'name' => 'support_categories'      , 'title' => 'support_categories'   , 'routeId' => 'support_category'   , 'permissions' => 'support_categories' ],
             [ 'active' => 'assist/supports*'                       ,'name' => 'supports'                , 'title' => 'supports'             , 'routeId' => 'support'            , 'permissions' => 'supports' ],
             [ 'active' => 'assist/video_settings*'                 ,'name' => 'video_settings'          , 'title' => 'video_settings'       , 'routeId' => 'video_setting'      , 'permissions' => 'video_settings' ],
-            [ 'active' => 'assist/commons*'                        ,'name' => 'commons'                 , 'title' => 'commons'              , 'common' => 'commons'             , 'permissions' => 'commons' ],            
+            [ 'active' => 'assist/commons*'                        ,'name' => 'commons'                 , 'title' => 'commons'              , 'routeId' => 'common'             , 'permissions' => 'commons' ],            
         ]
     ],            
     [ 'active' => 'connect/*', 'icon' => 'si si-call-in', 'title' => 'connect', 'child' =>
         [
             [ 'active' => 'connect/contacts*'                      ,'name' => 'contacts'                , 'title' => 'contacts'             , 'routeId' => 'contact'            , 'permissions' => 'contacts' ],
             [ 'active' => 'connect/contact_settings*'              ,'name' => 'contact_settings'        , 'title' => 'contact_settings'     , 'routeId' => 'contact_setting'    , 'permissions' => 'contact_settings' ],        
-            [ 'active' => 'connect/communities*'                   ,'name' => 'communities'             , 'title' => 'communities'          , 'routeId' => 'community'          , 'permissions' => 'communities' ],         
+            [ 'active' => 'connect/dealers*'                      ,'name' => 'dealers'                  , 'title' => 'dealers'              , 'routeId' => 'dealer'             , 'permissions' => 'dealers' ],         
         ]
     ],       
-    
+    [ 'active' => 'communities*', 'icon' => 'si si-book-open', 'name' => 'communities', 'title' => 'communities', 'routeId' => 'community', 'permissions' => 'communities' ],
     [ 'active' => 'users_setting/*', 'icon' => 'si si-users', 'title' => 'users_setting', 'child' =>
         [
             [ 'active' => 'users_setting/roles*', 'name' => 'roles', 'title' => 'roles', 'routeId' => 'role', 'permissions' => 'roles' ],

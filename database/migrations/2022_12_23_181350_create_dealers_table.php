@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('dealers', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable()->comment('名稱');
+            $table->string('country')->nullable()->comment('名稱');
             $table->string('company')->nullable()->comment('公司名稱');
 
             $table->string('phone')->nullable()->comment('電話');

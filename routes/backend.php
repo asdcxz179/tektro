@@ -38,11 +38,11 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
         //資訊
         Route::group(['prefix' => 'info'],function () {
             //最新消息
-            Route::resource('/news', Controllers\Backend\UserController::class);
-            Route::put('/news/status/{news}', [Controllers\Backend\UserController::class, 'status'])->name('news.status');
+            Route::resource('/news', Controllers\Backend\NewsController::class);
+            Route::put('/news/status/{news}', [Controllers\Backend\NewsController::class, 'status'])->name('news.status');
             //人才招募
-            Route::resource('/talents', Controllers\Backend\UserController::class);  
-            Route::put('/talents/status/{talents}', [Controllers\Backend\UserController::class, 'status'])->name('talents.status');
+            Route::resource('/talents', Controllers\Backend\TalentsController::class);  
+            Route::put('/talents/status/{talents}', [Controllers\Backend\TalentsController::class, 'status'])->name('talents.status');
         });   
         
         //關於我們
@@ -99,14 +99,17 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
             Route::resource('/contact_settings', Controllers\Backend\ContactSettingController::class);  
             Route::put('/contact_settings/status/{contact_setting}', [Controllers\Backend\ContactSettingController::class, 'status'])->name('contact_settings.status');
             //經銷商
-            Route::resource('/communities', Controllers\Backend\CommunityController::class);
-            Route::put('/communities/status/{community}', [Controllers\Backend\CommunityController::class, 'status'])->name('communities.status');
+            Route::resource('/dealers', Controllers\Backend\DealerController::class);
+            Route::put('/dealers/status/{community}', [Controllers\Backend\DealerController::class, 'status'])->name('dealers.status');
         });  
-        
-        //地區
-        Route::resource('/areas', Controllers\Backend\AreaController::class);
-        Route::put('/areas/status/{area}', [Controllers\Backend\AreaController::class, 'status'])->name('areas.status');
 
+        //社群管理
+        Route::resource('/communities', Controllers\Backend\CommunityController::class);
+
+
+        //地區
+        Route::get('/areas/select', [Controllers\Backend\AreaController::class, 'select'])->name('areas.select');
+        
         Route::group(['prefix' => 'users_setting'],function () {
             //新增管理員
             Route::resource('/users', Controllers\Backend\UserController::class);

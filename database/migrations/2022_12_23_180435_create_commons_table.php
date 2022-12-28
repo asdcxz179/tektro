@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('commons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_brand_id')->nullable()->constrained()->nullOnDelete();
             $table->string('name')->nullable()->comment('名稱');
             $table->text('content')->nullable()->comment('內容');
 

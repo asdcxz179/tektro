@@ -8,4 +8,30 @@ use Illuminate\Database\Eloquent\Model;
 class About extends Model
 {
     use HasFactory;
+    use \Spatie\Translatable\HasTranslations;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'content',
+
+        'banner',
+
+        'sort',
+        'status',
+    ];    
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
+    public $translatable = [
+        'name',
+        'content',
+    ];
 }

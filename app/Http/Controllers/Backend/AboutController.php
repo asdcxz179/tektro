@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User as crudModel;
+use App\Models\About as crudModel;
 use DataTables;
 use Exception;
 use DB;
@@ -13,13 +13,14 @@ use Illuminate\Support\Arr;
 class AboutController extends Controller
 {
     public function __construct() {
-        $this->name = 'users';
+        $this->name = 'abouts';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name' => ['required', 'string', 'max:100'],
+            'name.*' => ['nullable', 'string', 'max:100'],
+            'content.*' => ['nullable', 'string', 'max:100'],
             //公用
-            'path' => ['nullable', 'string'],
+            'banner' => ['nullable', 'string'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],     
@@ -64,7 +65,9 @@ class AboutController extends Controller
         try{
             DB::beginTransaction();
 
-            $data = CrudModel::create($validatedData);
+            $data = CrudModel::create(array_merge($validatedData, 
+                $this->dealfile($validatedData['banner'], 'banner'),
+            ));
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -115,7 +118,9 @@ class AboutController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::findOrFail($id);
-            $data->update($validatedData);
+            $data->update(array_merge($validatedData, 
+                $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),                
+            ));
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
