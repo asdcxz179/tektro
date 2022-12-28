@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User as crudModel;
+use App\Models\Contact as crudModel;
 use DataTables;
 use Exception;
 use DB;
@@ -13,7 +13,7 @@ use Illuminate\Support\Arr;
 class ContactController extends Controller
 {
     public function __construct() {
-        $this->name = 'users';
+        $this->name = 'contacts';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
@@ -32,7 +32,7 @@ class ContactController extends Controller
     {
         $this->authorize('read '.$this->name);
         if ($request->ajax()) {
-            $data = CrudModel::query();
+            $data = CrudModel::with(['areas']);
             return Datatables::eloquent($data)
                 ->make(true);
         }
@@ -83,7 +83,8 @@ class ContactController extends Controller
     public function show($id)
     {
         $this->authorize('read '.$this->name);
-        return CrudModel::findOrFail($id); 
+        $data = CrudModel::findOrFail($id);
+        return view($this->view.'.show',compact('data'));
     }
 
     /**
@@ -114,6 +115,7 @@ class ContactController extends Controller
         try{
             DB::beginTransaction();
 
+            $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
 
             DB::commit();

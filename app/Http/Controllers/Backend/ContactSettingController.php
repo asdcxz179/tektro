@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User as crudModel;
+use App\Models\ContactSetting as crudModel;
 use DataTables;
 use Exception;
 use DB;
@@ -13,15 +13,15 @@ use Illuminate\Support\Arr;
 class ContactSettingController extends Controller
 {
     public function __construct() {
-        $this->name = 'users';
+        $this->name = 'contact_settings';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name' => ['required', 'string', 'max:100'],
             //公用
-            'path' => ['nullable', 'string'],
+            'area_id' => ['required'],
+            'email' => ['required', 'email'],
+            'remark' => ['nullable', 'string'],
             //通用
-            'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],     
         ];
         $this->messages = []; 
@@ -32,7 +32,7 @@ class ContactSettingController extends Controller
     {
         $this->authorize('read '.$this->name);
         if ($request->ajax()) {
-            $data = CrudModel::query();
+            $data = CrudModel::with(['areas']);
             return Datatables::eloquent($data)
                 ->make(true);
         }
@@ -114,6 +114,7 @@ class ContactSettingController extends Controller
         try{
             DB::beginTransaction();
 
+            $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
 
             DB::commit();

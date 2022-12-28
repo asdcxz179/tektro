@@ -8,4 +8,32 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
+    // use \Spatie\Translatable\HasTranslations;
+    
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'area_id',
+        'question',
+        'country',
+        'name',
+        'email',
+        'phone',
+        'content',
+    
+        'sort',
+        'status',
+    ];    
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
+    public function areas(){
+        return $this->belongsTo(Area::class, 'area_id');
+    }   
 }

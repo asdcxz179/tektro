@@ -218,8 +218,13 @@ return [
     'product_brands' => '品牌(可多選)',
   ],  
   'contacts' => [
-    'name' => ['*' => '名稱'],
-    'content' => ['*' => '內容'],
+    'area_id' => '地區',
+    'question' => '問題',
+    'country' => '國家',
+    'name' => '姓名',
+    'email' => '信箱',
+    'phone' => '電話',
+    'content' => '內容',
 
     'sort' => '排序',
     'status' => '狀態',
@@ -227,13 +232,12 @@ return [
     'product_brands' => '品牌(可多選)',
   ],   
   'contact_settings' => [
-    'name' => ['*' => '名稱'],
-    'content' => ['*' => '內容'],
+    'area_id' => '地區',
+    'email' => '信箱',
+    'remark' => '備註',
 
     'sort' => '排序',
     'status' => '狀態',
-
-    'product_brands' => '品牌(可多選)',
   ],   
   'dealers' => [
     'country' => ['*' => '國家'],
