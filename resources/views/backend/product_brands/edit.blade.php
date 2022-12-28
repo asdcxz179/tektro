@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.advertise_subtitle.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('advertise_subtitle', $language->lang) }}" name="advertise_subtitle[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.advertise_subtitle.*") }}">
+                                <textarea name="advertise_subtitle[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.advertise_subtitle.*") }}" cols="30" rows="10">{{ $data->getTranslation('advertise_subtitle', $language->lang) }}</textarea>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.below_advertise_title.*") }}</label>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.below_advertise_subtitle.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('below_advertise_subtitle', $language->lang) }}" name="below_advertise_subtitle[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.below_advertise_subtitle.*") }}">
+                                <textarea name="below_advertise_subtitle[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.below_advertise_subtitle.*") }}" cols="30" rows="10">{{ $data->getTranslation('below_advertise_subtitle', $language->lang) }}</textarea>
                             </div>
                         </div>
                     </div>

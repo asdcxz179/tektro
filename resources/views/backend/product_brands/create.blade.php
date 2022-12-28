@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.advertise_subtitle.*") }}</label>
-                                <input type="text" name="advertise_subtitle[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.advertise_subtitle.*") }}">
+                                <textarea name="advertise_subtitle[{{ $language->lang }}]" class="form-control" cols="30" rows="10" placeholder="{{ __("backend.$routeNameData.advertise_subtitle.*") }}"></textarea>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.below_advertise_title.*") }}</label>
@@ -38,7 +38,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.below_advertise_subtitle.*") }}</label>
-                                <input type="text" name="below_advertise_subtitle[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.below_advertise_subtitle.*") }}">
+                                <textarea name="below_advertise_subtitle[{{ $language->lang }}]" class="form-control" cols="30" rows="10" placeholder="{{ __("backend.$routeNameData.below_advertise_subtitle.*") }}"></textarea>
                             </div>
                         </div>
                     </div>

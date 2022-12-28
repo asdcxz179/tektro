@@ -69,6 +69,7 @@ class SupportController extends Controller
      */
     public function store(Request $request)
     {
+        ini_set("memory_limit","800M");
         $this->authorize('create '.$this->name);
         $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
 
@@ -129,6 +130,7 @@ class SupportController extends Controller
      */
     public function update(Request $request, $id)
     {
+        ini_set("memory_limit","800M");
         $this->authorize('edit '.$this->name);
         $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
         

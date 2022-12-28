@@ -19,9 +19,9 @@ class ProductBrandController extends Controller
             //使用多語系        
             'name.*' => ['nullable', 'string', 'max:100'],
             'advertise_title.*' => ['nullable', 'string', 'max:100'],
-            'advertise_subtitle.*' => ['nullable', 'string', 'max:100'],
+            'advertise_subtitle.*' => ['nullable', 'string', 'max:255'],
             'below_advertise_title.*' => ['nullable', 'string', 'max:100'],
-            'below_advertise_subtitle.*' => ['nullable', 'string', 'max:100'],
+            'below_advertise_subtitle.*' => ['nullable', 'string', 'max:255'],
             //公用
             'banner' => ['nullable', 'string'],
             'advertise_image' => ['nullable', 'string'],

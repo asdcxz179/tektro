@@ -46,9 +46,19 @@ class ProductBrand extends Model
         'below_advertise_subtitle',
     ];
 
+    public function categories()
+    {
+        return $this->morphedByMany(ProductCategory::class, 'model', 'product_brand_relations')->where('status',1)->orderby('sort','asc');
+    } 
+
+    public function tags()
+    {
+        return $this->morphedByMany(ProductTag::class, 'model', 'product_brand_relations')->where('status',1)->orderby('sort','asc');
+    }   
+
     public function product_categories()
     {
-        return $this->morphedByMany(ProductCategory::class, 'model', 'product_relations');
+        return $this->morphedByMany(ProductCategory::class, 'model', 'product_brand_relations');
     } 
 
     public function product_tags()

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use View;
 use App\Models\Language;
+use App\Models\ProductBrand;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
 		if(env('SERVICE_HTTPS', 0)) \URL::forceScheme('https');
         $menuData = config('menu');
 
@@ -71,5 +73,11 @@ class AppServiceProvider extends ServiceProvider
         );
 
         Paginator::useBootstrap();
+
+        \View::share('lang',request()->get('lang'));
+        $brands = ProductBrand::where([
+            'status'    =>  1,
+        ])->orderby('sort','asc')->get();
+        \View::share('brands',$brands);
     }
 }

@@ -28,4 +28,8 @@ class SupportCategory extends Model
     ];
 
     public $translatable = ['name'];
+
+    public function supports(){
+        return $this->hasMany(Support::class);
+    } 
 }

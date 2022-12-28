@@ -49,8 +49,17 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }   
 
+    public function files(){
+        return $this->hasMany(ProductFile::class)->whereNotNull('path')->orderby('sort','asc');
+    } 
+
     public function product_files(){
         return $this->hasMany(ProductFile::class);
+    } 
+
+    public function category()
+    {
+        return $this->morphedByMany(ProductCategory::class, 'model', 'product_relations')->where('status',1);
     } 
 
     public function product_categories()

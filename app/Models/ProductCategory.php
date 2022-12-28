@@ -30,6 +30,11 @@ class ProductCategory extends Model
 
     public $translatable = ['name'];
 
+    public function brands()
+    {
+        return $this->morphToMany(ProductBrand::class, 'model', 'product_brand_relations')->where('status',1);
+    }   
+
     public function product_brands()
     {
         return $this->morphToMany(ProductBrand::class, 'model', 'product_brand_relations');
@@ -39,4 +44,9 @@ class ProductCategory extends Model
     {
         return $this->morphToMany(Product::class, 'model', 'product_relations');
     }   
+
+    public function products()
+    {
+        return $this->morphToMany(Product::class, 'model', 'product_relations')->where('status',1)->orderby('sort','asc');
+    }
 }

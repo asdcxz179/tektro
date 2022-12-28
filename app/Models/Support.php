@@ -38,6 +38,6 @@ class Support extends Model
     }    
     
     public function support_files(){
-        return $this->hasMany(SupportFile::class);
+        return $this->hasMany(SupportFile::class)->orderby('sort','asc');
     } 
 }
