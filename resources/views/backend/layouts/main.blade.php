@@ -476,10 +476,11 @@
                     let lastcount = add.find('input').attr('name').match(/.*\[(?<lastcount>\d*)\].*/).groups.lastcount
                     let clone = add.clone();
                     clone.children('.delete').removeClass('d-none').addClass('d-flex');
-                    clone.find('input[name]:not([type=hidden])').each(function () {
+                    clone.find('input[name]').each(function () {
                         let name = $(this).attr('name').replace(lastcount, parseInt(lastcount) + 1);
                         $(this).attr('name', name).val('');
                         let tmp = $(this).parents('.filepond-dom');
+                        console.log($(this), tmp);
                         if(tmp.length > 0){
                             tmp.find('.filepond--root').remove();
                             tmp.append(`<fieldset class="image">                              
