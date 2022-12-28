@@ -54,6 +54,7 @@
                             @foreach($data->support_files as $key => $value)      
                             @if($type->id == $value->support_file_type_id)
                             <div class="add form-row"> 
+                                <input type="hidden" class="not_copy" name="support_files{{ $type->key }}[{{ $key }}][id]" value="{{ $value->id }}">
                                 @foreach($languageData as $language) 
                                 <div class="form-group col-md-2">
                                     <label>{{ __("backend.$routeNameData.support_files.*.name") }}({{ $language->name }})</label>
@@ -66,12 +67,12 @@
                                 </div>                                   
                                 <div class="form-group col-md-4 filepond-dom">
                                     <label>{{ __("backend.$routeNameData.support_files.*.path") }}</label>                                    
-                                    <fieldset class="image">        
-                                        @isset($value->path)
-                                        <input value="{{ asset($value->path) }}" checked type="checkbox" />{{ asset($value->path) }}
-                                        @endisset                                                                
-                                        <input type="file" name="support_files{{ $type->key }}[{{ $key }}][path]"/>    
-                                    </fieldset>  
+                                    <fieldset class="image">                                                                        
+                                        <input type="file" name="support_files{{ $type->key }}[{{ $key }}][path]"/>
+                                    </fieldset>
+                                    @isset($value->path)
+                                    <label class="filepond--root">{{ $value->file_name }}</label>
+                                    @endisset                                        
                                 </div>  
                                 <div class="form-group col-md-1 justify-content-center align-items-end d-flex delete">
                                     <button type="button" class="rm-btn btn btn-danger mr-5 mb-5">
@@ -127,6 +128,10 @@ $(function() {
     formEdit.ajaxForm({
         beforeSubmit: function(arr, $form, options) {    
             formEdit.find('button[type=submit]').attr('disabled',true);
+            swal.fire({
+                title: 'Loading...',
+                icon: 'warning',                
+            });            
         },
         success: function(data) {
             Swal.fire({ text: data.message, icon: 'success' }).then(function() {

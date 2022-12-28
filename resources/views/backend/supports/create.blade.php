@@ -107,6 +107,9 @@ $(function() {
     formCreate.ajaxForm({
         beforeSubmit: function(arr, $form, options) {
             formCreate.find('button[type=submit]').attr('disabled',true);
+            swal.fire({
+                html: '<h4>Loading...</h4>',
+            });
         },
         success: function(data) {
             Swal.fire({ text: data.message, icon: 'success' }).then(function() {

@@ -39,6 +39,7 @@ class ProductController extends Controller
             'product_images.*' => ['nullable', 'string'],
             //產品檔案
             'product_files' => ['nullable', 'array'],
+            'product_files.*.id' => ['nullable'],
             'product_files.*.name.*' => ['nullable', 'string', 'max:100'],
             'product_files.*.path' => ['nullable', 'string'],
             'product_files.*.sort' => ['nullable', 'numeric', 'max:127'],
@@ -162,7 +163,11 @@ class ProductController extends Controller
 
             $relation = 'product_files';
             foreach($validatedData[$relation] as &$value){
-                $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                if($value['path']){
+                    $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                }else{
+                    unset($value['path']);
+                }
             }
             $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation]);         
 

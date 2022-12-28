@@ -30,6 +30,7 @@ class SupportController extends Controller
         foreach($support_files_type_data as $type){
             //檔案
             $this->rules['support_files'.$type->key] = ['nullable', 'array'];
+            $this->rules['support_files'.$type->key.'.*.id'] = ['nullable'];
             $this->rules['support_files'.$type->key.'.*.name.*'] = ['nullable', 'string', 'max:100'];
             $this->rules['support_files'.$type->key.'.*.path'] = ['nullable', 'string'];
             $this->rules['support_files'.$type->key.'.*.sort'] = ['nullable', 'numeric', 'max:127'];
@@ -144,11 +145,14 @@ class SupportController extends Controller
             foreach($support_files_type_data as $type){
                 $relation = 'support_files';
                 foreach($validatedData[$relation.$type->key] as &$value){
-                    $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                    if($value['path']){
+                        $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                    }else{
+                        unset($value['path']);
+                    }
                     $value['support_file_type_id'] = $type->id;
                 }
-                $data->{$relation}()->where(['support_file_type_id' => $type->id])->delete();
-                $data->{$relation}()->createMany($validatedData[$relation.$type->key]);         
+                $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation.$type->key], [], ['support_file_type_id' => $type->id]);      
             }
 
             DB::commit();

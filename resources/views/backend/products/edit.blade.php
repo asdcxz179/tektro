@@ -121,14 +121,14 @@
                                 </div>                                   
                                 <div class="form-group col-md-4 filepond-dom">
                                     <label>{{ __("backend.$routeNameData.product_files.*.path") }}</label>                                    
-                                    <fieldset class="image">        
-                                        @isset($value->path)
-                                        <input value="{{ asset($value->path) }}" checked type="checkbox" />{{ asset($value->path) }}
-                                        @endisset                                                                
+                                    <fieldset class="image">                                                                 
                                         <input type="file" name="product_files[{{ $key }}][path]"/>    
                                     </fieldset>  
+                                    @isset($value->path)
+                                    <label class="filepond--root">{{ $value->file_name }}</label>
+                                    @endisset                                        
                                 </div>  
-                                <div class="form-group col-md-1 justify-content-center align-items-end d-none delete">
+                                <div class="form-group col-md-1 justify-content-center align-items-end d-flex delete">
                                     <button type="button" class="rm-btn btn btn-danger mr-5 mb-5">
                                         <i class="fa fa-times"></i>
                                     </button>    
@@ -168,6 +168,15 @@ $(function() {
     var formEdit = $('#form-edit');
     document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item))
     $(".nav-item a").eq(0).click();
+    $(".form-group").each(function(){
+        let checked = true;
+        $(this).children('.add').each(function(){
+            if(checked){
+                $(this).find('.delete').addClass('d-none').removeClass('d-flex'); 
+                checked = false;
+            }
+        })
+    })    
     formEdit.ajaxForm({
         beforeSubmit: function(arr, $form, options) {    
             formEdit.find('button[type=submit]').attr('disabled',true);

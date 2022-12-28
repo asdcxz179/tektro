@@ -11,10 +11,10 @@ trait ModelShareTrait
 	/**
      * 一對多 比對 更新刪除
      */
-    protected function scopeHasManySyncable($db, $parent, $relation, $validatedData, $merge_data = [])
+    protected function scopeHasManySyncable($db, $parent, $relation, $validatedData, $merge_data = [], $where = [])
     {
-        $deleteIds = array_diff($parent->{$relation}()->pluck('id')->all(), array_column($validatedData, 'id'));
-
+        $deleteIds = array_diff($parent->{$relation}()->where($where)->pluck('id')->all(), array_column($validatedData, 'id'));
+        
         foreach($validatedData as $value){
             if(isset($value['id'])){
                 $data = $parent->{$relation}()->findOrFail($value['id']);
