@@ -108,7 +108,8 @@ $(function() {
         beforeSubmit: function(arr, $form, options) {
             formCreate.find('button[type=submit]').attr('disabled',true);
             swal.fire({
-                html: '<h4>Loading...</h4>',
+                title: 'Loading...',
+                icon: 'warning',                
             });
         },
         success: function(data) {
