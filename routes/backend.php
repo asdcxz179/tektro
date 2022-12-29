@@ -35,6 +35,10 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
         //操作紀錄
         Route::resource('/audits', Controllers\Backend\AuditController::class);
 
+        //首頁
+        Route::resource('/homes', Controllers\Backend\AboutController::class);
+        Route::put('/homes/status/{homes}', [Controllers\Backend\AboutController::class, 'status'])->name('homes.status');
+
         //資訊
         Route::group(['prefix' => 'info'],function () {
             //最新消息

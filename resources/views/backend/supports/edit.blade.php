@@ -129,6 +129,8 @@ $(function() {
         beforeSubmit: function(arr, $form, options) {    
             formEdit.find('button[type=submit]').attr('disabled',true);
             swal.fire({
+                showCancelButton: false,
+                showConfirmButton: false,
                 title: 'Loading...',
                 icon: 'warning',                
             });            

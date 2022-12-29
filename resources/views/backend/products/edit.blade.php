@@ -180,6 +180,12 @@ $(function() {
     formEdit.ajaxForm({
         beforeSubmit: function(arr, $form, options) {    
             formEdit.find('button[type=submit]').attr('disabled',true);
+            swal.fire({
+                showCancelButton: false,
+                showConfirmButton: false,
+                title: 'Loading...',
+                icon: 'warning',                
+            });               
         },
         success: function(data) {
             Swal.fire({ text: data.message, icon: 'success' }).then(function() {

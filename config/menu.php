@@ -1,13 +1,7 @@
 <?php
 
 return [
-    [ 'active' => 'homes/*', 'icon' => 'si si-home', 'title' => 'homes', 'child' =>
-        [
-            [ 'active' => 'users_setting/roles*', 'name' => 'roles', 'title' => 'roles', 'routeId' => 'role', 'permissions' => 'roles' ],
-            [ 'active' => 'users_setting/users*', 'name' => 'users', 'title' => 'users', 'routeId' => 'user', 'permissions' => 'users' ],
-        ]
-    ],  
-
+    [ 'active' => 'homes*', 'icon' => 'si si-home', 'name' => 'homes', 'title' => 'homes', 'routeId' => 'home', 'permissions' => 'homes' ],
     [ 'active' => 'info/*', 'icon' => 'si si-energy', 'title' => 'info', 'child' =>
         [
             [ 'active' => 'info/news*', 'name' => 'news', 'title' => 'news', 'routeId' => 'news', 'permissions' => 'news' ],
@@ -39,7 +33,7 @@ return [
             [ 'active' => 'connect/dealers*'                      ,'name' => 'dealers'                  , 'title' => 'dealers'              , 'routeId' => 'dealer'             , 'permissions' => 'dealers' ],         
         ]
     ],       
-    [ 'active' => 'communities*', 'icon' => 'si si-book-open', 'name' => 'communities', 'title' => 'communities', 'routeId' => 'community', 'permissions' => 'communities' ],
+    [ 'active' => 'communities*', 'icon' => 'fa fa-users', 'name' => 'communities', 'title' => 'communities', 'routeId' => 'community', 'permissions' => 'communities' ],
     [ 'active' => 'users_setting/*', 'icon' => 'si si-users', 'title' => 'users_setting', 'child' =>
         [
             [ 'active' => 'users_setting/roles*', 'name' => 'roles', 'title' => 'roles', 'routeId' => 'role', 'permissions' => 'roles' ],
