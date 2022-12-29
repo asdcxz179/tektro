@@ -110,14 +110,15 @@ $(function() {
             swal.fire({
                 showCancelButton: false,
                 showConfirmButton: false,
+                allowOutsideClick: false,
                 title: 'Loading...',
-                icon: 'warning',                
+                icon: 'warning',                             
             });
         },
         success: function(data) {
-            // Swal.fire({ text: data.message, icon: 'success' }).then(function() {
-            //     location.href = path;
-            // });
+            Swal.fire({ text: data.message, icon: 'success' }).then(function() {
+                location.href = path;
+            });
         },
         complete: function() {
             formCreate.find('button[type=submit]').attr('disabled',false);

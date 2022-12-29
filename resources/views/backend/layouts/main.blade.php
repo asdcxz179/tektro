@@ -482,6 +482,7 @@
                         let tmp = $(this).parents('.filepond-dom');
                         if(tmp.length > 0){
                             tmp.find('.filepond--root').remove();
+                            tmp.find('.filepond--rm').remove();
                             tmp.append(`<fieldset class="image">                              
                                 <input type="file" name="${ name }"/>    
                             </fieldset>`)

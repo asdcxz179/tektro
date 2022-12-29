@@ -125,7 +125,7 @@
                                         <input type="file" name="product_files[{{ $key }}][path]"/>    
                                     </fieldset>  
                                     @isset($value->path)
-                                    <label class="filepond--root">{{ $value->file_name }}</label>
+                                    <label class="filepond--rm"><h6>{{ $value->file_name }}<h6></label>
                                     @endisset                                        
                                 </div>  
                                 <div class="form-group col-md-1 justify-content-center align-items-end d-flex delete">
@@ -183,6 +183,7 @@ $(function() {
             swal.fire({
                 showCancelButton: false,
                 showConfirmButton: false,
+                allowOutsideClick: false,
                 title: 'Loading...',
                 icon: 'warning',                
             });               

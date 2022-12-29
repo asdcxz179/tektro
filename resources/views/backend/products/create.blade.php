@@ -152,6 +152,7 @@ $(function() {
             swal.fire({
                 showCancelButton: false,
                 showConfirmButton: false,
+                allowOutsideClick: false,
                 title: 'Loading...',
                 icon: 'warning',                
             });               
