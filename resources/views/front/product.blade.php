@@ -105,16 +105,24 @@
                     <!-- tab-content start -->
                     <div class="tab-content">
                         <div class="tab-pane fade show active" role="tabpanel" id="details">
-                            {!!$product->details!!}
+                            <div class="row">
+                                {!!$product->details!!}
+                            </div>
                         </div>
                         <div class="tab-pane fade" role="tabpanel" id="technology">
-                            {!!$product->technology!!}
+                            <div class="row">
+                                {!!$product->technology!!}
+                            </div>
                         </div>
                         <div class="tab-pane fade" role="tabpanel" id="test">
-                            {!!$product->test_reviews!!}
+                            <div class="row">
+                                {!!$product->test_reviews!!}
+                            </div>
                         </div>
                         <div class="tab-pane fade" role="tabpanel" id="related">
-                            {!!$product->related_products!!}
+                            <div class="row">
+                                {!!$product->related_products!!}
+                            </div>
                         </div>
                     </div>
                     <!-- tab-content end -->
@@ -142,7 +150,7 @@
                                 <ul class="accordion-body bg-white rounded-1">
                                     @foreach($product->files as $key => $file)
                                     <li class="mb-3">
-                                        <a href="#" class="hover_color_trp">
+                                        <a href="/{{$file->path}}" class="hover_color_trp" target="_blank">
                                             <i class='bx bx-download me-2'></i>{{$file->name}}
                                         </a>
                                     </li>
@@ -176,4 +184,4 @@
         })
     })
 </script>
-@endpush
+@endpush/
