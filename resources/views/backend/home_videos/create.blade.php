@@ -9,36 +9,23 @@
         <form id="form-create" action="{{ route('backend.'.$routeNameData.'.store') }}" method="post">
             @csrf
             <div class="block">
-                <ul class="nav nav-tabs nav-tabs-block border" data-toggle="tabs" role="tablist">
-                    @foreach($languageData as $language) 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#btabs{{ $language->name }}">{{ $language->name }}</a>
-                    </li>
-                    @endforeach
-                </ul>
-                <div class="block-content tab-content border">
-                    @foreach($languageData as $language) 
-                    <div class="tab-pane" id="btabs{{ $language->name }}" role="tabpanel">
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label>{{ __("backend.$routeNameData.name.*") }}</label>
-                                <input type="text" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label>{{ __("backend.$routeNameData.content.*") }}</label>                                
-                                <textarea name="content[{{ $language->lang }}]" class="form-control summernote"></textarea>
-                            </div>                              
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
                 <div class="block-content tab-content">
-                    <div class="form-row">
+                    <div class="form-row">           
                         <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.product_brands") }}</label>
-                            <select data-url="{{ route('backend.product_brands.select') }}" class="js-select2 form-control" multiple name="product_brands[]" data-placeholder="{{ __("backend.$routeNameData.product_brands") }}">
-                                <option></option>
+                            <label>{{ __("backend.$routeNameData.home_type_id") }}</label>
+                            <select class="js-select2 form-control" name="home_type_id">
+                                @foreach($types as $value)
+                                <option value="{{ $value->id }}" {{ $value->id == request()->home_type_id ? 'selected' : '' }}>{{ $value->name }}</option>
+                                @endforeach
                             </select>
+                        </div>                       
+                        <div class="form-group col-md-12">                          
+                            <div class="add form-row"> 
+                                <div class="form-group col-md-12">
+                                    <label>{{ __("backend.$routeNameData.relation.*.youtube_key") }}</label>
+                                    <input type="text" name="relation[1][youtube_key]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.youtube_key") }}">
+                                </div>                                                        
+                            </div>                                                                                    
                         </div>                                                 
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
@@ -74,6 +61,13 @@ $(function() {
     formCreate.ajaxForm({
         beforeSubmit: function(arr, $form, options) {
             formCreate.find('button[type=submit]').attr('disabled',true);
+            swal.fire({
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                title: 'Loading...',
+                icon: 'warning',                
+            });               
         },
         success: function(data) {
             Swal.fire({ text: data.message, icon: 'success' }).then(function() {
@@ -83,7 +77,11 @@ $(function() {
         complete: function() {
             formCreate.find('button[type=submit]').attr('disabled',false);
         }
-    }); 
+    });  
+
+    $('select[name="home_type_id"]').change(function() {
+        location.href = `${ path }/create?home_type_id=${ $(this).val() }`
+    })
 });
 </script>
 @endpush

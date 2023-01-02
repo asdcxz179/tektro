@@ -59,6 +59,41 @@ return [
     'name' => '角色名稱',
     'permissions' => '角色權限'
   ],
+  'users' => [
+    'name' => '名稱',
+    'email' => '信箱',
+    'roles' => '角色',
+    'password' => '密碼',
+    'password_error' => '密碼錯誤',
+    'password_confirmation' => '密碼確認',
+    'status' => '狀態',
+  ],  
+  'homes' => [
+    'name' => ['*' => '名稱'],
+    'description' => ['*' => '描述'],
+    'home_type_id' => '模組',
+
+    'show_date' => '顯示日期',
+    'banner' => '圖片',
+
+    'sort' => '排序',
+    'status' => '狀態',
+
+    'relation' => [
+      '*' => [
+        'title' => '標題',
+        'big_title' => '大標題',
+        'small_title' => '小標題',
+        'title' => '標題',
+
+        'youtube_key' => 'youtube_key',
+        'path' => '圖片',
+        'link' => '連結',
+    
+        'sort' => '排序',  
+      ]
+    ]  
+  ],  
   'news' => [
     'name' => ['*' => '名稱'],
     'description' => ['*' => '描述'],

@@ -10,39 +10,35 @@
             @csrf
             @method('PUT')
             <div class="block">
-                <ul class="nav nav-tabs nav-tabs-block border" data-toggle="tabs" role="tablist">
-                    @foreach($languageData as $language) 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#btabs{{ $language->name }}">{{ $language->name }}</a>
-                    </li>
-                    @endforeach
-                </ul>
-                <div class="block-content tab-content border">
-                    @foreach($languageData as $language) 
-                    <div class="tab-pane" id="btabs{{ $language->name }}" role="tabpanel">
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label>{{ __("backend.$routeNameData.name.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('name', $language->lang) }}" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label>{{ __("backend.$routeNameData.content.*") }}</label>                                
-                                <textarea name="content[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('content', $language->lang) }}</textarea>
-                            </div>                            
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
                 <div class="block-content tab-content">
-                    <div class="form-row">
+                    <div class="form-row">           
                         <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.product_brands") }}</label>
-                            <select data-url="{{ route('backend.product_brands.select') }}" class="js-select2 form-control" multiple name="product_brands[]" data-placeholder="{{ __("backend.$routeNameData.product_brands") }}">
-                                @foreach($data->product_brands as $item)
-                                <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                            <label>{{ __("backend.$routeNameData.home_type_id") }}</label>
+                            <select class="js-select2 form-control" disabled name="home_type_id">
+                                @foreach($types as $value)
+                                <option value="{{ $value->id }}" {{ $value->id == request()->home_type_id ? 'selected' : '' }}>{{ $value->name }}</option>
                                 @endforeach
                             </select>
-                        </div>                                                
+                        </div>                       
+                        <div class="form-group col-md-12">     
+                            @isset($data->relation)
+                            @foreach($data->relation as $key => $value)                                                     
+                            <div class="add form-row"> 
+                                <input type="hidden" name="relation[{{ $key }}][id]" value="{{ $value->id }}">
+                                <div class="form-group col-md-12">
+                                    <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>
+                                    <fieldset class="image">
+                                        @isset($value->path)
+                                        <input value="{{ asset($value->path) }}" checked type="checkbox" />{{ asset($value->path) }}
+                                        @endisset
+
+                                        <input type="file" name="relation[1][path]" accept="image/*" />    
+                                    </fieldset>  
+                                </div>                                                            
+                            </div>     
+                            @endforeach
+                            @endisset                                                                                                            
+                        </div>                                                 
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" value="{{ $data->sort }}" placeholder="{{ __("backend.$routeNameData.sort") }}">
@@ -58,7 +54,7 @@
                             </div>
                         </div>
                     </div>         
-                </div>       
+                </div>      
             </div>
             <a href="{{ route('backend.'.$routeNameData.'.index') }}" class="btn btn-secondary">{{ __('back') }}</a>
             <button type="submit" class="btn btn-primary">{{ __('edit') }}</button>
@@ -74,9 +70,25 @@ $(function() {
     var formEdit = $('#form-edit');
     document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item))
     $(".nav-item a").eq(0).click();
+    $(".form-group").each(function(){
+        let checked = true;
+        $(this).children('.add').each(function(){
+            if(checked){
+                $(this).find('.delete').addClass('d-none').removeClass('d-flex'); 
+                checked = false;
+            }
+        })
+    })    
     formEdit.ajaxForm({
         beforeSubmit: function(arr, $form, options) {    
             formEdit.find('button[type=submit]').attr('disabled',true);
+            swal.fire({
+                showCancelButton: false,
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                title: 'Loading...',
+                icon: 'warning',                
+            });               
         },
         success: function(data) {
             Swal.fire({ text: data.message, icon: 'success' }).then(function() {
@@ -86,7 +98,7 @@ $(function() {
         complete: function() {
             formEdit.find('button[type=submit]').attr('disabled',false);
         }
-    });   
+    }); 
 });
 </script>    
 @endpush

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\About as crudModel;
+use App\Models\Home as crudModel;
+use App\Models\HomeType;
 use DataTables;
 use Exception;
 use DB;
@@ -15,25 +16,40 @@ class HomeController extends Controller
     public function __construct() {
         $this->name = 'homes';
         $this->view = 'backend.'.$this->name;
-        $this->rules = [            
-            //使用多語系        
-            'name.*' => ['nullable', 'string', 'max:100'],
-            'content.*' => ['nullable', 'string', 'max:100'],
-            //公用
-            'banner' => ['nullable', 'string'],
+        $this->rules = [       
+            //分類
+            'home_type_id' => ['required', 'numeric', 'max:6'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
-            'status' => ['required', 'boolean'],     
+            'status' => ['required', 'boolean'],    
+
+            //使用多語系        
+            'relation.*.big_title.*' => ['nullable', 'string', 'max:100'],
+            'relation.*.small_title.*' => ['nullable', 'string', 'max:100'],
+            'relation.*.title.*' => ['nullable', 'string', 'max:100'],
+            //公用
+            'relation.*.youtube_key' => ['nullable', 'string'],
+            'relation.*.path' => ['nullable', 'string'],
+            'relation.*.link' => ['nullable', 'string'],
+            //通用
+            'relation.*.sort' => ['nullable', 'numeric', 'max:127'],          
         ];
         $this->messages = []; 
         $this->attributes = Arr::dot(__("backend.{$this->name}"));
+
+        if(request()->home_type_id){
+            $types = HomeType::find(request()->home_type_id);
+            $this->view = 'backend.'.$types->relation;
+        }
+
+        $this->types = HomeType::all();
     }
 
     public function index(Request $request)
     {
         $this->authorize('read '.$this->name);
         if ($request->ajax()) {
-            $data = CrudModel::query();
+            $data = CrudModel::with('home_type');
             return Datatables::eloquent($data)
                 ->make(true);
         }
@@ -48,7 +64,7 @@ class HomeController extends Controller
     public function create()
     {
         $this->authorize('create '.$this->name);
-        return view($this->view.'.create');
+        return view($this->view.'.create')->with(['types' => $this->types]);
     }
 
     /**
@@ -65,9 +81,13 @@ class HomeController extends Controller
         try{
             DB::beginTransaction();
 
-            $data = CrudModel::create(array_merge($validatedData, 
-                $this->dealfile($validatedData['banner'], 'banner'),
-            ));
+            $data = CrudModel::create($validatedData);
+            foreach($validatedData['relation'] as &$value){
+                if(isset($value['path'])){
+                    $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                }
+            }               
+            $data->{$data->home_type->relation}()->hasManySyncable($data, $data->home_type->relation, $validatedData['relation']);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -99,7 +119,12 @@ class HomeController extends Controller
     { 
         $this->authorize('edit '.$this->name);
         $data = CrudModel::findOrFail($id);
-        return view($this->view.'.edit',compact('data'));
+        if(request()->home_type_id){
+            $types = HomeType::find(request()->home_type_id);
+            $data->relation = $data->{$types->relation};
+        }
+
+        return view($this->view.'.edit',compact('data'))->with(['types' => $this->types]);
     }
 
     /**
@@ -112,15 +137,21 @@ class HomeController extends Controller
     public function update(Request $request, $id)
     {
         $this->authorize('edit '.$this->name);
+        unset($this->rules['home_type_id']);
         $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
         
         try{
             DB::beginTransaction();
 
             $data = CrudModel::findOrFail($id);
-            $data->update(array_merge($validatedData, 
-                $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),                
-            ));
+
+            $data->update($validatedData);        
+            foreach($validatedData['relation'] as &$value){
+                if(isset($value['path'])){
+                    $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                }
+            }                
+            $data->{$data->home_type->relation}()->hasManySyncable($data, $data->home_type->relation, $validatedData['relation']);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
@@ -168,4 +199,5 @@ class HomeController extends Controller
             return response()->json(['message' => $e->getMessage()],422);
         }
     }    
+ 
 }

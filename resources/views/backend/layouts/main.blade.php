@@ -496,7 +496,7 @@
                     $(this).parents('.add').remove();
                 });    
                 
-                $('.js-select2').each(function(){
+                $('.js-select2[data-url]').each(function(){
                     $(this).select2({        		
                         allowClear: true,	
                         ajax: {
