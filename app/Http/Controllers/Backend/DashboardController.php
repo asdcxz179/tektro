@@ -21,7 +21,7 @@ class DashboardController extends Controller
             return strpos($value, 'read') !== false;
         });
         if($permissions->search('read dashboard') !== false || auth()->user()->super_admin){
-            return view($this->view.'.index');
+            return redirect()->route("backend.users.index");
         }
         
         if(!$permissions->first()){
