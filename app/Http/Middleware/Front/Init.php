@@ -5,6 +5,7 @@ namespace App\Http\Middleware\Front;
 use Closure;
 use Illuminate\Http\Request;
 use App\Models\ProductBrand;
+use App\Models\About;
 
 class Init
 {
@@ -22,6 +23,8 @@ class Init
             'status'    =>  1,
         ])->orderby('sort','asc')->get();
         \View::share('brands',$brands);
+        $abouts = About::where('status',1)->orderby('sort','asc')->get();
+        \View::share('abouts',$abouts);
         return $next($request);
     }
 }

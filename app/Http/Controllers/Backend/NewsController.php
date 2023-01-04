@@ -17,9 +17,9 @@ class NewsController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name.*' => ['nullable', 'string', 'max:100'],
-            'description.*' => ['nullable', 'string', 'max:100'],
-            'content.*' => ['nullable', 'string', 'max:100'],
+            'name.*' => ['nullable', 'string'],
+            'description.*' => ['nullable', 'string'],
+            'content.*' => ['nullable', 'string'],
             //公用
             'show_date' => ['nullable', 'date'],
             'banner' => ['nullable', 'string'],

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ProductBrand;
 
 class FaqController extends Controller
 {
@@ -14,7 +15,8 @@ class FaqController extends Controller
      */
     public function index()
     {
-        return view('front.faq');
+        $data['brands'] = ProductBrand::where('status',1)->orderby('sort')->get();
+        return view('front.faq',$data);
     }
 
     /**

@@ -20,13 +20,13 @@
                     @foreach($languageData as $language) 
                     <div class="tab-pane" id="btabs{{ $language->name }}" role="tabpanel">
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.relation.*.big_title") }}({{ $language->name }})</label>
                                 <input type="text" name="relation[1][big_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.big_title") }}">
                             </div>  
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.relation.*.small_title") }}({{ $language->name }})</label>
-                                <input type="text" name="relation[1][small_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">
+                                <textarea name="relation[1][small_title][{{ $language->lang }}]" class="form-control" id="" cols="30" rows="10" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}"></textarea>
                             </div>
                         </div>
                     </div>

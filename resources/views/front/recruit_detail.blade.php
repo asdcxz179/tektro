@@ -8,11 +8,11 @@
                 <h2 class="breadcrumb_title">人才招募</h2>
                 <ul class="breadcrumb_nav">
                     <li>
-                        <a href="index.html" class="text-white-50">首頁</a>
+                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">首頁</a>
                     </li>
                     <li class="text-white-50">資訊</li>
                     <li>
-                        <a href="info_news.html" class="text-white-50">人才招募</a>
+                        <a href="{{route('front.recruit.index',['lang'=>$lang])}}" class="text-white-50">人才招募</a>
                     </li>
                     <li class="text-white text-truncate">Service Technician/Advisor</li>
                 </ul>
@@ -26,8 +26,8 @@
         <div class="container position-relative">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
-                    <h2 class="text-white text-center fs-1 fw-bold mb-4">Service Technician/Advisor</h2>
-                    <h3 class="text-white text-center fs-6 fw-bold">March 16, 2022</h3>
+                    <h2 class="text-white text-center fs-1 fw-bold mb-4">{{$detail->name}}</h2>
+                    <h3 class="text-white text-center fs-6 fw-bold">{{date('M d, Y',strtotime($detail->show_date))}}</h3>
                 </div>
             </div>
         </div>
@@ -35,24 +35,7 @@
 </section>
 <div class="container">
     <div class="row html_editor">
-        <div class="col-md-10 offset-md-1">
-            <h5>Job Location</h5>
-            <p>
-                “If you’ve seen many of our YouTube videos or reviews, it’s probably not a surprise that we’re fans of the TRP (Tektro Racing Products) EVO brake lineup. After a mediocre review on their G-Spec Quadiem brakes a couple years back, TRP took the gloves off and came back with what are some of our favorite brakes available. Taking the EVO brake line to the next level, TRP Cycling kept refining the EVO platform and now have a family of EVO brakes to suit a variety of riders and needs. In this feature we’re going to take a look at the three models currently available and the subtle differences and similarities between them all. ”
-            </p>
-            <br>
-            <h5>Job Description</h5>
-            <p>
-                “If you’ve seen many of our YouTube videos or reviews, it’s probably not a surprise that we’re fans of the TRP (Tektro Racing Products) EVO brake lineup. After a mediocre review on their G-Spec Quadiem brakes a couple years back, TRP took the gloves off and came back with what are some of our favorite brakes available. Taking the EVO brake line to the next level, TRP Cycling kept refining the EVO platform and now have a family of EVO brakes to suit a variety of riders and needs. In this feature we’re going to take a look at the three models currently available and the subtle differences and similarities between them all. ”
-            </p>
-            <br>
-            <h5>What you’ll bring to the team</h5>
-            <ul>
-                <li>Self-motivation, a positive, team-focused mentality, plus a willingness to pitch in on any task</li>
-                <li>Fantastic hospitality—a warm, approachable manner, great listening skills, and a drive to help in any way you can—even on the toughest, busiest days</li>
-                <li>Top-notch communication skills</li>
-            </ul>
-        </div>
+        {!!$detail->content!!}
     </div>
     <div class="row mt-5 mb-4 mb-md-5">
         <div class="col-md-10 offset-md-1">
@@ -73,26 +56,30 @@
         <div class="col-md-10 offset-md-1">
             <div class="row justify-content-between">
                 <div class="col-4">
-                    <a href="#" class="d-block">
+                @if($prev)
+                    <a href="{{route('front.recruit.show',['lang'=>$lang,'recruit'=>$prev->id])}}" class="d-block">
                         <small class="fw-bold d-block mb-3">
                             <i class='bx bx-left-arrow-alt align-middle me-2'></i>
                             PREV
                         </small>
                         <span class="d-none d-md-block">
-                            Service Technician / Advisor
+                            {{$prev->name}}
                         </span>
                     </a>
+                @endif
                 </div>
                 <div class="col-4">
-                    <a href="#" class="d-block">
+                @if($next)
+                    <a href="{{route('front.recruit.show',['lang'=>$lang,'recruit'=>$next->id])}}" class="d-block">
                         <small class="fw-bold d-block mb-3 text-end">
                             NEXT
                             <i class='bx bx-right-arrow-alt align-middle ms-2'></i>
                         </small>
                         <span class="d-none d-md-block text-end">
-                            Service Manager
+                            {{$next->name}}
                         </span>
                     </a>
+                @endif
                 </div>
             </div>
         </div>

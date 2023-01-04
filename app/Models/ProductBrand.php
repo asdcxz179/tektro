@@ -46,6 +46,11 @@ class ProductBrand extends Model
         'below_advertise_subtitle',
     ];
 
+    public function faqs()
+    {
+        return $this->morphedByMany(Common::class, 'model', 'product_brand_relations')->where('status',1)->orderby('sort','asc');
+    }
+
     public function categories()
     {
         return $this->morphedByMany(ProductCategory::class, 'model', 'product_brand_relations')->where('status',1)->orderby('sort','asc');

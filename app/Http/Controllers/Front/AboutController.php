@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\About;
 
 class AboutController extends Controller
 {
@@ -46,7 +47,8 @@ class AboutController extends Controller
      */
     public function show($lang,$id)
     {
-        return view('front.about');
+        $data['detail'] = About::where('status',1)->where('id',$id)->first();
+        return view('front.about',$data);
     }
 
     /**

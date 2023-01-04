@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\News;
 
 class NewsController extends Controller
 {
@@ -14,7 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('front.news');
+        $data['news'] = News::where('status',1)->orderby('sort')->get();
+        return view('front.news',$data);
     }
 
     /**
@@ -44,9 +46,18 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($lang,$id)
     {
-        return view('front.news_detail');
+        $news = News::where('status',1)->orderby('sort')->get();
+        $index = $news->search(function($item) use ($id){
+            return $item->id == $id;
+        });
+        if($index!==false) {
+            $data['detail']  = $news[$index]??null;
+            $data['prev'] = $news[($index-1)]??null;
+            $data['next'] = $news[($index+1)]??null;
+        }
+        return view('front.news_detail',$data);
     }
 
     /**

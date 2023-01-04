@@ -1,7 +1,18 @@
+<style>
+    .min-h-screen {
+        background: url(/front/assets/images/index_banner01.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <!-- <x-jet-authentication-card-logo /> -->
+            <div style="margin-bottom:10px;">
+                <img src="{{asset('front/assets/images/groupLogo_w.png')}}" alt="">
+            </div>
+            <h3 style="font-weight: bold;font-size: 30px;text-align:center;color:#fff">網站管理系統</h3>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -35,13 +46,6 @@
                 </div>              
             </div>               
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
             <div class="flex items-center justify-end mt-4">
                 {{--
                 @if (Route::has('password.request'))
@@ -52,7 +56,7 @@
                 --}}
 
                 <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
+                    登入
                 </x-jet-button>
             </div>
         </form>

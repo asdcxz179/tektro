@@ -34,6 +34,7 @@
     <meta property="og:title" content="">
     <meta property="og:description" content="">
     <meta property="og:image" content="https://">
+    @stack('style')
 </head>
 
 <body>
@@ -110,16 +111,11 @@
                                                 <div class="col"></div>
                                                 <div class="col-3">
                                                     <ul class="ps-0 page_link_group aboutLink">
+                                                        @foreach($abouts as $about)
                                                         <li class="menu_item_has_child">
-                                                            <a href="{{route('front.about.show',['lang'=>$lang,'about'=>'company'])}}" class="page_link">集團介紹</a>
+                                                            <a href="{{route('front.about.show',['lang'=>$lang,'about'=>$about->id])}}" class="page_link">{{$about->name}}</a>
                                                         </li>
-                                                        <li class="menu_item_has_child"><a href="#"
-                                                                class="page_link">品牌介紹</a>
-                                                        </li>
-                                                        <li class="menu_item_has_child"><a href="#"
-                                                                class="page_link">社會責任 CSR</a></li>
-                                                        <li class="menu_item_has_child"><a href="#"
-                                                                class="page_link">創新價值</a></li>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
                                                 <div class="col-4">
@@ -439,7 +435,49 @@
     <!-- end sidebar mobile menu -->
     @yield('content')
     
-    <!-- cookie box end   -->
+    <!-- cookie box   -->
+    <div class="row" id="cookieAcceptBar">
+        <div class="cookie_box">
+            <div class="p-3 p-md-5">
+                <form name="set_cookie">
+                    <p class="mb-4 text-center">我們及第三方均在本站使用 cookie，記錄之資訊以提供客製化內容，優化使用體驗。
+                        <br>
+                        當您按下「cookie 設定」，即可選擇您想接受哪些 cookie。
+                    </p>
+                    <div class="mb-4" id="cookie-selection" style="display: none;">
+                        <div class="form-check form-switch mb-4 position-relative">
+                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchFunctionalCookie" name="normal" checked disabled>
+                            <label class="form-check-label fw-bold ps-3" for="SwitchFunctionalCookie">功能型 cookie
+                                <br>
+                                <span class="fs-7 fw-normal">這些 cookie 確保網站正常運行。</span>
+                            </label>
+                            
+                        </div>
+                        <div class="form-check form-switch mb-4 position-relative">
+                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchAnalyticalCookie" name="no_an" checked>
+                            <label class="form-check-label fw-bold ps-3" for="SwitchAnalyticalCookie">分析型 cookie
+                                <br>
+                                <span class="fs-7 fw-normal">分析型 cookie 讓我們深入瞭解本網站的使用情形，我們能基於這種資訊改善本網站。</span>
+                            </label>
+                            
+                        </div>
+                        <div class="form-check form-switch mb-4 position-relative">
+                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchAdCookie" name="no_ad" checked>
+                            <label class="form-check-label fw-bold ps-3" for="SwitchAdCookie">行銷型 cookie</label>
+                            <p class="fs-7 ps-3">行銷型 cookie 係用於向您提供跟您有關的廣告。</p>
+                        </div>
+                    </div>
+                        <!-- <a href="#" class="text-decoration-underline"> 隱私權保護政策</a>。 -->
+                    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-center">
+                        <button class="c_btn btn_dark mb-2 mb-sm-0 me-sm-3" id="cookie-agree" value="agree" type="submit">接受 cookie</button>
+                        <button class="c_btn btn_dark mb-2 mb-sm-0 me-sm-3" id="cookie-agree-selected" value="" style="display: none;"  type="submit">儲存設定</button>
+                        <button class="c_btn btn_white me-sm-3" id="cookie-disagree" value="disagree">不接受 cookie</button>
+                        <button class="c_btn border-0 bg-transparent text-decoration-underline fw-normal hover_opacity" id="cookie-selection-trigger">設定 cookie</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- search Modal start-->
     <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
@@ -630,7 +668,10 @@
             })
         })
 
-        
+        $('form[name="set_cookie"]').submit(function(){
+            console.log($(this).serialize());
+            return false;
+        });
 
     </script>
     @stack('javascript')

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Home;
+use App\Models\News;
 
 class IndexController extends Controller
 {
@@ -14,7 +16,9 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('front.index');
+        $data['modules'] = Home::where('status',1)->orderby('sort')->get();
+        $data['news'] = News::where('status',1)->orderby('sort')->limit(5)->get();
+        return view('front.index',$data);
     }
 
     /**

@@ -17,8 +17,8 @@ class AboutController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name.*' => ['nullable', 'string', 'max:100'],
-            'content.*' => ['nullable', 'string', 'max:100'],
+            'name.*' => ['nullable', 'string'],
+            'content.*' => ['nullable', 'string'],
             //公用
             'banner' => ['nullable', 'string'],
             //通用

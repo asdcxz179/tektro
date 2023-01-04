@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Front\ContactRequest;
+use App\Models\Contact;
+use App\Models\Area;
+use App\Models\ContactSetting;
+use Session;
+use Mail;
 
 class ContactController extends Controller
 {
@@ -14,7 +20,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('front.contact');
+        $data['areas'] = Area::all();
+        return view('front.contact',$data);
     }
 
     /**
@@ -33,9 +40,24 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
-        //
+        $result = Contact::create($request->all());
+        if($result) {
+            Session::push('result',true);
+            $emails = ContactSetting::where('status',1)->where('id',$request->area_id)->get()->pluck('email')->toArray();
+            $area = Area::where('id',$request->area_id)->first();
+            // Mail::to($emails)->send(new AutoMail);
+            if($emails) {
+                Mail::raw(__('front.contact.question').":".$request->question."\r\n".__('front.contact.area').":".$area->name."\r\n".__('front.contact.country').":".$request->country."\r\n".__('front.contact.email').":".$request->email."\r\n".__('front.contact.phone').":".$request->phone."\r\n".__('front.contact.content').":".$request->content, function($message) use ($request, $emails){
+                    $message->to($emails)->subject($request->question);
+                });
+            }
+            return redirect()->route('front.contact.index',['lang'=>$request->lang]);
+        }else{
+            Session::push('result',false);
+            return back()->withInput();
+        }
     }
 
     /**

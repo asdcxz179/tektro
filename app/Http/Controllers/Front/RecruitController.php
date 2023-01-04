@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Talents;
 
 class RecruitController extends Controller
 {
@@ -14,7 +15,8 @@ class RecruitController extends Controller
      */
     public function index()
     {
-        return view('front.recruit');
+        $data['talents'] = Talents::where('status',1)->orderby('sort')->get();
+        return view('front.recruit',$data);
     }
 
     /**
@@ -44,9 +46,18 @@ class RecruitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($lang,$id)
     {
-        return view('front.recruit_detail');
+        $talents = Talents::where('status',1)->orderby('sort')->get();
+        $index = $talents->search(function($item) use ($id){
+            return $item->id == $id;
+        });
+        if($index!==false) {
+            $data['detail']  = $talents[$index]??null;
+            $data['prev'] = $talents[($index-1)]??null;
+            $data['next'] = $talents[($index+1)]??null;
+        }
+        return view('front.recruit_detail',$data);
     }
 
     /**

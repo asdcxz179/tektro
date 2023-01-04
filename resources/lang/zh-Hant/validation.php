@@ -94,7 +94,7 @@ return [
     'numeric' => ':attribute 必須是數字.',
     'present' => ':attribute 必須有值.',
     'regex' => ':attribute 格式無效.',
-    'required' => ':attribute 必須有值.',
+    'required' => ':attribute 必須填寫',
     'required_if' => '當 :other 是 :value 時, :attribute 必須有值.',
     'required_unless' => '除非 :other 是 :values, 否則 :attribute 必須有值.',
     'required_with' => '當 :values 有值時, :attribute 必須有值.',
