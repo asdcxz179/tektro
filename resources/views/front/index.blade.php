@@ -44,7 +44,7 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-md-11">
-                                    <a href="#" class="mb-5 mb-md-4 d-block overflow-hidden">
+                                    <a href="{{route('front.news.show',['lang'=>$lang,'news'=>$new->id])}}" class="mb-5 mb-md-4 d-block overflow-hidden">
                                         <img src="{{asset($new->banner)}}" alt="" class="hover_transform_scale">
                                     </a>
                                     <div>
@@ -82,12 +82,6 @@
                         <p>
                             {!!nl2br($module->home_webs[0]->small_title)!!}
                         </p>
-                        <!-- 暫放測試資料 -->
-                        <!-- <div class="d-flex justify-content-center">
-                            <a href="result.html" class="c_btn btn_dark me-5">搜尋結果</a>
-                            <a href="404.html" class="c_btn btn_dark">404頁面</a>
-                        </div> -->
-                        <!-- 暫放測試資料 end -->
                     </div>
                 </div>
             </div>

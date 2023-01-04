@@ -48,10 +48,10 @@
                     <div class="">
                         <div class="brand_logo">
                             <div class="d-flex align-items-center">
-                                <a href="tektro.html" class="link-tektro d-block"><img src="{{asset('front/assets/images/TEKTRO_w.png')}}"
+                                <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block"><img src="{{asset('front/assets/images/TEKTRO_w.png')}}"
                                         alt="TEKTRO logo"></a>
                                 <div class="logo_divider"></div>
-                                <a href="trp.html" class="link-trp d-block"><img src="{{asset('front/assets/images/TRP_w.svg')}}"
+                                <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block"><img src="{{asset('front/assets/images/TRP_w.svg')}}"
                                         alt="TRP logo"></a>
                             </div>
 
@@ -304,10 +304,10 @@
 
             <div class="msb_widget brand_logo text-center">
                 <div class="d-flex align-items-center">
-                    <a href="tektro.html" class="link-tektro d-block"><img src="{{asset('front/assets/images/TEKTRO_w.png')}}"
+                    <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block"><img src="{{asset('front/assets/images/TEKTRO_w.png')}}"
                             alt="TEKTRO logo"></a>
                     <div class="logo_divider"></div>
-                    <a href="trp.html" class="link-trp d-block"><img src="{{asset('front/assets/images/TRP_w.svg')}}" alt="TRP logo"></a>
+                    <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block"><img src="{{asset('front/assets/images/TRP_w.svg')}}" alt="TRP logo"></a>
                 </div>
             </div>
 
@@ -337,13 +337,13 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            class="position-relative text-white">關於我們</a>
+                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="position-relative text-white">關於我們</a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('front.about.show',['lang'=>$lang,'about'=>'company'])}}">集團介紹</a></li>
-                            <li><a href="#!">品牌介紹</a></li>
-                            <li><a href="#!">社會責任 CSR</a></li>
-                            <li><a href="#!">創新價值</a></li>
+                            @foreach($abouts as $about)
+                            <li>
+                                <a href="{{route('front.about.show',['lang'=>$lang,'about'=>$about->id])}}">{{$about->name}}</a>
+                            </li>
+                            @endforeach
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -525,27 +525,19 @@
                 </div>
                 <div class="d-none d-md-block col-2">
                     <h5 class="fs-6 fw-bold mb-4">關於我們</h5>
+                    @foreach($abouts as $about)
                     <div>
-                        <a href="{{route('front.about.show',['lang'=>$lang,'about'=>'company'])}}" class="footer_link">集團介紹</a>
+                        <a href="{{route('front.about.show',['lang'=>$lang,'about'=>$about->id])}}" class="footer_link">{{$about->name}}</a>
                     </div>
-                    <div>
-                        <a href="#" class="footer_link">品牌介紹</a>
-                    </div>
-                    <div>
-                        <a href="#" class="footer_link">社會責任 CSR</a>
-                    </div>
-                    <div>
-                        <a href="#" class="footer_link">創新價值</a>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="d-none d-md-block col-2">
                     <h5 class="fs-6 fw-bold mb-4">品牌產品</h5>
+                    @foreach($brands as $brand)
                     <div>
-                        <a href="tektro.html" class="footer_link">TEKTRO</a>
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->id])}}" class="footer_link">{{$brand->name}}</a>
                     </div>
-                    <div>
-                        <a href="trp.html" class="footer_link">TRP</a>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="d-none d-md-block col-2">
                     <h5 class="fs-6 fw-bold mb-4">支援</h5>
@@ -575,11 +567,9 @@
             <div class="row mb-3">
                 <div class="col-12 d-none d-md-flex footer_logo_group justify-content-between align-items-center mb-4">
                     <div class="d-flex align-items-center">
-                        <a href="tektro.html" class="link-tektro d-block"><img src="{{asset('front/assets/images/TEKTRO_w.png')}}"
-                                alt="TEKTRO logo"></a>
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block"><img src="{{asset('front/assets/images/TEKTRO_w.png')}}" alt="TEKTRO logo"></a>
                         <div class="logo_divider"></div>
-                        <a href="trp.html" class="link-trp d-block"><img src="{{asset('front/assets/images/TRP_w.svg')}}"
-                                alt="TRP logo"></a>
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block"><img src="{{asset('front/assets/images/TRP_w.svg')}}" alt="TRP logo"></a>
                     </div>
                     <div class="btn-group dropup">
                         <button type="button" class="btn dropdown-toggle btn_lang text-primary" data-bs-toggle="dropdown" aria-expanded="false">

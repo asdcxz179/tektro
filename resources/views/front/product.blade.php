@@ -7,7 +7,7 @@
                     <h2 class="breadcrumb_title">{{$product->name}}</h2>
                     <ul class="breadcrumb_nav">
                         <li>
-                            <a href="index.html" class="text-white-50">首頁</a>
+                            <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">首頁</a>
                         </li>
                         <li class="text-white-50">品牌產品</li>
                         <li class="text-white-50">
