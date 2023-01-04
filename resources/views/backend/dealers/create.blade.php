@@ -45,7 +45,19 @@
                             <select data-url="{{ route('backend.product_brands.select') }}" class="js-select2 form-control" multiple name="product_brands[]" data-placeholder="{{ __("backend.$routeNameData.product_brands") }}">
                                 <option></option>
                             </select>
-                        </div>                        
+                        </div>    
+                        <div class="form-group col-md-6">
+                            <label>{{ __("backend.$routeNameData.phone") }}<span class="text-danger">*</span></label>
+                            <input type="phone" name="phone" class="form-control" placeholder="{{ __("backend.$routeNameData.phone") }}">
+                        </div>                                              
+                        <div class="form-group col-md-6">
+                            <label>{{ __("backend.$routeNameData.email") }}<span class="text-danger">*</span></label>
+                            <input type="email" name="email" class="form-control" placeholder="{{ __("backend.$routeNameData.email") }}">
+                        </div>                                              
+                        <div class="form-group col-md-12">
+                            <label>{{ __("backend.$routeNameData.website") }}<span class="text-danger">*</span></label>
+                            <input type="website" name="website" class="form-control" placeholder="{{ __("backend.$routeNameData.website") }}">
+                        </div>                                                                                       
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
