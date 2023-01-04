@@ -95,4 +95,6 @@ return [
     'terms4'            =>  'If you reside outside the U.S. or Canada, please contact your local distributor by visiting our GLOBAL PARTNERS page.',
     'terms5'            =>  'SHIPPING REFUNDS',
     'terms6'            =>  'Return shipping charges will be refunded if items are shipped in error by Tektro USA. Shipping will not be refunded on items ordered in error by the customer.',
+    'popluar_search'    =>  'Popular Search',
+    'search_record'     =>  'Search Record',
 ];

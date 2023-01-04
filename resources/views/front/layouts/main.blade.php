@@ -323,15 +323,34 @@
                 </div>
             </div>
 
-            <form class="form-group d-block d-flex position-relative search_box mb-4" action="{{route('front.search.index',['lang'=>$lang])}}">
+            <form class="form-group d-block d-flex position-relative search_box mb-4" action="{{route('front.search.index',['lang'=>$lang])}}" name="search">
                 <div class="input-group input-group-lg">
                     <span class="input-group-text ps-3 bg-white border-0">
                         <i class='bx bx-search'></i>
                     </span>
-                    <input class="form-control border-0 ps-0 fs-6" type="search" name="word" placeholder="{{__('front.search')}}">
+                    <input class="form-control border-0 ps-0 fs-6" type="search" name="word" placeholder="{{__('front.search')}}" id="mobile_search" autocomplete="off">
                 </div>
-
             </form>
+            @if($keywords)
+            <div class="ps-3 pb-3 pt-1 bg-white" style="position: relative;top: -24px;display:none" id="mobile_keyword">
+                <div class="row record" style="display:none;">
+                    <div class="col-md-12">
+                        <span class="text-secondary">{{__('front.search_record')}}</span>
+                    </div>
+                    <div class="search_record"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="text-secondary">{{__('front.popluar_search')}}</span>
+                    </div>
+                    @foreach($keywords as $keyword)
+                    <div class="col-md-12 mb-2">
+                        <a href="{{route('front.search.index',['lang'=>$lang,'word'=>$keyword->name])}}">{{$keyword->name}}</a>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
 
             <div class="msb_widget mobile_menu_list clearfix">
                 <ul class="clearfix list-unstyled">
@@ -469,7 +488,7 @@
     <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="margin-top: 75px;">
             <div class="modal-content">
-                <form class="form-group d-block d-flex position-relative search_box" action="{{route('front.search.index',['lang'=>$lang])}}">
+                <form class="form-group d-block d-flex position-relative search_box" action="{{route('front.search.index',['lang'=>$lang])}}" name="search">
                     <div class="input-group input-group-lg">
                         <span class="input-group-text ps-3 bg-white border-0">
                             <i class='bx bx-search'></i>
@@ -477,6 +496,26 @@
                         <input class="form-control border-0 ps-0 fs-6" type="search" name="word" placeholder="{{__('front.search')}}">
                     </div>
                 </form>
+                @if($keywords)
+                <div class="ps-3 pb-3">
+                    <div class="row record" style="display:none;">
+                        <div class="col-md-12">
+                            <span class="text-secondary">{{__('front.search_record')}}</span>
+                        </div>
+                        <div class="search_record"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="text-secondary">{{__('front.popluar_search')}}</span>
+                        </div>
+                        @foreach($keywords as $keyword)
+                        <div class="col-md-12 mb-2">
+                            <a href="{{route('front.search.index',['lang'=>$lang,'word'=>$keyword->name])}}">{{$keyword->name}}</a>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -659,6 +698,30 @@
             console.log($(this).serialize());
             return false;
         });
+        $('#mobile_search').focus(function(){
+            $('#mobile_keyword').show();
+        });
+        $('#mobile_search').blur(function(){
+            $('#mobile_keyword').hide();
+        });
+        const recordKey = 'history';
+        let record = localStorage.getItem(recordKey);
+        if(!record) {
+            record = [];
+        }else{
+            record = JSON.parse(record);
+        }
+        if(record.length > 0) {
+            let str = '';
+            record.map((item) => {
+                str += `<div class="col-md-12 mb-2">
+                            <a href="{{route('front.search.index',['lang'=>$lang])}}?word=${item}">${item}</a>
+                        </div>`;
+            });
+            $('.search_record').html(str);
+            $('.record').show();
+        }
+        
     </script>
     @stack('javascript')
 </body>

@@ -165,3 +165,24 @@
     </div>
 </section>
 @endsection
+@push('javascript')
+<script>
+    let word = new URLSearchParams(window.location.search).get('word');
+    let limit = 5;
+    let record = localStorage.getItem(recordKey);
+    if(!record) {
+        record = [];
+        record.push(word);
+        localStorage.setItem(recordKey, JSON.stringify(record))
+    }else{
+        record = JSON.parse(record);
+        if(record.indexOf(word) < 0) {
+            record.push(word);
+            if(record.length > limit) {
+                record.shift();
+            }
+            localStorage.setItem(recordKey, JSON.stringify(record));
+        }
+    }
+</script>
+@endpush

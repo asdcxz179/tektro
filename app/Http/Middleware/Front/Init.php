@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductBrand;
 use App\Models\About;
 use App\Models\Community;
+use App\Models\ProductKeyword;
 
 class Init
 {
@@ -28,6 +29,8 @@ class Init
         \View::share('abouts',$abouts);
         $community = Community::first();
         \View::share('community',$community);
+        $keywords = ProductKeyword::where('status',1)->orderby('sort','asc')->get();
+        \View::share('keywords',$keywords);
         return $next($request);
     }
 }
