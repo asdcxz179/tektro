@@ -47,6 +47,12 @@
                                 </div>
                                 @endforeach
                             </div> 
+                            <div class="form-row"> 
+                                <div class="form-group col-md-12">
+                                    <label>{{ __("backend.$routeNameData.relation.*.link") }}</label>
+                                    <input type="text" name="relation[{{ $key }}][link]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.link") }}">
+                                </div>                                                            
+                            </div>                            
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>    
