@@ -13,9 +13,17 @@ class FaqController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['brands'] = ProductBrand::where('status',1)->orderby('sort')->get();
+        $lang = $request->lang;
+        $word = $request->word;
+        $brands = ProductBrand::where('status',1)->orderby('sort');
+        if($word) {
+            $brands->whereHas('faqs',function($query) use($lang,$word) {
+                $query->where("name->{$lang}",'like',"%{$word}%")->orwhere("content->{$lang}",'like',"%{$word}%");
+            });
+        }
+        $data['brands'] = $brands->get();
         return view('front.faq',$data);
     }
 

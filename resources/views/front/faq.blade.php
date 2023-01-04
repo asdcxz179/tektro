@@ -24,10 +24,10 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-8 offset-md-4">
-                <form action="" method="" class="d-flex w-100 justify-content-start align-items-end">
-                    <input type="text" name="word" placeholder="{{__('front.please input keyword')}}" class="form_transparent_dark w-100">
-                    <button class="c_btn btn_transparent_dark pe-0 fw-normal hover_opacity" type="submit" name=""
-                        style="min-width: 120px;">{{__('front.search')}}
+                <form action="{{route('front.faq.index',['lang'=>$lang])}}" method="" class="d-flex w-100 justify-content-start align-items-end">
+                    <input type="text" name="word" placeholder="{{__('front.please input keyword')}}" class="form_transparent_dark w-100" value="{{request('word')}}">
+                    <button class="c_btn btn_transparent_dark pe-0 fw-normal hover_opacity" type="submit" style="min-width: 120px;">
+                        {{__('front.search')}}
                         <i class='bx bx-search text-primary fs-4 align-middle text-dark ps-2'></i>
                     </button>
                 </form>
@@ -38,8 +38,7 @@
                 <h5 class="page_aside_title bg-dark text-white fs-6 mb-0">{{__('front.category')}}</h5>
                 <ul class="nav nav-fill page_aside bg-white flex-column mb-5 mb-md-0">
                     <li class="nav-item">
-                        <button class="page_aside_filter nav-link active" data-bs-toggle="tab" data-bs-target="#qaFilterAll" type="button"
-                            role="tab" aria-selected="false">{{__('front.all')}}</button>
+                        <button class="page_aside_filter nav-link active" data-bs-toggle="tab" data-bs-target="#qaFilterAll" type="button" role="tab" aria-selected="false">{{__('front.all')}}</button>
                     </li>
                     @foreach($brands as $brand)
                     <li class="nav-item">
