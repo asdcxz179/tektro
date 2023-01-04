@@ -9,46 +9,59 @@
         <form id="form-create" action="{{ route('backend.'.$routeNameData.'.store') }}" method="post">
             @csrf
             <div class="block">
-                <ul class="nav nav-tabs nav-tabs-block border" data-toggle="tabs" role="tablist">
-                    @foreach($languageData as $language) 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#btabs{{ $language->name }}">{{ $language->name }}</a>
-                    </li>
-                    @endforeach
-                </ul>         
-                <div class="block-content tab-content border">
-                    @foreach($languageData as $language) 
-                    <div class="tab-pane" id="btabs{{ $language->name }}" role="tabpanel">
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.relation.*.big_title") }}({{ $language->name }})</label>
-                                <input type="text" name="relation[1][big_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.big_title") }}">
-                            </div>  
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.relation.*.small_title") }}({{ $language->name }})</label>
-                                <input type="text" name="relation[1][small_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>                       
-                <div class="block-content tab-content">
-                    <div class="form-row">           
-                        <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.home_type_id") }}</label>
-                            <select class="js-select2 form-control" name="home_type_id">
-                                @foreach($types as $value)
-                                <option value="{{ $value->id }}" {{ $value->id == request()->home_type_id ? 'selected' : '' }}>{{ $value->name }}</option>
+                <div class="form-group col-md-12">
+                    <label>{{ __("backend.$routeNameData.home_type_id") }}</label>
+                    <select class="js-select2 form-control" name="home_type_id">
+                        @foreach($types as $value)
+                        <option value="{{ $value->id }}" {{ $value->id == request()->home_type_id ? 'selected' : '' }}>{{ $value->name }}</option>
+                        @endforeach
+                    </select>
+                </div>   
+                <div class="form-group col-md-12">   
+                    <div class="form-row">                        
+                        @foreach([1, 2] as $key)       
+                        <div class="form-group col-md-12"> 
+                            <div class="form-row">
+                                <h2 class="content-heading  col-md-12">{{ __("backend.$routeNameData.relation.*.brand") }}{{ $key }}</h2>
+                            </div>                                
+                            <ul class="nav nav-tabs nav-tabs-block border" data-toggle="tabs" role="tablist">
+                                @foreach($languageData as $language) 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#btabs{{ $key }}{{ $language->name }}">{{ $language->name }}</a>
+                                </li>
                                 @endforeach
-                            </select>
-                        </div>             
-                        <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
-                            <fieldset class="image">
-                                <input type="file" name="relation[1][path]" accept="image/*" />    
-                            </fieldset>  
-                        </div>                                                                                         
+                            </ul>         
+                            <div class="block-content tab-content border mb-4">
+                                @foreach($languageData as $language) 
+                                <div class="tab-pane" id="btabs{{ $key }}{{ $language->name }}" role="tabpanel">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>{{ __("backend.$routeNameData.relation.*.big_title") }}({{ $language->name }})</label>
+                                            <input type="text" name="relation[{{ $key }}][big_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.big_title") }}">
+                                        </div>  
+                                        <div class="form-group col-md-6">
+                                            <label>{{ __("backend.$routeNameData.relation.*.small_title") }}({{ $language->name }})</label>
+                                            <input type="text" name="relation[{{ $key }}][small_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div> 
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>    
+                                    <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
+                                    <fieldset class="image">
+                                        <input type="file" name="relation[{{ $key }}][path]" accept="image/*" />    
+                                    </fieldset>  
+                                </div>                                       
+                            </div>                                 
+                        </div>                            
+                        @endforeach                       
+                    </div>                        
+                </div>                       
+                <div class="form-group col-md-12">                                   
+                    <div class="form-row">                                                                                                        
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
@@ -64,7 +77,7 @@
                             </div>
                         </div>
                     </div>         
-                </div>       
+                </div>           
             </div>
             <a href="{{ route('backend.'.$routeNameData.'.index') }}" class="btn btn-secondary">{{ __('back') }}</a>
             <button type="submit" class="btn btn-primary">{{ __('create') }}</button>
@@ -79,7 +92,7 @@ $(function() {
     var path = '{{ route('backend.'.$routeNameData.'.index') }}';
     var formCreate = $('#form-create');
     document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item))
-    $(".nav-item a").eq(0).click();
+    $(".form-group > ul > li:first-child a").click();
     formCreate.ajaxForm({
         beforeSubmit: function(arr, $form, options) {
             formCreate.find('button[type=submit]').attr('disabled',true);

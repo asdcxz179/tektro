@@ -28,6 +28,7 @@ class HomeController extends Controller
             'relation.*.small_title.*' => ['nullable', 'string'],
             'relation.*.title.*' => ['nullable', 'string'],
             //公用
+            'relation.*.id' => ['nullable'],
             'relation.*.youtube_key' => ['nullable', 'string'],
             'relation.*.path' => ['nullable', 'string'],
             'relation.*.link' => ['nullable', 'string'],
