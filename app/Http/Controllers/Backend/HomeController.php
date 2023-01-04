@@ -24,9 +24,9 @@ class HomeController extends Controller
             'status' => ['required', 'boolean'],    
 
             //使用多語系        
-            'relation.*.big_title.*' => ['nullable', 'string', 'max:100'],
-            'relation.*.small_title.*' => ['nullable', 'string', 'max:100'],
-            'relation.*.title.*' => ['nullable', 'string', 'max:100'],
+            'relation.*.big_title.*' => ['nullable', 'string'],
+            'relation.*.small_title.*' => ['nullable', 'string'],
+            'relation.*.title.*' => ['nullable', 'string'],
             //公用
             'relation.*.youtube_key' => ['nullable', 'string'],
             'relation.*.path' => ['nullable', 'string'],
