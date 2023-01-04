@@ -32,7 +32,7 @@ class Home extends Model
     }
 
     public function home_carousels(){
-        return $this->hasMany(HomeCarousel::class);
+        return $this->hasMany(HomeCarousel::class)->orderby('sort');
     } 
 
     public function home_news(){
