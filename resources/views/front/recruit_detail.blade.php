@@ -5,16 +5,16 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10 col-lg-12">
-                <h2 class="breadcrumb_title">人才招募</h2>
+                <h2 class="breadcrumb_title">{{__('front.recruit')}}</h2>
                 <ul class="breadcrumb_nav">
                     <li>
-                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">首頁</a>
+                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.home')}}</a>
                     </li>
-                    <li class="text-white-50">資訊</li>
+                    <li class="text-white-50">{{__('front.information')}}</li>
                     <li>
-                        <a href="{{route('front.recruit.index',['lang'=>$lang])}}" class="text-white-50">人才招募</a>
+                        <a href="{{route('front.recruit.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.recruit')}}</a>
                     </li>
-                    <li class="text-white text-truncate">Service Technician/Advisor</li>
+                    <li class="text-white text-truncate">{{$detail->name}}</li>
                 </ul>
             </div>
         </div>
@@ -40,7 +40,7 @@
     <div class="row mt-5 mb-4 mb-md-5">
         <div class="col-md-10 offset-md-1">
             <div class="share_block">
-                <span class="fw-bold mb-4 mb-md-0">SHARE THIS ARTICLE</span>
+                <span class="fw-bold mb-4 mb-md-0">{{__('front.SHARE THIS ARTICLE')}}</span>
                 <div class="d-flex">
                     <a href="#" class="share_btn">
                         <i class='bx bxl-instagram'></i>
@@ -60,7 +60,7 @@
                     <a href="{{route('front.recruit.show',['lang'=>$lang,'recruit'=>$prev->id])}}" class="d-block">
                         <small class="fw-bold d-block mb-3">
                             <i class='bx bx-left-arrow-alt align-middle me-2'></i>
-                            PREV
+                            {{__('front.PREV')}}
                         </small>
                         <span class="d-none d-md-block">
                             {{$prev->name}}
@@ -72,7 +72,7 @@
                 @if($next)
                     <a href="{{route('front.recruit.show',['lang'=>$lang,'recruit'=>$next->id])}}" class="d-block">
                         <small class="fw-bold d-block mb-3 text-end">
-                            NEXT
+                            {{__('front.NEXT')}}
                             <i class='bx bx-right-arrow-alt align-middle ms-2'></i>
                         </small>
                         <span class="d-none d-md-block text-end">

@@ -6,12 +6,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10 col-lg-12">
-                <h2 class="breadcrumb_title">搜尋結果</h2>
+                <h2 class="breadcrumb_title">{{__('front.search_result')}}</h2>
                 <ul class="breadcrumb_nav">
                     <li>
-                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">首頁</a>
+                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.home')}}</a>
                     </li>
-                    <li class="text-white text-truncate">搜尋結果</li>
+                    <li class="text-white text-truncate">{{__('front.search_result')}}</li>
                 </ul>
             </div>
         </div>
@@ -24,7 +24,7 @@
         <div class="row mb-12 mb-md-20">
             <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                 <div class="row mb-3">
-                    <h3 class="fs-6 fs-md-5 text-center text-md-start"><span class="text-black-50 fw-bold">產品</span> 共有 <span class="text-primary fw-bold">{{$products->count()}}</span> 筆 <span>‘{{request('word')}}’</span> 搜尋結果
+                    <h3 class="fs-6 fs-md-5 text-center text-md-start"><span class="text-black-50 fw-bold">{{__('front.product')}}</span> {{__('front.total')}} <span class="text-primary fw-bold">{{$products->count()}}</span> {{__('front.item')}} <span>‘{{request('word')}}’</span> {{__('front.search_result')}}
                     </h3>
                 </div>
                 <div class="bg-white pt-3 px-3 pt-md-5 px-md-5 shadow-sm">
@@ -37,7 +37,7 @@
                                         style="background-image: url('{{asset($product->banner)}}');">
                                         <div class="box_img_overlay">
                                             <span class="text-white fw-bold mb-3">{{$product->name}}</span>
-                                            <div href="#" class="c_btn btn_outline_white">VIEW ALL</div>
+                                            <div href="#" class="c_btn btn_outline_white">{{__('front.VIEW ALL')}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
         <div class="row mb-12 mb-md-20">
             <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                 <div class="row mb-3">
-                    <h3 class="fs-6 fs-md-5 text-center text-md-start"><span class="text-black-50 fw-bold">技術手冊</span> 共有 <span class="text-primary fw-bold">{{$supports->count()}}</span> 筆 <span>‘{{request('word')}}’</span> 搜尋結果
+                    <h3 class="fs-6 fs-md-5 text-center text-md-start"><span class="text-black-50 fw-bold">{{__('front.technology_manual')}}</span> {{__('front.total')}} <span class="text-primary fw-bold">{{$supports->count()}}</span> {{__('front.item')}} <span>‘{{request('word')}}’</span> {{__('front.search_result')}}
                     </h3>
                 </div>
                 <div class="bg-white p-3 p-md-5 shadow-sm">
@@ -71,7 +71,7 @@
                                     <div id="filter_{{$key}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#type_{{$key2}}">
                                         <div class="accordion-body">
                                             <div class="p-md-4">
-                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">使用手冊</span>
+                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.manual')}}</span>
                                                 <ul>
                                                     @foreach($type->support_files as $key3 => $sub)
                                                         @if($sub->support_file_type_id == 1 && $sub->path)
@@ -84,7 +84,7 @@
                                                 </ul>
                                             </div>
                                             <div class="p-md-4">
-                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">BOM 清單</span>
+                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.BOM List')}}</span>
                                                 <ul>
                                                     @foreach($type->support_files as $key3 => $sub)
                                                         @if($sub->support_file_type_id == 2 && $sub->path)
@@ -110,7 +110,7 @@
         <div class="row mb-12 mb-md-20">
             <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                 <div class="row mb-3">
-                    <h3 class="fs-6 fs-md-5 text-center text-md-start"><span class="text-black-50 fw-bold">影音分享</span> 共有 <span class="text-primary fw-bold">{{$videos->count()}}</span> 筆 <span>‘{{request('word')}}’</span> 搜尋結果
+                    <h3 class="fs-6 fs-md-5 text-center text-md-start"><span class="text-black-50 fw-bold">{{__('front.video_share')}}</span> {{__('front.total')}} <span class="text-primary fw-bold">{{$videos->count()}}</span> {{__('front.item')}} <span>‘{{request('word')}}’</span> {{__('front.search_result')}}
                     </h3>
                 </div>
                 <div class="bg-white pt-3 px-3 pt-md-5 px-md-5 shadow-sm">
@@ -134,7 +134,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                 <div class="row mb-3">
-                    <h3 class="fs-6 fs-md-5 text-center text-md-start"><span class="text-black-50 fw-bold">最新消息</span> 共有 <span class="text-primary fw-bold">{{$news->count()}}</span> 筆 <span>‘{{request('word')}}’</span> 搜尋結果
+                    <h3 class="fs-6 fs-md-5 text-center text-md-start"><span class="text-black-50 fw-bold">{{__('front.news')}}</span> {{__('front.total')}} <span class="text-primary fw-bold">{{$news->count()}}</span> {{__('front.item')}} <span>‘{{request('word')}}’</span> {{__('front.search_result')}}
                     </h3>
                 </div>
                 <div class="bg-white pt-3 px-3 pt-md-5 px-md-5 shadow-sm">
@@ -150,7 +150,8 @@
                             <div class="">
                                 <h3 class="title_h2">{{$new->name}}</h3>
                                 <p class="text-muted fs-7 fs-md-6">{{$new->description}}</p>
-                                <a href="{{route('front.news.show',['lang'=>$lang,'news'=>$new->id])}}" class="btn_arrow d-block fw-bold fs-7">CONTINUE READING
+                                <a href="{{route('front.news.show',['lang'=>$lang,'news'=>$new->id])}}" class="btn_arrow d-block fw-bold fs-7">
+                                    {{__('front.CONTINUE READING')}}
                                     <i class='bx bx-right-arrow-alt align-middle fs-5'></i>
                                 </a>
                             </div>

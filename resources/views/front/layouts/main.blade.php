@@ -71,9 +71,9 @@
                     <!-- <div class=""> -->
                     <nav class="main_menu clearfix">
                         <ul class="ul_li_right text-uppercase clearfix">
-                            <li class="menu_item"><a href="{{route('front.index',['lang'=>$lang])}}">首頁</a></li>
+                            <li class="menu_item"><a href="{{route('front.index',['lang'=>$lang])}}">{{__('front.home')}}</a></li>
                             <li class="menu_item_has_child">
-                                <a href="#" class="menu_item_link">資訊</a>
+                                <a href="#" class="menu_item_link">{{__('front.information')}}</a>
                                 <div class="mega_menu">
                                     <div class="background">
                                         <div class="container">
@@ -82,10 +82,10 @@
                                                 <div class="col-3">
                                                     <ul class="ps-0 page_link_group informationLink">
                                                         <li class="menu_item_has_child">
-                                                            <a href="{{route('front.news.index',['lang'=>$lang])}}" class="page_link">最新消息</a>
+                                                            <a href="{{route('front.news.index',['lang'=>$lang])}}" class="page_link">{{__('front.news')}}</a>
                                                         </li>
                                                         <li class="menu_item_has_child">
-                                                            <a href="{{route('front.recruit.index',['lang'=>$lang])}}" class="page_link">人才招募</a>
+                                                            <a href="{{route('front.recruit.index',['lang'=>$lang])}}" class="page_link">{{__('front.recruit')}}</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -103,7 +103,7 @@
                                 </div>
                             </li>
                             <li class="menu_item_has_child">
-                                <a href="javascript:void(0)" class="menu_item_link">關於我們</a>
+                                <a href="javascript:void(0)" class="menu_item_link">{{__('front.about_us')}}</a>
                                 <div class="mega_menu">
                                     <div class="background">
                                         <div class="container">
@@ -132,7 +132,7 @@
                                 </div>
                             </li>
                             <li class="menu_item_has_child">
-                                <a href="javascript:void(0)" class="menu_item_link">品牌產品</a>
+                                <a href="javascript:void(0)" class="menu_item_link">{{__('front.brand_product')}}</a>
                                 <div class="mega_menu">
                                     <div class="background">
                                         <div class="container">
@@ -156,7 +156,7 @@
                                                         <div
                                                             class="d-flex w-100 justify-content-between align-items-start">
                                                             <div class="col-6 px-3">
-                                                                <div class="text-muted border-bottom border-gray pb-3 mb-3">產品類別</div>
+                                                                <div class="text-muted border-bottom border-gray pb-3 mb-3">{{__('front.product_category')}}</div>
                                                                 <ul class="list-unstyled d-flex flex-wrap w-100">
                                                                     @foreach($brand->categories as $category)
                                                                     <li class="col-6">
@@ -166,9 +166,7 @@
                                                                 </ul>
                                                             </div>
                                                             <div class="col-6 px-3">
-                                                                <div
-                                                                    class="text-muted border-bottom border-gray pb-3 mb-3">
-                                                                    自行車類別</div>
+                                                                <div class="text-muted border-bottom border-gray pb-3 mb-3">{{__('front.bike_category')}}</div>
                                                                 <ul class="list-unstyled d-flex flex-wrap w-100">
                                                                     @foreach($brand->tags as $tag)
                                                                     <li class="col-6">
@@ -192,7 +190,7 @@
 
                             </li>
                             <li class="menu_item_has_child">
-                                <a href="javascript:void(0)" class="menu_item_link">支援</a>
+                                <a href="javascript:void(0)" class="menu_item_link">{{__('front.support')}}</a>
                                 <div class="mega_menu">
                                     <div class="background">
                                         <div class="container">
@@ -202,16 +200,24 @@
                                                     <ul class="ps-0 page_link_group supportLink">
                                                         <li class="menu_item_has_child">
                                                             <a href="{{route('front.support.show',['support'=>'all','lang'=>$lang])}}" class="page_link">
-                                                                技術手冊
+                                                            {{__('front.technology_manual')}}
                                                             </a>
                                                         </li>
-                                                        <li class="menu_item_has_child"><a href="{{route('front.video.index',['lang'=>$lang])}}"
-                                                                class="page_link">影音分享</a>
+                                                        <li class="menu_item_has_child">
+                                                            <a href="{{route('front.video.index',['lang'=>$lang])}}" class="page_link">
+                                                            {{__('front.video_share')}}
+                                                            </a>
                                                         </li>
-                                                        <li class="menu_item_has_child"><a href="{{route('front.faq.index',['lang'=>$lang])}}"
-                                                                class="page_link">常見問題</a></li>
-                                                        <li class="menu_item_has_child"><a href="{{route('front.warranty.index',['lang'=>$lang])}}"
-                                                                class="page_link">保固條款</a></li>
+                                                        <li class="menu_item_has_child">
+                                                            <a href="{{route('front.faq.index',['lang'=>$lang])}}" class="page_link">
+                                                            {{__('front.common_question')}}
+                                                            </a>
+                                                        </li>
+                                                        <li class="menu_item_has_child">
+                                                            <a href="{{route('front.warranty.index',['lang'=>$lang])}}" class="page_link">
+                                                            {{__('front.warranty_terms')}}
+                                                            </a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-4">
@@ -227,7 +233,7 @@
                                 </div>
                             </li>
                             <li class="menu_item_has_child">
-                                <a href="javascript:void(0)" class="menu_item_link">聯絡</a>
+                                <a href="javascript:void(0)" class="menu_item_link">{{__('front.contact')}}</a>
                                 <div class="mega_menu">
                                     <div class="background">
                                         <div class="container">
@@ -235,18 +241,21 @@
                                                 <div class="col"></div>
                                                 <div class="col-3">
                                                     <ul class="ps-0 page_link_group connectLink">
-                                                        <li class="menu_item_has_child"><a href="{{route('front.contact.index',['lang'=>$lang])}}"
-                                                                class="page_link">聯絡表單</a>
+                                                        <li class="menu_item_has_child">
+                                                            <a href="{{route('front.contact.index',['lang'=>$lang])}}" class="page_link">
+                                                            {{__('front.contact_form')}}
+                                                            </a>
                                                         </li>
-                                                        <li class="menu_item_has_child"><a href="{{route('front.global.index',['lang'=>$lang])}}"
-                                                                class="page_link">全球據點</a>
+                                                        <li class="menu_item_has_child">
+                                                            <a href="{{route('front.global.index',['lang'=>$lang])}}" class="page_link">
+                                                            {{__('front.global_base')}}
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-4">
                                                     <div>
-                                                        <img src="{{asset('front/assets/images/connect_connect_thumbnail.jpg')}}"
-                                                            alt="connect_thumbnail" id="connectImage">
+                                                        <img src="{{asset('front/assets/images/connect_connect_thumbnail.jpg')}}" alt="connect_thumbnail" id="connectImage">
                                                     </div>
                                                 </div>
                                                 <div class="col"></div>
@@ -274,9 +283,9 @@
                                 @endif
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="{{route('front.index',['lang'=>'zh-Hant'])}}">台灣（繁體）</a></li>
+                                <li><a class="dropdown-item" href="{{route('front.index',['lang'=>'zh-Hant'])}}">台灣（繁體）</a></li>
                                 <li><a class="dropdown-item" href="{{route('front.index',['lang'=>'en'])}}">English(US)</a></li>
-                                <li><a class="dropdown-item" href="{{route('front.index',['lang'=>'de'])}}">Deutsch</a></li>
+                                <!-- <li><a class="dropdown-item" href="{{route('front.index',['lang'=>'de'])}}">Deutsch</a></li> -->
                             </ul>
                         </div>
                     </nav>
@@ -304,40 +313,43 @@
 
             <div class="msb_widget brand_logo text-center">
                 <div class="d-flex align-items-center">
-                    <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block"><img src="{{asset('front/assets/images/TEKTRO_w.png')}}"
-                            alt="TEKTRO logo"></a>
+                    <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block">
+                        <img src="{{asset('front/assets/images/TEKTRO_w.png')}}" alt="TEKTRO logo">
+                    </a>
                     <div class="logo_divider"></div>
-                    <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block"><img src="{{asset('front/assets/images/TRP_w.svg')}}" alt="TRP logo"></a>
+                    <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block">
+                        <img src="{{asset('front/assets/images/TRP_w.svg')}}" alt="TRP logo">
+                    </a>
                 </div>
             </div>
 
-            <form class="form-group d-block d-flex position-relative search_box mb-4">
+            <form class="form-group d-block d-flex position-relative search_box mb-4" action="{{route('front.search.index',['lang'=>$lang])}}">
                 <div class="input-group input-group-lg">
                     <span class="input-group-text ps-3 bg-white border-0">
                         <i class='bx bx-search'></i>
                     </span>
-                    <input class="form-control border-0 ps-0 fs-6" type="search" placeholder="Search...">
+                    <input class="form-control border-0 ps-0 fs-6" type="search" name="word" placeholder="{{__('front.search')}}">
                 </div>
 
             </form>
 
             <div class="msb_widget mobile_menu_list clearfix">
                 <ul class="clearfix list-unstyled">
-                    <li><a class="text-white" href="{{route('front.index',['lang'=>$lang])}}">首頁</a></li>
+                    <li><a class="text-white" href="{{route('front.index',['lang'=>$lang])}}">{{__('front.home')}}</a></li>
                     <li class="dropdown">
                         <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            class="position-relative text-white">資訊</a>
+                            class="position-relative text-white">{{__('front.information')}}</a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{{route('front.news.index',['lang'=>$lang])}}">最新消息</a>
+                                <a href="{{route('front.news.index',['lang'=>$lang])}}">{{__('front.news')}}</a>
                             </li>
                             <li>
-                                <a href="{{route('front.recruit.index',['lang'=>$lang])}}">人才招募</a>
+                                <a href="{{route('front.recruit.index',['lang'=>$lang])}}">{{__('front.recruit')}}</a>
                             </li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="position-relative text-white">關於我們</a>
+                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="position-relative text-white">{{__('front.about_us')}}</a>
                         <ul class="dropdown-menu">
                             @foreach($abouts as $about)
                             <li>
@@ -347,65 +359,40 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            class="position-relative text-white">品牌產品</a>
+                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="position-relative text-white">{{__('front.brand_product')}}</a>
                         <ul class="dropdown-menu">
+                            @foreach($brands as $key => $brand)
                             <li class="dropdown">
-                                <a href="#!" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">TRKTRO</a>
+                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$brand->name}}</a>
                                 <ul class="dropdown-menu">
-                                    <p class="p-4 mb-0 fs-7 text-white-50">產品類別</p>
-                                    <li><a href="#">碟煞</a></li>
-                                    <li><a href="#">煞皮</a></li>
-                                    <li><a href="#">夾器</a></li>
-                                    <li><a href="#">零配件</a></li>
-                                    <li><a href="#">手把</a></li>
-                                    <li><a href="#">來令片</a></li>
-                                    <p class="p-4 mb-0 fs-7 text-white-50">自行車類別</p>
-                                    <li><a href="#">登山車</a></li>
-                                    <li><a href="#">旅行車</a></li>
-                                    <li><a href="#">公路車</a></li>
-                                    <li><a href="#">表驗</a></li>
-                                    <li><a href="#">林道越野車</a></li>
-                                    <li><a href="#">電動車</a></li>
-                                    <li><a href="#">三鐵/計時車</a></li>
+                                    <p class="p-4 mb-0 fs-7 text-white-50">{{__('front.product_category')}}</p>
+                                    @foreach($brand->categories as $category)
+                                    <li><a href="{{route('front.category.show',['lang'=>$lang,'category'=>$category->id])}}">{{$category->name}}</a></li>
+                                    @endforeach
+                                    <p class="p-4 mb-0 fs-7 text-white-50">{{__('front.bike_category')}}</p>
+                                    @foreach($brand->tags as $tag)
+                                    <li><a href="{{route('front.category.show',['lang'=>$lang,'category'=>$tag->id])}}">{{$tag->name}}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">TRP</a>
-                                <ul class="dropdown-menu">
-                                    <p class="p-4 mb-0 fs-7 text-white-50">產品類別</p>
-                                    <li><a href="#">油壓</a></li>
-                                    <li><a href="#">機碟</a></li>
-                                    <li><a href="#">手把</a></li>
-                                    <li><a href="#">碟盤</a></li>
-                                    <li><a href="#">來令片</a></li>
-                                    <p class="p-4 mb-0 fs-7 text-white-50">自行車類別</p>
-                                    <li><a href="#">登山車</a></li>
-                                    <li><a href="#">GRAVEL</a></li>
-                                    <li><a href="#">PAVEMENT</a></li>
-                                    <li><a href="#">SNOW</a></li>
-                                </ul>
-                            </li>
+                            @endforeach
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            class="position-relative text-white">支援</a>
+                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="position-relative text-white">{{__('front.support')}}</a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('front.support.show',['support'=>'all','lang'=>$lang])}}">技術手冊</a></li>
-                            <li><a href="{{route('front.video.index',['lang'=>$lang])}}">影音分享</a></li>
-                            <li><a href="{{route('front.faq.index',['lang'=>$lang])}}">常見問題</a></li>
-                            <li><a href="{{route('front.warranty.index',['lang'=>$lang])}}">保固條款</a></li>
+                            <li><a href="{{route('front.support.show',['support'=>'all','lang'=>$lang])}}">{{__('front.technology_manual')}}</a></li>
+                            <li><a href="{{route('front.video.index',['lang'=>$lang])}}">{{__('front.video_share')}}</a></li>
+                            <li><a href="{{route('front.faq.index',['lang'=>$lang])}}">{{__('front.common_question')}}</a></li>
+                            <li><a href="{{route('front.warranty.index',['lang'=>$lang])}}">{{__('front.warranty_terms')}}</a></li>
                         </ul>
                     </li>
                     </li>
                     <li class="dropdown">
-                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            class="position-relative text-white">聯絡</a>
+                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="position-relative text-white">{{__('front.contact')}}</a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('front.contact.index',['lang'=>$lang])}}">聯絡我們</a></li>
-                            <li><a href="{{route('front.global.index',['lang'=>$lang])}}">全球據點</a></li>
+                            <li><a href="{{route('front.contact.index',['lang'=>$lang])}}">{{__('front.contact_form')}}</a></li>
+                            <li><a href="{{route('front.global.index',['lang'=>$lang])}}">{{__('front.global_base')}}</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -424,7 +411,7 @@
                 <ul class="dropdown-menu dropdown-menu-dark">
                     <li><a class="dropdown-item fs-7" href="{{route('front.index',['lang'=>'zh-Hant'])}}">台灣（繁體）</a></li>
                     <li><a class="dropdown-item fs-7" href="{{route('front.index',['lang'=>'en'])}}">English(US)</a></li>
-                    <li><a class="dropdown-item fs-7" href="{{route('front.index',['lang'=>'de'])}}">Deutsch</a></li>
+                    <!-- <li><a class="dropdown-item fs-7" href="{{route('front.index',['lang'=>'de'])}}">Deutsch</a></li> -->
                 </ul>
             </div>
 
@@ -434,45 +421,44 @@
     </div>
     <!-- end sidebar mobile menu -->
     @yield('content')
-    
     <!-- cookie box   -->
     <div class="row" id="cookieAcceptBar">
         <div class="cookie_box">
             <div class="p-3 p-md-5">
                 <form name="set_cookie">
-                    <p class="mb-4 text-center">我們及第三方均在本站使用 cookie，記錄之資訊以提供客製化內容，優化使用體驗。
+                    <p class="mb-4 text-center">{{__('front.cookie.title1')}}
                         <br>
-                        當您按下「cookie 設定」，即可選擇您想接受哪些 cookie。
+                        {{__('front.cookie.title2')}}
                     </p>
                     <div class="mb-4" id="cookie-selection" style="display: none;">
                         <div class="form-check form-switch mb-4 position-relative">
                             <input class="form-check-input" type="checkbox" role="switch" id="SwitchFunctionalCookie" name="normal" checked disabled>
-                            <label class="form-check-label fw-bold ps-3" for="SwitchFunctionalCookie">功能型 cookie
+                            <label class="form-check-label fw-bold ps-3" for="SwitchFunctionalCookie">{{__('front.cookie.function')}}
                                 <br>
-                                <span class="fs-7 fw-normal">這些 cookie 確保網站正常運行。</span>
+                                <span class="fs-7 fw-normal">{{__('front.cookie.title3')}}</span>
                             </label>
                             
                         </div>
                         <div class="form-check form-switch mb-4 position-relative">
                             <input class="form-check-input" type="checkbox" role="switch" id="SwitchAnalyticalCookie" name="no_an" checked>
-                            <label class="form-check-label fw-bold ps-3" for="SwitchAnalyticalCookie">分析型 cookie
+                            <label class="form-check-label fw-bold ps-3" for="SwitchAnalyticalCookie">{{__('front.cookie.analysis')}}
                                 <br>
-                                <span class="fs-7 fw-normal">分析型 cookie 讓我們深入瞭解本網站的使用情形，我們能基於這種資訊改善本網站。</span>
+                                <span class="fs-7 fw-normal">{{__('front.cookie.title4')}}</span>
                             </label>
                             
                         </div>
                         <div class="form-check form-switch mb-4 position-relative">
                             <input class="form-check-input" type="checkbox" role="switch" id="SwitchAdCookie" name="no_ad" checked>
-                            <label class="form-check-label fw-bold ps-3" for="SwitchAdCookie">行銷型 cookie</label>
-                            <p class="fs-7 ps-3">行銷型 cookie 係用於向您提供跟您有關的廣告。</p>
+                            <label class="form-check-label fw-bold ps-3" for="SwitchAdCookie">{{__('front.cookie.marketing')}}</label>
+                            <p class="fs-7 ps-3">{{__('front.cookie.title5')}}</p>
                         </div>
                     </div>
                         <!-- <a href="#" class="text-decoration-underline"> 隱私權保護政策</a>。 -->
                     <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-center">
-                        <button class="c_btn btn_dark mb-2 mb-sm-0 me-sm-3" id="cookie-agree" value="agree" type="submit">接受 cookie</button>
-                        <button class="c_btn btn_dark mb-2 mb-sm-0 me-sm-3" id="cookie-agree-selected" value="" style="display: none;"  type="submit">儲存設定</button>
-                        <button class="c_btn btn_white me-sm-3" id="cookie-disagree" value="disagree">不接受 cookie</button>
-                        <button class="c_btn border-0 bg-transparent text-decoration-underline fw-normal hover_opacity" id="cookie-selection-trigger">設定 cookie</button>
+                        <button class="c_btn btn_dark mb-2 mb-sm-0 me-sm-3" id="cookie-agree" value="agree" type="submit">{{__('front.accept_cookie')}}</button>
+                        <button class="c_btn btn_dark mb-2 mb-sm-0 me-sm-3" id="cookie-agree-selected" value="" style="display: none;"  type="submit">{{__('front.save_setting')}}</button>
+                        <button class="c_btn btn_white me-sm-3" id="cookie-disagree" value="disagree">{{__('front.reject_cookie')}}</button>
+                        <button class="c_btn border-0 bg-transparent text-decoration-underline fw-normal hover_opacity" id="cookie-selection-trigger">{{__('front.setting_cookie')}}</button>
                     </div>
                 </form>
             </div>
@@ -483,16 +469,14 @@
     <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="margin-top: 75px;">
             <div class="modal-content">
-
-                <form class="form-group d-block d-flex position-relative search_box">
+                <form class="form-group d-block d-flex position-relative search_box" action="{{route('front.search.index',['lang'=>$lang])}}">
                     <div class="input-group input-group-lg">
                         <span class="input-group-text ps-3 bg-white border-0">
                             <i class='bx bx-search'></i>
                         </span>
-                        <input class="form-control border-0 ps-0 fs-6" type="search" placeholder="Search...">
+                        <input class="form-control border-0 ps-0 fs-6" type="search" name="word" placeholder="{{__('front.search')}}">
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -515,16 +499,16 @@
                     </a>
                 </div>
                 <div class="d-none d-md-block col-2">
-                    <h5 class="fs-6 fw-bold mb-4">資訊</h5>
+                    <h5 class="fs-6 fw-bold mb-4">{{__('front.information')}}</h5>
                     <div>
-                        <a href="{{route('front.news.index',['lang'=>$lang])}}" class="footer_link">最新消息</a>
+                        <a href="{{route('front.news.index',['lang'=>$lang])}}" class="footer_link">{{__('front.news')}}</a>
                     </div>
                     <div>
-                        <a href="{{route('front.recruit.index',['lang'=>$lang])}}" class="footer_link">人才招募</a>
+                        <a href="{{route('front.recruit.index',['lang'=>$lang])}}" class="footer_link">{{__('front.recruit')}}</a>
                     </div>
                 </div>
                 <div class="d-none d-md-block col-2">
-                    <h5 class="fs-6 fw-bold mb-4">關於我們</h5>
+                    <h5 class="fs-6 fw-bold mb-4">{{__('front.about_us')}}</h5>
                     @foreach($abouts as $about)
                     <div>
                         <a href="{{route('front.about.show',['lang'=>$lang,'about'=>$about->id])}}" class="footer_link">{{$about->name}}</a>
@@ -532,7 +516,7 @@
                     @endforeach
                 </div>
                 <div class="d-none d-md-block col-2">
-                    <h5 class="fs-6 fw-bold mb-4">品牌產品</h5>
+                    <h5 class="fs-6 fw-bold mb-4">{{__('front.brand_product')}}</h5>
                     @foreach($brands as $brand)
                     <div>
                         <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->id])}}" class="footer_link">{{$brand->name}}</a>
@@ -540,36 +524,40 @@
                     @endforeach
                 </div>
                 <div class="d-none d-md-block col-2">
-                    <h5 class="fs-6 fw-bold mb-4">支援</h5>
+                    <h5 class="fs-6 fw-bold mb-4">{{__('front.support')}}</h5>
                     <div>
-                        <a href="{{route('front.support.show',['support'=>'all','lang'=>$lang])}}" class="footer_link">技術手冊</a>
+                        <a href="{{route('front.support.show',['support'=>'all','lang'=>$lang])}}" class="footer_link">{{__('front.technology_manual')}}</a>
                     </div>
                     <div>
-                        <a href="{{route('front.video.index',['lang'=>$lang])}}" class="footer_link">影音分享</a>
+                        <a href="{{route('front.video.index',['lang'=>$lang])}}" class="footer_link">{{__('front.video_share')}}</a>
                     </div>
                     <div>
-                        <a href="{{route('front.faq.index',['lang'=>$lang])}}" class="footer_link">常見問題</a>
+                        <a href="{{route('front.faq.index',['lang'=>$lang])}}" class="footer_link">{{__('front.common_question')}}</a>
                     </div>
                     <div>
-                        <a href="{{route('front.warranty.index',['lang'=>$lang])}}" class="footer_link">保固條款</a>
+                        <a href="{{route('front.warranty.index',['lang'=>$lang])}}" class="footer_link">{{__('front.warranty_terms')}}</a>
                     </div>
                 </div>
                 <div class="d-none d-md-block col-2">
-                    <h5 class="fs-6 fw-bold mb-4">聯絡</h5>
+                    <h5 class="fs-6 fw-bold mb-4">{{__('front.contact')}}</h5>
                     <div>
-                        <a href="{{route('front.contact.index',['lang'=>$lang])}}" class="footer_link">聯絡我們</a>
+                        <a href="{{route('front.contact.index',['lang'=>$lang])}}" class="footer_link">{{__('front.contact_form')}}</a>
                     </div>
                     <div>
-                        <a href="{{route('front.global.index',['lang'=>$lang])}}" class="footer_link">全球據點</a>
+                        <a href="{{route('front.global.index',['lang'=>$lang])}}" class="footer_link">{{__('front.global_base')}}</a>
                     </div>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-12 d-none d-md-flex footer_logo_group justify-content-between align-items-center mb-4">
                     <div class="d-flex align-items-center">
-                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block"><img src="{{asset('front/assets/images/TEKTRO_w.png')}}" alt="TEKTRO logo"></a>
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block">
+                            <img src="{{asset('front/assets/images/TEKTRO_w.png')}}" alt="TEKTRO logo">
+                        </a>
                         <div class="logo_divider"></div>
-                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block"><img src="{{asset('front/assets/images/TRP_w.svg')}}" alt="TRP logo"></a>
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block">
+                            <img src="{{asset('front/assets/images/TRP_w.svg')}}" alt="TRP logo">
+                        </a>
                     </div>
                     <div class="btn-group dropup">
                         <button type="button" class="btn dropdown-toggle btn_lang text-primary" data-bs-toggle="dropdown" aria-expanded="false">
@@ -584,19 +572,28 @@
                         <ul class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" href="{{route('front.index',['lang'=>'zh-Hant'])}}">台灣（繁體）</a></li>
                             <li><a class="dropdown-item" href="{{route('front.index',['lang'=>'en'])}}">English(US)</a></li>
-                            <li><a class="dropdown-item" href="{{route('front.index',['lang'=>'de'])}}">Deutsch</a></li>
+                            <!-- <li><a class="dropdown-item" href="{{route('front.index',['lang'=>'de'])}}">Deutsch</a></li> -->
                         </ul>
                     </div>
                 </div>
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                     <div class="mb-4 mb-md-0 footer_media_group">
-                        <span class="text-white opacity-50 fs-7 d-none d-dm-inline-block me-4">FOLLOW US</span>
-                        <a href="#" target="_blank" class="d-inline-block me-3"><i
-                                class='bx bxl-instagram text-white fs-1 fs-md-3 align-middle'></i></a>
-                        <a href="#" target="_blank" class="d-inline-block me-3"><i
-                                class='bx bxl-facebook text-white fs-1 fs-md-3 align-middle'></i></a>
-                        <a href="#" target="_blank" class="d-inline-block"><i
-                                class='bx bxl-youtube text-white fs-1 fs-md-3 align-middle'></i></a>
+                        <!-- <span class="text-white opacity-50 fs-7 d-none d-dm-inline-block me-4">FOLLOW US</span> -->
+                        @if($community->instagram)
+                        <a href="{{$community->instagram}}" target="_blank" class="d-inline-block me-3">
+                            <i class='bx bxl-instagram text-white fs-1 fs-md-3 align-middle'></i>
+                        </a>
+                        @endif
+                        @if($community->facebook)
+                        <a href="{{$community->facebook}}" target="_blank" class="d-inline-block me-3">
+                            <i class='bx bxl-facebook text-white fs-1 fs-md-3 align-middle'></i>
+                        </a>
+                        @endif
+                        @if($community->youtube)
+                        <a href="{{$community->youtube}}" target="_blank" class="d-inline-block">
+                            <i class='bx bxl-youtube text-white fs-1 fs-md-3 align-middle'></i>
+                        </a>
+                        @endif
                     </div>
                     <div class="text-white fs-7 opacity-50 text-center">© 2022 TEKTRO TECHNOLOGY CORP, ALL RIGHTS
                         RESERVED.
@@ -662,7 +659,6 @@
             console.log($(this).serialize());
             return false;
         });
-
     </script>
     @stack('javascript')
 </body>

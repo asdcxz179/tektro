@@ -8,9 +8,9 @@
                 <h2 class="breadcrumb_title">{{$detail->name}}</h2>
                 <ul class="breadcrumb_nav">
                     <li>
-                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">首頁</a>
+                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.home')}}</a>
                     </li>
-                    <li class="text-white-50">關於我們</li>
+                    <li class="text-white-50">{{__('front.about_us')}}</li>
                     <li class="text-white">{{$detail->name}}</li>
                 </ul>
             </div>

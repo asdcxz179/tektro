@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10 col-lg-12">
-                <h2 class="breadcrumb_title">技術手冊</h2>
+                <h2 class="breadcrumb_title">{{__('front.technology_manual')}}</h2>
                 <ul class="breadcrumb_nav">
                     <li>
-                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">首頁</a>
+                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.home')}}</a>
                     </li>
-                    <li class="text-white-50">支援</li>
-                    <li class="text-white text-truncate">技術手冊</li>
+                    <li class="text-white-50">{{__('front.information')}}</li>
+                    <li class="text-white text-truncate">{{__('front.technology_manual')}}</li>
                 </ul>
             </div>
         </div>
@@ -25,7 +25,7 @@
                 <form action="" method="" class="d-flex w-100 justify-content-start align-items-end">
                     <input type="text" name="" placeholder="請輸入關鍵字" class="form_transparent_dark w-100">
                     <button class="c_btn btn_transparent_dark pe-0 fw-normal hover_opacity" type="submit" name=""
-                        style="min-width: 120px;">搜尋
+                        style="min-width: 120px;">{{__('front.search')}}
                         <i class='bx bx-search text-primary fs-4 align-middle text-dark ps-2'></i>
                     </button>
                 </form>
@@ -33,10 +33,10 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <h5 class="page_aside_title bg-dark text-white fs-6 mb-0">類別</h5>
+                <h5 class="page_aside_title bg-dark text-white fs-6 mb-0">{{__('front.category')}}</h5>
                 <ul class="nav nav-fill page_aside bg-white flex-column mb-5 mb-md-0">
                     <li class="nav-item">
-                        <button class="page_aside_filter nav-link active" data-bs-toggle="tab" data-bs-target="#downloadFilterAll" type="button" role="tab" aria-selected="false">全部</button>
+                        <button class="page_aside_filter nav-link active" data-bs-toggle="tab" data-bs-target="#downloadFilterAll" type="button" role="tab" aria-selected="false">{{__('front.all')}}</button>
                     </li>
                     @foreach($categories as $key => $category)
                     <li class="nav-item">
@@ -60,7 +60,7 @@
                                     <div id="filter_{{$key}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#type_{{$key2}}">
                                         <div class="accordion-body">
                                             <div class="p-md-4">
-                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">使用手冊</span>
+                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.manual')}}</span>
                                                 <ul>
                                                     @foreach($type->support_files as $key3 => $sub)
                                                         @if($sub->support_file_type_id == 1 && $sub->path)
@@ -73,7 +73,7 @@
                                                 </ul>
                                             </div>
                                             <div class="p-md-4">
-                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">BOM 清單</span>
+                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.BOM List')}}</span>
                                                 <ul>
                                                     @foreach($type->support_files as $key3 => $sub)
                                                         @if($sub->support_file_type_id == 2 && $sub->path)
@@ -106,7 +106,7 @@
                                         aria-labelledby="flush-headingOne" data-bs-parent="#collapseFilterOne">
                                         <div class="accordion-body">
                                             <div class="p-md-4">
-                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">使用手冊</span>
+                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.manual')}}</span>
                                                 <ul>
                                                     @foreach($type->support_files as $key3 => $sub)
                                                         @if($sub->support_file_type_id == 1 && $sub->path)
@@ -120,7 +120,7 @@
 
                                             </div>
                                             <div class="p-md-4">
-                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">BOM 清單</span>
+                                                <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.BOM List')}}</span>
                                                 <ul>
                                                     @foreach($type->support_files as $key3 => $sub)
                                                         @if($sub->support_file_type_id == 2 && $sub->path)

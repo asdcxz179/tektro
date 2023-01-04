@@ -6,13 +6,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10 col-lg-12">
-                <h2 class="breadcrumb_title">影音分享</h2>
+                <h2 class="breadcrumb_title">{{__('front.video_share')}}</h2>
                 <ul class="breadcrumb_nav">
                     <li>
-                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">首頁</a>
+                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.home')}}</a>
                     </li>
-                    <li class="text-white-50">支援</li>
-                    <li class="text-white text-truncate">影音分享</li>
+                    <li class="text-white-50">{{__('front.support')}}</li>
+                    <li class="text-white text-truncate">{{__('front.video_share')}}</li>
                 </ul>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 @endforeach
             </div>
             <div class="d-flex justify-content-center mt-5">
-                <a href="javascript:void(0)" class="c_btn btn_outline_dark" id="loadMore">LOAD MORE</a>
+                <a href="javascript:void(0)" class="c_btn btn_outline_dark" id="loadMore">{{__('front.LOAD MORE')}}</a>
             </div>
         </div>
     </div>

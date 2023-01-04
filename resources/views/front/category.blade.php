@@ -9,9 +9,9 @@
             <h2 class="breadcrumb_title">{{$category->name}}</h2>
             <ul class="breadcrumb_nav">
                 <li>
-                    <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">首頁</a>
+                    <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.home')}}</a>
                 </li>
-                <li class="text-white-50">品牌產品</li>
+                <li class="text-white-50">{{__('front.brand_product')}}</li>
                 <li class="text-white-50">
                     <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->id])}}" class="text-white-50">{{$brand->name}}</a>
                 </li>
@@ -34,7 +34,7 @@
                         <div class="ratio_inner bg-cover" style="background-image: url('{{asset($product->banner)}}');">
                             <div class="box_img_overlay">
                                 <span class="text-white fw-bold mb-3">{{$product->name}}</span>
-                                <div href="#" class="c_btn btn_outline_white">VIEW ALL</div>
+                                <div href="#" class="c_btn btn_outline_white">{{__('front.VIEW ALL')}}</div>
                             </div>
                         </div>
                         <!-- <div class="box_img">

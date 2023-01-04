@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use App\Models\ProductBrand;
 use App\Models\About;
+use App\Models\Community;
 
 class Init
 {
@@ -25,6 +26,8 @@ class Init
         \View::share('brands',$brands);
         $abouts = About::where('status',1)->orderby('sort','asc')->get();
         \View::share('abouts',$abouts);
+        $community = Community::first();
+        \View::share('community',$community);
         return $next($request);
     }
 }

@@ -7,8 +7,7 @@
         <section class="position-relative">
             <div class="index_banner_slick">
                 @foreach($module->home_carousels as $carousel)
-                <div class="index_banner_slick_item d-flex align-items-center bg-cover"
-                    style="background-image: url('{{asset($carousel->path)}}');">
+                <div class="index_banner_slick_item d-flex align-items-center bg-cover" style="background-image: url('{{asset($carousel->path)}}');">
                     <div class="container">
                         <div class="row justify-content-end">
                             <div class="col-12 col-md-6 col-lg-5">
@@ -35,7 +34,6 @@
                 <div class="row justify-content-center mb-5">
                     <div class="col-11 px-0">
                         <h3 class="title text-white fw-normal text-center text-md-start">{{$module->home_news[0]->title}}</h3>
-                        <!-- <h3 class="title text-white">NEWS & EVENTS</h3> -->
                     </div>
                 </div>
                 <div class="index_news_slick mb-15">
@@ -61,7 +59,7 @@
                     @endforeach
                 </div>
                 <div class="text-center">
-                    <a href="{{route('front.news.index',['lang'=>$lang])}}" class="c_btn btn_light fw-normal">瞭解更多</a>
+                    <a href="{{route('front.news.index',['lang'=>$lang])}}" class="c_btn btn_light fw-normal">{{__('front.see_more')}}</a>
                 </div>
             </div>
         </section>
@@ -152,15 +150,14 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h3 class="text-primary text-uppercase title mb-4 mb-md-5">Join Our Newsletter</h3>
+                <h3 class="text-primary text-uppercase title mb-4 mb-md-5">{{__('front.JoinOurNewsletter')}}</h3>
                 <form action="" method=""
                     class="d-flex w-100 flex-column flex-md-row align-items-start justify-content-md-start align-items-md-end">
-                    <input type="text" name="" placeholder="Your E-mail" class="form_transparent">
-                    <button class="c_btn btn_transparent text-white pe-0 d-none d-md-inline-block" type="submit"
-                        name="">SUBSCRIBE
+                    <input type="text" name="" placeholder="{{__('front.YourE-mail')}}" class="form_transparent">
+                    <button class="c_btn btn_transparent text-white pe-0 d-none d-md-inline-block" type="submit" name="">{{__('front.SUBSCRIBE')}}
                         <i class='bx bx-right-arrow-alt text-primary fs-4 align-middle text-white'></i>
                     </button>
-                    <button class="c_btn btn_light d-md-none mt-5">SUBSCRIBE</button>
+                    <button class="c_btn btn_light d-md-none mt-5">{{__('front.SUBSCRIBE')}}</button>
                 </form>
             </div>
         </div>

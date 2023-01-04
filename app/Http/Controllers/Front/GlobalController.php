@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Area;
+use App\Models\Dealer;
 
 class GlobalController extends Controller
 {
@@ -12,9 +14,24 @@ class GlobalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('front.global');
+        $data['areas'] = Area::all();
+        $dealers = Dealer::where('status',1)->orderby('sort');
+        $area = $request->area;
+        if($area) {
+            $dealers->whereHas('areas',function($query) use ($area){
+                $query->where('areas.id',$area);
+            });
+        }
+        $brand = $request->brand;
+        if($brand) {
+            $dealers->whereHas('product_brands',function($query) use ($brand){
+                $query->where('product_brands.id',$brand);
+            });
+        }
+        $data['dealers'] = $dealers->get();
+        return view('front.global',$data);
     }
 
     /**

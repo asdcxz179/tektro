@@ -6,13 +6,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10 col-lg-12">
-                <h2 class="breadcrumb_title">聯絡表單</h2>
+                <h2 class="breadcrumb_title">{{__('front.contact_form')}}</h2>
                 <ul class="breadcrumb_nav">
                     <li>
-                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">首頁</a>
+                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.home')}}</a>
                     </li>
-                    <li class="text-white-50">聯絡</li>
-                    <li class="text-white text-truncate">聯絡表單</li>
+                    <li class="text-white-50">{{__('front.contact')}}</li>
+                    <li class="text-white text-truncate">{{__('front.contact_form')}}</li>
                 </ul>
             </div>
         </div>
@@ -26,20 +26,20 @@
             <form action="{{route('front.contact.store',['lang'=>$lang])}}" method="POST" >
                 @csrf
                 <div class="mb-4">
-                    <label class="form-label fw-bold">問題類型<span class="text-danger">*</span></label>
+                    <label class="form-label fw-bold">{{__('front.contact.question')}}<span class="text-danger">*</span></label>
                     <select class="form-select js-select2" aria-label="Default select" data-live-search="true" name="question">
-                        <option value="安裝技術問題">安裝技術問題</option>
-                        <option value="產品問題">產品問題</option>
-                        <option value="客戶服務">客戶服務</option>
-                        <option value="維護修繕">維護修繕</option>
-                        <option value="其他問題">其他問題</option>
+                        <option value="{{__('front.installation technical issues')}}">{{__('front.installation technical issues')}}</option>
+                        <option value="{{__('front.product problem')}}">{{__('front.product problem')}}</option>
+                        <option value="{{__('front.customer service')}}">{{__('front.customer service')}}</option>
+                        <option value="{{__('front.maintenance')}}">{{__('front.maintenance')}}</option>
+                        <option value="{{__('front.other problems')}}">{{__('front.other problems')}}</option>
                     </select>
                     @error('question')
                         <span class="text-danger" style="font-size:14px;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold">洲別<span class="text-danger">*</span></label>
+                    <label class="form-label fw-bold">{{__('front.contact.area')}}<span class="text-danger">*</span></label>
                     <select class="form-select js-select2" aria-label="Default select" data-live-search="true" name="area_id">
                         @foreach($areas as $area)
                         <option value="{{$area->id}}">{{$area->name}}</option>
@@ -50,7 +50,7 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold">國家<span class="text-danger">*</span></label>
+                    <label class="form-label fw-bold">{{__('front.contact.country')}}<span class="text-danger">*</span></label>
                     <select class="form-select js-select2" aria-label="Default select" data-live-search="true" name="country">
                         <optgroup id="country-optgroup-Africa" label="Africa">
                             <option value="Algeria" label="Algeria">Algeria</option>
@@ -328,35 +328,35 @@
                     <!-- select with search end -->
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold" for="contactsFormName">姓名<span class="text-danger">*</span></label>
+                    <label class="form-label fw-bold" for="contactsFormName">{{__('front.contact.name')}}<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="name" id="contactsFormName" placeholder="" aria-label="" value="{{old('name')}}">
                     @error('name')
                         <span class="text-danger" style="font-size:14px;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold" for="contactsFormEmail">信箱<span class="text-danger">*</span></label>
+                    <label class="form-label fw-bold" for="contactsFormEmail">{{__('front.contact.email')}}<span class="text-danger">*</span></label>
                     <input type="email" class="form-control" name="email" id="contactsFormEmail" placeholder="example@mail.com" aria-label="" value="{{old('email')}}">
                     @error('email')
                         <span class="text-danger" style="font-size:14px;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold" for="contactsFormTel">聯絡電話</label>
+                    <label class="form-label fw-bold" for="contactsFormTel">{{__('front.contact.phone')}}</label>
                     <input type="tel" class="form-control" name="phone" id="contactsFormTel" placeholder="" aria-label="" value="{{old('phone')}}">
                     @error('phone')
                         <span class="text-danger" style="font-size:14px;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold" for="contactsFormDetails">訊息<span class="text-danger">*</span></label>
-                    <textarea class="form-control" name="content" id="contactsFormDetails" placeholder="請輸入文字" aria-label="" rows="5">{{old('content')}}</textarea>
+                    <label class="form-label fw-bold" for="contactsFormDetails">{{__('front.contact.content')}}<span class="text-danger">*</span></label>
+                    <textarea class="form-control" name="content" id="contactsFormDetails" placeholder="{{__('front.please input text')}}" aria-label="" rows="5">{{old('content')}}</textarea>
                     @error('content')
                         <span class="text-danger" style="font-size:14px;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-md-12 mb-4">
-                    <label class="form-label fw-bold" for="contactsFormCaptcha">驗證碼<span class="text-danger">*</span></label>
+                    <label class="form-label fw-bold" for="contactsFormCaptcha">{{__('front.contact.captcha')}}<span class="text-danger">*</span></label>
                     <div class="row">
                         <div class="col-md-6">
                             <input type="text" class="form-control" name="captcha" id="contactsFormCaptcha" placeholder="" aria-label="">
@@ -371,7 +371,7 @@
                 </div>
                 <div class="row mt-5">
                     <div class="d-flex justify-content-center">
-                        <input type="submit" value="確認送出" class="c_btn btn_dark">
+                        <input type="submit" value="{{__('front.confirm send')}}" class="c_btn btn_dark">
                     </div>
                 </div>
             </form>

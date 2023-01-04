@@ -7,9 +7,9 @@
                     <h2 class="breadcrumb_title">{{$product->name}}</h2>
                     <ul class="breadcrumb_nav">
                         <li>
-                            <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">首頁</a>
+                            <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.home')}}</a>
                         </li>
-                        <li class="text-white-50">品牌產品</li>
+                        <li class="text-white-50">{{__('front.brand_product')}}</li>
                         <li class="text-white-50">
                             <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->id])}}" class="text-white-50">{{$brand->name}}</a>
                         </li>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="text-md-end pt-4 pt-md-5">
-                            <span class="fs-7 fs-md-6 text-muted d-inline-block mb-3 mb-md-4">DH / RACE</span>
+                            <span class="fs-7 fs-md-6 text-muted d-inline-block mb-3 mb-md-4">{{__('front.DH / RACE')}}</span>
                             <ul class="product_icons mb-3 mb-md-4">
                                 <li class="product_icons_item">
                                     <img src="{{asset('front/assets/images/products/2.3.png')}}" alt="">
@@ -77,7 +77,7 @@
                                     <img src="{{asset('front/assets/images/products/9mm Lever Piston.png')}}" alt="">
                                 </li>
                             </ul>
-                            <a href="#" class="c_btn btn_dark">FIDE A DEALER</a>
+                            <a href="{{route('front.global.index',['lang'=>$lang])}}" class="c_btn btn_dark">{{__('front.FIND A DEALER')}}</a>
                         </div>
                     </div>
                 </div>
@@ -86,19 +86,19 @@
                     <ul class="nav nav-fill main_nav_fill justify-content-start mb-12 p-0">
                         <li class="nav-item">
                             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#details" type="button"
-                                role="tab" aria-selected="false">DETAILS</button>
+                                role="tab" aria-selected="false">{{__('front.DETAILS')}}</button>
                         </li>
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#technology" type="button"
-                                role="tab" aria-selected="false">TECHNOLOGY</button>
+                                role="tab" aria-selected="false">{{__('front.TECHNOLOGY')}}</button>
                         </li>
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#test" type="button"
-                                role="tab" aria-selected="false">TEST &amp; REVIEWS</button>
+                                role="tab" aria-selected="false">{{__('front.TEST & REVIEWS')}}</button>
                         </li>
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#related" type="button"
-                                role="tab" aria-selected="false">RELATED PRODUCTS</button>
+                                role="tab" aria-selected="false">{{__('front.RELATED PRODUCTS')}}</button>
                         </li>
                     </ul>
                     <!-- tab end -->
@@ -140,10 +140,8 @@
                     <div class="accordion" id="accordionDownload">
                         <div class="accordion-item bg-transparent border-0">
                             <h2 class="accordion-header mb-3" id="downloadList">
-                                <button class="btn_download accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapseSingle" aria-expanded="false"
-                                    aria-controls="collapseSingle">
-                                    DOWNLOADS
+                                <button class="btn_download accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSingle" aria-expanded="false" aria-controls="collapseSingle">
+                                    {{__('front.DOWNLOADS')}}
                                 </button>
                             </h2>
                             <div id="collapseSingle" class="accordion-collapse collapse" aria-labelledby="downloadList" data-bs-parent="#accordionDownload">
