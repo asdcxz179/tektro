@@ -14,7 +14,7 @@
                     <div class="form-row">           
                         <div class="form-group col-md-12">
                             <label>{{ __("backend.$routeNameData.home_type_id") }}</label>
-                            <select class="js-select2 form-control" name="home_type_id">
+                            <select class="js-select2 form-control" disabled name="home_type_id">
                                 @foreach($types as $value)
                                 <option value="{{ $value->id }}" {{ $value->id == request()->home_type_id ? 'selected' : '' }}>{{ $value->name }}</option>
                                 @endforeach

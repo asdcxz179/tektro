@@ -81,6 +81,7 @@ return [
 
     'relation' => [
       '*' => [
+        'brand' => '品牌',
         'title' => '標題',
         'big_title' => '大標題',
         'small_title' => '小標題',
