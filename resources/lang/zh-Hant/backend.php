@@ -32,6 +32,7 @@ return [
     'contacts' => '聯絡我們表單',
     'contact_settings' => '聯絡我們設定', 
     'dealers' => '經銷商', 
+    'subscription' => '電子報', 
 
     'communities' => '社群管理', 
 
@@ -293,5 +294,10 @@ return [
     'facebook' => 'Facebook',
     'instagram' => 'Instagram',
     'youtube' => 'Youtube',
-  ]
+  ],
+  'subscription' => [
+    'title' => '標題',
+    'lang' => '語言',
+    'content' => '內容',
+  ],
 ];

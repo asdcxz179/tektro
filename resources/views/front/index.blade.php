@@ -151,9 +151,9 @@
         <div class="row">
             <div class="col-12">
                 <h3 class="text-primary text-uppercase title mb-4 mb-md-5">{{__('front.JoinOurNewsletter')}}</h3>
-                <form action="" method=""
-                    class="d-flex w-100 flex-column flex-md-row align-items-start justify-content-md-start align-items-md-end">
-                    <input type="text" name="" placeholder="{{__('front.YourE-mail')}}" class="form_transparent">
+                <form action="{{route('front.subscription.store',['lang'=>$lang])}}" method="POST" class="d-flex w-100 flex-column flex-md-row align-items-start justify-content-md-start align-items-md-end">
+                    @csrf
+                    <input type="text" name="email" placeholder="{{__('front.YourE-mail')}}" class="form_transparent">
                     <button class="c_btn btn_transparent text-white pe-0 d-none d-md-inline-block" type="submit" name="">{{__('front.SUBSCRIBE')}}
                         <i class='bx bx-right-arrow-alt text-primary fs-4 align-middle text-white'></i>
                     </button>
@@ -165,6 +165,20 @@
 </section>
 <!-- newsletter end -->
 @endsection
+@push('javascript')
+<script>
+	$(document).ready(function(){
+		@if(Session::get('result') && Session::get('result')[0])
+			alert('Subscription Success');
+		@elseif(Session::get('result') && !Session::get('result')[0])
+			alert('Subscription Error');
+		@endif
+	});
+	@php
+		Session::pull('result');
+	@endphp
+</script>
+@endpush
 @push('style')
 <style>
     .iframe_video {

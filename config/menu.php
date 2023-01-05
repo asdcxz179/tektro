@@ -31,6 +31,7 @@ return [
             [ 'active' => 'connect/contacts*'                      ,'name' => 'contacts'                , 'title' => 'contacts'             , 'routeId' => 'contact'            , 'permissions' => 'contacts' ],
             [ 'active' => 'connect/contact_settings*'              ,'name' => 'contact_settings'        , 'title' => 'contact_settings'     , 'routeId' => 'contact_setting'    , 'permissions' => 'contact_settings' ],        
             [ 'active' => 'connect/dealers*'                      ,'name' => 'dealers'                  , 'title' => 'dealers'              , 'routeId' => 'dealer'             , 'permissions' => 'dealers' ],         
+            [ 'active' => 'connect/subscription*'                      ,'name' => 'subscription'                  , 'title' => 'subscription'              , 'routeId' => 'dealer'             , 'permissions' => 'subscription' ],         
         ]
     ],       
     [ 'active' => 'communities*', 'icon' => 'fa fa-users', 'name' => 'communities', 'title' => 'communities', 'routeId' => 'community', 'permissions' => 'communities' ],

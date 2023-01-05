@@ -105,6 +105,7 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
             //經銷商
             Route::resource('/dealers', Controllers\Backend\DealerController::class);
             Route::put('/dealers/status/{community}', [Controllers\Backend\DealerController::class, 'status'])->name('dealers.status');
+            Route::resource('/subscription', Controllers\Backend\SubscriptionController::class);
         });  
 
         //社群管理

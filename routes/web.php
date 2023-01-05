@@ -27,6 +27,7 @@ Route::middleware(['lang','init'])->name('front.')->prefix('{lang?}')->group(fun
   Route::resource('/contact','App\Http\Controllers\Front\ContactController');
   Route::resource('/global','App\Http\Controllers\Front\GlobalController');
   Route::resource('/search','App\Http\Controllers\Front\SearchController');
+  Route::resource('/subscription','App\Http\Controllers\Front\SubscriptionController');
 });
 Route::get('/upload/Product/{name}','App\Http\Controllers\Front\DownloadController@show')->name('front.download');
 
