@@ -37,16 +37,16 @@
                                 @foreach($languageData as $language) 
                                 <div class="form-group col-md-3">
                                     <label>{{ __("backend.$routeNameData.relation.*.big_title") }}({{ $language->name }})</label>
-                                    <input type="text" value="{{ $value->getTranslation('big_title', $language->lang) }}" name="relation[1][big_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.big_title") }}">
+                                    <input type="text" value="{{ $value->getTranslation('big_title', $language->lang) }}" name="relation[{{ $key }}][big_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.big_title") }}">
                                 </div> 
                                 <div class="form-group col-md-3">
                                     <label>{{ __("backend.$routeNameData.relation.*.small_title") }}({{ $language->name }})</label>
-                                    <input type="text" value="{{ $value->getTranslation('small_title', $language->lang) }}" name="relation[1][small_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">
+                                    <input type="text" value="{{ $value->getTranslation('small_title', $language->lang) }}" name="relation[{{ $key }}][small_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">
                                 </div>                                  
                                 @endforeach                            
                                 <div class="form-group col-md-3">
                                     <label>{{ __("backend.$routeNameData.relation.*.sort") }}</label>                                    
-                                    <input type="text" value="{{ $value->sort }}" name="relation[1][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
+                                    <input type="text" value="{{ $value->sort }}" name="relation[{{ $key }}][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
                                 </div>                                   
                                 <div class="form-group col-md-8 filepond-dom">
                                     <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>                                    
@@ -55,7 +55,7 @@
                                         <input value="{{ asset($value->path) }}" checked type="checkbox" />{{ asset($value->path) }}
                                         @endisset
 
-                                        <input type="file" name="relation[1][path]" accept="image/*" />  
+                                        <input type="file" name="relation[{{ $key }}][path]" accept="image/*" />  
                                     </fieldset>  
                                 </div>  
                                 <div class="form-group col-md-1 justify-content-center align-items-end d-flex delete">
