@@ -24,7 +24,8 @@
                     <div class="form-group col-md-12">
                         <label>內容</label>     
                         <div>
-                        {!!$info->content!!}
+                            <iframe src="{{ route('backend.'.$routeNameData.'.show',['show'=>1,'subscription'=>request('subscription')]) }}" frameborder="0" style="width:100%;height:50vh">
+                            </iframe>
                         </div>                           
                     </div>  
                 </div>         

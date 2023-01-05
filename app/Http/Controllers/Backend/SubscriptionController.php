@@ -85,9 +85,12 @@ class SubscriptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         $data['info'] = CrudModel::findOrFail($id);
+        if($request->show) {
+            return view('front.emails.Replay', ['content'=>$data['info']->content]);
+        }
         return view($this->view.'.show',$data);
     }
 
