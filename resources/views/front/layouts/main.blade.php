@@ -112,17 +112,18 @@
                                                 <div class="col-3">
                                                     <ul class="ps-0 page_link_group aboutLink">
                                                         @foreach($abouts as $about)
-                                                        <li class="menu_item_has_child">
+                                                        <li class="menu_item_has_child about_li" data-target="about_{{$about->id}}">
                                                             <a href="{{route('front.about.show',['lang'=>$lang,'about'=>$about->id])}}" class="page_link">{{$about->name}}</a>
                                                         </li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
                                                 <div class="col-4">
-                                                    <div>
-                                                        <img src="{{asset('front/assets/images/about_company_thumbnail.jpg')}}"
-                                                            alt="about_thumbnail" id="aboutImage">
+                                                    @foreach($abouts as $key => $about)
+                                                    <div class="about_banner" @if($key != 0) style="display:none;" @endif id="about_{{$about->id}}">
+                                                        <img src="{{asset($about->banner)}}" alt="about_thumbnail">
                                                     </div>
+                                                    @endforeach
                                                 </div>
                                                 <div class="col"></div>
                                             </div>
@@ -170,7 +171,7 @@
                                                                 <ul class="list-unstyled d-flex flex-wrap w-100">
                                                                     @foreach($brand->tags as $tag)
                                                                     <li class="col-6">
-                                                                        <a href="{{route('front.category.show',['lang'=>$lang,'category'=>$tag->id])}}" class="d-inline-block py-2 fw-light">{{$tag->name}}</a>
+                                                                        <a href="{{route('front.tag.show',['lang'=>$lang,'tag'=>$tag->id])}}" class="d-inline-block py-2 fw-light">{{$tag->name}}</a>
                                                                     </li>
                                                                     @endforeach
                                                                 </ul>
@@ -390,7 +391,7 @@
                                     @endforeach
                                     <p class="p-4 mb-0 fs-7 text-white-50">{{__('front.bike_category')}}</p>
                                     @foreach($brand->tags as $tag)
-                                    <li><a href="{{route('front.category.show',['lang'=>$lang,'category'=>$tag->id])}}">{{$tag->name}}</a></li>
+                                    <li><a href="{{route('front.tag.show',['lang'=>$lang,'tag'=>$tag->id])}}">{{$tag->name}}</a></li>
                                     @endforeach
                                 </ul>
                             </li>
@@ -721,7 +722,11 @@
             $('.search_record').html(str);
             $('.record').show();
         }
-        
+        $('.about_li').hover(function(){
+            let target = $(this).data('target');
+            $('.about_banner').hide();
+            $(`#${target}`).show();
+        });
     </script>
     @stack('javascript')
 </body>

@@ -102,7 +102,7 @@
                     {!!nl2br($brand->below_advertise_subtitle)!!}
                 </p>
                 @if($brand->below_advertise_link)
-                <a href="{{$brand->below_advertise_link}}" class="c_btn @if($brand->below_advertise_switch=='黑') btn_dark @else btn_white @endif ">{{__('front.see_more')}}</a>
+                <a href="{{str_replace('zh-Hant',$lang,$brand->below_advertise_link)}}" class="c_btn @if($brand->below_advertise_switch=='黑') btn_dark @else btn_white @endif ">{{__('front.see_more')}}</a>
                 @endif
             </div>
         </div>

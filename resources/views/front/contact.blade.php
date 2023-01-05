@@ -1,8 +1,6 @@
 @extends('front.layouts.main')
 @section('content')
-<section class="breadcrumb mb-12 mb-sm-20"
-    style="background-image: url(/front/assets/images/breadcrumb_connect_contact.jpg);">
-
+<section class="breadcrumb mb-12 mb-sm-20" style="background-image: url(/front/assets/images/breadcrumb_connect_contact.jpg);">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10 col-lg-12">

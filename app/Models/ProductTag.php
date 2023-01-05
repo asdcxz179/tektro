@@ -40,4 +40,14 @@ class ProductTag extends Model
     {
         return $this->morphToMany(Product::class, 'model', 'product_relations');
     }   
+
+    public function products()
+    {
+        return $this->morphToMany(Product::class, 'model', 'product_relations')->where('status',1)->orderby('sort','asc');
+    }
+
+    public function brands()
+    {
+        return $this->morphToMany(ProductBrand::class, 'model', 'product_brand_relations')->where('status',1);
+    }   
 }

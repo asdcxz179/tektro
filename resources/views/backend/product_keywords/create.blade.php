@@ -30,7 +30,7 @@
                 </div>
                 <div class="block-content tab-content">
                     <div class="form-row">          
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6 d-none">
                             <label>{{ __("backend.$routeNameData.products") }}</label>
                             <select data-url="{{ route('backend.products.select') }}" class="js-select2 form-control" multiple name="products[]" data-placeholder="{{ __("backend.$routeNameData.products") }}">
                                 <option></option>

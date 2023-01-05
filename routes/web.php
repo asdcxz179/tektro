@@ -16,6 +16,7 @@ Route::middleware(['lang','init'])->name('front.')->prefix('{lang?}')->group(fun
   Route::resource('/','App\Http\Controllers\Front\IndexController');
   Route::resource('/brand','App\Http\Controllers\Front\BrandController');
   Route::resource('/category','App\Http\Controllers\Front\CategoryController');
+  Route::resource('/tag','App\Http\Controllers\Front\TagController');
   Route::resource('/product','App\Http\Controllers\Front\ProductController');
   Route::resource('/support','App\Http\Controllers\Front\SupportController');
   Route::resource('/news','App\Http\Controllers\Front\NewsController');

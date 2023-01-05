@@ -45,6 +45,11 @@ $(function() {
                 },
                 className: "dt-body-center"
             },            
+            { data: 'id', title: '連結',
+                render: function ( data, type, row ) {   
+                    return `{{route('front.tag.index',['lang'=>config('app.locale')])}}/${data}`;            
+                },
+            },
             { data: 'created_at', title: '{{ __('created_at') }}' },
             { data: 'updated_at', title: '{{ __('updated_at') }}' },
             { data: 'id', title: '{{ __('option') }}', bSortable: false, render:function(data,type,row) {
