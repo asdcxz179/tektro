@@ -44,7 +44,7 @@
                         </div>                         
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.banner") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
+                            <div class="text-danger">{{ __('suggested_size', ['width' => 700, 'height' => 500]) }}</div>
                             <fieldset class="image">
                                 <input type="file" name="banner" accept="image/*" />    
                             </fieldset>  
