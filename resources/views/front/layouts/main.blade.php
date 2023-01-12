@@ -619,21 +619,21 @@
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                     <div class="mb-4 mb-md-0 footer_media_group">
                         <!-- <span class="text-white opacity-50 fs-7 d-none d-dm-inline-block me-4">FOLLOW US</span> -->
-                        @if($community->instagram)
+                        @isset($community->instagram)
                         <a href="{{$community->instagram}}" target="_blank" class="d-inline-block me-3">
                             <i class='bx bxl-instagram text-white fs-1 fs-md-3 align-middle'></i>
                         </a>
-                        @endif
-                        @if($community->facebook)
+                        @endisset
+                        @isset($community->facebook)
                         <a href="{{$community->facebook}}" target="_blank" class="d-inline-block me-3">
                             <i class='bx bxl-facebook text-white fs-1 fs-md-3 align-middle'></i>
                         </a>
-                        @endif
-                        @if($community->youtube)
+                        @endisset
+                        @isset($community->youtube)
                         <a href="{{$community->youtube}}" target="_blank" class="d-inline-block">
                             <i class='bx bxl-youtube text-white fs-1 fs-md-3 align-middle'></i>
                         </a>
-                        @endif
+                        @endisset
                     </div>
                     <div class="text-white fs-7 opacity-50 text-center">© 2022 TEKTRO TECHNOLOGY CORP, ALL RIGHTS
                         RESERVED.
