@@ -137,6 +137,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
+                    @if($product->files->count()>0)
                     <div class="accordion" id="accordionDownload">
                         <div class="accordion-item bg-transparent border-0">
                             <h2 class="accordion-header mb-3" id="downloadList">
@@ -157,6 +158,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

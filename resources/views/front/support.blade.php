@@ -39,9 +39,11 @@
                         <button class="page_aside_filter nav-link active" data-bs-toggle="tab" data-bs-target="#downloadFilterAll" type="button" role="tab" aria-selected="false">{{__('front.all')}}</button>
                     </li>
                     @foreach($categories as $key => $category)
+                    @if($category->supports->count()>0)
                     <li class="nav-item">
                         <button class="page_aside_filter nav-link" data-bs-toggle="tab" data-bs-target="#support_{{$key}}" type="button" role="tab" aria-selected="false">{{$category->name}}</button>
                     </li>
+                    @endif
                     @endforeach
                 </ul>
             </div>

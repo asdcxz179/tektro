@@ -23,7 +23,7 @@
                 </div>
                 @endforeach
             </div>
-            <!-- <img src="{{asset('front/assets/images/divider01.svg')}}" alt="" class="w-100 position-absolute bottom-0"> -->
+            <img src="{{asset('front/assets/images/divider01.svg')}}" alt="" class="w-100 position-absolute bottom-0">
         </section>
         <!-- top banner end -->
         @break

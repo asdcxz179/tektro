@@ -70,10 +70,10 @@
                             @endforeach
                             @endisset                                                                                                            
                         </div>                                                                                         
-                        <div class="form-group col-md-6">
+                        <!-- <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" value="{{ $data->sort }}" placeholder="{{ __("backend.$routeNameData.sort") }}">
-                        </div>                    
+                        </div>                     -->
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.status") }}<span class="text-danger">*</span></label>
                             <div class="col-md-12">

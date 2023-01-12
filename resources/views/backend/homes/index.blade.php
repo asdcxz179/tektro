@@ -4,7 +4,7 @@
 <div class="block">
     <div class="block-header block-header-default">
         <h3 class="block-title">{{ __('list') }}</h3>
-        <a href="{{ route('backend.'.$routeNameData.'.create', ['home_type_id' => 1]) }}" class="btn btn-primary">{{ __('create') }}</a>
+        <a href="{{ route('backend.'.$routeNameData.'.create', ['home_type_id' => 2]) }}" class="btn btn-primary">{{ __('create') }}</a>
     </div>
     <div class="block-content block-content-full">
         <table class="table table-bordered table-striped table-vcenter js-dataTable-full nowrap" id="data-table" style="width:100%">
@@ -48,8 +48,12 @@ $(function() {
             { data: 'created_at', title: '{{ __('created_at') }}' },
             { data: 'updated_at', title: '{{ __('updated_at') }}' },
             { data: 'id', title: '{{ __('option') }}', bSortable: false, render:function(data,type,row) {
-                return `<a class="edit" href="${ path }/${ data }/edit?home_type_id=${ row.home_type_id }">{{ __('edit') }}</a> |
-                    <a data-id="${ data }" class="delete" href="javascript:;">{{ __('delete') }}</a>`;
+                let tmp = [];
+                tmp.push(`<a class="edit" href="${ path }/${ data }/edit?home_type_id=${ row.home_type_id }">{{ __('edit') }}</a>`);
+                if(row.home_type_id != 1) {
+                    tmp.push(`<a data-id="${ data }" class="delete" href="javascript:;">{{ __('delete') }}</a>`);
+                }
+                return tmp.join(' | ');
             }},
         ]
     });

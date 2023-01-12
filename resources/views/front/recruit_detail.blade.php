@@ -27,7 +27,9 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <h2 class="text-white text-center fs-1 fw-bold mb-4">{{$detail->name}}</h2>
+                    @if($detail->show_date)
                     <h3 class="text-white text-center fs-6 fw-bold">{{date('M d, Y',strtotime($detail->show_date))}}</h3>
+                    @endif
                 </div>
             </div>
         </div>

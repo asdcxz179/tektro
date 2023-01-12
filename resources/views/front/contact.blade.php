@@ -377,8 +377,13 @@
     </div>
 </section>
 @endsection
+@push('style')
+<link rel="stylesheet" href="{{asset('js/plugins/select2/css/select2.min.css')}}">
+@endpush
 @push('javascript')
+<script src="{{asset('js/plugins/select2/js/select2.min.js')}}"></script>
 <script>
+    $('.js-select2').select2();
 	$(document).ready(function(){
 		@if(Session::get('result') && Session::get('result')[0])
 			alert('Submit Success');

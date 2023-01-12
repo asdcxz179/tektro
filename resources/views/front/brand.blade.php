@@ -40,11 +40,11 @@
     <ul class="nav main_nav mb-15 mb-md-20">
         <li class="nav-item">
             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#index_tektro_a" type="button"
-                role="tab" aria-selected="false">{{__('front.BY CATEGORY')}}</button>
+                role="tab" aria-selected="false">{{__('front.product_category')}}</button>
         </li>
         <li class="nav-item">
             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#index_tektro_b" type="button" role="tab"
-                aria-selected="false">{{__('front.BY DISCIPLINE')}}</button>
+                aria-selected="false">{{__('front.bike_category')}}</button>
         </li>
     </ul>
     <!-- tab end-->

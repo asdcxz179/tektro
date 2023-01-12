@@ -15,7 +15,9 @@
                             <label>{{ __("backend.$routeNameData.home_type_id") }}</label>
                             <select class="js-select2 form-control" name="home_type_id">
                                 @foreach($types as $value)
+                                @if($value->id != 1)
                                 <option value="{{ $value->id }}" {{ $value->id == request()->home_type_id ? 'selected' : '' }}>{{ $value->name }}</option>
+                                @endif
                                 @endforeach
                             </select>
                         </div>                       
