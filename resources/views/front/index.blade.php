@@ -67,8 +67,14 @@
         @break
         @case(3)
         <div class="">
-            <iframe class="iframe_video" src="https://www.youtube.com/embed/{{$module->home_videos[0]->youtube_key}}?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div id="player_{{$module->home_videos[0]->youtube_key}}" class="iframe_video"></div>
+            <!-- <iframe class="iframe_video" src="https://www.youtube.com/embed/{{$module->home_videos[0]->youtube_key}}?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
         </div>
+        <script>
+            $(document).ready(function(){
+                players['player_{{$module->home_videos[0]->youtube_key}}'] = '{{$module->home_videos[0]->youtube_key}}';
+            });
+        </script>
         @break
         @case(4)
         <!-- plain text -->
@@ -177,6 +183,35 @@
 	@php
 		Session::pull('result');
 	@endphp
+    const tag = document.createElement('script')
+    tag.src = "https://www.youtube.com/iframe_api"
+    const firstScriptTag = document.getElementsByTagName('script')[0]
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    var players = {};
+    function onYouTubeIframeAPIReady() {
+        Object.keys(players).map((key) => {
+            players[key] = new YT.Player(key, {
+                videoId: players[key],
+                playerVars: {
+                    'playsinline': 1
+                },
+            });
+        });
+        $(window).scroll(function(){
+            let window_top = $(window).scrollTop();
+            let window_bottom = $(window).scrollTop() + $(window).height();
+            Object.keys(players).map((key) => {
+                let video = $(`#${key}`);
+                let iframe_top = video.offset().top;
+                let iframe_bottom = video.offset().top + video.height();
+                if(window_bottom > iframe_top && window_top < iframe_bottom) {
+                    players[key].playVideo();
+                }else{
+                    players[key].pauseVideo();
+                }
+            });
+        });
+    }
 </script>
 @endpush
 @push('style')
