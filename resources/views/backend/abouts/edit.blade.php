@@ -37,7 +37,7 @@
                     <div class="form-row">                      
                         <div class="form-group col-md-12">
                             <label>{{ __("backend.$routeNameData.banner") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
+                            <div class="text-danger">{{ __('suggested_size', ['width' => 860, 'height' => 560]) }}</div>
                             <fieldset class="image">
                                 @isset($data->banner)
                                 <input value="{{ asset($data->banner) }}" checked type="checkbox" />{{ asset($data->banner) }}

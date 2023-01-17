@@ -25,6 +25,7 @@
                             <div class="add form-row"> 
                                 <div class="form-group col-md-12">
                                     <label>{{ __("backend.$routeNameData.relation.*.youtube_key") }}</label>
+                                    <div class="text-danger">{{ __("backend.$routeNameData.relation.*.youtube_key_info") }}</div>
                                     <input type="text" name="relation[1][youtube_key]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.youtube_key") }}">
                                 </div>                                                        
                             </div>                                                                                    

@@ -23,6 +23,7 @@ class NewsController extends Controller
             //公用
             'show_date' => ['nullable', 'date'],
             'banner' => ['nullable', 'string'],
+            'up_image' => ['nullable', 'string'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],     
@@ -69,6 +70,7 @@ class NewsController extends Controller
 
             $data = CrudModel::create(array_merge($validatedData, 
                 $this->dealfile($validatedData['banner'], 'banner'),
+                $this->dealfile($validatedData['up_image'], 'up_image'),
             ));
 
             DB::commit();
@@ -122,6 +124,7 @@ class NewsController extends Controller
             $data = CrudModel::findOrFail($id);
             $data->update(array_merge($validatedData, 
                 $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),                
+                $this->dealfile($validatedData['up_image'], 'up_image', $data, 'up_image'),                
             ));
 
             DB::commit();

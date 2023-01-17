@@ -22,6 +22,7 @@ class News extends Model
 
         'show_date',
         'banner',
+        'up_image',
 
         'sort',
         'status',

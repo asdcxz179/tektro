@@ -183,9 +183,17 @@ class ProductCategoryController extends Controller
         if ($request->ajax()) {
             $data = CrudModel::where('name', 'like', "%{$request->search}%")
                 ->select(['id', 'name'])
+                ->with(['brands'])
                 ->limit(200)
                 ->get();
-            return $data;
+            
+            return $data->map(function($item){
+                $brands = $item->brands->pluck('name')->join(',');
+                return [
+                    'id' => $item->id,
+                    'name' => "{$item->name} ({$brands})",
+                ];
+            });
         }
     }       
 }

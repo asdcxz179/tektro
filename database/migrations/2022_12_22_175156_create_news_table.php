@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('content')->nullable()->comment('內容');
 
             $table->string('show_date')->nullable()->comment('描述');
-            $table->string('banner')->nullable()->comment('描述');
+            $table->string('banner')->nullable()->comment('banner');
 
             $table->tinyInteger('sort')->default(0)->nullable()->comment('排序');
             $table->tinyInteger('status')->default(1)->comment('狀態');                   

@@ -89,6 +89,7 @@ return [
         'title' => '標題',
 
         'youtube_key' => 'youtube_key',
+        'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
         'path' => '圖片',
         'link' => '連結',
     
@@ -103,6 +104,7 @@ return [
 
     'show_date' => '顯示日期',
     'banner' => '圖片',
+    'up_image' => '上方底圖',
 
     'sort' => '排序',
     'status' => '狀態',
@@ -122,7 +124,7 @@ return [
     'name' => ['*' => '名稱'],
     'content' => ['*' => '內容'],
 
-    'banner' => '圖片',
+    'banner' => '選單小圖',
 
     'sort' => '排序',
     'status' => '狀態',

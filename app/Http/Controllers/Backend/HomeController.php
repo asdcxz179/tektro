@@ -20,7 +20,7 @@ class HomeController extends Controller
             //分類
             'home_type_id' => ['required', 'numeric', 'max:6'],
             //通用
-            'sort' => ['required', 'numeric', 'max:127'],
+            'sort' => ['nullable', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],    
 
             //使用多語系        

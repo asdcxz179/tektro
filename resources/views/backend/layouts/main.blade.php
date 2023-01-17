@@ -508,7 +508,7 @@
                                 return { 
                                     results: data.map(item => { return { 
                                         id: item.id,
-                                        text: item.name['zh-Hant']
+                                        text: item.name['zh-Hant'] || item.name
                                     } }) 
                                 }
                             },
