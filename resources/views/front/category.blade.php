@@ -1,25 +1,27 @@
 @extends('front.layouts.main')
 @section('content')
 <!-- breadcrumb -->
-<section class="breadcrumb mb-12 mb-sm-20" style="background-image: url({{asset($brand->banner)}});">
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-10 col-lg-12">
-            <h2 class="breadcrumb_title">{{$category->name}}</h2>
-            <ul class="breadcrumb_nav">
-                <li>
-                    <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.home')}}</a>
-                </li>
-                <li class="text-white-50">{{__('front.brand_product')}}</li>
-                <li class="text-white-50">
-                    <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->id])}}" class="text-white-50">{{$brand->name}}</a>
-                </li>
-                <li class="text-white text-truncate">{{$category->name}}</li>
-            </ul>
+<section class="breadcrumb mb-12 mb-sm-20" style="background-image: url({{asset((($brand))?$brand->banner:'front/assets/images/breadcrumb_trp.jpg')}});">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 col-lg-12">
+                <h2 class="breadcrumb_title">{{$category->name}}</h2>
+                <ul class="breadcrumb_nav">
+                    <li>
+                        <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.home')}}</a>
+                    </li>
+                    <li class="text-white-50">{{__('front.brand_product')}}</li>
+                    @if($brand)
+                    <li class="text-white-50">
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->id])}}" class="text-white-50">{{$brand->name}}</a>
+                    </li>
+                    @endif
+                    <li class="text-white text-truncate">{{$category->name}}</li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 </section>
 <!-- breadcrumb end -->
 

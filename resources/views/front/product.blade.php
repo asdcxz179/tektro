@@ -1,6 +1,6 @@
 @extends('front.layouts.main')
 @section('content')
-    <section class="breadcrumb mb-12 mb-sm-20" style="background-image: url(assets/images/breadcrumb_trp.jpg);">
+    <section class="breadcrumb mb-12 mb-sm-20" style="background-image: url('{{asset('front/assets/images/breadcrumb_trp.jpg')}}');">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-10 col-lg-12">
@@ -10,12 +10,16 @@
                             <a href="{{route('front.index',['lang'=>$lang])}}" class="text-white-50">{{__('front.home')}}</a>
                         </li>
                         <li class="text-white-50">{{__('front.brand_product')}}</li>
+                        @if($brand)
                         <li class="text-white-50">
                             <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->id])}}" class="text-white-50">{{$brand->name}}</a>
                         </li>
+                        @endif
+                        @if($category)
                         <li class="text-white-50">
                             <a href="{{route('front.category.show',['lang'=>$lang,'category'=>$category->id])}}" class="text-white-50">{{$category->name}}</a>
                         </li>
+                        @endif
                         <li class="text-white text-truncate">{{$product->name}}</li>
                     </ul>
                 </div>
@@ -31,7 +35,9 @@
                 <div class="row mb-5">
                     <div class="col-md-8">
                         <div class="gallery_main">
+                            @if($product->product_images->first())
                             <img src="{{asset($product->product_images->first()->path)}}" alt="" class="active">
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-3 pe-3 offset-md-1">

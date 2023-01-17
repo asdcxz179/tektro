@@ -1,4 +1,9 @@
 @extends('front.layouts.main')
+@section('og')
+<meta property="og:title" content="{{$detail->name}}">
+<meta property="og:description" content="{{$detail->description}}">
+<meta property="og:image" content="{{asset($detail->banner)}}">
+@endsection
 @section('content')
 <section class="breadcrumb mb-0" style="background-image: url(/front/assets/images/breadcrumb_info_news.jpg);">
 
@@ -49,7 +54,7 @@
                     <a href="#" class="share_btn">
                         <i class='bx bxl-instagram'></i>
                     </a>
-                    <a href="#" class="share_btn">
+                    <a href="javascript:void(0);" onclick="window.open('//www.facebook.com/sharer/sharer.php?u='+'{{url()->full()}}','facebook-share-dialog','width=626,height=436');" class="share_btn">
                         <i class='bx bxl-facebook'></i>
                     </a>
                 </div>

@@ -241,6 +241,12 @@
 
 }
 
+@media (max-width: 1399px) {
+    .index_banner_slick .slick-prev,
+    .index_banner_slick .slick-next{
+        bottom: 100px;
+    }
+}
 @media (max-width: 991px) {
     .index_news_slick .slick-prev {
         left: -12px;

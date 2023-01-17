@@ -291,15 +291,17 @@ body {
     border-bottom: 1px solid #393A3C;
     padding: 20px 0;
 }
-@media (max-width: 1199px){
+@media (max-width: 1399px){
     .link-tektro{
         width: 120px;
     }
-    .logo_divider{
-        margin: 0 12px;
-    }
     .link-trp{
         width: 100px;
+    }
+}
+@media (max-width: 1199px){
+    .logo_divider{
+        margin: 0 12px;
     }
 }
 @media (max-width: 767px){
@@ -952,9 +954,17 @@ body {
     border-radius: 0px;
     background-color: #2f383b;
 }
+@media (max-width: 1399px) {
+    .custom_header .header_content_wrap {
+        padding: 20px;
+    }
+}
 @media (max-width: 1199px) {
     .custom_header .main_menu>ul>li{
         padding: 10px 12px;
+    }
+    .custom_header .main_menu>ul>li>a{
+        font-size: 14px;
     }
 }
 /*-----------------------------------------------

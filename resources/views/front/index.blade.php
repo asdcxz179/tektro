@@ -10,7 +10,7 @@
                 <div class="index_banner_slick_item d-flex align-items-center bg-cover" style="background-image: url('{{asset($carousel->path)}}');">
                     <div class="container">
                         <div class="row justify-content-end">
-                            <div class="col-12 col-md-6 col-lg-5">
+                            <div class="col-12 col-md-6 col-lg-6">
                                 <h2 class="h1 text-uppercase text-white fw-bold lh-base mb-3">
                                     {{$carousel->big_title}}
                                 </h2>
@@ -23,7 +23,7 @@
                 </div>
                 @endforeach
             </div>
-            <img src="{{asset('front/assets/images/divider01.svg')}}" alt="" class="w-100 position-absolute bottom-0">
+            <img src="{{asset('front/assets/images/divider001.svg')}}" alt="" class="w-100 position-absolute bottom-0">
         </section>
         <!-- top banner end -->
         @break

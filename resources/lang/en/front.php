@@ -12,7 +12,11 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
+    'email' =>  [
+        'auto_reply'=>  'Thank you for your letter, we will reply to your request as soon as possible.',
+        'auto'      =>  'auto-reply',
+    ],
+    
     'contact.name'      => 'Name',
     'contact.question'  => 'Question',
     'contact.area'      => 'Continent',

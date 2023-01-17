@@ -49,7 +49,7 @@ class ProductController extends Controller
     {
         $data['product'] = Product::where(['status'=>1,'id'=>$id])->first();
         $data['category'] = $data['product']->category->first();
-        $data['brand'] = $data['category']->brands->first();
+        $data['brand'] = ($data['category'])?$data['category']->brands->first():'';
         return view('front.product',$data);
     }
 

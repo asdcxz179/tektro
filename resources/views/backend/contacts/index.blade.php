@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="block">
-    <div class="block-header block-header-default">
+    <!-- <div class="block-header block-header-default">
         <h3 class="block-title">{{ __('list') }}</h3>
         <a href="{{ route('backend.'.$routeNameData.'.create') }}" class="btn btn-primary">{{ __('create') }}</a>
-    </div>
+    </div> -->
     <div class="block-content block-content-full">
         <table class="table table-bordered table-striped table-vcenter js-dataTable-full nowrap" id="data-table" style="width:100%">
             <thead>

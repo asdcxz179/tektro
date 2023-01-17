@@ -91,10 +91,19 @@
 <header id="header" class="navbar navbar-static-top" role="navigation">
 	<div class="container-fluid clearfix">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="{{route('front.index')}}" title="">
-				<img src="{{asset('front/images/logo.png')}}" title="" class="img-responsive" />
-				<h1 class="hidden"></h1>
-			</a>
+            <div class="">
+                <div class="brand_logo">
+                    <div class="d-flex align-items-center">
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block">
+                            <img src="https://tektro.henryegg8.com/front/assets/images/TEKTRO_w.png" alt="TEKTRO logo">
+                        </a>
+                        <div class="logo_divider"></div>
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block">
+                            <img src="https://tektro.henryegg8.com/front/assets/images/TRP_w.svg" alt="TRP logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
 		</div><!-- /.navbar-header -->
 		<div class="clearfix"></div>
 	</div><!-- /.container -->
@@ -134,7 +143,7 @@
 					</div>
 				</div> -->
 				<div class="col-sm-12 text-center copyright">
-					<span>EXSHO ALL RIGHT RESERVED.</span>
+					<span>TEKTRO ALL RIGHT RESERVED.</span>
 					<!-- <ul class="list-inline">
 						<li><a href="#" title="">{{__('front.footer.privacy')}}</a></li>
 						<li><a href="#" title="">{{__('front.footer.policy')}}</a></li>

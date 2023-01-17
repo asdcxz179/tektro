@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="{{asset('front/assets/css/bootstrap-utilities.css')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/bootstrap.css')}}">
     <!-- bootstrap end -->
-    <link rel="stylesheet" href="{{asset('front/assets/css/base.css')}}">
+    <link rel="stylesheet" href="{{asset('front/assets/css/base.css?v2')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/slick-theme.css')}}">
-    <link rel="stylesheet" href="{{asset('front/assets/css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('front/assets/css/custom.css?v1')}}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Poppins:wght@400;700&display=swap;" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('front/assets/css/boxicons.css')}}">
@@ -70,7 +70,7 @@
                     </ul>
                     <!-- <div class=""> -->
                     <nav class="main_menu clearfix">
-                        <ul class="ul_li_right text-uppercase clearfix">
+                        <ul class="ul_li_right text-uppercase clearfix flex-nowrap">
                             <li class="menu_item"><a href="{{route('front.index',['lang'=>$lang])}}">{{__('front.home')}}</a></li>
                             <li class="menu_item_has_child">
                                 <a href="#" class="menu_item_link">{{__('front.information')}}</a>
@@ -268,7 +268,7 @@
                             </li>
                         </ul>
                         <div class="nav_divider"></div>
-                        <div class="me-4">
+                        <div class="me-2">
                             <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#searchModal">
                                 <i class='bx bx-search text-white fs-4 align-bottom'></i>
                             </button>

@@ -12,6 +12,10 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'email' =>  [
+        'auto_reply'=>  '感谢您的来信，我们会尽快回覆您的需求。',
+        'auto'      =>  '自动回覆',
+    ],
 
     'contact.name'      => '姓名',
     'contact.question'  => '問題類型',
