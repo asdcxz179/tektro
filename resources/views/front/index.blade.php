@@ -67,7 +67,7 @@
         @break
         @case(3)
         <div class="">
-            <div id="player_{{$module->home_videos[0]->youtube_key}}" class="iframe_video"></div>
+            <div id="player_{{$module->home_videos[0]->youtube_key}}" class="iframe_video d-block"></div>
             <!-- <iframe class="iframe_video" src="https://www.youtube.com/embed/{{$module->home_videos[0]->youtube_key}}?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
         </div>
         <script>
@@ -190,12 +190,17 @@
     var players = {};
     function onYouTubeIframeAPIReady() {
         Object.keys(players).map((key) => {
-            players[key] = new YT.Player(key, {
-                videoId: players[key],
-                playerVars: {
-                    'playsinline': 1
-                },
-            });
+            setTimeout(() => {
+                players[key] = new YT.Player(key, {
+                    videoId: players[key],
+                    playerVars: {
+                        'playsinline': 1,
+                        loop: 1,
+                        controls:0,
+                        playlist:players[key],
+                    },
+                });
+            }, 100);
         });
         $(window).scroll(function(){
             let window_top = $(window).scrollTop();

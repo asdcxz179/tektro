@@ -22,6 +22,7 @@ class Talents extends Model
 
         'show_date',
         'banner',
+        'up_image',
 
         'sort',
         'status',

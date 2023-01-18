@@ -27,7 +27,7 @@
 </section>
 <!-- breadcrumb end -->
 <section class="mb-12 mb-md-20">
-    <div class="jarallax bg-cover d-flex justify-content-center align-items-center news_detail_header" style="background-image: url(/front/assets/images/info_news_img01.jpg);">
+    <div class="jarallax bg-cover d-flex justify-content-center align-items-center news_detail_header" style="background-image: url('{{asset(($detail->up_image)?$detail->up_image:'/front/assets/images/info_news_img01.jpg')}}');">
         <div class="container position-relative">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
@@ -51,9 +51,9 @@
             <div class="share_block">
                 <span class="fw-bold mb-4 mb-md-0">{{__('front.SHARE THIS ARTICLE')}}</span>
                 <div class="d-flex">
-                    <a href="#" class="share_btn">
+                    <!-- <a href="#" class="share_btn">
                         <i class='bx bxl-instagram'></i>
-                    </a>
+                    </a> -->
                     <a href="javascript:void(0);" onclick="window.open('//www.facebook.com/sharer/sharer.php?u='+'{{url()->full()}}','facebook-share-dialog','width=626,height=436');" class="share_btn">
                         <i class='bx bxl-facebook'></i>
                     </a>

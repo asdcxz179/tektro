@@ -27,7 +27,8 @@
         <div class="col-md-5 d-flex justify-content-center flex-column">
             <div class="px-3 px-md-5 py-5" data-aos="fade-up" data-aos-duration="800">
                 <h2 class="title mb-3 mb-md-5">{{$brand->advertise_title}}</h2>
-                {!!nl2br($brand->advertise_subtitle)!!}
+                <p>{!!nl2br($brand->advertise_subtitle)!!}</p>
+                <a href="#" class="c_btn btn_dark mt-3 mt-md-5">型錄下載</a>
             </div>
         </div>
     </div>

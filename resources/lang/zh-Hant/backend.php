@@ -108,8 +108,8 @@ return [
     'content' => ['*' => '內容'],
 
     'show_date' => '顯示日期',
-    'banner' => '圖片',
-    'up_image' => '上方底圖',
+    'banner' => '首頁輪播圖',
+    'up_image' => '上方主圖',
 
     'sort' => '排序',
     'status' => '狀態',
@@ -121,6 +121,7 @@ return [
 
     'show_date' => '顯示日期',
     'banner' => '圖片',
+    'up_image' => '上方主圖',
 
     'sort' => '排序',
     'status' => '狀態',
@@ -185,7 +186,7 @@ return [
     'test_reviews' => ['*' => 'TEST & REVIEWS'],
     'related_products' => ['*' => 'RELATED PRODUCTS'],
 
-    'banner' => 'banner',
+    'banner' => '產品列表小圖',
 
     'sort' => '排序',
     'status' => '狀態',   

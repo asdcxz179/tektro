@@ -35,8 +35,8 @@
 
                 <!-- Logo -->
                 <div class="content-header-item">
-                    <a class="link-effect font-w700" href="/">
-                        <h4>{{ __(env('APP_NAME')) }}</h4>
+                    <a class="link-effect font-w700" href="/" >
+                        <h4 style="background-color: #000;border-radius: 25px;"><img src="/front/assets/images/groupLogo_w.png" alt="TEKTRO logo" class="footer_logo" style="width: 50px;height: 50px;"></h4>
                     </a>
                 </div>
                 <!-- END Logo -->

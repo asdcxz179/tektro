@@ -31,9 +31,7 @@
     <script src="{{asset('front/assets/js/jquery.cookie.js')}}"></script>
     <script src="{{asset('front/assets/js/main.js?1')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.js"></script>
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="https://">
+    @yield('og')
     @stack('style')
 </head>
 
