@@ -28,8 +28,8 @@
             <div class="px-3 px-md-5 py-5" data-aos="fade-up" data-aos-duration="800">
                 <h2 class="title mb-3 mb-md-5">{{$brand->advertise_title}}</h2>
                 <p>{!!nl2br($brand->advertise_subtitle)!!}</p>
-                @if($brand->file)
-                <a href="{{route('front.download',['name'=>$brand->file_name])}}" class="c_btn btn_dark mt-3 mt-md-5" download>{{__('front.category_download')}}</a>
+                @if($brand->file_data_name)
+                <a href="{{route('front.download',['name'=>$brand->file_data_name])}}" class="c_btn btn_dark mt-3 mt-md-5" download>{{__('front.category_download')}}</a>
                 @endif
             </div>
         </div>

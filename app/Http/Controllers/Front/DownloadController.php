@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SupportFile;
+use App\Models\ProductBrand;
 
 class DownloadController extends Controller
 {
@@ -48,7 +49,13 @@ class DownloadController extends Controller
     public function show($id)
     {
         $support = SupportFile::where('file_name',$id)->first();
-        return response()->file(public_path($support->path));
+        if(!$support) {
+            $brand = ProductBrand::where('file_data_name',$id)->first();
+            $file = $brand->file;
+        }else {
+            $file = $support->path;
+        }
+        return response()->file(public_path($file));
     }
 
     /**
