@@ -30,7 +30,7 @@ return [
     'information'       =>  'Information',
     'news'              =>  'News',
     'recruit'           =>  'Recruiting',
-    'about_us'          =>  'About Us',
+    'about_us'          =>  'About',
     'brand_product'     =>  'Product',
     'product_category'  =>  'Category',
     'bike_category'     =>  'Bike Category',
