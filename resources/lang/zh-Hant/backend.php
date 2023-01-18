@@ -250,6 +250,7 @@ return [
     'name' => ['*' => '名稱'],
 
     'youtube_key' => 'youtube_key',
+    'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
 
     'sort' => '排序',
     'status' => '狀態',

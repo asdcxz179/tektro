@@ -28,6 +28,7 @@
                                 <div class="form-group col-md-12">
                                     <label>{{ __("backend.$routeNameData.relation.*.youtube_key") }}</label>
                                     <input type="text" value="{{ $value->youtube_key }}" name="relation[{{ $key }}][youtube_key]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.youtube_key") }}">
+                                    <div class="text-danger">{{ __("backend.$routeNameData.relation.*.youtube_key_info") }}</div>
                                 </div>                                                            
                             </div>     
                             @endforeach

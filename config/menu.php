@@ -2,7 +2,7 @@
 
 return [
     [ 'active' => 'homes*', 'icon' => 'si si-home', 'name' => 'homes', 'title' => 'homes', 'routeId' => 'home', 'permissions' => 'homes' ],
-    [ 'active' => 'header_banners*', 'icon' => 'si si-header_banner', 'name' => 'header_banners', 'title' => 'header_banners', 'routeId' => 'header_banner', 'permissions' => 'header_banners' ],
+    [ 'active' => 'header_banners*', 'icon' => 'fa fa-image', 'name' => 'header_banners', 'title' => 'header_banners', 'routeId' => 'header_banner', 'permissions' => 'header_banners' ],
     [ 'active' => 'info/*', 'icon' => 'si si-energy', 'title' => 'info', 'child' =>
         [
             [ 'active' => 'info/news*', 'name' => 'news', 'title' => 'news', 'routeId' => 'news', 'permissions' => 'news' ],

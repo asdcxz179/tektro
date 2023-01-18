@@ -34,6 +34,7 @@
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.youtube_key") }}</label>
                             <input type="text" value="{{ $data->youtube_key }}" name="youtube_key" class="form-control" placeholder="{{ __("backend.$routeNameData.youtube_key") }}">
+                            <div class="text-danger">{{ __("backend.$routeNameData.youtube_key_info") }}</div>
                         </div>                                                 
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
