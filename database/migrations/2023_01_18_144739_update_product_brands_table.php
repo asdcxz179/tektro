@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('product_brands', function (Blueprint $table) {
-            $table->string('file_name')->nullable()->after('below_advertise_link')->comment('檔案');
+            $table->string('file_data_name')->nullable()->after('below_advertise_link')->comment('檔案');
             $table->string('file')->nullable()->after('below_advertise_link')->comment('檔案');
         });
     }
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('product_brands', function (Blueprint $table) {
-            $table->dropColumn('file_name');
+            $table->dropColumn('file_data_name');
             $table->dropColumn('file');
         });
     }

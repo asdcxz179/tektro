@@ -29,7 +29,7 @@ class ProductBrand extends Model
         'below_advertise_switch',
         'below_advertise_link',
 
-        'file_name',
+        'file_data_name',
         'file',
 
         'sort',

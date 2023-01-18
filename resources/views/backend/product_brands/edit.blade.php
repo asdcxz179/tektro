@@ -75,12 +75,12 @@
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.file") }}</label>    
                                 <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
-                                <fieldset class="image">
-                                    @isset($data->file)
-                                    <input value="{{ asset($data->file) }}" checked type="checkbox" />{{ asset($data->file) }}
-                                    @endisset                                     
+                                <fieldset class="image">                                   
                                     <input type="file" name="file" />    
                                 </fieldset>  
+                                @isset($data->file)
+                                <label class="filepond--rm"><h6>{{ $data->file_data_name }}<h6></label>
+                                @endisset                                 
                             </div> 
                         </div>
                         <div class="form-group col-md-6">

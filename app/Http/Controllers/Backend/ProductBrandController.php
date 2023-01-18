@@ -74,11 +74,17 @@ class ProductBrandController extends Controller
         try{
             DB::beginTransaction();
 
+            if(isset($validatedData['file'])){
+                $validatedData = array_merge($validatedData, $this->dealfile($validatedData['file'], 'file'));
+                $validatedData['file_data_name'] = $validatedData['file_name'];
+            }else{
+                unset($validatedData['file']);
+            }
+
             $data = CrudModel::create(array_merge($validatedData, 
                 $this->dealfile($validatedData['banner'], 'banner'),
                 $this->dealfile($validatedData['advertise_image'], 'advertise_image'),
                 $this->dealfile($validatedData['below_advertise_image'], 'below_advertise_image'),
-                $this->dealfile($validatedData['file'], 'file'),
             ));
 
             DB::commit();
@@ -130,11 +136,18 @@ class ProductBrandController extends Controller
             DB::beginTransaction();
             
             $data = CrudModel::findOrFail($id);
+
+            if(isset($validatedData['file'])){
+                $validatedData = array_merge($validatedData, $this->dealfile($validatedData['file'], 'file', $data, 'file'));
+                $validatedData['file_data_name'] = $validatedData['file_name'];
+            }else{
+                unset($validatedData['file']);
+            }
+
             $data->update(array_merge($validatedData, 
                 $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),
                 $this->dealfile($validatedData['advertise_image'], 'advertise_image', $data, 'advertise_image'),
-                $this->dealfile($validatedData['below_advertise_image'], 'below_advertise_image', $data, 'below_advertise_image'),                
-                $this->dealfile($validatedData['file'], 'file', $data, 'file'),                
+                $this->dealfile($validatedData['below_advertise_image'], 'below_advertise_image', $data, 'below_advertise_image'),                              
             ));
 
             DB::commit();
