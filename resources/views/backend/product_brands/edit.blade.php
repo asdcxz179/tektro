@@ -68,8 +68,20 @@
                             </fieldset>  
                         </div>         
                         <div class="form-group col-md-6">
-                            <label>{{ __("backend.$routeNameData.advertise_link") }}</label>
-                            <input type="text" value="{{ $data->advertise_link }}" name="advertise_link" class="form-control" placeholder="{{ __("backend.$routeNameData.advertise_link") }}">
+                            <div class="form-group col-md-12">
+                                <label>{{ __("backend.$routeNameData.advertise_link") }}</label>
+                                <input type="text" value="{{ $data->advertise_link }}" name="advertise_link" class="form-control" placeholder="{{ __("backend.$routeNameData.advertise_link") }}">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>{{ __("backend.$routeNameData.file") }}</label>    
+                                <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
+                                <fieldset class="image">
+                                    @isset($data->file)
+                                    <input value="{{ asset($data->file) }}" checked type="checkbox" />{{ asset($data->file) }}
+                                    @endisset                                     
+                                    <input type="file" name="file" />    
+                                </fieldset>  
+                            </div> 
                         </div>
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.below_advertise_image") }}</label>    
@@ -95,7 +107,7 @@
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.below_advertise_link") }}</label>
                             <input type="text" value="{{ $data->below_advertise_link }}" name="below_advertise_link" class="form-control" placeholder="{{ __("backend.$routeNameData.below_advertise_link") }}">
-                        </div>                        
+                        </div>                                                   
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" value="{{ $data->sort }}" placeholder="{{ __("backend.$routeNameData.sort") }}">

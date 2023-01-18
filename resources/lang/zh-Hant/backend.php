@@ -149,6 +149,7 @@ return [
     'below_advertise_switch' => '下方廣告按鈕顏色',
     'below_advertise_switch_data' => [ '黑', '白' ],
     'below_advertise_link' => '下方廣告連結',
+    'file' => '檔案',
 
     'sort' => '排序',
     'status' => '狀態',

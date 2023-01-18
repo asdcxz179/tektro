@@ -29,6 +29,7 @@ class ProductBrandController extends Controller
             'below_advertise_image' => ['nullable', 'string'],
             'below_advertise_switch' => ['nullable', 'string', 'max:100'],
             'below_advertise_link' => ['nullable', 'string', 'max:255'],
+            'file' => ['nullable', 'string'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],        
@@ -77,6 +78,7 @@ class ProductBrandController extends Controller
                 $this->dealfile($validatedData['banner'], 'banner'),
                 $this->dealfile($validatedData['advertise_image'], 'advertise_image'),
                 $this->dealfile($validatedData['below_advertise_image'], 'below_advertise_image'),
+                $this->dealfile($validatedData['file'], 'file'),
             ));
 
             DB::commit();
@@ -132,6 +134,7 @@ class ProductBrandController extends Controller
                 $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),
                 $this->dealfile($validatedData['advertise_image'], 'advertise_image', $data, 'advertise_image'),
                 $this->dealfile($validatedData['below_advertise_image'], 'below_advertise_image', $data, 'below_advertise_image'),                
+                $this->dealfile($validatedData['file'], 'file', $data, 'file'),                
             ));
 
             DB::commit();

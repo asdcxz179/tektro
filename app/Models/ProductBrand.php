@@ -29,6 +29,9 @@ class ProductBrand extends Model
         'below_advertise_switch',
         'below_advertise_link',
 
+        'file_name',
+        'file',
+
         'sort',
         'status',
     ];    
