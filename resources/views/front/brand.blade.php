@@ -28,7 +28,9 @@
             <div class="px-3 px-md-5 py-5" data-aos="fade-up" data-aos-duration="800">
                 <h2 class="title mb-3 mb-md-5">{{$brand->advertise_title}}</h2>
                 <p>{!!nl2br($brand->advertise_subtitle)!!}</p>
-                <a href="#" class="c_btn btn_dark mt-3 mt-md-5">型錄下載</a>
+                @if($brand->file)
+                <a href="{{route('front.download',['name'=>$brand->file_name])}}" class="c_btn btn_dark mt-3 mt-md-5" download>{{__('front.category_download')}}</a>
+                @endif
             </div>
         </div>
     </div>
@@ -59,7 +61,7 @@
                             @foreach($brand->categories as $category)
                             <li class="col-6 col-sm-4 col-md-3 mb-4 mb-md-5">
                                 <a href="{{route('front.category.show',['lang'=>$lang,'category'=>$category->id])}}" class="d-flex flex-column flex-sm-row align-items-center hover_color_none">
-                                    <img src="{{asset($category->path)}}" class="me-0 me-sm-3" alt="{{$category->name}}">
+                                    <img src="{{asset($category->path??'front/assets/images/trp_category_img01.png')}}" class="me-0 me-sm-3" alt="{{$category->name}}">
                                     <span class="text-center text-sm-start fs-7 fs-md-6">{{$category->name}}</span>
                                 </a>
                             </li>
@@ -77,7 +79,7 @@
                             @foreach($brand->tags as $tag)
                             <li class="col-6 col-sm-4 col-md-3 mb-4 mb-md-5">
                                 <a href="#" class="d-flex flex-column flex-sm-row align-items-center hover_color_none">
-                                    <img src="{{asset($tag->path)}}" class="me-0 me-sm-3" alt="{{$tag->name}}">
+                                    <img src="{{asset($tag->path??'front/assets/images/trp_category_img01.png')}}" class="me-0 me-sm-3" alt="{{$tag->name}}">
                                     <span class="text-center text-sm-start fs-7 fs-md-6">{{$tag->name}}</span>
                                 </a>
                             </li>

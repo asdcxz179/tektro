@@ -8,6 +8,7 @@ use App\Models\ProductBrand;
 use App\Models\About;
 use App\Models\Community;
 use App\Models\ProductKeyword;
+use App\Models\HeaderBanner;
 
 class Init
 {
@@ -31,6 +32,8 @@ class Init
         \View::share('community',$community);
         $keywords = ProductKeyword::where('status',1)->orderby('sort','asc')->get();
         \View::share('keywords',$keywords);
+        $headers = HeaderBanner::get()->pluck('path','route')->toArray();
+        \View::share('headers',$headers);
         return $next($request);
     }
 }

@@ -101,4 +101,6 @@ return [
     'terms6'            =>  'Return shipping charges will be refunded if items are shipped in error by Tektro USA. Shipping will not be refunded on items ordered in error by the customer.',
     'popluar_search'    =>  'Popular Search',
     'search_record'     =>  'Search Record',
+
+    'category_download' =>  'Catalog Download',
 ];

@@ -68,10 +68,10 @@
                             </fieldset>  
                         </div>         
                         <div class="form-group col-md-6">
-                            <div class="form-group col-md-12">
+                            <!-- <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.advertise_link") }}</label>
                                 <input type="text" value="{{ $data->advertise_link }}" name="advertise_link" class="form-control" placeholder="{{ __("backend.$routeNameData.advertise_link") }}">
-                            </div>
+                            </div> -->
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.file") }}</label>    
                                 <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->

@@ -79,18 +79,20 @@
                                                 <div class="col"></div>
                                                 <div class="col-3">
                                                     <ul class="ps-0 page_link_group informationLink">
-                                                        <li class="menu_item_has_child">
+                                                        <li class="menu_item_has_child info_li" data-target="info_new">
                                                             <a href="{{route('front.news.index',['lang'=>$lang])}}" class="page_link">{{__('front.news')}}</a>
                                                         </li>
-                                                        <li class="menu_item_has_child">
+                                                        <li class="menu_item_has_child info_li" data-target="info_recruit">
                                                             <a href="{{route('front.recruit.index',['lang'=>$lang])}}" class="page_link">{{__('front.recruit')}}</a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-4">
-                                                    <div>
-                                                        <img src="{{asset('front/assets/images/information_news_thumbnail.jpg')}}"
-                                                            alt="information_thumbnail" id="informationImage">
+                                                    <div class="info_banner" id="info_new">
+                                                        <img src="{{asset(($headers['front.new.index']??'front/assets/images/information_news_thumbnail.jpg'))}}" alt="information_thumbnail" >
+                                                    </div>
+                                                    <div class="info_banner" id="info_recruit" style="display:none;">
+                                                        <img src="{{asset(($headers['front.recruit.index']??'front/assets/images/information_news_thumbnail.jpg'))}}" alt="information_thumbnail" >
                                                     </div>
                                                 </div>
                                                 <div class="col"></div>
@@ -197,22 +199,22 @@
                                                 <div class="col"></div>
                                                 <div class="col-3">
                                                     <ul class="ps-0 page_link_group supportLink">
-                                                        <li class="menu_item_has_child">
+                                                        <li class="menu_item_has_child support_li" data-target="support_support">
                                                             <a href="{{route('front.support.show',['support'=>'all','lang'=>$lang])}}" class="page_link">
                                                             {{__('front.technology_manual')}}
                                                             </a>
                                                         </li>
-                                                        <li class="menu_item_has_child">
+                                                        <li class="menu_item_has_child support_li" data-target="support_video">
                                                             <a href="{{route('front.video.index',['lang'=>$lang])}}" class="page_link">
                                                             {{__('front.video_share')}}
                                                             </a>
                                                         </li>
-                                                        <li class="menu_item_has_child">
+                                                        <li class="menu_item_has_child support_li" data-target="support_faq">
                                                             <a href="{{route('front.faq.index',['lang'=>$lang])}}" class="page_link">
                                                             {{__('front.common_question')}}
                                                             </a>
                                                         </li>
-                                                        <li class="menu_item_has_child">
+                                                        <li class="menu_item_has_child support_li" data-target="support_warranty">
                                                             <a href="{{route('front.warranty.index',['lang'=>$lang])}}" class="page_link">
                                                             {{__('front.warranty_terms')}}
                                                             </a>
@@ -220,8 +222,17 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-4">
-                                                    <div>
-                                                        <img src="{{asset('front/assets/images/support_downloads_thumbnail.jpg')}}" alt="support_thumbnail" id="supportImage">
+                                                    <div class="support_banner" id="support_support">
+                                                        <img src="{{asset(($headers['front.support.index']??'front/assets/images/support_downloads_thumbnail.jpg'))}}" alt="support_thumbnail" >
+                                                    </div>
+                                                    <div class="support_banner" id="support_video" style="display:none;">
+                                                        <img src="{{asset(($headers['front.video.index']??'front/assets/images/support_downloads_thumbnail.jpg'))}}" alt="support_thumbnail" >
+                                                    </div>
+                                                    <div class="support_banner" id="support_faq" style="display:none;">
+                                                        <img src="{{asset(($headers['front.faq.index']??'front/assets/images/support_downloads_thumbnail.jpg'))}}" alt="support_thumbnail" >
+                                                    </div>
+                                                    <div class="support_banner" id="support_warranty" style="display:none;">
+                                                        <img src="{{asset(($headers['front.warranty.index']??'front/assets/images/support_downloads_thumbnail.jpg'))}}" alt="support_thumbnail" >
                                                     </div>
                                                 </div>
                                                 <div class="col"></div>
@@ -240,12 +251,12 @@
                                                 <div class="col"></div>
                                                 <div class="col-3">
                                                     <ul class="ps-0 page_link_group connectLink">
-                                                        <li class="menu_item_has_child">
+                                                        <li class="menu_item_has_child contact_li" data-target="contact_contact">
                                                             <a href="{{route('front.contact.index',['lang'=>$lang])}}" class="page_link">
                                                             {{__('front.contact_form')}}
                                                             </a>
                                                         </li>
-                                                        <li class="menu_item_has_child">
+                                                        <li class="menu_item_has_child contact_li" data-target="contact_global">
                                                             <a href="{{route('front.global.index',['lang'=>$lang])}}" class="page_link">
                                                             {{__('front.global_base')}}
                                                             </a>
@@ -253,8 +264,11 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-4">
-                                                    <div>
-                                                        <img src="{{asset('front/assets/images/connect_connect_thumbnail.jpg')}}" alt="connect_thumbnail" id="connectImage">
+                                                    <div class="contact_banner" id="contact_contact">
+                                                        <img src="{{asset(($headers['front.contact.index']??'front/assets/images/connect_connect_thumbnail.jpg'))}}" alt="connect_thumbnail" >
+                                                    </div>
+                                                    <div class="contact_banner" id="contact_global" style="display:none;">
+                                                        <img src="{{asset(($headers['front.global.index']??'front/assets/images/connect_connect_thumbnail.jpg'))}}" alt="connect_thumbnail" >
                                                     </div>
                                                 </div>
                                                 <div class="col"></div>
@@ -723,6 +737,21 @@
         $('.about_li').hover(function(){
             let target = $(this).data('target');
             $('.about_banner').hide();
+            $(`#${target}`).show();
+        });
+        $('.info_li').hover(function(){
+            let target = $(this).data('target');
+            $('.info_banner').hide();
+            $(`#${target}`).show();
+        });
+        $('.support_li').hover(function(){
+            let target = $(this).data('target');
+            $('.support_banner').hide();
+            $(`#${target}`).show();
+        });
+        $('.contact_li').hover(function(){
+            let target = $(this).data('target');
+            $('.contact_banner').hide();
             $(`#${target}`).show();
         });
     </script>

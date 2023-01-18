@@ -101,4 +101,6 @@ return [
     'terms6'            =>  '如果 Tektro USA 錯誤運送物品，將退還退貨運費。 對於客戶錯誤訂購的商品，運費將不予退還。',
     'popluar_search'    =>  '熱門搜尋',
     'search_record'     =>  '搜尋紀錄',
+
+    'category_download' =>  '型錄下載',
 ];
