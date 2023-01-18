@@ -39,6 +39,9 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
         Route::resource('/homes', Controllers\Backend\HomeController::class);
         Route::put('/homes/status/{homes}', [Controllers\Backend\HomeController::class, 'status'])->name('homes.status');
 
+        //選單小圖
+        Route::resource('/header_banners', Controllers\Backend\HeaderBannerController::class)->only(['index', 'edit', 'update']);
+        
         //資訊
         Route::group(['prefix' => 'info'],function () {
             //最新消息

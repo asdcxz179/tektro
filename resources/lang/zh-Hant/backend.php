@@ -8,6 +8,7 @@ return [
     'suppliers' => '供應商管理',
 
     'homes' => '首頁',
+    'header_banners' => '選單小圖',
 
     'info' => '資訊',
     'news' => '最新消息',
@@ -96,6 +97,10 @@ return [
         'sort' => '排序',  
       ]
     ]  
+  ],  
+  'header_banners' => [
+    'name' => '名稱',
+    'path' => '圖片',
   ],  
   'news' => [
     'name' => ['*' => '名稱'],
