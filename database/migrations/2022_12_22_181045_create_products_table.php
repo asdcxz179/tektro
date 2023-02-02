@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable()->comment('名稱');
             $table->string('description')->nullable()->comment('描述');
-            $table->string('content')->nullable()->comment('內容');
+            $table->text('content')->nullable()->comment('內容');
             $table->text('details')->nullable()->comment('details');
             $table->text('technology')->nullable()->comment('technology');
             $table->text('test_reviews')->nullable()->comment('test_reviews');

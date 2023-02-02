@@ -30,7 +30,7 @@
                             </div>                            
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.content.*") }}</label>                                
-                                <textarea name="content[{{ $language->lang }}]" class="form-control"></textarea>
+                                <textarea name="content[{{ $language->lang }}]" class="form-control summernote"></textarea>
                             </div>                            
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.details.*") }}</label>                                
