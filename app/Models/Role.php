@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Role as RoleParent;
 
 class Role extends RoleParent
 {
-    use \App\Traits\ObserverTrait;
+    // use \App\Traits\ObserverTrait;
     
     use HasFactory;
 
