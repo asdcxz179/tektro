@@ -32,7 +32,7 @@ $(function() {
             { data: 'null', title: '#', bSearchable: false, bSortable: false, render: function ( data, type, row , meta ) {
                 return  meta.row + 1;
             }},
-            { data: 'areas.name.zh-Hant', name: 'areas.name', title: '{{ __("backend.$routeNameData.area_id") }}', defaultContent: '' },
+            { data: 'areas.name.zh-Hant', name: 'areas.name->zh-Hant', title: '{{ __("backend.$routeNameData.area_id") }}', defaultContent: '' },
             { data: 'email', title: '{{ __("backend.$routeNameData.email") }}' },            
             {
                 data: "status", title: '{{ __('status') }}',
