@@ -24,8 +24,8 @@
             <div class="col-md-8 offset-md-4">
                 <form action="" method="" class="d-flex w-100 justify-content-start align-items-end">
                     <input type="text" name="" placeholder="請輸入關鍵字" class="form_transparent_dark w-100">
-                    <button class="c_btn btn_transparent_dark pe-0 fw-normal hover_opacity" type="submit" name=""
-                        style="min-width: 120px;">{{__('front.search')}}
+                    <button class="c_btn btn_transparent_dark pe-0 fw-normal hover_opacity text-end" type="submit" name=""
+                        style="min-width: 180px;">{{__('front.search')}}
                         <i class='bx bx-search text-primary fs-4 align-middle text-dark ps-2'></i>
                     </button>
                 </form>
@@ -55,11 +55,11 @@
                             <div class="accordion_primary accordion accordion-flush" id="type_{{$key2}}">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingOne">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filter_{{$key}}" aria-expanded="false" aria-controls="filter_{{$key}}">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filter_{{$key}}_{{$key2}}" aria-expanded="false" aria-controls="filter_{{$key}}_{{$key2}}">
                                             {{$type->name}}
                                         </button>
                                     </h2>
-                                    <div id="filter_{{$key}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#type_{{$key2}}">
+                                    <div id="filter_{{$key}}_{{$key2}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#type_{{$key2}}">
                                         <div class="accordion-body">
                                             <div class="p-md-4">
                                                 <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.manual')}}</span>
@@ -95,17 +95,18 @@
                         @endforeach
                     </div>
                     @foreach($categories as $key => $category)
-                        @foreach($category->supports as $key2 => $type)
                         <div class="tab-pane fade" role="tabpanel" id="support_{{$key}}">
                             <div class="accordion_primary accordion accordion-flush" id="collapseFilterOne">
+                                @foreach($category->supports as $key2 => $type)
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingOne">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sub_filter_{{$key2}}" aria-expanded="false" aria-controls="sub_filter_{{$key2}}">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sub_filter_{{$key}}_{{$key2}}" aria-expanded="false" aria-controls="sub_filter_{{$key}}_{{$key2}}">
                                             {{$type->name}}
                                         </button>
                                     </h2>
-                                    <div id="sub_filter_{{$key2}}" class="accordion-collapse collapse"
-                                        aria-labelledby="flush-headingOne" data-bs-parent="#collapseFilterOne">
+                                    <div id="sub_filter_{{$key}}_{{$key2}}" class="accordion-collapse collapse"
+                                        aria-labelledby="flush-headingOne">
+                                        <!-- data-bs-parent="#collapseFilterOne" -->
                                         <div class="accordion-body">
                                             <div class="p-md-4">
                                                 <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.manual')}}</span>
@@ -137,9 +138,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
-                        @endforeach
                     @endforeach
                 </div>
             </div>

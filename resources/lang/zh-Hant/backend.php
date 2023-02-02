@@ -18,8 +18,8 @@ return [
 
     'product_label' => '產品品牌',
     'product_brands' => '品牌',
-    'product_categories' => '分類',
-    'product_tags' => '標籤',
+    'product_categories' => '產品類別',
+    'product_tags' => '自行車類別',
     'product_keywords' => '關鍵字',
     'products' => '產品',    
 

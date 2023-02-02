@@ -650,6 +650,11 @@
     margin-bottom: -100px;
 }
 
+#index_tektro_a ul li img,
+#index_tektro_b ul li img{
+    width: 60px;
+}
+
 @media (max-width: 767px) {
     .main_nav{
         overflow: auto;

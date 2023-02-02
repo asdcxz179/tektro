@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{asset('front/assets/css/bootstrap-utilities.css')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/bootstrap.css')}}">
     <!-- bootstrap end -->
-    <link rel="stylesheet" href="{{asset('front/assets/css/base.css?v2')}}">
+    <link rel="stylesheet" href="{{asset('front/assets/css/base.css?v3')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/slick-theme.css')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/custom.css?v1')}}">

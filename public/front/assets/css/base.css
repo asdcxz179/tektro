@@ -225,6 +225,9 @@ body {
     transition: all var(--transition-slow);
     -webkit-transition: all var(--transition-slow);
 }
+.break-word{
+    word-break: break-word;
+}
 @media (max-width: 767px){
     .title{
         font-size: 20px;

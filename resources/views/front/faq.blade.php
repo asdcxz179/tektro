@@ -26,7 +26,7 @@
             <div class="col-md-8 offset-md-4">
                 <form action="{{route('front.faq.index',['lang'=>$lang])}}" method="" class="d-flex w-100 justify-content-start align-items-end">
                     <input type="text" name="word" placeholder="{{__('front.please input keyword')}}" class="form_transparent_dark w-100" value="{{request('word')}}">
-                    <button class="c_btn btn_transparent_dark pe-0 fw-normal hover_opacity" type="submit" style="min-width: 120px;">
+                    <button class="c_btn btn_transparent_dark pe-0 fw-normal hover_opacity text-end" type="submit" style="min-width: 180px;">
                         {{__('front.search')}}
                         <i class='bx bx-search text-primary fs-4 align-middle text-dark ps-2'></i>
                     </button>

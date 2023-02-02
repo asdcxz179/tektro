@@ -19,7 +19,7 @@ class ProductController extends Controller
             //使用多語系        
             'name.*' => ['nullable', 'string', 'max:100'],
             'description.*' => ['nullable', 'string', 'max:100'],
-            'content.*' => ['nullable', 'string', 'max:100'],
+            'content.*' => ['nullable', 'string'],
             'details.*' => ['nullable', 'string'],
             'technology.*' => ['nullable', 'string'],
             'test_reviews.*' => ['nullable', 'string'],
