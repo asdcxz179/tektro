@@ -27,12 +27,12 @@ $(function() {
         responsive: true,
         scrollX: true,
         ajax: path,
-        order: [[5, 'desc']],
+        order: [[6, 'desc']],
         columns: [
             { data: 'null', title: '#', bSearchable: false, bSortable: false, render: function ( data, type, row , meta ) {
                 return  meta.row + 1;
             }},
-            { data: 'product_brands', name: 'product_brands.name', title: '{{ __("backend.$routeNameData.product_brands") }}', render: function ( data, type, row ){
+            { data: 'product_brands', name: 'product_brands.name->zh-Hant', title: '{{ __("backend.$routeNameData.product_brands") }}', render: function ( data, type, row ){
 				return data.length > 0 ? data.map(item => item.name['zh-Hant']).join(",") : '{{ __('無') }}';
 			} },
             { data: 'name.zh-Hant', name: 'name->zh-Hant', title: '{{ __("backend.$routeNameData.name.*") }}', defaultContent: '' },

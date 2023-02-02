@@ -34,7 +34,7 @@ class ProductTagController extends Controller
     {
         $this->authorize('read '.$this->name);
         if ($request->ajax()) {
-            $data = CrudModel::query();
+            $data = CrudModel::with(['product_brands']);
             return Datatables::eloquent($data)
                 ->make(true);
         }
