@@ -32,7 +32,7 @@ $(function() {
             { data: 'null', title: '#', bSearchable: false, bSortable: false, render: function ( data, type, row , meta ) {
                 return  meta.row + 1;
             }},
-            { data: 'name.zh-Hant', title: '{{ __("backend.$routeNameData.name.*") }}', defaultContent: '' },
+            { data: 'name.zh-Hant', name: 'name', title: '{{ __("backend.$routeNameData.name.*") }}', defaultContent: '' },
             { data: 'sort', title: '{{ __("backend.$routeNameData.sort") }}' },
             {
                 data: "status", title: '{{ __('status') }}',
