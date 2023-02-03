@@ -235,6 +235,15 @@ $(function() {
                 }
             },
         },
+        templateSelection: function(state) {
+            if (!state.id) {
+                return state.text;
+            }
+            
+            return $(`<span>
+                <img src="/${ state.path }" class="img-flag" />${ state.name['zh-Hant'] }
+            </span>`);
+        },
         templateResult: function (state) {
             if (!state.id) {
                 return state.text;

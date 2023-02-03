@@ -27,7 +27,7 @@ $(function() {
         responsive: true,
         scrollX: true,
         ajax: path,
-        order: [[5, 'desc']],
+        order: [[4, 'desc']],
         columns: [
             { data: 'null', title: '#', bSearchable: false, bSortable: false, render: function ( data, type, row , meta ) {
                 return  meta.row + 1;
