@@ -185,6 +185,7 @@
 
 @push('scripts')
 <script>
+    
 $(function() {
     var path = '{{ route('backend.'.$routeNameData.'.index') }}';
     var formEdit = $('#form-edit');
@@ -219,7 +220,7 @@ $(function() {
             formEdit.find('button[type=submit]').attr('disabled',false);
         }
     });
-
+    var icons = @json($data->product_icons->mapWithKeys(function($item){ return [$item->id=>$item];}));
     $(".js-select2[name='product_icons[]']").select2({
         allowClear: true,	
         ajax: {
@@ -227,7 +228,12 @@ $(function() {
             data: function (params) {
                 return { search: params.term };
             },
-            processResults: function(data, page) {                								
+            processResults: function(data, page) {    
+                data.map((item) => {
+                    if(typeof(icons[item.id]) == 'undefined') {
+                        icons[item.id] = item;
+                    }
+                });
                 return { 
                     results: data.map(item => { return Object.assign(item, { 
                         text: item.name['zh-Hant'] 
@@ -236,19 +242,19 @@ $(function() {
             },
         },
         templateSelection: function(state) {
-            if (!state.id) {
+            
+            if (typeof(icons[state.id]) == 'undefined') {
                 return state.text;
             }
             
             return $(`<span>
-                <img src="/${ state.path }" class="img-flag" />${ state.name['zh-Hant'] }
+                <img src="/${ icons[state.id].path }" class="img-flag" />${ icons[state.id].name['zh-Hant'] }
             </span>`);
         },
         templateResult: function (state) {
             if (!state.id) {
                 return state.text;
             }
-            
             return $(`<span>
                 <img src="/${ state.path }" class="img-flag" />${ state.name['zh-Hant'] }
             </span>`);

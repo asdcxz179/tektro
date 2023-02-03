@@ -176,7 +176,7 @@ $(function() {
             formCreate.find('button[type=submit]').attr('disabled',false);
         }
     });  
-
+    var icons = [];
     $(".js-select2[name='product_icons[]']").select2({
         allowClear: true,	
         ajax: {
@@ -184,13 +184,28 @@ $(function() {
             data: function (params) {
                 return { search: params.term };
             },
-            processResults: function(data, page) {                								
+            processResults: function(data, page) {    
+                data.map((item) => {
+                    if(typeof(icons[item.id]) == 'undefined') {
+                        icons[item.id] = item;
+                    }
+                });            								
                 return { 
                     results: data.map(item => { return Object.assign(item, { 
                         text: item.name['zh-Hant'] 
                     }) })
                 }
             },
+        },
+        templateSelection: function(state) {
+            
+            if (typeof(icons[state.id]) == 'undefined') {
+                return state.text;
+            }
+            
+            return $(`<span>
+                <img src="/${ icons[state.id].path }" class="img-flag" />${ icons[state.id].name['zh-Hant'] }
+            </span>`);
         },
         templateResult: function (state) {
             if (!state.id) {
