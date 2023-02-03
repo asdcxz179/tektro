@@ -33,6 +33,11 @@ $(function() {
                 return  meta.row + 1;
             }},
             { data: 'name.zh-Hant', name: 'name->zh-Hant', title: '{{ __("backend.$routeNameData.name.*") }}', defaultContent: '' },
+            { data: 'path', title: 'icon',width:100,
+                render: function(data) {
+                    return `<img src="{{asset('')}}/${data}">`
+                }
+            },
             { data: 'sort', title: '{{ __("backend.$routeNameData.sort") }}' },
             {
                 data: "status", title: '{{ __('status') }}',

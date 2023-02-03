@@ -19,7 +19,7 @@ class ProductIconController extends Controller
             //使用多語系        
             'name.*' => ['nullable', 'string', 'max:100'],
             //公用
-            'path' => ['nullable', 'string'],
+            'path' => ['required', 'string'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],      

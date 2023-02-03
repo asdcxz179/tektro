@@ -59,29 +59,13 @@
                     </div>
                     <div class="col-md-6">
                         <div class="text-md-end pt-4 pt-md-5">
-                            <span class="fs-7 fs-md-6 text-muted d-inline-block mb-3 mb-md-4">{{__('front.DH / RACE')}}</span>
+                            <span class="fs-7 fs-md-6 text-muted d-inline-block mb-3 mb-md-4">{{$product->attribute}}</span>
                             <ul class="product_icons mb-3 mb-md-4">
+                                @foreach($product->product_icons as $icon)
                                 <li class="product_icons_item">
-                                    <img src="{{asset('front/assets/images/products/2.3.png')}}" alt="">
+                                    <img src="{{asset($icon->path)}}" alt="">
                                 </li>
-                                <li class="product_icons_item">
-                                    <img src="{{asset('front/assets/images/products/New Adapters.png')}}" alt="">
-                                </li>
-                                <li class="product_icons_item">
-                                    <img src="{{asset('front/assets/images/products/Ergonomic Levers.png')}}"alt="">
-                                </li>
-                                <li class="product_icons_item">
-                                    <img src="{{asset('front/assets/images/products/5mm Brake Line.png')}}" alt="">
-                                </li>
-                                <li class="product_icons_item">
-                                    <img src="{{asset('front/assets/images/products/Performance Mineral Oil.png')}}" alt="">
-                                </li>
-                                <li class="product_icons_item">
-                                    <img src="{{asset('front/assets/images/products/E-Brake Adapter.png')}}" alt="">
-                                </li>
-                                <li class="product_icons_item">
-                                    <img src="{{asset('front/assets/images/products/9mm Lever Piston.png')}}" alt="">
-                                </li>
+                                @endforeach
                             </ul>
                             <a href="{{route('front.global.index',['lang'=>$lang])}}" class="c_btn btn_dark">{{__('front.FIND A DEALER')}}</a>
                         </div>
