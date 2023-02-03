@@ -180,7 +180,6 @@ class ProductIconController extends Controller
     {
         if ($request->ajax()) {
             $data = CrudModel::where('name', 'like', "%{$request->search}%")
-                ->select(['id', 'name'])
                 ->limit(200)
                 ->get();
             

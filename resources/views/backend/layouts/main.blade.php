@@ -56,6 +56,12 @@
             .nav-main li{
                 display: none;
             }     
+            img.img-flag {
+                margin: 0 5px 0 0px !important;
+                display: inherit !important;
+                height: 15px;
+                width: 18px;
+            }
         </style>
         @if(!auth()->user()->can("create $permissionsData"))
             <style>

@@ -218,7 +218,33 @@ $(function() {
         complete: function() {
             formEdit.find('button[type=submit]').attr('disabled',false);
         }
-    }); 
+    });
+
+    $(".js-select2[name='product_icons[]']").select2({
+        allowClear: true,	
+        ajax: {
+            url: $(".js-select2[name='product_icons[]']").data('url'),
+            data: function (params) {
+                return { search: params.term };
+            },
+            processResults: function(data, page) {                								
+                return { 
+                    results: data.map(item => { return Object.assign(item, { 
+                        text: item.name['zh-Hant'] 
+                    }) })
+                }
+            },
+        },
+        templateResult: function (state) {
+            if (!state.id) {
+                return state.text;
+            }
+            
+            return $(`<span>
+                <img src="/${ state.path }" class="img-flag" />${ state.name['zh-Hant'] }
+            </span>`);
+        }
+    });    
 });
 </script>    
 @endpush
