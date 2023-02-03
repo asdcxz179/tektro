@@ -108,7 +108,7 @@ return [
     'content' => ['*' => '內容'],
 
     'show_date' => '顯示日期',
-    'banner' => '首頁輪播圖',
+    'banner' => '封面圖',
     'up_image' => '上方主圖',
 
     'sort' => '排序',
@@ -120,7 +120,7 @@ return [
     'content' => ['*' => '內容'],
 
     'show_date' => '顯示日期',
-    'banner' => '圖片',
+    'banner' => '封面圖',
     'up_image' => '上方主圖',
 
     'sort' => '排序',
@@ -192,8 +192,8 @@ return [
     'sort' => '排序',
     'status' => '狀態',   
 
-    'product_categories' => '分類(可多選)',
-    'product_tags' => '標籤(可多選)',
+    'product_categories' => '產品類別(可多選)',
+    'product_tags' => '自行車類別(可多選)',
 
     'product_images' => [
       '*' => '圖片(可多筆)',  

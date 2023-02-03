@@ -78,7 +78,7 @@
                         <ul class="d-flex flex-wrap mb-0 break-word">
                             @foreach($brand->tags as $tag)
                             <li class="col-6 col-sm-4 col-md-3 mb-4 mb-md-5">
-                                <a href="#" class="d-flex flex-column flex-sm-row align-items-center hover_color_none">
+                                <a href="{{route('front.tag.show',['lang'=>$lang,'tag'=>$tag->id])}}" class="d-flex flex-column flex-sm-row align-items-center hover_color_none">
                                     <img src="{{asset($tag->path??'front/assets/images/trp_category_img01.png')}}" class="me-0 me-sm-3" alt="{{$tag->name}}">
                                     <span class="text-center text-sm-start fs-7 fs-md-6">{{$tag->name}}</span>
                                 </a>
