@@ -61,7 +61,7 @@
                         <div class="text-md-end pt-4 pt-md-5">
                             <span class="fs-7 fs-md-6 text-muted d-inline-block mb-3 mb-md-4">{{$product->attribute}}</span>
                             <ul class="product_icons mb-3 mb-md-4">
-                                @foreach($product->product_icons as $icon)
+                                @foreach($product->product_icons()->where('status',1)->orderby('sort')->get() as $icon)
                                 <li class="product_icons_item">
                                     <img src="{{asset($icon->path)}}" alt="">
                                 </li>
