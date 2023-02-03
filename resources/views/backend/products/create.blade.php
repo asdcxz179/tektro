@@ -73,7 +73,7 @@
                         <div class="form-group col-md-12">
                             <label>{{ __("backend.$routeNameData.product_icons") }}</label>
                             <select data-url="{{ route('backend.product_icons.select') }}" class="js-select2 form-control" multiple name="product_icons[]" data-placeholder="{{ __("backend.$routeNameData.product_icons") }}">
-                                <option></option>
+                                <!-- <option></option> -->
                             </select>
                         </div>                                                                  
                         <div class="form-group col-md-6">
@@ -176,7 +176,15 @@ $(function() {
             formCreate.find('button[type=submit]').attr('disabled',false);
         }
     });  
-    var icons = [];
+    let format = function (state) {
+        if (!state.id) {
+            return state.text;
+        }
+        
+        return $(`<span>
+            <img src="/${ state.path }" class="img-flag" />${ state.name['zh-Hant'] }
+        </span>`);
+    };
     $(".js-select2[name='product_icons[]']").select2({
         allowClear: true,	
         ajax: {
@@ -184,12 +192,7 @@ $(function() {
             data: function (params) {
                 return { search: params.term };
             },
-            processResults: function(data, page) {    
-                data.map((item) => {
-                    if(typeof(icons[item.id]) == 'undefined') {
-                        icons[item.id] = item;
-                    }
-                });            								
+            processResults: function(data, page) {              								
                 return { 
                     results: data.map(item => { return Object.assign(item, { 
                         text: item.name['zh-Hant'] 
@@ -198,23 +201,10 @@ $(function() {
             },
         },
         templateSelection: function(state) {
-            
-            if (typeof(icons[state.id]) == 'undefined') {
-                return state.text;
-            }
-            
-            return $(`<span>
-                <img src="/${ icons[state.id].path }" class="img-flag" />${ icons[state.id].name['zh-Hant'] }
-            </span>`);
+            return format(state)
         },
         templateResult: function (state) {
-            if (!state.id) {
-                return state.text;
-            }
-            
-            return $(`<span>
-                <img src="/${ state.path }" class="img-flag" />${ state.name['zh-Hant'] }
-            </span>`);
+            return format(state)
         }
     });
 });

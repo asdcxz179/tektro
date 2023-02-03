@@ -83,7 +83,7 @@
                             <label>{{ __("backend.$routeNameData.product_icons") }}</label>
                             <select data-url="{{ route('backend.product_icons.select') }}" class="js-select2 form-control" multiple name="product_icons[]" data-placeholder="{{ __("backend.$routeNameData.product_icons") }}">
                                 @foreach($data->product_icons as $item)
-                                <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                                <option value="{{ $item->id }}" data-array="{{ $item }}" selected>{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>                                
@@ -220,7 +220,15 @@ $(function() {
             formEdit.find('button[type=submit]').attr('disabled',false);
         }
     });
-    var icons = @json($data->product_icons->mapWithKeys(function($item){ return [$item->id=>$item];}));
+    let format = function (state) {
+        if (!state.id) {
+            return state.text;
+        }
+        
+        return $(`<span>
+            <img src="/${ state.path }" class="img-flag" />${ state.name['zh-Hant'] }
+        </span>`);
+    };    
     $(".js-select2[name='product_icons[]']").select2({
         allowClear: true,	
         ajax: {
@@ -229,11 +237,6 @@ $(function() {
                 return { search: params.term };
             },
             processResults: function(data, page) {    
-                data.map((item) => {
-                    if(typeof(icons[item.id]) == 'undefined') {
-                        icons[item.id] = item;
-                    }
-                });
                 return { 
                     results: data.map(item => { return Object.assign(item, { 
                         text: item.name['zh-Hant'] 
@@ -242,23 +245,11 @@ $(function() {
             },
         },
         templateSelection: function(state) {
-            
-            if (typeof(icons[state.id]) == 'undefined') {
-                return state.text;
-            }
-            
-            return $(`<span>
-                <img src="/${ icons[state.id].path }" class="img-flag" />${ icons[state.id].name['zh-Hant'] }
-            </span>`);
+            return format($(state.element).data('array') || state)
         },
         templateResult: function (state) {
-            if (!state.id) {
-                return state.text;
-            }
-            return $(`<span>
-                <img src="/${ state.path }" class="img-flag" />${ state.name['zh-Hant'] }
-            </span>`);
-        }
+            return format(state)
+        }        
     });    
 });
 </script>    
