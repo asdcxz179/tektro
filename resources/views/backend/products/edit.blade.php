@@ -6,9 +6,13 @@
         <h3 class="block-title">{{ __('edit') }}</h3>
     </div>
     <div class="block-content block-content-full">
-        <form id="form-edit" action="{{ route('backend.'.$routeNameData.'.update',[$routeIdData => $data->id]) }}" method="post" enctype="multipart/form-data">
+    <form id="form-edit" action="{{ 
+            request()->action == 'copy' ? 
+                route('backend.'.$routeNameData.'.store') : 
+                route('backend.'.$routeNameData.'.update',[$routeIdData => $data->id])
+        }}" method="post">
+            @if(request()->action != 'copy') @method('PUT') @endif
             @csrf
-            @method('PUT')
             <div class="block">
                 <ul class="nav nav-tabs nav-tabs-block border" data-toggle="tabs" role="tablist">
                     @foreach($languageData as $language) 
@@ -28,7 +32,11 @@
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.description.*") }}</label>
                                 <input type="text" value="{{ $data->getTranslation('description', $language->lang) }}" name="description[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.description.*") }}">
-                            </div>                                                                                        
+                            </div>               
+                            <div class="form-group col-md-6">
+                                <label>{{ __("backend.$routeNameData.attribute.*") }}</label>
+                                <input type="text" value="{{ $data->getTranslation('attribute', $language->lang) }}" name="attribute[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.attribute.*") }}">
+                            </div>                                                                                                           
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.content.*") }}</label>                                
                                 <textarea name="content[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('content', $language->lang) }}</textarea>
@@ -67,6 +75,14 @@
                             <label>{{ __("backend.$routeNameData.product_tags") }}</label>
                             <select data-url="{{ route('backend.product_tags.select') }}" class="js-select2 form-control" multiple name="product_tags[]" data-placeholder="{{ __("backend.$routeNameData.product_tags") }}">
                                 @foreach($data->product_tags as $item)
+                                <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>                                
+                        <div class="form-group col-md-12">
+                            <label>{{ __("backend.$routeNameData.product_icons") }}</label>
+                            <select data-url="{{ route('backend.product_icons.select') }}" class="js-select2 form-control" multiple name="product_icons[]" data-placeholder="{{ __("backend.$routeNameData.product_icons") }}">
+                                @foreach($data->product_icons as $item)
                                 <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
                                 @endforeach
                             </select>
@@ -155,7 +171,13 @@
                 </div>       
             </div>
             <a href="{{ route('backend.'.$routeNameData.'.index') }}" class="btn btn-secondary">{{ __('back') }}</a>
-            <button type="submit" class="btn btn-primary">{{ __('edit') }}</button>
+            <button type="submit" class="btn btn-primary">
+                @if(request()->action == 'copy')
+                    {{ __('create') }}
+                @else
+                    {{ __('edit') }}
+                @endif
+            </button>
         </form>
     </div>
 </div>

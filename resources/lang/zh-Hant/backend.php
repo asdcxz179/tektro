@@ -21,6 +21,7 @@ return [
     'product_categories' => '產品類別',
     'product_tags' => '自行車類別',
     'product_keywords' => '關鍵字',
+    'product_icons' => '技術icon',
     'products' => '產品',    
 
     'assist' => '支援',
@@ -178,6 +179,20 @@ return [
       
     'product_brands' => '品牌(可多選)',
   ],
+  'product_icons' => [
+    'name' => [
+      'zh-Hant' => '中文語系 名稱',
+      'en' => '英文語系 名稱',
+      '*' => '名稱',
+    ],
+
+    'path' => '圖片',
+
+    'sort' => '排序',
+    'status' => '狀態',
+
+    'product_brands' => '品牌(可多選)'
+  ],  
   'products' => [
     'name' => ['*' => '名稱'],
     'description' => ['*' => '描述'],
@@ -186,6 +201,7 @@ return [
     'technology' => ['*' => 'TECHNOLOGY'],
     'test_reviews' => ['*' => 'TEST & REVIEWS'],
     'related_products' => ['*' => 'RELATED PRODUCTS'],
+    'attribute' => ['*' => '功能屬性'],
 
     'banner' => '產品列表小圖',
 
@@ -193,6 +209,7 @@ return [
     'status' => '狀態',   
 
     'product_categories' => '產品類別(可多選)',
+    'product_icons' => '技術icon(可多選)',
     'product_tags' => '自行車類別(可多選)',
 
     'product_images' => [

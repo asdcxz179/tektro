@@ -4,51 +4,30 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product as crudModel;
+use App\Models\ProductIcon as crudModel;
 use DataTables;
 use Exception;
 use DB;
 use Illuminate\Support\Arr;
 
-class ProductController extends Controller
+class ProductIconController extends Controller
 {
     public function __construct() {
-        $this->name = 'products';
+        $this->name = 'product_icons';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
             'name.*' => ['nullable', 'string', 'max:100'],
-            'description.*' => ['nullable', 'string', 'max:100'],
-            'content.*' => ['nullable', 'string'],
-            'details.*' => ['nullable', 'string'],
-            'technology.*' => ['nullable', 'string'],
-            'test_reviews.*' => ['nullable', 'string'],
-            'related_products.*' => ['nullable', 'string'],
-            'attribute.*' => ['nullable', 'string'],
             //公用
-            'banner' => ['nullable', 'string'],
+            'path' => ['nullable', 'string'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
-            'status' => ['required', 'boolean'],     
-     
+            'status' => ['required', 'boolean'],      
             //多選
-            'product_categories' => ['nullable', 'array'],
-            'product_tags' => ['nullable', 'array'],
-            'product_icons' => ['nullable', 'array'],
-
-            //產品圖片
-            'product_images' => ['nullable', 'array'],
-            'product_images.*' => ['nullable', 'string'],
-            //產品檔案
-            'product_files' => ['nullable', 'array'],
-            'product_files.*.id' => ['nullable'],
-            'product_files.*.name.*' => ['nullable', 'string', 'max:100'],
-            'product_files.*.path' => ['nullable', 'string'],
-            'product_files.*.sort' => ['nullable', 'numeric', 'max:127'],
-            
+            'product_brands' => ['nullable', 'array'],
         ];
         $this->messages = []; 
-        $this->attributes = [Arr::dot(__("backend.{$this->name}"))];
+        $this->attributes = Arr::dot(__("backend.{$this->name}"));
     }
 
     public function index(Request $request)
@@ -88,23 +67,8 @@ class ProductController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::create(array_merge($validatedData, 
-                $this->dealfile($validatedData['banner'], 'banner'),
+                $this->dealfile($validatedData['path'], 'path'),
             ));
-
-            $data->product_categories()->sync($validatedData['product_categories'] ?? []);
-            $data->product_icons()->sync($validatedData['product_icons'] ?? []);
-            $data->product_tags()->sync($validatedData['product_tags'] ?? []);
-
-            $relation = 'product_images';
-            $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
-            
-
-            $relation = 'product_files';
-            foreach($validatedData[$relation] as &$value){
-                $value = array_merge($value, $this->dealfile($value['path'], 'path'));
-            }
-
-            $data->{$relation}()->createMany($validatedData[$relation]);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -138,7 +102,6 @@ class ProductController extends Controller
         $data = CrudModel::findOrFail($id);
         return view($this->view.'.edit',compact('data'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -156,25 +119,8 @@ class ProductController extends Controller
 
             $data = CrudModel::findOrFail($id);
             $data->update(array_merge($validatedData, 
-                $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),           
+                $this->dealfile($validatedData['path'], 'path'),                
             ));
-
-            $data->product_categories()->sync($validatedData['product_categories'] ?? []);
-            $data->product_icons()->sync($validatedData['product_icons'] ?? []);
-            $data->product_tags()->sync($validatedData['product_tags'] ?? []);
-
-            $relation = 'product_images';
-            $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
-
-            $relation = 'product_files';
-            foreach($validatedData[$relation] as &$value){
-                if($value['path']){
-                    $value = array_merge($value, $this->dealfile($value['path'], 'path'));
-                }else{
-                    unset($value['path']);
-                }
-            }
-            $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation]);         
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
@@ -221,8 +167,8 @@ class ProductController extends Controller
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()],422);
         }
-    }    
-
+    }   
+    
     /**
      * Update the specified resource in storage.
      *
@@ -237,6 +183,7 @@ class ProductController extends Controller
                 ->select(['id', 'name'])
                 ->limit(200)
                 ->get();
+            
             return $data;
         }
     }       

@@ -65,7 +65,7 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
             //分類
             Route::get('/product_categories/select', [Controllers\Backend\ProductCategoryController::class, 'select'])->name('product_categories.select');
             Route::resource('/product_categories', Controllers\Backend\ProductCategoryController::class);  
-            Route::put('/product_categories/status/{product_category}', [Controllers\Backend\ProductCategoryController::class, 'status'])->name('product_categories.status');
+            Route::put('/product_categories/status/{product_category}', [Constrollers\Backend\ProductCategoryController::class, 'status'])->name('product_categories.status');
             //標籤
             Route::get('/product_tags/select', [Controllers\Backend\ProductTagController::class, 'select'])->name('product_tags.select');
             Route::resource('/product_tags', Controllers\Backend\ProductTagController::class);  
@@ -74,6 +74,10 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
             Route::get('/product_keywords/select', [Controllers\Backend\ProductKeywordController::class, 'select'])->name('product_keywords.select');
             Route::resource('/product_keywords', Controllers\Backend\ProductKeywordController::class);  
             Route::put('/product_keywords/status/{product_keyword}', [Controllers\Backend\ProductKeywordController::class, 'status'])->name('product_keywords.status');
+            //技術icon
+            Route::get('/product_icons/select', [Controllers\Backend\ProductIconController::class, 'select'])->name('product_icons.select');
+            Route::resource('/product_icons', Controllers\Backend\ProductIconController::class);  
+            Route::put('/product_icons/status/{product_icon}', [Controllers\Backend\ProductIconController::class, 'status'])->name('product_icons.status');     
             //產品
             Route::get('/products/select', [Controllers\Backend\ProductController::class, 'select'])->name('products.select');
             Route::resource('/products', Controllers\Backend\ProductController::class);  

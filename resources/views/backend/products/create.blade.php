@@ -27,7 +27,11 @@
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.description.*") }}</label>
                                 <input type="text" name="description[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.description.*") }}">
-                            </div>                            
+                            </div>         
+                            <div class="form-group col-md-12">
+                                <label>{{ __("backend.$routeNameData.attribute.*") }}</label>
+                                <input type="text" name="attribute[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.attribute.*") }}">
+                            </div>                                                
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.content.*") }}</label>                                
                                 <textarea name="content[{{ $language->lang }}]" class="form-control summernote"></textarea>
@@ -65,7 +69,13 @@
                             <select data-url="{{ route('backend.product_tags.select') }}" class="js-select2 form-control" multiple name="product_tags[]" data-placeholder="{{ __("backend.$routeNameData.product_tags") }}">
                                 <option></option>
                             </select>
-                        </div>                                                    
+                        </div>            
+                        <div class="form-group col-md-12">
+                            <label>{{ __("backend.$routeNameData.product_icons") }}</label>
+                            <select data-url="{{ route('backend.product_icons.select') }}" class="js-select2 form-control" multiple name="product_icons[]" data-placeholder="{{ __("backend.$routeNameData.product_icons") }}">
+                                <option></option>
+                            </select>
+                        </div>                                                                  
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.banner") }}</label>    
                             <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->

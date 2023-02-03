@@ -23,6 +23,7 @@ class Product extends Model
         'technology',
         'test_reviews',
         'related_products',
+        'attribute',
 
         'banner',
 
@@ -43,6 +44,7 @@ class Product extends Model
         'technology',
         'test_reviews',
         'related_products',
+        'attribute',
     ];
 
     public function product_images(){
@@ -66,6 +68,12 @@ class Product extends Model
     {
         return $this->morphedByMany(ProductCategory::class, 'model', 'product_relations');
     } 
+
+    public function product_icons()
+    {
+        return $this->morphedByMany(ProductIcon::class, 'model', 'product_relations');
+    } 
+
 
     public function product_tags()
     {

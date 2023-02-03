@@ -15,6 +15,7 @@ return [
             [ 'active' => 'product_label/product_brands*'          ,'name' => 'product_brands'          , 'title' => 'product_brands'       , 'routeId' => 'product_brand'      , 'permissions' => 'product_brands' ],
             [ 'active' => 'product_label/product_categories*'      ,'name' => 'product_categories'      , 'title' => 'product_categories'   , 'routeId' => 'product_category'   , 'permissions' => 'product_categories' ],
             [ 'active' => 'product_label/product_tags*'            ,'name' => 'product_tags'            , 'title' => 'product_tags'         , 'routeId' => 'product_tag'        , 'permissions' => 'product_tags' ],            
+            [ 'active' => 'product_label/product_icons*'            ,'name' => 'product_icons'          , 'title' => 'product_icons'        , 'routeId' => 'product_icon'       , 'permissions' => 'product_icons' ],
             [ 'active' => 'product_label/products*'                ,'name' => 'products'                , 'title' => 'products'             , 'routeId' => 'product'            , 'permissions' => 'products' ],
             [ 'active' => 'product_label/product_keywords*'        ,'name' => 'product_keywords'        , 'title' => 'product_keywords'     , 'routeId' => 'product_keyword'    , 'permissions' => 'product_keywords' ],
         ]

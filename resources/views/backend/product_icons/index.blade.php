@@ -49,7 +49,6 @@ $(function() {
             { data: 'updated_at', title: '{{ __('updated_at') }}' },
             { data: 'id', title: '{{ __('option') }}', bSortable: false, render:function(data,type,row) {
                 return `<a class="edit" href="${ path }/${ data }/edit">{{ __('edit') }}</a> |
-                    <a class="copy" href="${ path }/${ data }/edit?action=copy">{{ __('copy') }}</a> |
                     <a data-id="${ data }" class="delete" href="javascript:;">{{ __('delete') }}</a>`;
             }},
         ]
