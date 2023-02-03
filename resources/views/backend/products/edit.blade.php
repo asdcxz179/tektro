@@ -33,7 +33,7 @@
                                 <label>{{ __("backend.$routeNameData.description.*") }}</label>
                                 <input type="text" value="{{ $data->getTranslation('description', $language->lang) }}" name="description[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.description.*") }}">
                             </div>               
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.attribute.*") }}</label>
                                 <input type="text" value="{{ $data->getTranslation('attribute', $language->lang) }}" name="attribute[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.attribute.*") }}">
                             </div>                                                                                                           
