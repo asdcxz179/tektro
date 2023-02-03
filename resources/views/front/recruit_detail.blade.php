@@ -27,7 +27,7 @@
 </section>
 <!-- breadcrumb end -->
 <section class="mb-12 mb-md-20">
-    <div class="jarallax bg-cover d-flex justify-content-center align-items-center news_detail_header" style="background-image: url('{{asset(($detail->banner)?$detail->banner:'/front/assets/images/info_news_img06.jpeg')}}');">
+    <div class="jarallax bg-cover d-flex justify-content-center align-items-center news_detail_header" style="background-image: url('{{asset(($detail->up_image)?$detail->up_image:'/front/assets/images/info_news_img06.jpeg')}}');">
         <div class="container position-relative">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
