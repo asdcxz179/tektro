@@ -6,7 +6,7 @@
         <h3 class="block-title">{{ __('create') }}</h3>
     </div>
     <div class="block-content block-content-full">
-        <form id="form-create" action="{{ route('backend.'.$routeNameData.'.store') }}" method="post">
+        <form id="form-create" action="{{ route('backend.'.$routeNameData.'.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="block">
                 <ul class="nav nav-tabs nav-tabs-block border" data-toggle="tabs" role="tablist">
