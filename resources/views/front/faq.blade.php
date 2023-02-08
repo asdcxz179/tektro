@@ -50,10 +50,9 @@
             <div class="col-md-8 offset-md-1">
                 <div class="tab-content">
                     <div class="tab-pane fade show active" role="tabpanel" id="qaFilterAll">
-                        @foreach($brands as $brand)
+                        @foreach($all as $faq)
                         <!-- tektro accordion start -->
                         <div class="accordion_primary accordion accordion-flush" id="collapseFilterTektro">
-                            @foreach($brand->faqs as $key => $faq)
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-heading01">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#all_{{$brand->id}}_{{$faq->id}}" aria-expanded="false" aria-controls="all_{{$brand->id}}_{{$faq->id}}">
@@ -66,7 +65,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
                         </div>
                         @endforeach
                     </div>

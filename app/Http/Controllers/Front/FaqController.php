@@ -24,6 +24,13 @@ class FaqController extends Controller
             });
         }
         $data['brands'] = $brands->get();
+        $data['all'] = collect([]);
+        foreach($data['brands'] as $brand) {
+            foreach($brand->faqs as $faq) {
+                $data['all'] = $data['all']->push($faq);
+            }
+        } 
+        $data['all'] = $data['all']->unique('id')->sortBy('sort');
         return view('front.faq',$data);
     }
 
