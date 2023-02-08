@@ -65,7 +65,7 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
             //分類
             Route::get('/product_categories/select', [Controllers\Backend\ProductCategoryController::class, 'select'])->name('product_categories.select');
             Route::resource('/product_categories', Controllers\Backend\ProductCategoryController::class);  
-            Route::put('/product_categories/status/{product_category}', [Constrollers\Backend\ProductCategoryController::class, 'status'])->name('product_categories.status');
+            Route::put('/product_categories/status/{product_category}', [Controllers\Backend\ProductCategoryController::class, 'status'])->name('product_categories.status');
             //標籤
             Route::get('/product_tags/select', [Controllers\Backend\ProductTagController::class, 'select'])->name('product_tags.select');
             Route::resource('/product_tags', Controllers\Backend\ProductTagController::class);  

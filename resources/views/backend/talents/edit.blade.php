@@ -55,7 +55,7 @@
                         </div>                                                
                         <div class="form-group col-md-12">
                             <label>{{ __("backend.$routeNameData.up_image") }}</label>    
-                            <div class="text-danger">{{ __('suggested_size', ['width' => 700, 'height' => 500]) }}</div>
+                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 700, 'height' => 500]) }}</div> -->
                             <fieldset class="image">
                                 @isset($data->up_image)
                                 <input value="{{ asset($data->up_image) }}" checked type="checkbox" />{{ asset($data->up_image) }}
