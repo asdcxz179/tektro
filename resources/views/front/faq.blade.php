@@ -60,7 +60,7 @@
                                         {{$faq->name}}
                                     </button>
                                 </h2>
-                                <div id="all_{{$brand->id}}_{{$faq->id}}" class="accordion-collapse collapse" aria-labelledby="flush-heading01" data-bs-parent="#collapseFilterTektro">
+                                <div id="all_{{$brand->id}}_{{$faq->id}}" class="accordion-collapse collapse" aria-labelledby="flush-heading01">
                                     <div class="accordion-body">
                                         {!!$faq->content!!}
                                     </div>
@@ -81,7 +81,7 @@
                                         {{$faq->name}}
                                     </button>
                                 </h2>
-                                <div id="faq_{{$brand->id}}_{{$faq->id}}" class="accordion-collapse collapse" aria-labelledby="flush-heading01" data-bs-parent="#collapseFilterTektro">
+                                <div id="faq_{{$brand->id}}_{{$faq->id}}" class="accordion-collapse collapse" aria-labelledby="flush-heading01">
                                     <div class="accordion-body">
                                         {!!$faq->content!!}
                                     </div>

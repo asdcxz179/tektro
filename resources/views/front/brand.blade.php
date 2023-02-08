@@ -76,7 +76,7 @@
                 <div class="row">
                     <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
                         <ul class="d-flex flex-wrap mb-0 break-word">
-                            @foreach($brand->tags as $tag)
+                            @foreach($brand->tags()->where(['type'=>1])->get() as $tag)
                             <li class="col-6 col-sm-4 col-md-3 mb-4 mb-md-5">
                                 <a href="{{route('front.tag.show',['lang'=>$lang,'tag'=>$tag->id])}}" class="d-flex flex-column flex-sm-row align-items-center hover_color_none">
                                     <img src="{{asset($tag->path??'front/assets/images/trp_category_img01.png')}}" class="me-0 me-sm-3" alt="{{$tag->name}}">

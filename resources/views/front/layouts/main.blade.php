@@ -169,7 +169,7 @@
                                                             <div class="col-6 px-3">
                                                                 <div class="text-muted border-bottom border-gray pb-3 mb-3">{{__('front.bike_category')}}</div>
                                                                 <ul class="list-unstyled d-flex flex-wrap w-100">
-                                                                    @foreach($brand->tags as $tag)
+                                                                    @foreach($brand->tags()->where(['type'=>1])->get() as $tag)
                                                                     <li class="col-6">
                                                                         <a href="{{route('front.tag.show',['lang'=>$lang,'tag'=>$tag->id])}}" class="d-inline-block py-2 fw-light">{{$tag->name}}</a>
                                                                     </li>

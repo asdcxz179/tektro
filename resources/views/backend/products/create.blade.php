@@ -78,14 +78,14 @@
                         </div>                                                                  
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.banner") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
+                            <div class="text-danger">{{ __('suggested_size', ['width' => 800, 'height' => 800]) }}</div>
                             <fieldset class="image">
                                 <input type="file" name="banner" accept="image/*" />    
                             </fieldset>  
                         </div>               
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.product_images.*") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 236, 'height' => 236]) }}</div> -->
+                            <div class="text-danger">{{ __('suggested_size', ['width' => 800, 'height' => 800]) }}</div>
                             <fieldset class="image">
                                 <input type="file" multiple data-allow-reorder="true" name="product_images[]" accept="image/*" />       
                             </fieldset>  

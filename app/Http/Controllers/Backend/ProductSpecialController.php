@@ -10,16 +10,16 @@ use Exception;
 use DB;
 use Illuminate\Support\Arr;
 
-class ProductTagController extends Controller
+class ProductSpecialController extends Controller
 {
     public function __construct() {
-        $this->name = 'product_tags';
+        $this->name = 'product_special';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
             'name.*' => ['nullable', 'string', 'max:100'],
             //公用
-            'path' => ['nullable', 'string'],
+            // 'path' => ['nullable', 'string'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],    
@@ -29,12 +29,16 @@ class ProductTagController extends Controller
         $this->messages = []; 
         $this->attributes = Arr::dot(__("backend.{$this->name}"));
     }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $this->authorize('read '.$this->name);
         if ($request->ajax()) {
-            $data = CrudModel::with(['product_brands'])->where(['type'=>1]);
+            $data = CrudModel::with(['product_brands'])->where(['type'=>2]);
             return Datatables::eloquent($data)
                 ->make(true);
         }
@@ -65,10 +69,8 @@ class ProductTagController extends Controller
 
         try{
             DB::beginTransaction();
-
-            $data = CrudModel::create(array_merge($validatedData, 
-                $this->dealfile($validatedData['path'], 'path'),
-            ));
+            $validatedData['type'] = 2;
+            $data = CrudModel::create($validatedData);
             $data->product_brands()->sync($validatedData['product_brands'] ?? []);
 
             DB::commit();
@@ -98,7 +100,7 @@ class ProductTagController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    { 
+    {
         $this->authorize('edit '.$this->name);
         $data = CrudModel::findOrFail($id);
         return view($this->view.'.edit',compact('data'));
@@ -120,9 +122,7 @@ class ProductTagController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::findOrFail($id);
-            $data->update(array_merge($validatedData, 
-                $this->dealfile($validatedData['path'], 'path', $data, 'path'),                
-            ));
+            $data->update($validatedData);
             $data->product_brands()->sync($validatedData['product_brands'] ?? []);
 
             DB::commit();
@@ -150,7 +150,7 @@ class ProductTagController extends Controller
             return response()->json(['message' => $e->getMessage()],422);
         }
     }
-    
+
     /**
      * status  the specified resource in storage.
      *
@@ -184,10 +184,10 @@ class ProductTagController extends Controller
         if ($request->ajax()) {
             $data = CrudModel::where('name', 'like', "%{$request->search}%")
                 ->select(['id', 'name'])
-                ->where(['type'=>1])
+                ->where(['type'=>2])
                 ->limit(200)
                 ->get();
             return $data;
         }
-    }       
+    }
 }

@@ -59,7 +59,8 @@
                                             {{$type->name}}
                                         </button>
                                     </h2>
-                                    <div id="filter_{{$key}}_{{$key2}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#type_{{$key2}}">
+                                    <div id="filter_{{$key}}_{{$key2}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne">
+                                    <!-- data-bs-parent="#type_{{$key2}}" -->
                                         <div class="accordion-body">
                                             <div class="p-md-4">
                                                 <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.manual')}}</span>

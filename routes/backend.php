@@ -70,6 +70,10 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
             Route::get('/product_tags/select', [Controllers\Backend\ProductTagController::class, 'select'])->name('product_tags.select');
             Route::resource('/product_tags', Controllers\Backend\ProductTagController::class);  
             Route::put('/product_tags/status/{product_tag}', [Controllers\Backend\ProductTagController::class, 'status'])->name('product_tags.status');
+            //特殊類別
+            Route::get('/product_special/select', [Controllers\Backend\ProductSpecialController::class, 'select'])->name('product_special.select');
+            Route::resource('/product_special', Controllers\Backend\ProductSpecialController::class);  
+            Route::put('/product_special/status/{product_tag}', [Controllers\Backend\ProductSpecialController::class, 'status'])->name('product_special.status');
             //關鍵字
             Route::get('/product_keywords/select', [Controllers\Backend\ProductKeywordController::class, 'select'])->name('product_keywords.select');
             Route::resource('/product_keywords', Controllers\Backend\ProductKeywordController::class);  

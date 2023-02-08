@@ -34,6 +34,7 @@ class ProductController extends Controller
             //多選
             'product_categories' => ['nullable', 'array'],
             'product_tags' => ['nullable', 'array'],
+            'product_special' => ['nullable', 'array'],
             'product_icons' => ['nullable', 'array'],
 
             //產品圖片
@@ -93,7 +94,7 @@ class ProductController extends Controller
 
             $data->product_categories()->sync($validatedData['product_categories'] ?? []);
             $data->product_icons()->sync($validatedData['product_icons'] ?? []);
-            $data->product_tags()->sync($validatedData['product_tags'] ?? []);
+            $data->product_tags()->sync((array_merge($validatedData['product_tags'],$validatedData['product_special'])) ?? []);
 
             $relation = 'product_images';
             $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
@@ -161,7 +162,7 @@ class ProductController extends Controller
 
             $data->product_categories()->sync($validatedData['product_categories'] ?? []);
             $data->product_icons()->sync($validatedData['product_icons'] ?? []);
-            $data->product_tags()->sync($validatedData['product_tags'] ?? []);
+            $data->product_tags()->sync((array_merge($validatedData['product_tags'],$validatedData['product_special'])) ?? []);
 
             $relation = 'product_images';
             $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));

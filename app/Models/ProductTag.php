@@ -18,7 +18,7 @@ class ProductTag extends Model
     protected $fillable = [
         'name',
         'path',
-
+        'type',
         'sort',
         'status',
     ];    

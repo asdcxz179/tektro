@@ -74,12 +74,20 @@
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.product_tags") }}</label>
                             <select data-url="{{ route('backend.product_tags.select') }}" class="js-select2 form-control" multiple name="product_tags[]" data-placeholder="{{ __("backend.$routeNameData.product_tags") }}">
-                                @foreach($data->product_tags as $item)
+                                @foreach($data->product_tags()->where(['type'=>1])->get() as $item)
+                                <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>        
+                        <div class="form-group col-md-6">
+                            <label>{{ __("backend.$routeNameData.product_special") }}</label>
+                            <select data-url="{{ route('backend.product_special.select') }}" class="js-select2 form-control" multiple name="product_special[]" data-placeholder="{{ __("backend.$routeNameData.product_special") }}">
+                                @foreach($data->product_tags()->where(['type'=>2])->get() as $item)
                                 <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>                                
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.product_icons") }}</label>
                             <select data-url="{{ route('backend.product_icons.select') }}" class="js-select2 form-control" multiple name="product_icons[]" data-placeholder="{{ __("backend.$routeNameData.product_icons") }}">
                                 @foreach($data->product_icons as $item)
@@ -89,7 +97,7 @@
                         </div>                                
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.banner") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
+                            <div class="text-danger">{{ __('suggested_size', ['width' => 800, 'height' => 800]) }}</div>
                             <fieldset class="image">
                                 @isset($data->banner)
                                 <input value="{{ asset($data->banner) }}" checked type="checkbox" />{{ asset($data->banner) }}
@@ -100,7 +108,7 @@
                         </div>               
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.product_images.*") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 236, 'height' => 236]) }}</div> -->
+                            <div class="text-danger">{{ __('suggested_size', ['width' => 800, 'height' => 800]) }}</div>
                             <fieldset class="image">
                                 @isset($data->product_images)
                                     @foreach($data->product_images as $value)
