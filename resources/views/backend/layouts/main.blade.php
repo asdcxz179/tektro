@@ -349,7 +349,48 @@
                 var div = document.createElement('div');
                 div.innerHTML = encodedString;
                 return div.textContent;
-            }             
+            }  
+            
+            function addDom(relations_table = []){
+                relations_table.forEach(item => {
+                    var table = $(`#${ item } table`).DataTable({
+                        paging: false,
+                        ordering: false,
+                        searching: false
+                    });
+
+                    $(document).on("click",`#${ item } .add-btn`,function() {    
+                        cloneDom();
+                    });
+
+                    $(document).on("click",`#${ item } .rm-btn`,function() {
+                        table.row($(this).parents('tr')).remove().draw();
+                    });   
+                    
+                    function cloneDom() {
+                        let add = $(`#${ item }`).find('.add').clone();
+                        let count = 0;
+                        if($(`#${ item } tbody tr:last td`).eq(0).find('[name]').attr('name')){
+                            count = $(`#${ item } tbody tr:last td`).eq(0).find('[name]').attr('name').match(/.*\[(?<lastcount>\d*)\].*/).groups.lastcount;
+                        }
+
+                        let addDom = [];
+                        add.children('div').each(function(){
+                            let name = $(this).find('[name]').attr('name').replace(0, parseInt(count) + 1)
+                            $(this).find('[name]').attr('name', name).attr('disabled', false);
+                            addDom.push($(this).html()) 
+                        })
+
+                        table.row.add(addDom.concat([
+                            `<div class="form-group col-md-1 justify-content-center align-items-end d-flex delete">
+                                <button type="button" class="rm-btn btn btn-danger mr-5 mb-5">
+                                    <i class="fa fa-times"></i>
+                                </button>    
+                            </div>`
+                        ])).draw();
+                    }
+                })
+            }              
             $(function() {
                 $.ajaxSetup({
                     headers: {
@@ -475,32 +516,7 @@
                 }
 
                 checkMenu($('.nav-main > li'));
-
-                $(document).on("click",".add-btn",function() {    
-                    let add = $(this).parents('.form-row').siblings('.add:last');
-                   
-                    let lastcount = add.find('input:not(".not_copy")').attr('name').match(/.*\[(?<lastcount>\d*)\].*/).groups.lastcount
-                    let clone = add.clone();
-                    clone.children('.delete').removeClass('d-none').addClass('d-flex');
-                    clone.find('input[name]:not(".not_copy")').each(function () {
-                        let name = $(this).attr('name').replace(lastcount, parseInt(lastcount) + 1);
-                        $(this).attr('name', name).val('');
-                        let tmp = $(this).parents('.filepond-dom');
-                        if(tmp.length > 0){
-                            tmp.find('.filepond--root').remove();
-                            tmp.find('.filepond--rm').remove();
-                            tmp.append(`<fieldset class="image">                              
-                                <input type="file" name="${ name }"/>    
-                            </fieldset>`)
-                            FilePond.create(tmp.find('.image')[0]);
-                        }
-                    })
-                    clone.find('textarea').val('');
-                    add.after(clone);
-                });
-                $(document).on("click",".rm-btn",function() {
-                    $(this).parents('.add').remove();
-                });    
+  
                 
                 $('.js-select2[data-url]').each(function(){
                     $(this).select2({        		

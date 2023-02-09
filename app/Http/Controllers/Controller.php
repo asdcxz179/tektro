@@ -16,6 +16,22 @@ class Controller extends BaseController
     public function dealfile($upload, $returnKey = 'path', $delete = null, $deleteKey = 'path')
     {
         $fileUpload = function ($value) use ($returnKey) {
+            if($value instanceof \Illuminate\Http\UploadedFile){
+                $extension = $value->extension(); 
+                $path = config('app.upload').'/'.Str::random(20).'_'.time().'.'.$extension;
+
+                if(in_array($extension, ['png', 'jpg', 'jpeg'])){
+                    Image::make($value)->save($path);
+                }else{
+                    file_put_contents($path, $value);
+                }               
+
+                return [ 
+                    $returnKey => $path,
+                    'file_name' => $value->getClientOriginalName()
+                ];
+            }
+                        
             if($value = json_decode($value, true)){
                 $extension = pathinfo($value['name'], PATHINFO_EXTENSION);
                 $path = config('app.upload').'/'.Str::random(20).'_'.time().'.'.$extension;

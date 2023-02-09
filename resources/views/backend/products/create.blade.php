@@ -90,40 +90,38 @@
                                 <input type="file" multiple data-allow-reorder="true" name="product_images[]" accept="image/*" />       
                             </fieldset>  
                         </div>            
-                        <div class="form-group col-md-12">
-                            <div class="form-row">
-                                <h2 class="content-heading  col-md-12">{{ __("backend.$routeNameData.product_file") }}</h2>
-                            </div>    
-                            <div class="form-row">
-                                <div class="form-group col-md-12 text-right">
-                                    <button type="button" class="add-btn btn btn-success mr-5 mb-5">
-                                        <i class="fa fa-plus mr-5"></i>{{ __('add') }}
-                                    </button>                                          
-                                </div>
+                        <div class="form-group col-md-12">                           
+                            <div class="form-group col-md-12" id="product_files">
+                                <div class="form-row">
+                                    <h2 class="content-heading  col-md-12">{{ __("backend.$routeNameData.product_file") }}</h2>
+                                </div>      
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 text-right">
+                                        <button type="button" class="add-btn btn btn-success mr-5 mb-5">
+                                            <i class="fa fa-plus mr-5"></i>{{ __('add') }}
+                                        </button>                                          
+                                    </div>
+                                </div>            
+                                <div class="add d-none">
+                                    @foreach($languageData as $language) 
+                                    <div><input type="text" disabled name="product_files[0][name][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.product_files.*.name") }}"></div>
+                                    @endforeach  
+                                    <div><input type="number" disabled step="1" disabled name="product_files[0][sort]" class="form-control"  placeholder="{{ __("backend.$routeNameData.product_files.*.sort") }}"></div>                                
+                                    <div><input type="file" disabled name="product_files[0][path]"/></div>                                
+                                </div>               
+                                <table class="display table" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            @foreach($languageData as $language)
+                                            <th>{{ __("backend.$routeNameData.product_files.*.name") }}({{ $language->name }})</th>
+                                            @endforeach 
+                                            <th>{{ __("backend.$routeNameData.product_files.*.sort") }}</th>
+                                            <th>{{ __("backend.$routeNameData.product_files.*.path") }}</th>
+                                            <th>{{ __('option') }}</th>
+                                        </tr>
+                                    </thead>
+                                </table>                                                                                              
                             </div>                               
-                            <div class="add form-row"> 
-                                @foreach($languageData as $language) 
-                                <div class="form-group col-md-2">
-                                    <label>{{ __("backend.$routeNameData.product_files.*.name") }}({{ $language->name }})</label>
-                                    <input type="text" name="product_files[1][name][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.product_files.*.name") }}">
-                                </div>  
-                                @endforeach                            
-                                <div class="form-group col-md-3">
-                                    <label>{{ __("backend.$routeNameData.product_files.*.sort") }}</label>                                    
-                                    <input type="text" name="product_files[1][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
-                                </div>                                   
-                                <div class="form-group col-md-4 filepond-dom">
-                                    <label>{{ __("backend.$routeNameData.product_files.*.path") }}</label>                                    
-                                    <fieldset class="image">                                
-                                        <input type="file" name="product_files[1][path]" accept="image/*" />    
-                                    </fieldset>  
-                                </div>  
-                                <div class="form-group col-md-1 justify-content-center align-items-end d-none delete">
-                                    <button type="button" class="rm-btn btn btn-danger mr-5 mb-5">
-                                        <i class="fa fa-times"></i>
-                                    </button>    
-                                </div>                                  
-                            </div>                                                                                    
                         </div>                                                 
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
@@ -207,6 +205,7 @@ $(function() {
             return format(state)
         }
     });
+    addDom(['product_files']);
 });
 </script>
 @endpush

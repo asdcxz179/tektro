@@ -118,49 +118,59 @@
                                 <input type="file" multiple data-allow-reorder="true" name="product_images[]" accept="image/*" />       
                             </fieldset>  
                         </div>            
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-12" id="product_files">
                             <div class="form-row">
                                 <h2 class="content-heading  col-md-12">{{ __("backend.$routeNameData.product_file") }}</h2>
-                            </div>    
+                            </div>      
                             <div class="form-row">
                                 <div class="form-group col-md-12 text-right">
                                     <button type="button" class="add-btn btn btn-success mr-5 mb-5">
                                         <i class="fa fa-plus mr-5"></i>{{ __('add') }}
                                     </button>                                          
                                 </div>
-                            </div>          
-                            @isset($data->product_files)
-                            @foreach($data->product_files as $key => $value)                     
-                            <div class="add form-row"> 
-                                <input type="hidden" name="product_files[{{ $key }}][id]" value="{{ $value->id }}">
+                            </div>            
+                            <div class="add d-none">
                                 @foreach($languageData as $language) 
-                                <div class="form-group col-md-2">
-                                    <label>{{ __("backend.$routeNameData.product_files.*.name") }}({{ $language->name }})</label>
-                                    <input type="text" value="{{ $value->getTranslation('name', $language->lang) }}" name="product_files[{{ $key }}][name][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.product_files.*.name") }}">
-                                </div>  
-                                @endforeach                            
-                                <div class="form-group col-md-3">
-                                    <label>{{ __("backend.$routeNameData.product_files.*.sort") }}</label>                                    
-                                    <input type="text" value="{{ $value->sort }}" name="product_files[{{ $key }}][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
-                                </div>                                   
-                                <div class="form-group col-md-4 filepond-dom">
-                                    <label>{{ __("backend.$routeNameData.product_files.*.path") }}</label>                                    
-                                    <fieldset class="image">                                                                 
-                                        <input type="file" name="product_files[{{ $key }}][path]"/>    
-                                    </fieldset>  
-                                    @isset($value->path)
-                                    <label class="filepond--rm"><h6>{{ $value->file_name }}<h6></label>
-                                    @endisset                                        
-                                </div>  
-                                <div class="form-group col-md-1 justify-content-center align-items-end d-flex delete">
-                                    <button type="button" class="rm-btn btn btn-danger mr-5 mb-5">
-                                        <i class="fa fa-times"></i>
-                                    </button>    
-                                </div>                                  
-                            </div>   
-                            @endforeach
-                            @endisset                                                                                                               
-                        </div>                                                 
+                                <div><input type="text" disabled name="product_files[0][name][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.product_files.*.name") }}"></div>
+                                @endforeach  
+                                <div><input type="number" disabled step="1" disabled name="product_files[0][sort]" class="form-control"  placeholder="{{ __("backend.$routeNameData.product_files.*.sort") }}"></div>                                
+                                <div><input type="file" disabled name="product_files[0][path]"/></div>                                
+                            </div>               
+                            <table class="display table" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        @foreach($languageData as $language)
+                                        <th>{{ __("backend.$routeNameData.product_files.*.name") }}({{ $language->name }})</th>
+                                        @endforeach 
+                                        <th>{{ __("backend.$routeNameData.product_files.*.sort") }}</th>
+                                        <th>{{ __("backend.$routeNameData.product_files.*.path") }}</th>
+                                        <th>{{ __('option') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>     
+                                    @foreach($data->product_files as $key => $value)       
+                                    <tr>
+                                        <input type="hidden" name="product_files[{{ $key }}][id]" value="{{ $value->id }}">
+                                        @foreach($languageData as $language)                                
+                                        <td><input type="text" value="{{ $value->getTranslation('name', $language->lang) }}" name="product_files[{{ $key }}][name][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.product_files.*.name") }}"></td>
+                                        @endforeach 
+                                        <td><input type="text" value="{{ $value->sort }}" name="product_files[{{ $key }}][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0"></td>
+                                        <td>
+                                            <input type="file" name="product_files[{{ $key }}][path]"/>
+                                            @isset($value->path)
+                                            <div class="mt-2"><h6>{{ $value->file_name }}<h6></div>
+                                            @endisset  
+                                        </td>                                    
+                                        <td>
+                                            <div class="form-group col-md-1 justify-content-center align-items-end d-flex delete">
+                                                <button type="button" class="rm-btn btn btn-danger mr-5 mb-5"><i class="fa fa-times"></i></button>    
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody> 
+                            </table>                                                                                                                       
+                        </div>                         
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" value="{{ $data->sort }}" placeholder="{{ __("backend.$routeNameData.sort") }}">
@@ -259,6 +269,7 @@ $(function() {
             return format(state)
         }        
     });    
+    addDom(['product_files']);
 });
 </script>    
 @endpush

@@ -35,44 +35,40 @@
                             <select data-url="{{ route('backend.support_categories.select') }}" class="js-select2 form-control" name="support_category_id" data-placeholder="{{ __("backend.$routeNameData.support_category_id") }}">
                                 <option></option>
                             </select>
-                        </div>                                  
+                        </div>                                   
                         @foreach($support_files_type_data as $type) 
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-12" id="support_files{{ $type->key }}">
                             <div class="form-row">
                                 <h2 class="content-heading  col-md-12">{{ $type->name }}</h2>
-                            </div>    
+                            </div>      
                             <div class="form-row">
                                 <div class="form-group col-md-12 text-right">
                                     <button type="button" class="add-btn btn btn-success mr-5 mb-5">
                                         <i class="fa fa-plus mr-5"></i>{{ __('add') }}
                                     </button>                                          
                                 </div>
-                            </div>                               
-                            <div class="add form-row"> 
+                            </div>            
+                            <div class="add d-none">
                                 @foreach($languageData as $language) 
-                                <div class="form-group col-md-2">
-                                    <label>{{ __("backend.$routeNameData.support_files.*.name") }}({{ $language->name }})</label>
-                                    <input type="text" name="support_files{{ $type->key }}[1][name][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.support_files.*.name") }}">
-                                </div>  
-                                @endforeach                            
-                                <div class="form-group col-md-3">
-                                    <label>{{ __("backend.$routeNameData.support_files.*.sort") }}</label>                                    
-                                    <input type="text" name="support_files{{ $type->key }}[1][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
-                                </div>                                   
-                                <div class="form-group col-md-4 filepond-dom">
-                                    <label>{{ __("backend.$routeNameData.support_files.*.path") }}</label>                                    
-                                    <fieldset class="image">                                
-                                        <input type="file" name="support_files{{ $type->key }}[1][path]"/>    
-                                    </fieldset>  
-                                </div>  
-                                <div class="form-group col-md-1 justify-content-center align-items-end d-none delete">
-                                    <button type="button" class="rm-btn btn btn-danger mr-5 mb-5">
-                                        <i class="fa fa-times"></i>
-                                    </button>    
-                                </div>                                  
-                            </div>                                                                                    
-                        </div>      
-                        @endforeach                                                 
+                                <div><input type="text" disabled name="support_files{{ $type->key }}[0][name][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.support_files.*.name") }}"></div>
+                                @endforeach  
+                                <div><input type="number" disabled step="1" disabled name="support_files{{ $type->key }}[0][sort]" class="form-control"  placeholder="{{ __("backend.$routeNameData.support_files.*.sort") }}"></div>                                
+                                <div><input type="file" disabled name="support_files{{ $type->key }}[0][path]"/></div>                                
+                            </div>               
+                            <table class="display table" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        @foreach($languageData as $language)
+                                        <th>{{ __("backend.$routeNameData.support_files.*.name") }}({{ $language->name }})</th>
+                                        @endforeach 
+                                        <th>{{ __("backend.$routeNameData.support_files.*.sort") }}</th>
+                                        <th>{{ __("backend.$routeNameData.support_files.*.path") }}</th>
+                                        <th>{{ __('option') }}</th>
+                                    </tr>
+                                </thead>
+                            </table>                                                                                              
+                        </div>   
+                        @endforeach                       
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
@@ -124,6 +120,9 @@ $(function() {
             formCreate.find('button[type=submit]').attr('disabled',false);
         }
     });
+    @foreach($support_files_type_data as $type) 
+        addDom(['support_files{{ $type->key }}']);
+    @endforeach
 });
 </script>
 @endpush

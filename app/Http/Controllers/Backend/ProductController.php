@@ -44,7 +44,7 @@ class ProductController extends Controller
             'product_files' => ['nullable', 'array'],
             'product_files.*.id' => ['nullable'],
             'product_files.*.name.*' => ['nullable', 'string', 'max:100'],
-            'product_files.*.path' => ['nullable', 'string'],
+            'product_files.*.path' => ['nullable'],
             'product_files.*.sort' => ['nullable', 'numeric', 'max:127'],
             
         ];
@@ -94,7 +94,7 @@ class ProductController extends Controller
 
             $data->product_categories()->sync($validatedData['product_categories'] ?? []);
             $data->product_icons()->sync($validatedData['product_icons'] ?? []);
-            $data->product_tags()->sync((array_merge($validatedData['product_tags'],$validatedData['product_special'])) ?? []);
+            $data->product_tags()->sync((array_merge($validatedData['product_tags'] ?? [], $validatedData['product_special'] ?? [])) ?? []);
 
             $relation = 'product_images';
             $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
@@ -102,7 +102,11 @@ class ProductController extends Controller
 
             $relation = 'product_files';
             foreach($validatedData[$relation] as &$value){
-                $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                if(isset($value['path'])){
+                    $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                }else{
+                    unset($value['path']);
+                }                
             }
 
             $data->{$relation}()->createMany($validatedData[$relation]);
@@ -162,7 +166,7 @@ class ProductController extends Controller
 
             $data->product_categories()->sync($validatedData['product_categories'] ?? []);
             $data->product_icons()->sync($validatedData['product_icons'] ?? []);
-            $data->product_tags()->sync((array_merge($validatedData['product_tags'],$validatedData['product_special'])) ?? []);
+            $data->product_tags()->sync((array_merge($validatedData['product_tags'] ?? [],$validatedData['product_special'] ?? [])) ?? []);
 
             $relation = 'product_images';
             $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
