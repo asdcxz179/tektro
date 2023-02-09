@@ -62,6 +62,7 @@
                                     <div id="filter_{{$key}}_{{$key2}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne">
                                     <!-- data-bs-parent="#type_{{$key2}}" -->
                                         <div class="accordion-body">
+                                            @if($type->support_files()->where('support_file_type_id',1)->get()->count() > 0)
                                             <div class="p-md-4">
                                                 <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.manual')}}</span>
                                                 <ul>
@@ -75,6 +76,8 @@
                                                     @endforeach
                                                 </ul>
                                             </div>
+                                            @endif
+                                            @if($type->support_files()->where('support_file_type_id',2)->get()->count() > 0)
                                             <div class="p-md-4">
                                                 <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.BOM List')}}</span>
                                                 <ul>
@@ -88,6 +91,7 @@
                                                     @endforeach
                                                 </ul>
                                             </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -109,6 +113,7 @@
                                         aria-labelledby="flush-headingOne">
                                         <!-- data-bs-parent="#collapseFilterOne" -->
                                         <div class="accordion-body">
+                                            @if($type->support_files()->where('support_file_type_id',1)->get()->count() > 0)
                                             <div class="p-md-4">
                                                 <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.manual')}}</span>
                                                 <ul>
@@ -123,6 +128,8 @@
                                                 </ul>
 
                                             </div>
+                                            @endif
+                                            @if($type->support_files()->where('support_file_type_id',2)->get()->count() > 0)
                                             <div class="p-md-4">
                                                 <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.BOM List')}}</span>
                                                 <ul>
@@ -136,6 +143,7 @@
                                                     @endforeach
                                                 </ul>
                                             </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

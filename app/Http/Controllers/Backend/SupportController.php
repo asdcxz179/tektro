@@ -82,15 +82,19 @@ class SupportController extends Controller
             $support_files_type_data = SupportFileType::all();
             foreach($support_files_type_data as $type){
                 $relation = 'support_files';
-                foreach($validatedData[$relation.$type->key] as &$value){
-                    if(isset($value['path'])){
-                        $value = array_merge($value, $this->dealfile($value['path'], 'path'));
-                    }else{
-                        unset($value['path']);
+                if(isset($validatedData[$relation.$type->key])) {
+                    foreach($validatedData[$relation.$type->key] as &$value){
+                        if($value['path']){
+                            $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                        }else{
+                            unset($value['path']);
+                        }
+                        $value['support_file_type_id'] = $type->id;
                     }
-                    $value['support_file_type_id'] = $type->id;
-                }
-                $data->{$relation}()->createMany($validatedData[$relation.$type->key]);          
+                    $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation.$type->key], [], ['support_file_type_id' => $type->id]);      
+                }else{
+                    $data->{$relation}()->hasManySyncable($data, $relation, [], [], ['support_file_type_id' => $type->id]);
+                }        
             }            ;
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -147,15 +151,19 @@ class SupportController extends Controller
             $support_files_type_data = SupportFileType::all();
             foreach($support_files_type_data as $type){
                 $relation = 'support_files';
-                foreach($validatedData[$relation.$type->key] as &$value){
-                    if($value['path']){
-                        $value = array_merge($value, $this->dealfile($value['path'], 'path'));
-                    }else{
-                        unset($value['path']);
+                if(isset($validatedData[$relation.$type->key])) {
+                    foreach($validatedData[$relation.$type->key] as &$value){
+                        if($value['path']){
+                            $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                        }else{
+                            unset($value['path']);
+                        }
+                        $value['support_file_type_id'] = $type->id;
                     }
-                    $value['support_file_type_id'] = $type->id;
+                    $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation.$type->key], [], ['support_file_type_id' => $type->id]);      
+                }else{
+                    $data->{$relation}()->hasManySyncable($data, $relation, [], [], ['support_file_type_id' => $type->id]);
                 }
-                $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation.$type->key], [], ['support_file_type_id' => $type->id]);      
             }
 
             DB::commit();

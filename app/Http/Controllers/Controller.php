@@ -23,7 +23,7 @@ class Controller extends BaseController
                 if(in_array($extension, ['png', 'jpg', 'jpeg'])){
                     Image::make($value)->save($path);
                 }else{
-                    file_put_contents($path, $value);
+                    file_put_contents(public_path($path), $value->getContent());
                 }               
 
                 return [ 
