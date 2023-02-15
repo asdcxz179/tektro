@@ -101,21 +101,23 @@ class ProductController extends Controller
             
 
             $relation = 'product_files';
-            foreach($validatedData[$relation] as &$value){
-                if(isset($value['path'])){
-                    $value = array_merge($value, $this->dealfile($value['path'], 'path'));
-                }else{
-                    unset($value['path']);
-                }                
-            }
+            if(isset($validatedData[$relation])){
+                foreach($validatedData[$relation] as &$value){
+                    if(isset($value['path'])){
+                        $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                    }else{
+                        unset($value['path']);
+                    }                
+                }
 
-            $data->{$relation}()->createMany($validatedData[$relation]);
+                $data->{$relation}()->createMany($validatedData[$relation]);
+            }
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
         } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['message' => $e->getMessage()],422);
+            return response()->json(['message' => $e->getMessage(), 'line' => $e->getLine()],422);
         }
     }
 

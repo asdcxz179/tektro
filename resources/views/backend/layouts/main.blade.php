@@ -62,6 +62,9 @@
                 height: 15px;
                 width: 18px;
             }
+            .select2-container {
+                width: 100% !important;
+            }             
         </style>
         @if(!auth()->user()->can("create $permissionsData"))
             <style>
