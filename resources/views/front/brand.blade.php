@@ -56,10 +56,10 @@
         <div class="tab-pane fade show active" role="tabpanel" id="index_tektro_a">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
+                    <div class="col-10 offset-1 col-md-8 offset-md-2 col-xl-6 offset-xl-3">
                         <ul class="d-flex flex-wrap mb-0 break-word">
                             @foreach($brand->categories as $category)
-                            <li class="col-6 col-sm-4 col-md-3 mb-4 mb-md-5">
+                            <li class="col-6 col-sm-4 col-lg-3 mb-4 mb-md-5">
                                 <a href="{{route('front.category.show',['lang'=>$lang,'category'=>$category->id])}}" class="d-flex flex-column flex-sm-row align-items-center hover_color_none">
                                     <img src="{{asset($category->path??'front/assets/images/trp_category_img01.png')}}" class="me-0 me-sm-3" alt="{{$category->name}}">
                                     <span class="text-center text-sm-start fs-7 fs-md-6">{{$category->name}}</span>
@@ -74,10 +74,10 @@
         <div class="tab-pane fade" role="tabpanel" id="index_tektro_b">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
+                    <div class="col-10 offset-1 col-md-8 offset-md-2 col-xl-6 offset-xl-3">
                         <ul class="d-flex flex-wrap mb-0 break-word">
                             @foreach($brand->tags()->where(['type'=>1])->get() as $tag)
-                            <li class="col-6 col-sm-4 col-md-3 mb-4 mb-md-5">
+                            <li class="col-6 col-sm-4 col-lg-3 mb-4 mb-md-5">
                                 <a href="{{route('front.tag.show',['lang'=>$lang,'tag'=>$tag->id])}}" class="d-flex flex-column flex-sm-row align-items-center hover_color_none">
                                     <img src="{{asset($tag->path??'front/assets/images/trp_category_img01.png')}}" class="me-0 me-sm-3" alt="{{$tag->name}}">
                                     <span class="text-center text-sm-start fs-7 fs-md-6">{{$tag->name}}</span>
@@ -99,7 +99,7 @@
 <section class="jarallax bg-cover bottom_jumbotron" style="background-image: url({{asset($brand->below_advertise_image)}});">
     <div class="container-fluid" data-aos="fade-up" data-aos-duration="800">
         <div class="row">
-            <div class="col-md-5 offset-md-2">
+            <div class="col-10 offset-1 col-md-5 offset-md-2">
                 <h3 class="title text-white mb-4">{{$brand->below_advertise_title}}</h3>
                 <p class="fs-7 fs-md-6 text-white mb-5">
                     {!!nl2br($brand->below_advertise_subtitle)!!}

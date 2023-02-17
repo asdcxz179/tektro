@@ -3,7 +3,7 @@
 @section('content')
 <div class="block">
     <div class="block-header block-header-default">
-        <h3 class="block-title">{{ __('edit') }}</h3>
+        <h3 class="block-title">{{ __('edit') }} - {{$data->name}}</h3>
     </div>
     <div class="block-content block-content-full">
         <form id="form-edit" action="{{ route('backend.'.$routeNameData.'.update',[$routeIdData => $data->id]) }}" method="post" enctype="multipart/form-data">

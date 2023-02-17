@@ -47,15 +47,15 @@
                             </select>
                         </div>    
                         <div class="form-group col-md-6">
-                            <label>{{ __("backend.$routeNameData.phone") }}<span class="text-danger">*</span></label>
-                            <input type="phone" name="phone" class="form-control" placeholder="{{ __("backend.$routeNameData.phone") }}">
+                            <label>{{ __("backend.$routeNameData.phone") }}</label>
+                            <textarea class="form-control" name="phone" id="" cols="30" rows="10" placeholder="{{ __("backend.$routeNameData.phone") }}"></textarea>
                         </div>                                              
                         <div class="form-group col-md-6">
-                            <label>{{ __("backend.$routeNameData.email") }}<span class="text-danger">*</span></label>
-                            <input type="email" name="email" class="form-control" placeholder="{{ __("backend.$routeNameData.email") }}">
+                            <label>{{ __("backend.$routeNameData.email") }}</label>
+                            <textarea class="form-control" name="email" id="" cols="30" rows="10" placeholder="{{ __("backend.$routeNameData.email") }}"></textarea>
                         </div>                                              
                         <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.website") }}<span class="text-danger">*</span></label>
+                            <label>{{ __("backend.$routeNameData.website") }}</label>
                             <input type="website" name="website" class="form-control" placeholder="{{ __("backend.$routeNameData.website") }}">
                         </div>                                                                                       
                         <div class="form-group col-md-6">

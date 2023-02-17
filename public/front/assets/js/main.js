@@ -155,6 +155,15 @@ $(document).ready(function () {
       }
   });
 
+  // accordian
+    $(document).mouseup(function(e) {
+      
+      var _con = $('.accordion-button');
+      if (!_con.is(e.target) && _con.has(e.target).length === 0 ) {
+          $('.accordion-button[aria-expanded="true"]').addClass('collapsed');
+          $('.accordion-collapse.collapse').removeClass('show');
+      }
+  });
   
 })
 

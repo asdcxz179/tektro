@@ -56,21 +56,29 @@
             </form>
         </div>
     </div>
-
     <div class="row">
         <div class="col-10 offset-1">
-            <div class="row justify-content-between">
-                @foreach($dealers as $dealer)
-                <div class="col-sm-6 col-md-4 mb-3 mb-md-5">
+            <div class="row">
+                @foreach($dealers as $key => $dealer)
+                <div class="col-sm-6 col-md-4 mb-3 mb-md-5  listBox moreBox"  @if($key>8) style="display: none;" @endif>
                     <h5 class="fw-bold text-uppercase mb-3 fs-6">{{$dealer->country}}</h5>
                     <ul class="list_group">
                         <li>{{$dealer->company}}</li>
-                        <li>Tel: {{$dealer->phone}}</li>
-                        <li>E-mail: {{$dealer->email}}</li>
+                        @if($dealer->phone)
+                        <li><div style="display:flex"><div class="me-1">Tel: </div><div style="word-break: break-all;flex: 4;">{!!nl2br($dealer->phone)!!}</div></div></li>
+                        @endif
+                        @if($dealer->email)
+                        <li><div style="display:flex"><div class="me-1">E-mail: </div><div style="word-break: break-all;flex: 4;">{!!nl2br($dealer->email)!!}</div></div></li>
+                        @endif
+                        @if($dealer->website)
                         <li>Website: {{$dealer->website}}</li> 
+                        @endif
                     </ul>
                 </div>
                 @endforeach
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <a href="javascript:void(0)" class="c_btn btn_outline_dark" id="loadMore">{{__('front.LOAD MORE')}}</a>
             </div>
         </div>
     </div>

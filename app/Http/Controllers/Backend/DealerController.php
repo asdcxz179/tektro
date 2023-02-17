@@ -21,7 +21,7 @@ class DealerController extends Controller
             'company.*' => ['nullable', 'string', 'max:100'],
             //公用
             'phone' => ['nullable', 'string'],
-            'email' => ['nullable', 'email'],
+            'email' => ['nullable', 'string'],
             'website' => ['nullable', 'string'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],

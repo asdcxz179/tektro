@@ -25,7 +25,7 @@
         <div class="offset-md-1 col-md-10">
             <div class="row">
                 @foreach($videos as $key => $video)
-                <div class="col-md-6 col-lg-4 mb-12 listBox moreBox" @if($key>6) style="display: none;" @endif>
+                <div class="col-md-6 col-lg-4 mb-12 listBox moreBox" @if($key>8) style="display: none;" @endif>
                     <div class="mb-4 overflow-hidden">
                         <a href="#" class="ratio_outer" style="padding-bottom: 56.25%;">
                             <iframe class="ratio_inner" src="https://www.youtube.com/embed/{{$video->youtube_key}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 pe-3 offset-md-1">
-                        <div class="d-flex flex-md-column gallery_list">
+                        <div class="d-flex flex-wrap flex-md-column gallery_list">
                             @foreach($product->product_images as $key => $image)
                             <div class="gallery_item">
                                 <img src="{{asset($image->path)}}" alt="" @if($key==0) class="focus" @endif>
@@ -74,46 +74,62 @@
                 <div class="row">
                     <!-- tab start -->
                     <ul class="nav nav-fill main_nav_fill justify-content-start mb-12 p-0">
+                        @if(strip_tags($product->details))
                         <li class="nav-item">
                             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#details" type="button"
                                 role="tab" aria-selected="false">{{__('front.DETAILS')}}</button>
                         </li>
+                        @endif
+                        @if(strip_tags($product->technology))
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#technology" type="button"
                                 role="tab" aria-selected="false">{{__('front.TECHNOLOGY')}}</button>
                         </li>
+                        @endif
+                        @if(strip_tags($product->test_reviews))
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#test" type="button"
                                 role="tab" aria-selected="false">{{__('front.TEST & REVIEWS')}}</button>
                         </li>
+                        @endif
+                        @if(strip_tags($product->related_products))
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#related" type="button"
                                 role="tab" aria-selected="false">{{__('front.RELATED PRODUCTS')}}</button>
                         </li>
+                        @endif
                     </ul>
                     <!-- tab end -->
                     <!-- tab-content start -->
                     <div class="tab-content">
+                        @if($product->details)
                         <div class="tab-pane fade show active" role="tabpanel" id="details">
                             <div class="row">
                                 {!!$product->details!!}
                             </div>
                         </div>
+                        @endif
+                        @if($product->technology)
                         <div class="tab-pane fade" role="tabpanel" id="technology">
                             <div class="row">
                                 {!!$product->technology!!}
                             </div>
                         </div>
+                        @endif
+                        @if($product->test_reviews)
                         <div class="tab-pane fade" role="tabpanel" id="test">
                             <div class="row">
                                 {!!$product->test_reviews!!}
                             </div>
                         </div>
+                        @endif
+                        @if($product->related_products)
                         <div class="tab-pane fade" role="tabpanel" id="related">
                             <div class="row">
                                 {!!$product->related_products!!}
                             </div>
                         </div>
+                        @endif
                     </div>
                     <!-- tab-content end -->
                 </div>
@@ -123,11 +139,11 @@
     <!-- gallery end -->
 
     <!-- download -->
+    @if($product->files->count()>0)
     <section class="download_block">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
-                    @if($product->files->count()>0)
                     <div class="accordion" id="accordionDownload">
                         <div class="accordion-item bg-transparent border-0">
                             <h2 class="accordion-header mb-3" id="downloadList">
@@ -148,11 +164,11 @@
                             </div>
                         </div>
                     </div>
-                    @endif
                 </div>
             </div>
         </div>
     </section>
+    @endif
 @endsection
 @push('javascript')
 <script>
@@ -172,6 +188,7 @@
             $('.gallery_list img').removeClass('focus');
             $(this).addClass('focus');
         })
+        $('.nav-item').eq(0).click();
     })
 </script>
 @endpush/

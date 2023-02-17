@@ -30,6 +30,7 @@ class ProductBrandController extends Controller
             'below_advertise_switch' => ['nullable', 'string', 'max:100'],
             'below_advertise_link' => ['nullable', 'string', 'max:255'],
             'file' => ['nullable', 'string'],
+            'file_exist' => ['nullable', 'string'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],        
@@ -141,6 +142,10 @@ class ProductBrandController extends Controller
                 $validatedData = array_merge($validatedData, $this->dealfile($validatedData['file'], 'file', $data, 'file'));
                 $validatedData['file_data_name'] = $validatedData['file_name'];
             }else{
+                if(!isset($validatedData['file_exist'])) {
+                    $validatedData['file'] = '';
+                    $validatedData['file_data_name'] = '';
+                }
                 unset($validatedData['file']);
             }
 

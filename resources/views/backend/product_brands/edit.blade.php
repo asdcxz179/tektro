@@ -78,9 +78,19 @@
                                 <fieldset class="image">                                   
                                     <input type="file" name="file" />    
                                 </fieldset>  
-                                @isset($data->file)
-                                <label class="filepond--rm"><h6>{{ $data->file_data_name }}<h6></label>
-                                @endisset                                 
+                                @if($data->file_data_name)
+                                <div class="form-row pdf-item">
+                                    <input type="hidden" name="file_exist" value="{{ $data->file_data_name }}">
+                                    <div class="form-group col-md-4">
+                                        <label class="filepond--rm"><h6>{{ $data->file_data_name }}<h6></label>    
+                                    </div>
+                                    <div class="form-group col-md-4 justify-content-center align-items-end d-flex folder-delete" data-id="{{ $data->id }}">
+                                        <button type="button" class="rm-btn btn btn-danger mr-5 mb-5">
+                                            <i class="fa fa-times"></i>
+                                        </button>    
+                                    </div>
+                                </div>                           
+                                @endif                                 
                             </div> 
                         </div>
                         <div class="form-group col-md-6">
@@ -152,6 +162,9 @@ $(function() {
             formEdit.find('button[type=submit]').attr('disabled',false);
         }
     });   
+    $(".folder-delete").click(function(){
+        $(this).parents('.pdf-item').remove();
+    })
 });
 </script>    
 @endpush

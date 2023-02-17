@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{asset('front/assets/css/base.css?v3')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/slick-theme.css')}}">
-    <link rel="stylesheet" href="{{asset('front/assets/css/custom.css?v1')}}">
+    <link rel="stylesheet" href="{{asset('front/assets/css/custom.css?v7')}}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Poppins:wght@400;700&display=swap;" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('front/assets/css/boxicons.css')}}">
@@ -29,7 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/2.0.3/jarallax.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="{{asset('front/assets/js/jquery.cookie.js')}}"></script>
-    <script src="{{asset('front/assets/js/main.js?1')}}"></script>
+    <script src="{{asset('front/assets/js/main.js?v2')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.js"></script>
     @yield('og')
     @stack('style')
@@ -337,7 +337,7 @@
             </div>
 
             <form class="form-group d-block d-flex position-relative search_box mb-4" action="{{route('front.search.index',['lang'=>$lang])}}" name="search">
-                <div class="input-group input-group-lg">
+                <div class="input-group input-group-lg mb-3">
                     <span class="input-group-text ps-3 bg-white border-0">
                         <i class='bx bx-search'></i>
                     </span>
@@ -345,15 +345,15 @@
                 </div>
             </form>
             @if($keywords)
-            <div class="ps-3 pb-3 pt-1 bg-white" style="position: relative;top: -24px;display:none" id="mobile_keyword">
+            <div class="px-3 pb-3 pt-3 bg-white rounded-1" style="position: relative;top: -24px;display:none" id="mobile_keyword">
                 <div class="row record" style="display:none;">
                     <div class="col-md-12">
                         <span class="text-secondary">{{__('front.search_record')}}</span>
                     </div>
                     <div class="search_record"></div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
+                <div class="">
+                    <div class="col-md-12 mb-2">
                         <span class="text-secondary">{{__('front.popluar_search')}}</span>
                     </div>
                     @foreach($keywords as $keyword)
@@ -510,15 +510,15 @@
                     </div>
                 </form>
                 @if($keywords)
-                <div class="ps-3 pb-3">
+                <div class="px-3 pb-2 pt-3">
                     <div class="row record" style="display:none;">
                         <div class="col-md-12">
                             <span class="text-secondary">{{__('front.search_record')}}</span>
                         </div>
                         <div class="search_record"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="">
+                        <div class="col-md-12 mb-2">
                             <span class="text-secondary">{{__('front.popluar_search')}}</span>
                         </div>
                         @foreach($keywords as $keyword)
@@ -700,6 +700,7 @@
                         breakpoint: 768,
                         settings: {
                             slidesToShow: 1,
+                            slidesToScroll: 1,
                             swipeToSlide: false
                         }
                     }

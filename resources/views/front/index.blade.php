@@ -43,7 +43,10 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-11">
                                     <a href="{{route('front.news.show',['lang'=>$lang,'news'=>$new->id])}}" class="mb-5 mb-md-4 d-block overflow-hidden">
-                                        <img src="{{asset($new->banner)}}" alt="" class="hover_transform_scale">
+                                        <!-- <img src="{{asset($new->banner)}}" alt="" class="hover_transform_scale"> -->
+                                        <div class="ratio_outer hover_transform_scale" style="padding-bottom: 66%;">
+                                            <div class="ratio_inner bg-cover" style="background-image: url('{{asset($new->banner)}}')"></div>
+                                        </div>
                                     </a>
                                     <div>
                                         <div class="text-primary fw-bold fs-7">{{$new->show_date}}</div>
@@ -66,7 +69,7 @@
         <!-- news end -->
         @break
         @case(3)
-        <div class="">
+        <div class="" style="overflow:hidden">
             <div id="player_{{$module->home_videos[0]->youtube_key}}" class="iframe_video d-block"></div>
             <!-- <iframe class="iframe_video" src="https://www.youtube.com/embed/{{$module->home_videos[0]->youtube_key}}?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
         </div>
@@ -224,6 +227,8 @@
     .iframe_video {
         width:100%;
         height: calc(100vw/1.77);
+        position: relative;
+        top: -8px;
     }
 </style>
 @endpush
