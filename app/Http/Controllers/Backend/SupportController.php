@@ -202,7 +202,13 @@ class SupportController extends Controller
     public function status(Request $request, $id)
     {
         $this->authorize('edit '.$this->name);
-        $validatedData = $request->validate(['status' => ['required', 'boolean']], [], ['status' => __('status'),]);
+        $validatedData = $request->validate([
+            'status' => ['required', 'boolean'],
+            'sort' => ['nullable', 'numeric', 'max:127'],
+        ], [], [
+            'status' => __('status'),
+            'sort' => __('sort'),
+        ]);
         
         try{
             $data = CrudModel::findOrFail($id);

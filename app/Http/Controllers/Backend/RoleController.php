@@ -69,7 +69,7 @@ class RoleController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::create(array_merge($validatedData, ['guard_name' => config('fortify.guard')]));
-            $data->syncPermissions($this->syncPermissions($validatedData['permissions']));
+            $data->syncPermissions($this->syncPermissions($validatedData['permissions'] ?? []));
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -121,7 +121,7 @@ class RoleController extends Controller
 
             $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
-            $data->syncPermissions($this->syncPermissions($validatedData['permissions']));
+            $data->syncPermissions($this->syncPermissions($validatedData['permissions'] ?? []));
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
@@ -159,7 +159,13 @@ class RoleController extends Controller
     public function status(Request $request, $id)
     {
         $this->authorize('edit '.$this->name);
-        $validatedData = $request->validate(['status' => ['required', 'boolean']], [], ['status' => __('status'),]);
+        $validatedData = $request->validate([
+            'status' => ['required', 'boolean'],
+            'sort' => ['nullable', 'numeric', 'max:127'],
+        ], [], [
+            'status' => __('status'),
+            'sort' => __('sort'),
+        ]);
 
         try{
             $data = CrudModel::findOrFail($id);

@@ -36,7 +36,12 @@ $(function() {
 				return data.length > 0 ? data.map(item => item.name['zh-Hant']).join(",") : '{{ __('無') }}';
 			} },
             { data: 'name.zh-Hant', name: 'name->zh-Hant', title: '{{ __("backend.$routeNameData.name.*") }}', defaultContent: '' },
-            { data: 'sort', title: '{{ __("backend.$routeNameData.sort") }}' },
+            { 
+                data: 'sort', title: '{{ __("backend.$routeNameData.sort") }}',
+                render: function ( data, type, row ) {   
+                    return`<input data-id="${ row.id }" type="text" required name="sort" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="${ data }">`;            
+                },
+            },
             {
                 data: "status", title: '{{ __('status') }}',
                 render: function ( data, type, row ) {   
@@ -57,10 +62,16 @@ $(function() {
         ]
     });
 
-    tableList.on('click','.css-switch input[type="checkbox"]',function(){
+    tableList.on('change','[name="sort"]', sort_status)
+    tableList.on('click','.css-switch input[type="checkbox"]', sort_status)
+    
+    function sort_status() {
         var id = $(this).data('id');
+        var tr = $(this).parents('tr');
         $.get(`${ path }/${ id }`, function(row) {
-            row.status = row.status ? 0 : 1;
+            row.sort = tr.find('[name="sort"]').val()
+            row.status = tr.find('.css-switch input[type="checkbox"]').prop('checked') ? 1 : 0;
+            console.log(row);
             $.ajax({
                 url: `${ path }/status/${ id }`,
                 type: 'PUT',
@@ -76,8 +87,8 @@ $(function() {
                     }); 
                 },
             }); 
-        })       
-    })
+        })  
+    }
 
     tableList.on('click','.delete',function(){
         var id = $(this).data('id');
