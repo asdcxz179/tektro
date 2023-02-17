@@ -32,6 +32,9 @@ $(function() {
             { data: 'null', title: '#', bSearchable: false, bSortable: false, render: function ( data, type, row , meta ) {
                 return  meta.row + 1;
             }},
+            // { data: 'product_categories', name: 'product_categories.name->zh-Hant', title: '{{ __("backend.$routeNameData.product_categories") }}', render: function ( data, type, row ){
+			// 	return data.map(item => item.name['zh-Hant']).join(",");
+			// } },
             { data: 'name.zh-Hant', name: 'name->zh-Hant', title: '{{ __("backend.$routeNameData.name.*") }}', defaultContent: '' },
             { 
                 data: 'sort', title: '{{ __("backend.$routeNameData.sort") }}',

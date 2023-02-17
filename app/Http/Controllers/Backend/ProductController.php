@@ -56,7 +56,7 @@ class ProductController extends Controller
     {
         $this->authorize('read '.$this->name);
         if ($request->ajax()) {
-            $data = CrudModel::query();
+            $data = CrudModel::with(['product_categories']);
             return Datatables::eloquent($data)
                 ->make(true);
         }
@@ -174,14 +174,16 @@ class ProductController extends Controller
             $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
 
             $relation = 'product_files';
-            foreach($validatedData[$relation] as &$value){
-                if($value['path']){
-                    $value = array_merge($value, $this->dealfile($value['path'], 'path'));
-                }else{
-                    unset($value['path']);
+            if(isset($validatedData[$relation])){
+                foreach($validatedData[$relation] as &$value){
+                    if($value['path']){
+                        $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                    }else{
+                        unset($value['path']);
+                    }
                 }
-            }
-            $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation]);         
+                $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation]);       
+            }  
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
