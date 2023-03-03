@@ -58,7 +58,7 @@ class ProductController extends Controller
     {
         $this->authorize('read '.$this->name);
         if ($request->ajax()) {
-            $data = CrudModel::query();
+            $data = CrudModel::with(['product_categories']);
             return Datatables::eloquent($data)->filter(function($query) use ($request){
                 if($request->brand) {
                     $brand = $request->brand;
@@ -74,9 +74,6 @@ class ProductController extends Controller
                         $query->where('product_categories.id',$category);
                     });    
                 }
-                // $query->whereHas('category',function($query){
-                //     $query->where('product_categories.id',3);
-                // });
             },true)->make(true);
         }
         $data['brands'] = ProductBrand::where(['status'=>1])->get();
@@ -199,14 +196,16 @@ class ProductController extends Controller
             $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
 
             $relation = 'product_files';
-            foreach($validatedData[$relation] as &$value){
-                if($value['path']){
-                    $value = array_merge($value, $this->dealfile($value['path'], 'path'));
-                }else{
-                    unset($value['path']);
+            if(isset($validatedData[$relation])){
+                foreach($validatedData[$relation] as &$value){
+                    if($value['path']){
+                        $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                    }else{
+                        unset($value['path']);
+                    }
                 }
-            }
-            $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation]);         
+                $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation]);       
+            }  
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
