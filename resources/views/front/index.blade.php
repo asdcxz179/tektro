@@ -69,13 +69,14 @@
         <!-- news end -->
         @break
         @case(3)
-        <div class="" style="overflow:hidden">
+        <div style="margin-top: -4px;">
             <div id="player_{{$module->home_videos[0]->youtube_key}}" class="iframe_video d-block"></div>
             <!-- <iframe class="iframe_video" src="https://www.youtube.com/embed/{{$module->home_videos[0]->youtube_key}}?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
         </div>
         <script>
             $(document).ready(function(){
                 players['player_{{$module->home_videos[0]->youtube_key}}'] = '{{$module->home_videos[0]->youtube_key}}';
+                $(body).css = ('background-color','transparent');
             });
         </script>
         @break
@@ -226,9 +227,8 @@
 <style>
     .iframe_video {
         width:100%;
-        height: calc(100vw/1.77);
-        position: relative;
-        top: -8px;
+        /* height: calc(100vw/1.77); */
+        height: calc(100vw * 0.5625 / 1.007);
     }
 </style>
 @endpush

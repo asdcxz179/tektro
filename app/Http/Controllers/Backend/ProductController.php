@@ -9,6 +9,8 @@ use DataTables;
 use Exception;
 use DB;
 use Illuminate\Support\Arr;
+use App\Models\ProductBrand;
+use App\Models\ProductCategory;
 
 class ProductController extends Controller
 {
@@ -57,10 +59,33 @@ class ProductController extends Controller
         $this->authorize('read '.$this->name);
         if ($request->ajax()) {
             $data = CrudModel::query();
-            return Datatables::eloquent($data)
-                ->make(true);
+            return Datatables::eloquent($data)->filter(function($query) use ($request){
+                if($request->brand) {
+                    $brand = $request->brand;
+                    $query->whereHas('category',function($query) use ($brand){
+                        $query->whereHas('brands',function($query) use ($brand) {
+                            $query->where('product_brands.id',$brand);
+                        });
+                    });    
+                }
+                if($request->category) {
+                    $category = $request->category;
+                    $query->whereHas('category',function($query) use ($category){
+                        $query->where('product_categories.id',$category);
+                    });    
+                }
+                // $query->whereHas('category',function($query){
+                //     $query->where('product_categories.id',3);
+                // });
+            },true)->make(true);
         }
-        return view($this->view.'.index');
+        $data['brands'] = ProductBrand::where(['status'=>1])->get();
+        $categories = [];
+        foreach ($data['brands'] as $brand) {
+            $categories[$brand->id] = $brand->categories;
+        }
+        $data['categories'] = $categories;
+        return view($this->view.'.index',$data);
     }
 
     /**
