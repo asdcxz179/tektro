@@ -23,23 +23,23 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.name.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('name', $language->lang) }}" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
+                                <input type="text" value="{{ $data->getTranslation('name', $language->lang,false) }}" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.advertise_title.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('advertise_title', $language->lang) }}" name="advertise_title[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.advertise_title.*") }}">
+                                <input type="text" value="{{ $data->getTranslation('advertise_title', $language->lang,false) }}" name="advertise_title[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.advertise_title.*") }}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.advertise_subtitle.*") }}</label>
-                                <textarea name="advertise_subtitle[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.advertise_subtitle.*") }}" cols="30" rows="10">{{ $data->getTranslation('advertise_subtitle', $language->lang) }}</textarea>
+                                <textarea name="advertise_subtitle[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.advertise_subtitle.*") }}" cols="30" rows="10">{{ $data->getTranslation('advertise_subtitle', $language->lang,false) }}</textarea>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.below_advertise_title.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('below_advertise_title', $language->lang) }}" name="below_advertise_title[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.below_advertise_title.*") }}">
+                                <input type="text" value="{{ $data->getTranslation('below_advertise_title', $language->lang,false) }}" name="below_advertise_title[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.below_advertise_title.*") }}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.below_advertise_subtitle.*") }}</label>
-                                <textarea name="below_advertise_subtitle[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.below_advertise_subtitle.*") }}" cols="30" rows="10">{{ $data->getTranslation('below_advertise_subtitle', $language->lang) }}</textarea>
+                                <textarea name="below_advertise_subtitle[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.below_advertise_subtitle.*") }}" cols="30" rows="10">{{ $data->getTranslation('below_advertise_subtitle', $language->lang,false) }}</textarea>
                             </div>
                         </div>
                     </div>

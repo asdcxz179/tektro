@@ -41,11 +41,11 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>{{ __("backend.$routeNameData.relation.*.big_title") }}({{ $language->name }})</label>
-                                            <input type="text" value="{{ $value->getTranslation('big_title', $language->lang) }}" name="relation[{{ $key }}][big_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.big_title") }}">
+                                            <input type="text" value="{{ $value->getTranslation('big_title', $language->lang,false) }}" name="relation[{{ $key }}][big_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.big_title") }}">
                                         </div>  
                                         <div class="form-group col-md-6">
                                             <label>{{ __("backend.$routeNameData.relation.*.small_title") }}({{ $language->name }})</label>
-                                            <input type="text" value="{{ $value->getTranslation('small_title', $language->lang) }}" name="relation[{{ $key }}][small_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">
+                                            <input type="text" value="{{ $value->getTranslation('small_title', $language->lang,false) }}" name="relation[{{ $key }}][small_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">
                                         </div>
                                     </div>
                                 </div>

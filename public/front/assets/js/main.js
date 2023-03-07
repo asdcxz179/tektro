@@ -48,6 +48,35 @@ $(document).ready(function () {
     $(this).children('.dropdown-menu').toggleClass('show');
   });
 
+// img zoom
+// var src = $('.thumb-show').find('img').attr("src");
+// $('.thumb-show').append('<img class="zoom" src="'+src+'" >');
+
+// $('.thumb-show').mouseenter(function(){
+  
+//     $(this).mousemove(function(event){
+      
+//         var offset = $(this).offset();
+//         var left = event.pageX - offset.left;
+//         var top = event.pageY - offset.top;
+      
+//         $(this).find('.zoom').css({
+//           width: '400%',
+//           opacity: 1,
+//           left: -left,
+//           top: -top
+//         })
+//     });
+// });
+
+// $('.thumb-show').mouseleave(function(){                     
+//    $(this).find('.zoom').css({
+//      width: '100%',
+//      opacity: 0,
+//      left: 0,
+//      top: 0
+//    })                               
+//  });
 
 });
 
@@ -199,3 +228,4 @@ function cookiesPolicyBar() {
         $('#cookieAcceptBar').fadeOut();
   });
 }
+

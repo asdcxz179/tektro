@@ -78,8 +78,8 @@ class ProductController extends Controller
         }
         $data['brands'] = ProductBrand::where(['status'=>1])->get();
         $categories = [];
-        foreach ($data['brands'] as $brand) {
-            $categories[$brand->id] = $brand->categories;
+        if(request('brand')) {
+            $categories = $data['brands']->where('id',request('brand'))->first()->categories;
         }
         $data['categories'] = $categories;
         return view($this->view.'.index',$data);
@@ -205,7 +205,9 @@ class ProductController extends Controller
                     }
                 }
                 $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation]);       
-            }  
+            }else{
+                $data->{$relation}()->hasManySyncable($data, $relation, []);       
+            }
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

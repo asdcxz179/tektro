@@ -27,35 +27,35 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.name.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('name', $language->lang) }}" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
+                                <input type="text" value="{{ $data->getTranslation('name', $language->lang,false) }}" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.description.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('description', $language->lang) }}" name="description[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.description.*") }}">
+                                <input type="text" value="{{ $data->getTranslation('description', $language->lang,false) }}" name="description[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.description.*") }}">
                             </div>               
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.attribute.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('attribute', $language->lang) }}" name="attribute[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.attribute.*") }}">
+                                <input type="text" value="{{ $data->getTranslation('attribute', $language->lang,false) }}" name="attribute[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.attribute.*") }}">
                             </div>                                                                                                           
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.content.*") }}</label>                                
-                                <textarea name="content[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('content', $language->lang) }}</textarea>
+                                <textarea name="content[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('content', $language->lang,false) }}</textarea>
                             </div>                            
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.details.*") }}</label>                                
-                                <textarea name="details[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('details', $language->lang) }}</textarea>
+                                <textarea name="details[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('details', $language->lang,false) }}</textarea>
                             </div>                            
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.technology.*") }}</label>                                
-                                <textarea name="technology[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('technology', $language->lang) }}</textarea>
+                                <textarea name="technology[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('technology', $language->lang,false) }}</textarea>
                             </div>                            
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.test_reviews.*") }}</label>                                
-                                <textarea name="test_reviews[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('test_reviews', $language->lang) }}</textarea>
+                                <textarea name="test_reviews[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('test_reviews', $language->lang,false) }}</textarea>
                             </div>              
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.related_products.*") }}</label>                                
-                                <textarea name="related_products[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('related_products', $language->lang) }}</textarea>
+                                <textarea name="related_products[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('related_products', $language->lang,false) }}</textarea>
                             </div>                              
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             <label>{{ __("backend.$routeNameData.product_categories") }}</label>
                             <select data-url="{{ route('backend.product_categories.select') }}" class="js-select2 form-control" multiple name="product_categories[]" data-placeholder="{{ __("backend.$routeNameData.product_categories") }}">
                                 @foreach($data->product_categories as $item)
-                                <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                                <option value="{{ $item->id }}" selected>{{ $item->name }} ({{$item->brands->pluck('name')->join(',')}})</option>
                                 @endforeach
                             </select>
                         </div>    
@@ -188,7 +188,7 @@
                     </div>         
                 </div>       
             </div>
-            <a href="{{ route('backend.'.$routeNameData.'.index') }}" class="btn btn-secondary">{{ __('back') }}</a>
+            <a href="{{ route('backend.'.$routeNameData.'.index',request()->all()) }}" class="btn btn-secondary">{{ __('back') }}</a>
             <button type="submit" class="btn btn-primary">
                 @if(request()->action == 'copy')
                     {{ __('create') }}
@@ -231,7 +231,7 @@ $(function() {
         },
         success: function(data) {
             Swal.fire({ text: data.message, icon: 'success' }).then(function() {
-                location.href = path;
+                history.go(-1);
             });
         },
         complete: function() {

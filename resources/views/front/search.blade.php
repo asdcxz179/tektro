@@ -1,7 +1,7 @@
 @extends('front.layouts.main')
 @section('content')
 <!-- breadcrumb -->
-<section class="breadcrumb mb-12 mb-sm-20" style="background-image: url('{{asset('front/assets/images/breadcrumb_result.jpg')}}');">
+<section class="breadcrumb" style="background-image: url('{{asset('front/assets/images/breadcrumb_result.jpg')}}');">
 
     <div class="container">
         <div class="row justify-content-center">
@@ -19,7 +19,7 @@
 </section>
     <!-- breadcrumb end -->
 
-<section class="mb-15">
+<section class="bg-light pt-12 pt-md-25 pb-50" style="margin-bottom: -100px;">
     <div class="container">
         <div class="row mb-12 mb-md-20">
             <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">

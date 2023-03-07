@@ -62,7 +62,7 @@
                             <li class="col-6 col-sm-4 col-lg-3 mb-4 mb-md-5">
                                 <a href="{{route('front.category.show',['lang'=>$lang,'category'=>$category->id])}}" class="d-flex flex-column flex-sm-row align-items-center hover_color_none">
                                     <img src="{{asset($category->path??'front/assets/images/trp_category_img01.png')}}" class="me-0 me-sm-3" alt="{{$category->name}}">
-                                    <span class="text-center text-sm-start fs-7 fs-md-6">{{$category->name}}</span>
+                                    <span class="text-center text-sm-start fs-7">{{$category->name}}</span>
                                 </a>
                             </li>
                             @endforeach
@@ -80,7 +80,7 @@
                             <li class="col-6 col-sm-4 col-lg-3 mb-4 mb-md-5">
                                 <a href="{{route('front.tag.show',['lang'=>$lang,'tag'=>$tag->id])}}" class="d-flex flex-column flex-sm-row align-items-center hover_color_none">
                                     <img src="{{asset($tag->path??'front/assets/images/trp_category_img01.png')}}" class="me-0 me-sm-3" alt="{{$tag->name}}">
-                                    <span class="text-center text-sm-start fs-7 fs-md-6">{{$tag->name}}</span>
+                                    <span class="text-center text-sm-start fs-7">{{$tag->name}}</span>
                                 </a>
                             </li>
                             @endforeach

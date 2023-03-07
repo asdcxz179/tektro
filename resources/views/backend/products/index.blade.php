@@ -14,7 +14,7 @@
                             <select name="brand" id="" class="form-control">
                                 <option value="">品牌</option>
                                 @foreach($brands as $brand)
-                                <option value="{{$brand->id}}">{{$brand->name}}</option>
+                                <option value="{{$brand->id}}" @if(request('brand') == $brand->id) selected @endif>{{$brand->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -22,9 +22,7 @@
                             <select name="category" id="" class="form-control">
                                 <option value="">產品分類</option>
                                 @foreach($categories as $key => $category)
-                                    @foreach($category as $item)
-                                    <option value="{{$item->id}}" class="brand_{{$key}}" style="display:none;">{{$item->name}}</option>
-                                    @endforeach
+                                    <option value="{{$category->id}}" class="brand_{{$key}}" @if(request('category') == $category->id) selected @endif>{{$category->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -92,8 +90,8 @@ $(function() {
             { data: 'created_at', title: '{{ __('created_at') }}' },
             { data: 'updated_at', title: '{{ __('updated_at') }}' },
             { data: 'id', title: '{{ __('option') }}', bSortable: false, render:function(data,type,row) {
-                return `<a class="edit" href="${ path }/${ data }/edit">{{ __('edit') }}</a> |
-                    <a class="copy" href="${ path }/${ data }/edit?action=copy">{{ __('copy') }}</a> |
+                return `<a class="edit" href="${ path }/${ data }/edit?{{http_build_query(request()->all())}}">{{ __('edit') }}</a> |
+                    <a class="copy" href="${ path }/${ data }/edit?action=copy&{{http_build_query(request()->all())}}">{{ __('copy') }}</a> |
                     <a data-id="${ data }" class="delete" href="javascript:;">{{ __('delete') }}</a>`;
             }},
         ]
@@ -152,9 +150,11 @@ $(function() {
     $('select[name="brand"],select[name="category"]').change(function(){
         table.ajax.reload(null, false);
     });
-    $('select[name="brand"]').change(function(){
-        $('select[name="category"] option').hide();
-        $('.brand_'+$(this).val()).show();
+    $('select[name="brand"],select[name="category"]').change(function(){
+        $('form[name="search"]').submit();
+        // $('select[name="category"] option').hide();
+        // $('select[name="category"] option[value=""]').show();
+        // $('.brand_'+$(this).val()).show();
     });
 });
 </script>

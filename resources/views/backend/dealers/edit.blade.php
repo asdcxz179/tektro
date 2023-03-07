@@ -23,11 +23,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.country.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('country', $language->lang) }}" name="country[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.country.*") }}">
+                                <input type="text" value="{{ $data->getTranslation('country', $language->lang,false) }}" name="country[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.country.*") }}">
                             </div>
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.company.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('company', $language->lang) }}" name="company[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.company.*") }}">
+                                <input type="text" value="{{ $data->getTranslation('company', $language->lang,false) }}" name="company[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.company.*") }}">
                             </div>                           
                         </div>
                     </div>

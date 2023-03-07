@@ -25,7 +25,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.relation.*.title") }}({{ $language->name }})</label>
-                                <input type="text" value="{{ $value->getTranslation('title', $language->lang) }}" name="relation[1][title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.title") }}">
+                                <input type="text" value="{{ $value->getTranslation('title', $language->lang,false) }}" name="relation[1][title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.title") }}">
                             </div>  
                         </div>
                         @endforeach

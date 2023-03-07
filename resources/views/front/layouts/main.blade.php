@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{asset('front/assets/css/base.css?v3')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/slick-theme.css')}}">
-    <link rel="stylesheet" href="{{asset('front/assets/css/custom.css?v9')}}">
+    <link rel="stylesheet" href="{{asset('front/assets/css/custom.css?v11')}}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Poppins:wght@400;700&display=swap;" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('front/assets/css/boxicons.css')}}">
@@ -29,7 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/2.0.3/jarallax.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="{{asset('front/assets/js/jquery.cookie.js')}}"></script>
-    <script src="{{asset('front/assets/js/main.js?v2')}}"></script>
+    <script src="{{asset('front/assets/js/main.js?v6')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.js"></script>
     @yield('og')
     @stack('style')
