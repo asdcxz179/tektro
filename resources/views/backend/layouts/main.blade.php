@@ -336,6 +336,8 @@
         <!-- Codebase Core JS -->
         <script src="{{ mix('js/codebase.app.js') }}"></script>
         <script src="{{ asset('/js/plugins/summernote/summernote-bs4.min.js') }}"></script>
+        <script src="{{ asset('/js/plugins/summernote/summernote-image-attributes.js?11') }}"></script>
+        <script src="{{ asset('/js/plugins/summernote/lang/summernote-image-attributes-zh-TW.js?1') }}"></script>
         <script src="{{ asset('js/jquery.form.min.js') }}"></script>
         <script src="{{ asset('/js/plugins/select2/js/select2.full.min.js') }}"></script>
         <script src="{{ asset('/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
@@ -444,6 +446,20 @@
                 $('.summernote').each(function(){
                     let _this = $(this);
                     _this.summernote({
+                        lang:'zh-TW',
+                        popover: {
+                            image: [
+                                ['custom', ['imageAttributes']],
+                                ['imagesize', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+                                ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                                ['remove', ['removeMedia']]
+                            ],
+                        },
+                        imageAttributes:{
+                            icon:'<i class="note-icon-pencil"/>',
+                            removeEmpty:false, // true = remove attributes | false = leave empty if present
+                            disableUpload: true // true = don't display Upload Options | Display Upload Options
+                        },
                         callbacks: {
                             onImageUpload: function(files,editor) {
                                 var form_data = new FormData();
