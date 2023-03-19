@@ -205,6 +205,7 @@ return [
     'product_brands' => '品牌(可多選)'
   ],  
   'products' => [
+    'keyword' => ['*' => '關鍵字'],
     'name' => ['*' => '名稱'],
     'description' => ['*' => '描述'],
     'content' => ['*' => '內容'],

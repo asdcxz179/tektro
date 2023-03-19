@@ -19,6 +19,7 @@ class ProductController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
+            'keyword.*' => ['nullable', 'string', 'max:100'],
             'name.*' => ['nullable', 'string', 'max:100'],
             'description.*' => ['nullable', 'string', 'max:100'],
             'content.*' => ['nullable', 'string'],
@@ -30,7 +31,7 @@ class ProductController extends Controller
             //公用
             'banner' => ['nullable', 'string'],
             //通用
-            'sort' => ['required', 'numeric', 'max:127'],
+            'sort' => ['required', 'numeric'],
             'status' => ['required', 'boolean'],     
      
             //多選
@@ -47,7 +48,7 @@ class ProductController extends Controller
             'product_files.*.id' => ['nullable'],
             'product_files.*.name.*' => ['nullable', 'string', 'max:100'],
             'product_files.*.path' => ['nullable'],
-            'product_files.*.sort' => ['nullable', 'numeric', 'max:127'],
+            'product_files.*.sort' => ['nullable', 'numeric'],
             
         ];
         $this->messages = []; 
@@ -247,7 +248,7 @@ class ProductController extends Controller
         $this->authorize('edit '.$this->name);
         $validatedData = $request->validate([
             'status' => ['required', 'boolean'],
-            'sort' => ['nullable', 'numeric', 'max:127'],
+            'sort' => ['nullable', 'numeric'],
         ], [], [
             'status' => __('status'),
             'sort' => __('sort'),

@@ -24,11 +24,12 @@ class Product extends Model
         'test_reviews',
         'related_products',
         'attribute',
-
+        'keyword',
         'banner',
 
         'sort',
         'status',  
+        'new',  
     ];    
 
     protected $casts = [
@@ -45,6 +46,7 @@ class Product extends Model
         'test_reviews',
         'related_products',
         'attribute',
+        'keyword',
     ];
 
     public function product_images(){

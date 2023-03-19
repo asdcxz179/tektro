@@ -26,6 +26,10 @@
                     <div class="tab-pane" id="btabs{{ $language->name }}" role="tabpanel">
                         <div class="form-row">
                             <div class="form-group col-md-6">
+                                <label>{{ __("backend.$routeNameData.keyword.*") }}</label>
+                                <input type="text" value="{{ $data->getTranslation('keyword', $language->lang,false) }}" name="keyword[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.keyword.*") }}">
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.name.*") }}</label>
                                 <input type="text" value="{{ $data->getTranslation('name', $language->lang,false) }}" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
                             </div>
@@ -75,7 +79,7 @@
                             <label>{{ __("backend.$routeNameData.product_tags") }}</label>
                             <select data-url="{{ route('backend.product_tags.select') }}" class="js-select2 form-control" multiple name="product_tags[]" data-placeholder="{{ __("backend.$routeNameData.product_tags") }}">
                                 @foreach($data->product_tags()->where(['type'=>1])->get() as $item)
-                                <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                                <option value="{{ $item->id }}" selected>{{ $item->name }} ({{$item->brands->pluck('name')->join(',')}})</option>
                                 @endforeach
                             </select>
                         </div>        

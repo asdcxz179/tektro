@@ -193,7 +193,13 @@ class ProductTagController extends Controller
                 ->where(['type'=>1])
                 ->limit(200)
                 ->get();
-            return $data;
+            return $data->map(function($item){
+                $brands = $item->brands->pluck('name')->join(',');
+                return [
+                    'id' => $item->id,
+                    'name' => "{$item->name} ({$brands})",
+                ];
+            });
         }
     }       
 }

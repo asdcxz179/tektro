@@ -48,35 +48,16 @@ $(document).ready(function () {
     $(this).children('.dropdown-menu').toggleClass('show');
   });
 
-// img zoom
-// var src = $('.thumb-show').find('img').attr("src");
-// $('.thumb-show').append('<img class="zoom" src="'+src+'" >');
+  /* ---------------------------------------------------------------------- */
+  /*  product image zoom 
+  /* ---------------------------------------------------------------------- */
 
-// $('.thumb-show').mouseenter(function(){
-  
-//     $(this).mousemove(function(event){
-      
-//         var offset = $(this).offset();
-//         var left = event.pageX - offset.left;
-//         var top = event.pageY - offset.top;
-      
-//         $(this).find('.zoom').css({
-//           width: '400%',
-//           opacity: 1,
-//           left: -left,
-//           top: -top
-//         })
-//     });
-// });
+  // $('#imageZoom').elevateZoom({
+  //   zoomType:"inner",
+  //   cursor: 'crosshair'
+  // });
 
-// $('.thumb-show').mouseleave(function(){                     
-//    $(this).find('.zoom').css({
-//      width: '100%',
-//      opacity: 0,
-//      left: 0,
-//      top: 0
-//    })                               
-//  });
+  // $('#imageZoom').imageZoom();
 
 });
 
@@ -228,4 +209,3 @@ function cookiesPolicyBar() {
         $('#cookieAcceptBar').fadeOut();
   });
 }
-

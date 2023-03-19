@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DateTimeInterface;
 
 class ProductTag extends Model
 {
@@ -50,4 +51,8 @@ class ProductTag extends Model
     {
         return $this->morphToMany(ProductBrand::class, 'model', 'product_brand_relations')->where('status',1);
     }   
+
+    protected  function serializeDate(DateTimeInterface $date) {
+        return $date;
+    }
 }

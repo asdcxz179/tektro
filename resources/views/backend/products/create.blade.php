@@ -21,6 +21,10 @@
                     <div class="tab-pane" id="btabs{{ $language->name }}" role="tabpanel">
                         <div class="form-row">
                             <div class="form-group col-md-6">
+                                <label>{{ __("backend.$routeNameData.keyword.*") }}</label>
+                                <input type="text" name="keyword[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.keyword.*") }}">
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.name.*") }}</label>
                                 <input type="text" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
                             </div>

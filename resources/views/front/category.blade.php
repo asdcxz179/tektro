@@ -31,7 +31,7 @@
         <ul class="row">
             @foreach($products as $product)
             <li class="col-6 col-md-4">
-                <a href="{{route('front.product.show',['lang'=>$lang,'product'=>$product->id])}}" class="box">
+                <a href="{{route('front.product.show',['lang'=>$lang,'product'=>$product->id])}}" class="box p-4">
                     <div class="ratio_outer mb-2 mb-md-4" style="padding-bottom: 100%;">
                         <div class="ratio_inner bg-cover" style="background-image: url('{{asset($product->banner)}}');">
                             <div class="box_img_overlay">

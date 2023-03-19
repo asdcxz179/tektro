@@ -48,7 +48,8 @@ class ProductController extends Controller
     public function show($lang,$id)
     {
         $data['product'] = Product::where(['status'=>1,'id'=>$id])->first();
-        $data['category'] = $data['product']->category->first();
+        $category = $data['product']->category;
+        $data['category'] = $category?$category->first():[];
         $data['brand'] = ($data['category'])?$data['category']->brands->first():'';
         return view('front.product',$data);
     }

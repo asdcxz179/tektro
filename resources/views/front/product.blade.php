@@ -1,4 +1,7 @@
 @extends('front.layouts.main')
+@section('og')
+<meta name="keywords" content="{{$product->keyword}}">
+@endsection
 @section('content')
     <section class="breadcrumb mb-12 mb-sm-20" style="background-image: url('{{asset('front/assets/images/breadcrumb_trp.jpg')}}');">
         <div class="container">
@@ -36,7 +39,8 @@
                     <div class="col-md-8">
                         <div class="gallery_main">
                             @if($product->product_images->first())
-                            <img src="{{asset($product->product_images->first()->path)}}" alt="" class="active">
+                            <!-- <img src="{{asset($product->product_images->first()->path)}}" data-zoom-image="{{asset($product->product_images->first()->path)}}" alt="" class="active" id="imageZoom" width="100%"> -->
+                            <img src="{{asset($product->product_images->first()->path)}}" alt="img_not_found" class="active" id="imageZoom">
                             @endif
                         </div>
                     </div>
@@ -74,25 +78,26 @@
                 <div class="row">
                     <!-- tab start -->
                     <ul class="nav nav-fill main_nav_fill justify-content-start mb-12 p-0">
-                        @if(strip_tags($product->details))
+                        @if(strip_tags($product->details,['img']))
                         <li class="nav-item">
                             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#details" type="button"
                                 role="tab" aria-selected="false">{{__('front.DETAILS')}}</button>
                         </li>
                         @endif
-                        @if(strip_tags($product->technology))
+                        @if(strip_tags($product->technology,['img']))
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#technology" type="button"
                                 role="tab" aria-selected="false">{{__('front.TECHNOLOGY')}}</button>
                         </li>
                         @endif
-                        @if(strip_tags($product->test_reviews))
+                        
+                        @if(strip_tags($product->test_reviews,['img']))
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#test" type="button"
                                 role="tab" aria-selected="false">{{__('front.TEST & REVIEWS')}}</button>
                         </li>
                         @endif
-                        @if(strip_tags($product->related_products))
+                        @if(strip_tags($product->related_products,['img']))
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#related" type="button"
                                 role="tab" aria-selected="false">{{__('front.RELATED PRODUCTS')}}</button>
@@ -177,12 +182,23 @@
     var galleryList = document.querySelector(".gallery_item");
 
     function changeImage(e) {
-        activeImage.src = e.target.src;
+        let imgPath = e.target.src
+
+        activeImage.src = imgPath;
+
+        // elevateZoom
+        // activeImage.setAttribute("data-zoom-image",imgPath);
+        // document.querySelector(".zoomWindow").style.backgroundImage = "url('" + imgPath + "')";
+
+        // zoom-image
+        document.querySelector('#imageZoom').src = imgPath;
+        document.querySelector('.containerZoom').style.backgroundImage = "url('" + imgPath + "')";
     }
 
     productImages.forEach(image => image.addEventListener("click", changeImage));
 
     $(document).ready(function () {
+        $('#imageZoom').imageZoom({zoom : 200});
 
         $('.gallery_item img').click(function () {
             $('.gallery_list img').removeClass('focus');

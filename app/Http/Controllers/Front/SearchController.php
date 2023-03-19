@@ -20,24 +20,28 @@ class SearchController extends Controller
     {
         $lang = $request->lang;
         $word = $request->word;
-        $data['products'] = Product::orwhere("name->{$lang}",'like',"%{$word}%")
-                                   ->orwhere("content->{$lang}",'like',"%{$word}%")
-                                   ->orwhere("description->{$lang}",'like',"%{$word}%")
-                                   ->orwhere("details->{$lang}",'like',"%{$word}%")
-                                   ->orwhere("technology->{$lang}",'like',"%{$word}%")
-                                   ->orwhere("test_reviews->{$lang}",'like',"%{$word}%")
-                                   ->orwhere("related_products->{$lang}",'like',"%{$word}%")
-                                   ->get();
+        $data['products'] = Product::where(function($query) use($lang,$word) {
+                                        $query->orwhere("name->{$lang}",'like',"%{$word}%")
+                                        ->orwhere("content->{$lang}",'like',"%{$word}%")
+                                        ->orwhere("description->{$lang}",'like',"%{$word}%")
+                                        ->orwhere("details->{$lang}",'like',"%{$word}%")
+                                        ->orwhere("technology->{$lang}",'like',"%{$word}%")
+                                        ->orwhere("test_reviews->{$lang}",'like',"%{$word}%")
+                                        ->orwhere("related_products->{$lang}",'like',"%{$word}%");
+                                    })->where(['status'=>1])->get();
         $data['supports'] = SupportCategory::whereHas('supports',function($query) use ($lang,$word){
                                                     $query->whereHas('support_files',function($query) use ($lang,$word) {
                                                         $query->where("name->{$lang}",'like',"%{$word}%");
                                                     });
-                                                })->get();
-        $data['videos'] = VideoSetting::orwhere("name->{$lang}",'like',"%{$word}%")->get();
-        $data['news'] = News::orwhere("name->{$lang}",'like',"%{$word}%")
-                                   ->orwhere("content->{$lang}",'like',"%{$word}%")
-                                   ->orwhere("description->{$lang}",'like',"%{$word}%")
-                                   ->get();
+                                                })->where(['status'=>1])->get();
+        $data['videos'] = VideoSetting::where(function($query) use($lang,$word) {
+                                                $query->orwhere("name->{$lang}",'like',"%{$word}%");
+                                            })->where(['status'=>1])->get();
+        $data['news'] = News::where(function($query) use($lang,$word) {
+                                    $query->orwhere("name->{$lang}",'like',"%{$word}%")
+                                    ->orwhere("content->{$lang}",'like',"%{$word}%")
+                                    ->orwhere("description->{$lang}",'like',"%{$word}%");
+                                })->where(['status'=>1])->get();
         return view('front.search',$data);
     }
 
