@@ -33,6 +33,7 @@ class ProductController extends Controller
             //通用
             'sort' => ['required', 'numeric'],
             'status' => ['required', 'boolean'],     
+            'new' => ['nullable', 'boolean'],     
      
             //多選
             'product_categories' => ['nullable', 'array'],

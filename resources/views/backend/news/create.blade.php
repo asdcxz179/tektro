@@ -51,7 +51,7 @@
                         </div> 
                         <div class="form-group col-md-12">
                             <label>{{ __("backend.$routeNameData.up_image") }}</label>    
-                            {{-- <div class="text-danger">{{ __('suggested_size', ['width' => 700, 'height' => 500]) }}</div> --}}
+                            <div class="text-danger">{{ __('suggested_size', ['width' => 1024, 'height' => 800]) }}</div>
                             <fieldset class="image">
                                 <input type="file" name="up_image" accept="image/*" />    
                             </fieldset>  

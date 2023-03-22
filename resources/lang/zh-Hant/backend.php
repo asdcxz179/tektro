@@ -219,6 +219,7 @@ return [
 
     'sort' => '排序',
     'status' => '狀態',   
+    'new' => '最新產品',
 
     'product_categories' => '產品類別(可多選)',
     'product_icons' => '技術icon(可多選)',

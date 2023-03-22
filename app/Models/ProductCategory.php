@@ -47,6 +47,6 @@ class ProductCategory extends Model
 
     public function products()
     {
-        return $this->morphToMany(Product::class, 'model', 'product_relations')->where('status',1)->orderby('sort','asc');
+        return $this->morphToMany(Product::class, 'model', 'product_relations')->where('status',1)->orderby('new','desc')->orderby('sort','asc');
     }
 }

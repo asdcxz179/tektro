@@ -47,7 +47,16 @@ class SupportController extends Controller
      */
     public function show($lang,$id)
     {
-        $data['categories'] =   SupportCategory::where('status',1)->orderby('sort','asc')->get();
+        $word = request('word');
+        $query = SupportCategory::where('status',1)->orderby('sort','asc');
+        if($word) {
+            $query->whereHas('supports',function($query) use($lang,$word) {
+                $query->where("name->{$lang}",'like',"%{$word}%")->orWhereHas('support_files',function($query) use ($lang,$word) {
+                    $query->where("name->{$lang}",'like',"%{$word}%");
+                });
+            });
+        }
+        $data['categories'] =   $query->get();
         return view('front.support',$data);
     }
 

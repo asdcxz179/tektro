@@ -179,12 +179,22 @@
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" value="{{ $data->sort }}" placeholder="{{ __("backend.$routeNameData.sort") }}">
                         </div>                    
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-2">
                             <label>{{ __("backend.$routeNameData.status") }}<span class="text-danger">*</span></label>
                             <div class="col-md-12">
                                 <label class="css-control css-control-primary css-switch">
                                     <input type="checkbox" class="css-control-input" {{ $data->status == 1 ? 'checked' : '' }}>
                                     <input type="hidden" required name="status" value="{{ $data->status }}">
+                                    <span class="css-control-indicator"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label>{{ __("backend.$routeNameData.new") }}</label>
+                            <div class="col-md-12">
+                                <label class="css-control css-control-primary css-switch">
+                                    <input type="checkbox" class="css-control-input" {{ $data->new == 1 ? 'checked' : '' }}>
+                                    <input type="hidden" name="new" value="{{ $data->new }}">
                                     <span class="css-control-indicator"></span>
                                 </label>
                             </div>
