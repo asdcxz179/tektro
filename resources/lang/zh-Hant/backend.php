@@ -323,6 +323,7 @@ return [
 
     'sort' => '排序',
     'status' => '狀態',
+    'created_at' => '詢問時間',
 
     'product_brands' => '品牌(可多選)',
   ],   

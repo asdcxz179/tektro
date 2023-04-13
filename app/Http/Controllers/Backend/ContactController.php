@@ -9,6 +9,8 @@ use DataTables;
 use Exception;
 use DB;
 use Illuminate\Support\Arr;
+use App\Exports\ContactExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ContactController extends Controller
 {
@@ -41,8 +43,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        $this->authorize('create '.$this->name);
-        return view($this->view.'.create');
+        $this->authorize('export '.$this->name);
+        return view($this->view.'.export');
     }
 
     /**
@@ -53,20 +55,9 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create '.$this->name);
-        $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
+        $this->authorize('export '.$this->name);
 
-        try{
-            DB::beginTransaction();
-
-            $data = CrudModel::create($validatedData);
-
-            DB::commit();
-            return response()->json(['message' => __('create').__('success')]);
-        } catch (Exception $e) {
-            DB::rollBack();
-            return response()->json(['message' => $e->getMessage()],422);
-        }
+        return Excel::download(new ContactExport($request->start, $request->end), 'contact.xlsx');
     }
 
     /**

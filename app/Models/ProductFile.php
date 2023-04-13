@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class ProductFile extends Model
+class ProductFile extends Model implements Auditable
 {
     use HasFactory;
     use \Spatie\Translatable\HasTranslations;
     use \App\Traits\ModelShareTrait;
+    use \OwenIt\Auditing\Auditable;
 
     /**
      * The attributes that are mass assignable.
