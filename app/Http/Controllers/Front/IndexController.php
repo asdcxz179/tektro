@@ -18,6 +18,7 @@ class IndexController extends Controller
     {
         $data['modules'] = Home::where('status',1)->orderby('sort')->get();
         $data['news'] = News::where('status',1)->orderby('sort')->limit(5)->get();
+        $data['index'] = 'index';
         return view('front.index',$data);
     }
 

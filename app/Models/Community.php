@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Community extends Model
 {
   use HasFactory;
-  // use \Spatie\Translatable\HasTranslations;
+  use \Spatie\Translatable\HasTranslations;
 
   /**
    * The attributes that are mass assignable.
@@ -20,5 +20,11 @@ class Community extends Model
     'instagram',
     'youtube',
   ];    
+
+  public $translatable = [
+    'facebook',
+    'instagram',
+    'youtube',
+  ];
 
 }

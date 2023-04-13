@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Seo;
 
 class WarrantyController extends Controller
 {
@@ -14,7 +15,8 @@ class WarrantyController extends Controller
      */
     public function index()
     {
-        return view('front.warranty');
+        $data['seo'] = Seo::where(['name' => 'warranty'])->first();
+        return view('front.warranty',$data);
     }
 
     /**

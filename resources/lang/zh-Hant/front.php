@@ -12,6 +12,19 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+
+    'title' =>  [
+        'index' =>  'TEKTRO｜彥豪｜自行車煞車製造',
+        'news'  =>  '最新消息 | 彥豪｜自行車煞車製造商',
+        'tektro_products'  =>  '品牌產品｜TEKTRO產品系列',
+        'trp_products'  =>  '品牌產品｜TRP產品系列',
+        'innovative'  =>  '創新價值 | 彥豪｜公司核心介紹',
+        'technical'  =>  '技術手冊 | 彥豪｜預覽技術文件',
+        'media'  =>  '影音分享 | 彥豪｜操作介紹及分享',
+        'faq'  =>  '常見問題 | 彥豪｜任何疑問請查詢',
+        'warranty'  =>  '保固條款 | 彥豪｜提供保固資訊',
+        'contact'  =>  '聯絡我們 | 彥豪｜請與我們聯絡',
+    ],
     'email' =>  [
         'auto_reply'=>  '感谢您的来信，我们会尽快回覆您的需求。',
         'auto'      =>  '自动回覆',

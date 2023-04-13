@@ -78,4 +78,58 @@ class Controller extends BaseController
 
         return $fileData;
     }
+
+    public function dealfile2($column, $file, $data = null)
+    {
+        $fileUpload = function ($value) use ($returnKey) {
+            if($value instanceof \Illuminate\Http\UploadedFile){
+                $extension = $value->extension(); 
+                $path = config('app.upload').'/'.Str::random(20).'_'.time().'.'.$extension;
+
+                if(in_array($extension, ['png', 'jpg', 'jpeg'])){
+                    Image::make($value)->save($path);
+                }else{
+                    file_put_contents(public_path($path), $value->getContent());
+                }               
+
+                return [ 
+                    $returnKey => $path,
+                    'file_name' => $value->getClientOriginalName()
+                ];
+            }
+                        
+            if($value = json_decode($value, true)){
+                $extension = pathinfo($value['name'], PATHINFO_EXTENSION);
+                $path = config('app.upload').'/'.Str::random(20).'_'.time().'.'.$extension;
+                if(in_array($extension, ['png', 'jpg', 'jpeg'])){
+                    Image::make($value['data'])->save($path);
+                }else{
+                    file_put_contents($path, base64_decode($value['data']));
+                }
+                return [ 
+                    $returnKey => $path,
+                    'file_name' => $value['name']
+                ];
+            }
+        };
+
+        $fileData = [];
+        if($file instanceof \Illuminate\Database\Eloquent\Collection || is_array($file)){
+            foreach($upload as $value){
+                if($tmp = $fileUpload($value)){
+                    $fileData[] = $tmp;
+                }
+            }
+        }else{
+            // $file_data = json_decode($file);
+            // if($data && $file->name == $data->{$column}) {
+
+            // }
+            // if($tmp = ){
+            //     $fileData = $tmp;
+            // }            
+        }
+
+        return $fileData;
+    }
 }

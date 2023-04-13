@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Dealer;
+use App\Models\Seo;
 
 class GlobalController extends Controller
 {
@@ -31,6 +32,7 @@ class GlobalController extends Controller
             });
         }
         $data['dealers'] = $dealers->get();
+        $data['seo'] = Seo::where(['name' => 'contact'])->first();
         return view('front.global',$data);
     }
 

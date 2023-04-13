@@ -124,6 +124,7 @@ class NewsController extends Controller
             $data = CrudModel::findOrFail($id);
             $data->update(array_merge($validatedData, 
                 $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),                
+                // $this->dealfile2('banner', $validatedData['banner'], $data),
                 $this->dealfile($validatedData['up_image'], 'up_image', $data, 'up_image'),                
             ));
 

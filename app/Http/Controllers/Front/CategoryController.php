@@ -50,6 +50,14 @@ class CategoryController extends Controller
         $data['category'] = ProductCategory::find($id);
         $data['products'] = $data['category']->products()->paginate(9);
         $data['brand'] = $data['category']->brands->first();
+        switch ($data['brand']->id) {
+            case '1':
+                $data['index'] = 'tektro_products';
+                break;
+            case '2':
+                $data['index'] = 'trp_products';
+                break;
+        }
         return view('front.category',$data);
     }
 

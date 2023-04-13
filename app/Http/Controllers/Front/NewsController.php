@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Models\Seo;
 
 class NewsController extends Controller
 {
@@ -16,6 +17,7 @@ class NewsController extends Controller
     public function index()
     {
         $data['news'] = News::where('status',1)->orderby('sort')->get();
+        $data['seo'] = Seo::where(['name' => 'news'])->first();
         return view('front.news',$data);
     }
 
@@ -57,6 +59,7 @@ class NewsController extends Controller
             $data['prev'] = $news[($index-1)]??null;
             $data['next'] = $news[($index+1)]??null;
         }
+        $data['seo'] = Seo::where(['name' => 'news'])->first();
         return view('front.news_detail',$data);
     }
 

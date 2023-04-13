@@ -12,34 +12,38 @@
             <div class="block">
                 <div class="block-content tab-content">
                     <div class="form-row">            
-                        <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.area_id") }}<span class="text-danger">*</span></label>
+                        <div class="form-group col-md-4">
+                            <label>{{ __("backend.$routeNameData.area_id") }}</label>
                             <input type="text" disabled required name="area_id" class="form-control" value="{{ $data->areas->name }}" placeholder="{{ __("backend.$routeNameData.area_id") }}">
                         </div>                                                              
-                        <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.question") }}<span class="text-danger">*</span></label>
+                        <div class="form-group col-md-4">
+                            <label>{{ __("backend.$routeNameData.question") }}</label>
                             <input type="text" disabled required name="question" class="form-control" value="{{ $data->question }}" placeholder="{{ __("backend.$routeNameData.question") }}">
                         </div>                                                              
-                        <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.country") }}<span class="text-danger">*</span></label>
+                        <div class="form-group col-md-4">
+                            <label>{{ __("backend.$routeNameData.country") }}</label>
                             <input type="text" disabled required name="country" class="form-control" value="{{ $data->country }}" placeholder="{{ __("backend.$routeNameData.country") }}">
                         </div>                                                              
-                        <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.name") }}<span class="text-danger">*</span></label>
+                        <div class="form-group col-md-4">
+                            <label>{{ __("backend.$routeNameData.name") }}</label>
                             <input type="text" disabled required name="name" class="form-control" value="{{ $data->name }}" placeholder="{{ __("backend.$routeNameData.name") }}">
                         </div>                                                              
-                        <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.email") }}<span class="text-danger">*</span></label>
+                        <div class="form-group col-md-4">
+                            <label>{{ __("backend.$routeNameData.email") }}</label>
                             <input type="text" disabled required name="email" class="form-control" value="{{ $data->email }}" placeholder="{{ __("backend.$routeNameData.email") }}">
                         </div>                                                              
-                        <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.phone") }}<span class="text-danger">*</span></label>
+                        <div class="form-group col-md-4">
+                            <label>{{ __("backend.$routeNameData.phone") }}</label>
                             <input type="text" disabled required name="phone" class="form-control" value="{{ $data->phone }}" placeholder="{{ __("backend.$routeNameData.phone") }}">
                         </div>                                                              
                         <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.content") }}<span class="text-danger">*</span></label>                            
+                            <label>{{ __("backend.$routeNameData.content") }}</label>                            
                             <textarea disabled name="content" class="form-control">{{ $data->content }}</textarea>
-                        </div>                                                                                               
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>{{ __("backend.$routeNameData.remark") }}</label>                            
+                            <textarea disabled class="form-control">{{ $data->remark }}</textarea>
+                        </div>                                                                                                
                     </div>         
                 </div>       
             </div>

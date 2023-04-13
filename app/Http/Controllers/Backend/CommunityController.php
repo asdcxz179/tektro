@@ -15,10 +15,13 @@ class CommunityController extends Controller
     public function __construct() {
         $this->name = 'communities';
         $this->view = 'backend.'.$this->name;
-        $this->rules = [        
-            'facebook' => ['nullable', 'string', 'max:150'],
-            'instagram' => ['nullable', 'string', 'max:150'],
-            'youtube' => ['nullable', 'string', 'max:150'],
+        $this->rules = [
+            'facebook' => ['nullable', 'array'],
+            'facebook.*' => ['nullable', 'string'],
+            'instagram' => ['nullable', 'array'],
+            'instagram.*' => ['nullable', 'string'],
+            'youtube' => ['nullable', 'array'],
+            'youtube.*' => ['nullable', 'string'],
         ];
         $this->messages = []; 
         $this->attributes = Arr::dot(__("backend.{$this->name}")); 

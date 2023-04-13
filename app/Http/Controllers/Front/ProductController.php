@@ -51,6 +51,14 @@ class ProductController extends Controller
         $category = $data['product']->category;
         $data['category'] = $category?$category->first():[];
         $data['brand'] = ($data['category'])?$data['category']->brands->first():'';
+        switch ($data['brand']->id) {
+            case '1':
+                $data['index'] = 'tektro_products';
+                break;
+            case '2':
+                $data['index'] = 'trp_products';
+                break;
+        }
         return view('front.product',$data);
     }
 

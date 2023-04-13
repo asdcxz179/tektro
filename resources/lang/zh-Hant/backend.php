@@ -2,6 +2,8 @@
 
 return [
   'menu' => [
+    'seo' => '關鍵字管理',
+    'web_setting' =>  '網站設定',
     'users' => '管理員',
     'users_setting' => '管理員設定',
     'roles' => '角色',
@@ -248,8 +250,22 @@ return [
 
     'products' => '產品(可多選)',
   ],  
+  'seo' => [
+    'name'  =>  '頁面',
+    'title' => ['*' => '網站標題'],
+    'keyword' => ['*' => '關鍵字'],
+    'description' => ['*' => '描述'],
+  ],
+  'web_setting' => [
+    'title' => ['*' => '網站標題'],
+    'keyword' => ['*' => '關鍵字'],
+    'description' => ['*' => '描述'],
+    'author' => ['*' => '作者'],
+    'copyright' => ['*' => '版權宣告'],
+  ],
   'support_categories' => [
     'name' => ['*' => '名稱'],
+    
             
     'sort' => '排序',
     'status' => '狀態',   
@@ -303,6 +319,7 @@ return [
     'email' => '信箱',
     'phone' => '電話',
     'content' => '內容',
+    'remark'  =>  '備註',
 
     'sort' => '排序',
     'status' => '狀態',

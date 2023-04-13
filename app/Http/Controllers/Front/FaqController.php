@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductBrand;
+use App\Models\Seo;
 
 class FaqController extends Controller
 {
@@ -31,6 +32,7 @@ class FaqController extends Controller
             }
         } 
         $data['all'] = $data['all']->unique('id')->sortBy('sort');
+        $data['seo'] = Seo::where(['name' => 'faq'])->first();
         return view('front.faq',$data);
     }
 

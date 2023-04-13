@@ -26,6 +26,7 @@ class Contact extends Model
     
         'sort',
         'status',
+        'remark',
     ];    
 
     protected $casts = [

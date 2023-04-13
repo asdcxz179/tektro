@@ -4,30 +4,36 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Contact as crudModel;
+use App\Models\Seo as crudModel;
+use Illuminate\Support\Arr;
 use DataTables;
 use Exception;
-use DB;
-use Illuminate\Support\Arr;
 
-class ContactController extends Controller
+class SeoController extends Controller
 {
     public function __construct() {
-        $this->name = 'contacts';
+        $this->name = 'seo';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
+            //使用多語系        
+            'title.*' => ['nullable', 'string'],
+            'keyword.*' => ['nullable', 'string'],
+            'description.*' => ['nullable', 'string'],
             //公用
-            'remark' => ['nullable', 'string'],
         ];
         $this->messages = []; 
         $this->attributes = Arr::dot(__("backend.{$this->name}"));
     }
-
-    public function index(Request $request)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
         $this->authorize('read '.$this->name);
-        if ($request->ajax()) {
-            $data = CrudModel::with(['areas']);
+        if (request()->ajax()) {
+            $data = CrudModel::query();
             return Datatables::eloquent($data)
                 ->make(true);
         }
@@ -41,8 +47,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        $this->authorize('create '.$this->name);
-        return view($this->view.'.create');
+        //
     }
 
     /**
@@ -53,20 +58,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create '.$this->name);
-        $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
-
-        try{
-            DB::beginTransaction();
-
-            $data = CrudModel::create($validatedData);
-
-            DB::commit();
-            return response()->json(['message' => __('create').__('success')]);
-        } catch (Exception $e) {
-            DB::rollBack();
-            return response()->json(['message' => $e->getMessage()],422);
-        }
+        //
     }
 
     /**
@@ -78,8 +70,7 @@ class ContactController extends Controller
     public function show($id)
     {
         $this->authorize('read '.$this->name);
-        $data = CrudModel::findOrFail($id);
-        return view($this->view.'.show',compact('data'));
+        return CrudModel::findOrFail($id); 
     }
 
     /**
@@ -89,7 +80,7 @@ class ContactController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    { 
+    {
         $this->authorize('edit '.$this->name);
         $data = CrudModel::findOrFail($id);
         return view($this->view.'.edit',compact('data'));
@@ -108,12 +99,8 @@ class ContactController extends Controller
         $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
         
         try{
-            DB::beginTransaction();
-
             $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
-
-            DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
         } catch (Exception $e) {
             DB::rollBack();
@@ -129,40 +116,6 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('delete '.$this->name);
-        try{
-            $data = CrudModel::findOrFail($id);
-            $data->delete();
-            return response()->json(['message' => __('delete').__('success')]);
-        } catch (Exception $e) {
-            return response()->json(['message' => $e->getMessage()],422);
-        }
+        //
     }
-    
-    /**
-     * status  the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function status(Request $request, $id)
-    {
-        $this->authorize('edit '.$this->name);
-        $validatedData = $request->validate([
-            'status' => ['required', 'boolean'],
-            'sort' => ['nullable', 'numeric', 'max:127'],
-        ], [], [
-            'status' => __('status'),
-            'sort' => __('sort'),
-        ]);
-        
-        try{
-            $data = CrudModel::findOrFail($id);
-            $data->update($validatedData);
-            return response()->json(['message' => __('edit').__('success')]);
-        } catch (Exception $e) {
-            return response()->json(['message' => $e->getMessage()],422);
-        }
-    }    
 }

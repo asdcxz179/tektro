@@ -38,6 +38,8 @@ return [
         ]
     ],       
     [ 'active' => 'communities*', 'icon' => 'fa fa-users', 'name' => 'communities', 'title' => 'communities', 'routeId' => 'community', 'permissions' => 'communities' ],
+    [ 'active' => 'web_setting*', 'icon' => 'fa fa-wrench', 'name' => 'web_setting', 'title' => 'web_setting', 'routeId' => 'web_setting', 'permissions' => 'web_setting' ],
+    [ 'active' => 'seo*', 'icon' => 'fa fa-key', 'name' => 'seo', 'title' => 'seo', 'routeId' => 'seo', 'permissions' => 'seo' ],
     [ 'active' => 'users_setting/*', 'icon' => 'si si-users', 'title' => 'users_setting', 'child' =>
         [
             [ 'active' => 'users_setting/roles*', 'name' => 'roles', 'title' => 'roles', 'routeId' => 'role', 'permissions' => 'roles' ],

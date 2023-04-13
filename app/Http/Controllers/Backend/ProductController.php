@@ -190,9 +190,9 @@ class ProductController extends Controller
                 $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),           
             ));
 
-            $data->product_categories()->sync($validatedData['product_categories'] ?? []);
-            $data->product_icons()->sync($validatedData['product_icons'] ?? []);
-            $data->product_tags()->sync((array_merge($validatedData['product_tags'] ?? [],$validatedData['product_special'] ?? [])) ?? []);
+            $data->auditSync('product_categories', $validatedData['product_categories'] ?? []);
+            $data->auditSync('product_icons', $validatedData['product_icons'] ?? []);
+            $data->auditSync('product_tags', (array_merge($validatedData['product_tags'] ?? [],$validatedData['product_special'] ?? [])) ?? []);
 
             $relation = 'product_images';
             $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));

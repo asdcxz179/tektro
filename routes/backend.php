@@ -122,6 +122,11 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
         //社群管理
         Route::resource('/communities', Controllers\Backend\CommunityController::class);
 
+        //關鍵字管理
+        Route::resource('/seo', Controllers\Backend\SeoController::class);
+        //網站管理
+        Route::resource('/web_setting', Controllers\Backend\WebSettingController::class);
+
 
         //地區
         Route::get('/areas/select', [Controllers\Backend\AreaController::class, 'select'])->name('areas.select');

@@ -12,6 +12,18 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'title' =>  [
+        'index' =>  'TEKTRO BRAKE SYSTEMS',
+        'news'  =>  'Latest News | TEKTRO',
+        'tektro_products'  =>  'Products | TEKTRO Series',
+        'trp_products'  =>  'Products | TRP Series',
+        'innovative'  =>  'Innovative Value | TEKTRO',
+        'technical'  =>  'Technical Manuals | TEKTRO',
+        'media'  =>  'Media Sharing | TEKTRO',
+        'faq'  =>  'FAQ | TEKTRO',
+        'warranty'  =>  'Warranty Terms | TEKTRO',
+        'contact'  =>  'Contact Us | TEKTRO',
+    ],
     'email' =>  [
         'auto_reply'=>  'Thank you for your letter, we will reply to your request as soon as possible.',
         'auto'      =>  'auto-reply',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductBrand;
+use App\Models\Seo;
 
 class BrandController extends Controller
 {
@@ -48,6 +49,14 @@ class BrandController extends Controller
     public function show($lang,$id)
     {
         $data['brand']  =   ProductBrand::find($id);
+        switch ($id) {
+            case '1':
+                $data['seo'] = Seo::where(['name' => 'tektro_product'])->first();
+                break;
+            case '2':
+                $data['seo'] = Seo::where(['name' => 'trp_product'])->first();
+                break;
+        }
         return view('front.brand',$data);
     }
 

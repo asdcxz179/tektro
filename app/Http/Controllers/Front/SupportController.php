@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SupportCategory;
+use App\Models\Seo;
 
 class SupportController extends Controller
 {
@@ -57,6 +58,8 @@ class SupportController extends Controller
             });
         }
         $data['categories'] =   $query->get();
+        $data['index'] = 'technical';
+        $data['seo'] = Seo::where(['name' => 'support'])->first();
         return view('front.support',$data);
     }
 

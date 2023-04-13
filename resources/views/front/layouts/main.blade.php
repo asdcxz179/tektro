@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEKTRO</title>
+    <title>@if(isset($seo) && $seo->getTranslation('title', $lang,false)){{$seo->getTranslation('title', $lang,false)}}@else{{$web_setting->getTranslation('title', $lang,false)}}@endif</title>
+    <meta name="description" content="@if(isset($seo) && $seo->getTranslation('description', $lang,false)){{$seo->getTranslation('description', $lang,false)}}@else{{$web_setting->getTranslation('description', $lang,false)}}@endif">
+    <meta name="keywords" content="@if(isset($seo) && $seo->getTranslation('keyword', $lang,false)){{$seo->getTranslation('keyword', $lang,false)}}@else{{$web_setting->getTranslation('keyword', $lang,false)}}@endif">
+    <meta name="author" content="{{$web_setting->getTranslation('author', $lang,false)}}">
     <link rel="shortcut icon" href="{{asset('front/assets/images/favicon3.ico')}}">
 
     <!-- bootstrap -->
@@ -468,7 +471,7 @@
                     </p>
                     <div class="mb-4" id="cookie-selection" style="display: none;">
                         <div class="form-check form-switch mb-4 position-relative">
-                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchFunctionalCookie" name="normal" checked disabled>
+                            <input class="form-check-input" type="checkbox" role="switch" id="SwitchFunctifonalCookie" name="normal" checked disabled>
                             <label class="form-check-label fw-bold ps-3" for="SwitchFunctionalCookie">{{__('front.cookie.function')}}
                                 <br>
                                 <span class="fs-7 fw-normal">{{__('front.cookie.title3')}}</span>
@@ -635,24 +638,23 @@
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                     <div class="mb-4 mb-md-0 footer_media_group">
                         <!-- <span class="text-white opacity-50 fs-7 d-none d-dm-inline-block me-4">FOLLOW US</span> -->
-                        @isset($community->instagram)
+                        @if($community->instagram)
                         <a href="{{$community->instagram}}" target="_blank" class="d-inline-block me-3">
                             <i class='bx bxl-instagram text-white fs-1 fs-md-3 align-middle'></i>
                         </a>
-                        @endisset
-                        @isset($community->facebook)
+                        @endif
+                        @if($community->facebook)
                         <a href="{{$community->facebook}}" target="_blank" class="d-inline-block me-3">
                             <i class='bx bxl-facebook text-white fs-1 fs-md-3 align-middle'></i>
                         </a>
-                        @endisset
-                        @isset($community->youtube)
+                        @endif
+                        @if($community->youtube)
                         <a href="{{$community->youtube}}" target="_blank" class="d-inline-block">
                             <i class='bx bxl-youtube text-white fs-1 fs-md-3 align-middle'></i>
                         </a>
-                        @endisset
+                        @endif
                     </div>
-                    <div class="text-white fs-7 opacity-50 text-center">© 2022 TEKTRO TECHNOLOGY CORP, ALL RIGHTS
-                        RESERVED.
+                    <div class="text-white fs-7 opacity-50 text-center">{{$web_setting->getTranslation('copyright', $lang,false)}}
                     </div>
                 </div>
             </div>

@@ -10,6 +10,7 @@ use App\Models\Area;
 use App\Models\ContactSetting;
 use Session;
 use Mail;
+use App\Models\Seo;
 
 class ContactController extends Controller
 {
@@ -21,6 +22,7 @@ class ContactController extends Controller
     public function index()
     {
         $data['areas'] = Area::all();
+        $data['seo'] = Seo::where(['name' => 'contact'])->first();
         return view('front.contact',$data);
     }
 

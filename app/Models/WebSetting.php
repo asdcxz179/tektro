@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class SupportCategory extends Model implements Auditable
+class WebSetting extends Model implements Auditable
 {
     use HasFactory;
     use \Spatie\Translatable\HasTranslations;
@@ -18,20 +18,18 @@ class SupportCategory extends Model implements Auditable
      * @var array
      */
     protected $fillable = [
-        'name',
-
-        'sort',
-        'status',
-    ];    
-
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
+        'title',
+        'keyword',
+        'description',
+        'author',
+        'copyright',
     ];
 
-    public $translatable = ['name'];
-
-    public function supports(){
-        return $this->hasMany(Support::class);
-    } 
+    public $translatable = [
+        'title',
+        'keyword',
+        'description',
+        'author',
+        'copyright',
+    ];
 }

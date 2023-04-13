@@ -9,6 +9,7 @@ use App\Models\About;
 use App\Models\Community;
 use App\Models\ProductKeyword;
 use App\Models\HeaderBanner;
+use App\Models\WebSetting;
 
 class Init
 {
@@ -34,6 +35,8 @@ class Init
         \View::share('keywords',$keywords);
         $headers = HeaderBanner::get()->pluck('path','route')->toArray();
         \View::share('headers',$headers);
+        $web_setting = WebSetting::find(1);
+        \View::share('web_setting',$web_setting);
         return $next($request);
     }
 }
