@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Home as crudModel;
 use App\Models\HomeType;
+use App\Models\Product;
 use DataTables;
 use Exception;
 use DB;
@@ -18,7 +19,7 @@ class HomeController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [       
             //分類
-            'home_type_id' => ['required', 'numeric', 'max:6'],
+            'home_type_id' => ['required', 'numeric', 'max:8'],
             //通用
             'sort' => ['nullable', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],    
@@ -27,11 +28,15 @@ class HomeController extends Controller
             'relation.*.big_title.*' => ['nullable', 'string'],
             'relation.*.small_title.*' => ['nullable', 'string'],
             'relation.*.title.*' => ['nullable', 'string'],
+            'relation.*.button_link.*' => ['nullable', 'string'],
             //公用
             'relation.*.id' => ['nullable'],
             'relation.*.youtube_key' => ['nullable', 'string'],
-            'relation.*.path' => ['nullable', 'string'],
+            'relation.*.path' => ['nullable'],
             'relation.*.link' => ['nullable', 'string'],
+            'relation.*.type' => ['nullable', 'string'],
+            'relation.*.id' => ['nullable', 'numeric'],
+            'relation.*.product_id' => ['nullable', 'numeric'],
             //通用
             'relation.*.sort' => ['nullable', 'numeric', 'max:127'],          
         ];
@@ -44,6 +49,7 @@ class HomeController extends Controller
         }
 
         $this->types = HomeType::all();
+        $this->products = Product::where('status',1)->get();
     }
 
     public function index(Request $request)
@@ -65,7 +71,7 @@ class HomeController extends Controller
     public function create()
     {
         $this->authorize('create '.$this->name);
-        return view($this->view.'.create')->with(['types' => $this->types]);
+        return view($this->view.'.create')->with(['types' => $this->types, 'products' => $this->products]);
     }
 
     /**
@@ -83,12 +89,42 @@ class HomeController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::create($validatedData);
-            foreach($validatedData['relation'] as &$value){
-                if(isset($value['path'])){
-                    $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+            if(in_array($data->home_type_id, [1, 7, 8])) {
+                $exists = [];
+                foreach($validatedData['relation'] as &$value){
+                    if(isset($value['id'])) {
+                        $exists[] = $value['id'];
+                        $item = $data->{$data->home_type->relation}()->where('id', $value['id'])->first();
+                        if(isset($value['path']) && $item->path != 'upload/'.$value['path']->getClientOriginalName()) {
+                            if(isset($value['path'])){
+                                $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                            }
+                        }else {
+                            unset($value['path']);
+                        }
+                        $item->update($value);
+                    }else{
+                        if(isset($value['path'])){
+                            $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                        }
+                        $item = $data->{$data->home_type->relation}()->create($value);
+                        $exists[] = $item->id;
+                    }
                 }
-            }               
-            $data->{$data->home_type->relation}()->hasManySyncable($data, $data->home_type->relation, $validatedData['relation']);
+                foreach ($data->{$data->home_type->relation} as $key => $item) {
+                    if(!in_array($item->id, $exists)) {
+                        $item->delete();
+                    }
+                }
+            }else {
+                $data->update($validatedData);        
+                foreach($validatedData['relation'] as &$value){
+                    if(isset($value['path'])){
+                        $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                    }
+                }
+                $data->{$data->home_type->relation}()->hasManySyncable($data, $data->home_type->relation, $validatedData['relation']);
+            }
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -125,7 +161,7 @@ class HomeController extends Controller
             $data->relation = $data->{$types->relation};
         }
 
-        return view($this->view.'.edit',compact('data'))->with(['types' => $this->types]);
+        return view($this->view.'.edit',compact('data'))->with(['types' => $this->types, 'products' => $this->products]);
     }
 
     /**
@@ -146,13 +182,43 @@ class HomeController extends Controller
 
             $data = CrudModel::findOrFail($id);
 
-            $data->update($validatedData);        
-            foreach($validatedData['relation'] as &$value){
-                if(isset($value['path'])){
-                    $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+            if(in_array($data->home_type_id, [1, 7, 8])) {
+                $exists = [];
+                foreach($validatedData['relation'] as &$value){
+                    if(isset($value['id'])) {
+                        $exists[] = $value['id'];
+                        $item = $data->{$data->home_type->relation}()->where('id', $value['id'])->first();
+                        if(isset($value['path']) && $item->path != 'upload/'.$value['path']->getClientOriginalName()) {
+                            if(isset($value['path'])){
+                                $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                            }
+                        }else {
+                            unset($value['path']);
+                        }
+                        $item->update($value);
+                    }else{
+                        if(isset($value['path'])){
+                            $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                        }
+                        $item = $data->{$data->home_type->relation}()->create($value);
+                        $exists[] = $item->id;
+                    }
                 }
-            }                
-            $data->{$data->home_type->relation}()->hasManySyncable($data, $data->home_type->relation, $validatedData['relation']);
+                foreach ($data->{$data->home_type->relation} as $key => $item) {
+                    if(!in_array($item->id, $exists)) {
+                        $item->delete();
+                    }
+                }
+            }else {
+                $data->update($validatedData);        
+                foreach($validatedData['relation'] as &$value){
+                    if(isset($value['path'])){
+                        $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                    }
+                }
+                $data->{$data->home_type->relation}()->hasManySyncable($data, $data->home_type->relation, $validatedData['relation']);
+            }
+            
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

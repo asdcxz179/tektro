@@ -437,10 +437,9 @@
                     FilePondPluginImagePreview,
                     FilePondPluginImageExifOrientation,
                     FilePondPluginFileValidateType,
-                    FilePondPluginFileEncode
                 );       
                 FilePond.setOptions({
-                    allowPaste: false
+                    allowPaste: false,
                 });
                 
                 $('.summernote').each(function(){

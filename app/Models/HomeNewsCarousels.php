@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class HomeCarousel extends Model implements Auditable
+class HomeNewsCarousels extends Model implements Auditable
 {
     use HasFactory;
     use \Spatie\Translatable\HasTranslations;
@@ -23,10 +23,7 @@ class HomeCarousel extends Model implements Auditable
         'big_title',
         'small_title',
         'button_link',
-        'type',
-        'youtube_key',
         'path',
-
         'sort',
     ];    
 

@@ -42,6 +42,7 @@ return [
     'home'              =>  '首頁',
     'information'       =>  '資訊',
     'news'              =>  '最新消息',
+    'new_products'      =>  '最新產品',
     'recruit'           =>  '人才招募',
     'about_us'          =>  '關於我們',
     'brand_product'     =>  '品牌產品',

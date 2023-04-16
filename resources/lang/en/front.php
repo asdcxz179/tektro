@@ -41,6 +41,7 @@ return [
     'home'              =>  'Home',
     'information'       =>  'Information',
     'news'              =>  'News',
+    'new_products'      =>  'New Products',
     'recruit'           =>  'Recruiting',
     'about_us'          =>  'About',
     'brand_product'     =>  'Product',

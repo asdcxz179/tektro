@@ -97,9 +97,12 @@ return [
         'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
         'path' => '圖片',
         'link' => '連結',
-    
+        'button_link' =>  '按鈕連結',
+        'type'  =>  '類型',
         'sort' => '排序',  
-      ]
+        'product_id' => '產品',  
+      ],
+      'youtube_key' => 'youtube_key',
     ]  
   ],  
   'header_banners' => [
@@ -208,6 +211,7 @@ return [
   ],  
   'products' => [
     'keyword' => ['*' => '關鍵字'],
+    'dealer_link' => ['*' => '經銷商連結'],
     'name' => ['*' => '名稱'],
     'description' => ['*' => '描述'],
     'content' => ['*' => '內容'],
@@ -227,6 +231,7 @@ return [
     'product_icons' => '技術icon(可多選)',
     'product_tags' => '自行車類別(可多選)',
     'product_special' => '特殊類別(可多選)',
+    'product_relevants' => '相關產品',
 
     'product_images' => [
       '*' => '圖片(可多筆)',  

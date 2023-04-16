@@ -36,7 +36,11 @@
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.description.*") }}</label>
                                 <input type="text" value="{{ $data->getTranslation('description', $language->lang,false) }}" name="description[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.description.*") }}">
-                            </div>               
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>{{ __("backend.$routeNameData.dealer_link.*") }}</label>
+                                <input type="text" value="{{ $data->getTranslation('dealer_link', $language->lang,false) }}" name="dealer_link[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.dealer_link.*") }}">
+                            </div>
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.attribute.*") }}</label>
                                 <input type="text" value="{{ $data->getTranslation('attribute', $language->lang,false) }}" name="attribute[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.attribute.*") }}">
@@ -57,10 +61,10 @@
                                 <label>{{ __("backend.$routeNameData.test_reviews.*") }}</label>                                
                                 <textarea name="test_reviews[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('test_reviews', $language->lang,false) }}</textarea>
                             </div>              
-                            <div class="form-group col-md-12">
+                            <!-- <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.related_products.*") }}</label>                                
                                 <textarea name="related_products[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('related_products', $language->lang,false) }}</textarea>
-                            </div>                              
+                            </div> -->
                         </div>
                     </div>
                     @endforeach
@@ -98,7 +102,15 @@
                                 <option value="{{ $item->id }}" data-array="{{ $item }}" selected>{{ $item->name }}</option>
                                 @endforeach
                             </select>
-                        </div>                                
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>{{ __("backend.$routeNameData.product_relevants") }}</label>
+                            <select data-url="{{ route('backend.products.select') }}" class="js-select2 form-control" multiple name="product_relevants[]" data-placeholder="{{ __("backend.$routeNameData.product_relevants") }}">
+                                @foreach($data->product_relevants as $item)
+                                <option value="{{ $item->id }}" data-array="{{ $item }}" selected>{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.banner") }}</label>    
                             <div class="text-danger">{{ __('suggested_size', ['width' => 800, 'height' => 800]) }}</div>

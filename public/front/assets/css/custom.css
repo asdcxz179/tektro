@@ -233,6 +233,11 @@
     /* -webkit-mask-size: contain; */
 }
 
+.index_news_slick.nav_dark .slick-prev::before,
+.index_news_slick.nav_dark .slick-next::before{
+    background: var(--bs-dark);
+}
+
 .duo_bg {
     margin-bottom: calc(36% /2);
 }

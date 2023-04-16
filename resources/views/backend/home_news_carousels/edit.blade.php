@@ -7,40 +7,29 @@
     </div>
     <div class="block-content block-content-full">
         <div class="d-none" id="template">
-            @foreach($languageData as $language)
-            <div class="form-group col-md-3">
-                <label>{{ __("backend.$routeNameData.relation.*.big_title") }}({{ $language->name }})</label>
-                <input type="text" name="relation[0][big_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.big_title") }}">
-            </div> 
-            <div class="form-group col-md-3">
-                <label>{{ __("backend.$routeNameData.relation.*.small_title") }}({{ $language->name }})</label>
-                <input type="text" name="relation[0][small_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">
-            </div>
-            <div class="form-group col-md-3">
-                <label>{{ __("backend.$routeNameData.relation.*.button_link") }}({{ $language->name }})</label>
-                <input type="text" name="relation[0][button_link][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.button_link") }}">
-            </div>
-            @endforeach                            
-            <div class="form-group col-md-3">
-                <label>{{ __("backend.$routeNameData.relation.*.sort") }}</label>
-                <input type="text" name="relation[0][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
-            </div>
-            <div class="form-group col-md-3">
-                <label>{{ __("backend.$routeNameData.relation.*.type") }}</label>
-                <div class="custom-control custom-radio mb-5">
-                    <input type="radio" name="relation[0][type]" class="custom-control-input" id="type_image_[0]" value="image" checked >
-                    <label class="custom-control-label" for="type_image_[0]">圖片</label>
+            <div class="form-group col-md-12">
+                @foreach($languageData as $language)
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>{{ __("backend.$routeNameData.relation.*.big_title") }}({{ $language->name }})</label>
+                        <textarea name="relation[0][big_title][{{ $language->lang }}]" id="" cols="30" rows="10" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.big_title") }}"></textarea>
+                    </div> 
+                    <div class="form-group col-md-4">
+                        <label>{{ __("backend.$routeNameData.relation.*.small_title") }}({{ $language->name }})</label>
+                        <textarea name="relation[0][small_title][{{ $language->lang }}]" id="" cols="30" rows="10" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>{{ __("backend.$routeNameData.relation.*.button_link") }}({{ $language->name }})</label>
+                        <input type="text" name="relation[0][button_link][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.button_link") }}">
+                    </div>
                 </div>
-                <div class="custom-control custom-radio mb-5">
-                    <input type="radio" name="relation[0][type]" class="custom-control-input" id="type_video_[0]" value="video">
-                    <label class="custom-control-label" for="type_video_[0]">影片</label>
-                </div>
+                @endforeach
             </div>
             <div class="form-group col-md-12">
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                        <label>{{ __("backend.$routeNameData.relation.*.youtube_key") }}</label>
-                        <input type="text" name="relation[0][youtube_key]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.youtube_key") }}">
+                        <label>{{ __("backend.$routeNameData.relation.*.sort") }}</label>
+                        <input type="text" name="relation[0][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
                     </div>
                     <div class="form-group col-md-8 filepond-dom">
                         <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>
@@ -90,49 +79,38 @@
                                 @foreach($data->relation as $key => $value)
                                 <div class="form-row area"> 
                                     <input type="hidden" name="relation[{{ $key }}][id]" value="{{ $value->id }}">
-                                    @foreach($languageData as $language) 
-                                    <div class="form-group col-md-3">
-                                        <label>{{ __("backend.$routeNameData.relation.*.big_title") }}({{ $language->name }})</label>
-                                        <input type="text" value="{{ $value->getTranslation('big_title', $language->lang,false) }}" name="relation[{{ $key }}][big_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.big_title") }}">
-                                    </div> 
-                                    <div class="form-group col-md-3">
-                                        <label>{{ __("backend.$routeNameData.relation.*.small_title") }}({{ $language->name }})</label>
-                                        <input type="text" value="{{ $value->getTranslation('small_title', $language->lang,false) }}" name="relation[{{ $key }}][small_title][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label>{{ __("backend.$routeNameData.relation.*.button_link") }}({{ $language->name }})</label>
-                                        <input type="text" value="{{ $value->getTranslation('button_link', $language->lang,false) }}" name="relation[{{ $key }}][button_link][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.button_link") }}">
-                                    </div>
-                                    @endforeach                            
-                                    <div class="form-group col-md-3">
-                                        <label>{{ __("backend.$routeNameData.relation.*.sort") }}</label>
-                                        <input type="text" value="{{ $value->sort }}" name="relation[{{ $key }}][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label>{{ __("backend.$routeNameData.relation.*.type") }}</label>
-                                        <div class="custom-control custom-radio mb-5">
-                                            <input type="radio" name="relation[{{ $key }}][type]" class="custom-control-input" value="image" id="item_type_image_[{{ $key }}]" @if($value->type == 'image') checked @endif>
-                                            <label class="custom-control-label" for="item_type_image_[{{ $key }}]">圖片</label>
+
+                                    <div class="form-group col-md-12">
+                                        @foreach($languageData as $language)
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label>{{ __("backend.$routeNameData.relation.*.big_title") }}({{ $language->name }})</label>
+                                                <textarea name="relation[{{ $key }}][big_title][{{ $language->lang }}]" id="" cols="30" rows="10" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.big_title") }}">{{ $value->getTranslation('big_title', $language->lang,false) }}</textarea>
+                                            </div> 
+                                            <div class="form-group col-md-4">
+                                                <label>{{ __("backend.$routeNameData.relation.*.small_title") }}({{ $language->name }})</label>
+                                                <textarea name="relation[{{ $key }}][small_title][{{ $language->lang }}]" id="" cols="30" rows="10" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">{{ $value->getTranslation('small_title', $language->lang,false) }}</textarea>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label>{{ __("backend.$routeNameData.relation.*.button_link") }}({{ $language->name }})</label>
+                                                <input value="{{ $value->getTranslation('button_link', $language->lang,false) }}" type="text" name="relation[{{ $key }}][button_link][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.button_link") }}">
+                                            </div>
                                         </div>
-                                        <div class="custom-control custom-radio mb-5">
-                                            <input type="radio" name="relation[{{ $key }}][type]" class="custom-control-input" value="video" id="item_type_video_[{{ $key }}]"  @if($value->type == 'video') checked @endif>
-                                            <label class="custom-control-label" for="item_type_video_[{{ $key }}]">影片</label>
-                                        </div>
+                                        @endforeach
                                     </div>
                                     <div class="form-group col-md-12">
                                         <div class="form-row">
                                             <div class="form-group col-md-3">
-                                                <label>{{ __("backend.$routeNameData.relation.*.youtube_key") }}</label>                                    
-                                                <input type="text" value="{{ $value->youtube_key }}" name="relation[{{ $key }}][youtube_key]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.youtube_key") }}">
+                                                <label>{{ __("backend.$routeNameData.relation.*.sort") }}</label>
+                                                <input type="text" name="relation[{{ $key }}][sort]" value="{{ $value->sort }}" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
                                             </div>
                                             <div class="form-group col-md-8 filepond-dom">
-                                                <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>                                    
+                                                <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>
                                                 <fieldset class="image">
                                                     @isset($value->path)
                                                     <input value="{{ asset($value->path) }}" checked type="checkbox" />{{ asset($value->path) }}
                                                     @endisset
-
-                                                    <input type="file" name="relation[{{ $key }}][path]" accept="image/*" />  
+                                                    <input type="file" name="relation[{{ $key }}][path]" accept="image/*" />
                                                 </fieldset>  
                                             </div>  
                                         </div>

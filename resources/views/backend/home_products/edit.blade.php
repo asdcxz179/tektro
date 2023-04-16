@@ -28,19 +28,24 @@
             <div class="form-group col-md-3">
                 <label>{{ __("backend.$routeNameData.relation.*.type") }}</label>
                 <div class="custom-control custom-radio mb-5">
-                    <input type="radio" name="relation[0][type]" class="custom-control-input" id="type_image_[0]" value="image" checked >
-                    <label class="custom-control-label" for="type_image_[0]">圖片</label>
+                    <input type="radio" name="relation[0][type]" class="custom-control-input" id="type_upload_[0]" value="upload" checked >
+                    <label class="custom-control-label" for="type_upload_[0]">上傳</label>
                 </div>
                 <div class="custom-control custom-radio mb-5">
-                    <input type="radio" name="relation[0][type]" class="custom-control-input" id="type_video_[0]" value="video">
-                    <label class="custom-control-label" for="type_video_[0]">影片</label>
+                    <input type="radio" name="relation[0][type]" class="custom-control-input" id="type_product_[0]" value="product">
+                    <label class="custom-control-label" for="type_product_[0]">產品</label>
                 </div>
             </div>
             <div class="form-group col-md-12">
                 <div class="form-row">
                     <div class="form-group col-md-3">
-                        <label>{{ __("backend.$routeNameData.relation.*.youtube_key") }}</label>
-                        <input type="text" name="relation[0][youtube_key]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.youtube_key") }}">
+                        <label>{{ __("backend.$routeNameData.relation.*.product_id") }}</label>
+                        <select class="form-control" name="relation[0][product_id]" data-placeholder="{{ __("backend.$routeNameData.*.product_id") }}">
+                            <option value=""></option>
+                            @foreach($products as $product)
+                            <option value="{{$product->id}}">{{$product->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group col-md-8 filepond-dom">
                         <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>
@@ -111,19 +116,24 @@
                                     <div class="form-group col-md-3">
                                         <label>{{ __("backend.$routeNameData.relation.*.type") }}</label>
                                         <div class="custom-control custom-radio mb-5">
-                                            <input type="radio" name="relation[{{ $key }}][type]" class="custom-control-input" value="image" id="item_type_image_[{{ $key }}]" @if($value->type == 'image') checked @endif>
-                                            <label class="custom-control-label" for="item_type_image_[{{ $key }}]">圖片</label>
+                                            <input type="radio" name="relation[{{ $key }}][type]" class="custom-control-input" value="upload" id="item_type_upload_[{{ $key }}]" @if($value->type == 'upload') checked @endif>
+                                            <label class="custom-control-label" for="item_type_upload_[{{ $key }}]">上傳</label>
                                         </div>
                                         <div class="custom-control custom-radio mb-5">
-                                            <input type="radio" name="relation[{{ $key }}][type]" class="custom-control-input" value="video" id="item_type_video_[{{ $key }}]"  @if($value->type == 'video') checked @endif>
-                                            <label class="custom-control-label" for="item_type_video_[{{ $key }}]">影片</label>
+                                            <input type="radio" name="relation[{{ $key }}][type]" class="custom-control-input" value="product" id="item_product_video_[{{ $key }}]"  @if($value->type == 'product') checked @endif>
+                                            <label class="custom-control-label" for="item_product_video_[{{ $key }}]">產品</label>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <div class="form-row">
                                             <div class="form-group col-md-3">
-                                                <label>{{ __("backend.$routeNameData.relation.*.youtube_key") }}</label>                                    
-                                                <input type="text" value="{{ $value->youtube_key }}" name="relation[{{ $key }}][youtube_key]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.youtube_key") }}">
+                                                <label>{{ __("backend.$routeNameData.relation.*.product_id") }}</label>                                    
+                                                <select class="form-control" name="relation[{{$key}}][product_id]" data-placeholder="{{ __("backend.$routeNameData.*.product_id") }}">
+                                                    <option value=""></option>
+                                                    @foreach($products as $product)
+                                                    <option value="{{$product->id}}" @if($value->product_id == $product->id) selected @endif>{{$product->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                             <div class="form-group col-md-8 filepond-dom">
                                                 <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>                                    

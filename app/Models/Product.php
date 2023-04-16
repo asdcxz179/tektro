@@ -28,7 +28,7 @@ class Product extends Model implements Auditable
         'attribute',
         'keyword',
         'banner',
-
+        'dealer_link',
         'sort',
         'status',  
         'new',  
@@ -49,6 +49,7 @@ class Product extends Model implements Auditable
         'related_products',
         'attribute',
         'keyword',
+        'dealer_link',
     ];
 
     public function product_images(){
@@ -83,4 +84,9 @@ class Product extends Model implements Auditable
     {
         return $this->morphedByMany(ProductTag::class, 'model', 'product_relations');
     } 
+
+    public function product_relevants()
+    {
+        return $this->morphedByMany(Product::class, 'model', 'product_relations');
+    }
 }

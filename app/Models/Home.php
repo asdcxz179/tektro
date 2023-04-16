@@ -35,7 +35,15 @@ class Home extends Model implements Auditable
 
     public function home_carousels(){
         return $this->hasMany(HomeCarousel::class)->orderby('sort');
-    } 
+    }
+
+    public function home_news_carousels(){
+        return $this->hasMany(HomeNewsCarousels::class)->orderby('sort');
+    }
+
+    public function home_products(){
+        return $this->hasMany(HomeProduct::class)->orderby('sort');
+    }
 
     public function home_news(){
         return $this->hasMany(HomeNews::class);

@@ -20,6 +20,7 @@ class ProductController extends Controller
         $this->rules = [            
             //使用多語系        
             'keyword.*' => ['nullable', 'string', 'max:100'],
+            'dealer_link.*' => ['nullable', 'string'],
             'name.*' => ['nullable', 'string', 'max:100'],
             'description.*' => ['nullable', 'string', 'max:100'],
             'content.*' => ['nullable', 'string'],
@@ -40,6 +41,7 @@ class ProductController extends Controller
             'product_tags' => ['nullable', 'array'],
             'product_special' => ['nullable', 'array'],
             'product_icons' => ['nullable', 'array'],
+            'product_relevants' => ['nullable', 'array'],
 
             //產品圖片
             'product_images' => ['nullable', 'array'],
@@ -116,9 +118,10 @@ class ProductController extends Controller
                 $this->dealfile($validatedData['banner'], 'banner'),
             ));
 
-            $data->product_categories()->sync($validatedData['product_categories'] ?? []);
-            $data->product_icons()->sync($validatedData['product_icons'] ?? []);
-            $data->product_tags()->sync((array_merge($validatedData['product_tags'] ?? [], $validatedData['product_special'] ?? [])) ?? []);
+            $data->auditSync('product_categories', $validatedData['product_categories'] ?? []);
+            $data->auditSync('product_icons', $validatedData['product_icons'] ?? []);
+            $data->auditSync('product_tags', (array_merge($validatedData['product_tags'] ?? [],$validatedData['product_special'] ?? [])) ?? []);
+            $data->auditSync('product_relevants', $validatedData['product_relevants'] ?? []);
 
             $relation = 'product_images';
             $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
@@ -193,6 +196,7 @@ class ProductController extends Controller
             $data->auditSync('product_categories', $validatedData['product_categories'] ?? []);
             $data->auditSync('product_icons', $validatedData['product_icons'] ?? []);
             $data->auditSync('product_tags', (array_merge($validatedData['product_tags'] ?? [],$validatedData['product_special'] ?? [])) ?? []);
+            $data->auditSync('product_relevants', $validatedData['product_relevants'] ?? []);
 
             $relation = 'product_images';
             $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));

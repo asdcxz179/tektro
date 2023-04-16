@@ -121,13 +121,6 @@ class Controller extends BaseController
                 }
             }
         }else{
-            // $file_data = json_decode($file);
-            // if($data && $file->name == $data->{$column}) {
-
-            // }
-            // if($tmp = ){
-            //     $fileData = $tmp;
-            // }            
         }
 
         return $fileData;

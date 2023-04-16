@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class HomeCarousel extends Model implements Auditable
+class HomeProduct extends Model implements Auditable
 {
     use HasFactory;
     use \Spatie\Translatable\HasTranslations;
     use \App\Traits\ModelShareTrait;
     use \OwenIt\Auditing\Auditable;
 
-    /**
+     /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -23,10 +23,9 @@ class HomeCarousel extends Model implements Auditable
         'big_title',
         'small_title',
         'button_link',
-        'type',
-        'youtube_key',
         'path',
-
+        'type',
+        'product_id',
         'sort',
     ];    
 
@@ -40,4 +39,8 @@ class HomeCarousel extends Model implements Auditable
         'small_title',
         'button_link',
     ];
+
+    public function product(){
+        return $this->hasOne(Product::class,'id','product_id');
+    } 
 }

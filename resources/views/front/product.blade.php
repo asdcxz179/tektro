@@ -71,7 +71,7 @@
                                 </li>
                                 @endforeach
                             </ul>
-                            <a href="{{route('front.global.index',['lang'=>$lang])}}" class="c_btn btn_dark">{{__('front.FIND A DEALER')}}</a>
+                            <a href="@if($product->dealer_link){{$product->dealer_link}}@else{{route('front.global.index',['lang'=>$lang])}}@endif" class="c_btn btn_dark">{{__('front.FIND A DEALER')}}</a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                                 role="tab" aria-selected="false">{{__('front.TEST & REVIEWS')}}</button>
                         </li>
                         @endif
-                        @if(strip_tags($product->related_products,['img']))
+                        @if($product->product_relevants)
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#related" type="button"
                                 role="tab" aria-selected="false">{{__('front.RELATED PRODUCTS')}}</button>
@@ -128,10 +128,29 @@
                             </div>
                         </div>
                         @endif
-                        @if($product->related_products)
+                        @if($product->product_relevants)
                         <div class="tab-pane fade" role="tabpanel" id="related">
                             <div class="row">
-                                {!!$product->related_products!!}
+                                <div class="col-12">
+                                    <ul class="row">
+                                        @foreach($product->product_relevants as $product)
+                                        <li class="col-6 col-md-3">
+                                            <a href="{{route('front.product.show',['lang'=>$lang,'product'=>$product->id])}}" class="box p-4">
+                                                <div class="ratio_outer mb-2 mb-md-4" style="padding-bottom: 100%;">
+                                                    <div class="ratio_inner bg-cover" style="background-image: url('{{asset($product->banner)}}');">
+                                                        <div class="box_img_overlay">
+                                                            <span class="text-white fw-bold mb-3">{{$product->name}}</span>
+                                                            <div href="#" class="c_btn btn_outline_white">{{__('front.VIEW ALL')}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h2 class="box_title">{{$product->name}}</h2>
+                                                <span class="box_text">{{$product->description}}</span>
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         @endif

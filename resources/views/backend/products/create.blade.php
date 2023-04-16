@@ -31,7 +31,11 @@
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.description.*") }}</label>
                                 <input type="text" name="description[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.description.*") }}">
-                            </div>         
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>{{ __("backend.$routeNameData.dealer_link.*") }}</label>
+                                <input type="text" name="dealer_link[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.dealer_link.*") }}">
+                            </div>
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.attribute.*") }}</label>
                                 <input type="text" name="attribute[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.attribute.*") }}">
@@ -52,10 +56,10 @@
                                 <label>{{ __("backend.$routeNameData.test_reviews.*") }}</label>                                
                                 <textarea name="test_reviews[{{ $language->lang }}]" class="form-control summernote"></textarea>
                             </div>              
-                            <div class="form-group col-md-12">
+                            <!-- <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.related_products.*") }}</label>                                
                                 <textarea name="related_products[{{ $language->lang }}]" class="form-control summernote"></textarea>
-                            </div>                                             
+                            </div> -->
                         </div>
                     </div>
                     @endforeach
@@ -79,7 +83,12 @@
                             <select data-url="{{ route('backend.product_icons.select') }}" class="js-select2 form-control" multiple name="product_icons[]" data-placeholder="{{ __("backend.$routeNameData.product_icons") }}">
                                 <!-- <option></option> -->
                             </select>
-                        </div>                                                                  
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>{{ __("backend.$routeNameData.product_relevants") }}</label>
+                            <select data-url="{{ route('backend.products.select') }}" class="js-select2 form-control" multiple name="product_relevants[]" data-placeholder="{{ __("backend.$routeNameData.product_relevants") }}">
+                            </select>
+                        </div>
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.banner") }}</label>    
                             <div class="text-danger">{{ __('suggested_size', ['width' => 800, 'height' => 800]) }}</div>

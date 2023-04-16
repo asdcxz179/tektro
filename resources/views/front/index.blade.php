@@ -7,19 +7,31 @@
         <section class="position-relative">
             <div class="index_banner_slick">
                 @foreach($module->home_carousels as $carousel)
-                <div class="index_banner_slick_item d-flex align-items-center bg-cover" style="background-image: url('{{asset($carousel->path)}}');">
-                    <div class="container">
-                        <div class="row justify-content-end">
-                            <div class="col-12 col-md-6 col-lg-6">
-                                <h2 class="h1 text-uppercase text-white fw-bold lh-base mb-3">
-                                    {{$carousel->big_title}}
-                                </h2>
-                                <p class="index_banner_text text-white">
-                                    {!!nl2br($carousel->small_title)!!}
-                                </p>
+                <div class="index_banner_slick_item d-flex align-items-center bg-cover" @if($carousel->type == 'image') style="background-image: url('{{asset($carousel->path)}}');" @endif>
+                    @if($carousel->type == 'image')
+                        <div class="container">
+                            <div class="row justify-content-end">
+                                <div class="col-12 col-md-6 col-lg-6">
+                                    <h2 class="h1 text-uppercase text-white fw-bold lh-base mb-3">
+                                        {{$carousel->big_title}}
+                                    </h2>
+                                    <p class="index_banner_text text-white">
+                                        {!!nl2br($carousel->small_title)!!}
+                                    </p>
+                                    @if($carousel->button_link)
+                                    <a href="{{$carousel->button_link}}" class="c_btn btn_white fw-normal mt-3" tabindex="0" target="_blank">{{__('front.see_more')}}</a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @elseif($carousel->type == 'video')
+                        <div id="player_carousel_{{$carousel->youtube_key}}" class=" iframe_video d-block"></div>
+                        <script>
+                            $(document).ready(function(){
+                                players['player_carousel_{{$carousel->youtube_key}}'] = '{{$carousel->youtube_key}}';
+                            });
+                        </script>
+                    @endif
                 </div>
                 @endforeach
             </div>
@@ -76,7 +88,7 @@
         <script>
             $(document).ready(function(){
                 players['player_{{$module->home_videos[0]->youtube_key}}'] = '{{$module->home_videos[0]->youtube_key}}';
-                $(body).css = ('background-color','transparent');
+                $('body').css = ('background-color','transparent');
             });
         </script>
         @break
@@ -153,8 +165,99 @@
         </div>
         <!-- video or img end -->
         @break
-    @endswitch
-@endforeach
+        @case(7)
+        <!-- 可編輯輪播圖 start -->
+        <section class="py-5">
+            <div class="container" data-aos="fade-up" data-aos-duration="800">
+                <!-- <div class="row justify-content-center mb-5">
+                    <div class="col-11 px-0">
+                        <h3 class="title fw-normal text-center text-md-start">可編輯輪播圖</h3>
+                    </div>
+                </div> -->
+                <div class="index_news_slick nav_dark mb-15">
+                    @foreach($module->home_news_carousels as $item)
+                    <div class="index_news_slick_item">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-11">
+                                    <a href="{{($item->button_link)?$item->button_link:'#'}}"
+                                        class="mb-5 mb-md-4 d-block overflow-hidden">
+                                        <div class="ratio_outer hover_transform_scale" style="padding-bottom: 66%;">
+                                            <div class="ratio_inner bg-cover"
+                                                style="background-image: url('{{asset($item->path)}}')">
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div>
+                                        <div class="d-flex w-100 flex-column flex-md-row">
+                                            <div class="col-md-5 mb-3 mb-md-0 fw-bold">
+                                                {!!$item->big_title!!}
+                                            </div>
+                                            <div class="col-md-7 ps-md-4">{!!$item->small_title!!}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+        <!-- 可編輯輪播圖 end -->
+        @break
+        @case(8)
+        <section class="container pt-5 mb-25">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="row justify-content-center">
+                        <h3 class="title fw-normal text-center mb-5">{{__('front.new_products')}}</h3>
+                        @foreach($module->home_products as $product)
+                        <li class="col-6 col-md-3">
+                            @if($product->type =='upload')
+                            <a href="{{($product->button_link)?$product->button_link:'#'}}" class="box p-4 mb-0">
+                                <div class="ratio_outer mb-2 mb-md-4" style="padding-bottom: 100%;">
+                                    <div class="ratio_inner bg-cover"
+                                        style="background-image: url('{{asset($product->path)}}');">
+                                        <div class="box_img_overlay">
+                                            <span class="text-white fw-bold mb-3">{{$product->big_title}}</span>
+                                            <div href="#" class="c_btn btn_outline_white">{{__('front.VIEW ALL')}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 class="box_title">{{$product->big_title}}</h2>
+                                <span class="box_text">{{$product->small_title}}</span>
+                            </a>
+                            @elseif($product->type =='product')
+                            @if($product->product_id)
+                            <a href="{{route('front.product.show',['lang'=>$lang,'product'=>$product->product_id])}}" class="box p-4 mb-0">
+                                <div class="ratio_outer mb-2 mb-md-4" style="padding-bottom: 100%;">
+                                    <div class="ratio_inner bg-cover"
+                                        style="background-image: url('{{asset($product->product->banner)}}');">
+                                        <div class="box_img_overlay">
+                                            <span class="text-white fw-bold mb-3">{{$product->product->name}}</span>
+                                            <div href="#" class="c_btn btn_outline_white">{{__('front.VIEW ALL')}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 class="box_title">{{$product->product->name}}</h2>
+                                <span class="box_text">{{$product->product->description}}</span>
+                            </a>
+                            @endif
+                            @endif
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </section>
+        @break
+        @endswitch
+        @endforeach
+        <!-- new product start -->
+        
+        <!-- new product end -->
+        
 <!-- newsletter -->
 <section class="newsletter jarallax bg-cover" style="background-image: url('{{asset('front/assets/images/index_newsletter.png')}}');">
     <div class="container">
