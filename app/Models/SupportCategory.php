@@ -31,6 +31,12 @@ class SupportCategory extends Model implements Auditable
 
     public $translatable = ['name'];
 
+    protected $auditExclude = [
+        'title',
+        'keyword',
+        'description',
+    ];
+
     public function supports(){
         return $this->hasMany(Support::class);
     } 

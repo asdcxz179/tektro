@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Support\Arr;
 
 class SupportFile extends Model implements Auditable
 {
@@ -32,5 +33,18 @@ class SupportFile extends Model implements Auditable
         'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
 
+    protected $auditExclude = [
+        'support_file_type_id',
+    ];
+
     public $translatable = ['name'];
+
+    public function transformAudit(array $data): array
+    {
+        if (Arr::has($data, 'new_values.support_file_type_id')) {
+            $data['old_values']['support_file_type_name'] = SupportFileType::find($this->getAttribute('support_file_type_id'))->name;
+            $data['new_values']['support_file_type_name'] = SupportFileType::find($this->getAttribute('support_file_type_id'))->name;
+        }
+        return $data;
+    }
 }

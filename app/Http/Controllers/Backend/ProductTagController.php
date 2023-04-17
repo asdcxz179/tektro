@@ -19,7 +19,7 @@ class ProductTagController extends Controller
             //使用多語系        
             'name.*' => ['nullable', 'string', 'max:100'],
             //公用
-            'path' => ['nullable', 'string'],
+            'path' => ['nullable'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],    
@@ -69,7 +69,7 @@ class ProductTagController extends Controller
             $data = CrudModel::create(array_merge($validatedData, 
                 $this->dealfile($validatedData['path'], 'path'),
             ));
-            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
+            $data->auditSync('product_brands',$validatedData['product_brands'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -120,10 +120,17 @@ class ProductTagController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::findOrFail($id);
-            $data->update(array_merge($validatedData, 
-                $this->dealfile($validatedData['path'], 'path', $data, 'path'),                
-            ));
-            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
+            foreach (['path'] as $value) {
+                if(isset($validatedData[$value]) && $data->{$value} != 'upload/'.$validatedData[$value]->getClientOriginalName()) {
+                    $validatedData = array_merge($validatedData, 
+                        $this->dealfile($validatedData[$value], $value, $data, $value),                               
+                    );
+                }else {
+                    unset($validatedData[$value]);
+                }
+            }
+            $data->update($validatedData);
+            $data->auditSync('product_brands',$validatedData['product_brands'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

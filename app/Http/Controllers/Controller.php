@@ -66,12 +66,12 @@ class Controller extends BaseController
             if($delete instanceof \Illuminate\Database\Eloquent\Collection || is_array($delete)){
                 foreach($delete as $value){
                     if(is_file($value[$deleteKey])){
-                        unlink($value[$deleteKey]);
+                        // unlink($value[$deleteKey]);
                     }
                 }
             }else{
                 if(is_file($delete[$deleteKey])){
-                    unlink($delete[$deleteKey]);
+                    // unlink($delete[$deleteKey]);
                 }          
             }
         }

@@ -20,7 +20,7 @@ class AboutController extends Controller
             'name.*' => ['nullable', 'string'],
             'content.*' => ['nullable', 'string'],
             //公用
-            'banner' => ['nullable', 'string'],
+            'banner' => ['nullable'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],     
@@ -118,10 +118,16 @@ class AboutController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::findOrFail($id);
-            $data->update(array_merge($validatedData, 
-                $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),                
-            ));
-
+            foreach (['banner', 'up_image'] as $value) {
+                if(isset($validatedData[$value]) && $data->{$value} != 'upload/'.$validatedData[$value]->getClientOriginalName()) {
+                    $validatedData = array_merge($validatedData, 
+                        $this->dealfile($validatedData[$value], $value, $data, $value),                               
+                    );
+                }else {
+                    unset($validatedData[$value]);
+                }
+            }
+            $data->update($validatedData);
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
         } catch (Exception $e) {

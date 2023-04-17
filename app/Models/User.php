@@ -10,8 +10,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Auditable
 {
     use HasApiTokens;
     use HasFactory;
@@ -19,6 +20,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
+    use \OwenIt\Auditing\Auditable;
 
     protected $guard_name = 'admin';
 
@@ -56,6 +58,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
+    protected $auditExclude = [
+        'password',
     ];
 
     /**

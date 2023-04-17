@@ -72,8 +72,8 @@ class DealerController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::create($validatedData);
-            $data->areas()->sync($validatedData['areas'] ?? []);
-            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
+            $data->auditSync('areas',$validatedData['areas'] ?? []);
+            $data->auditSync('product_brands',$validatedData['product_brands'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -125,8 +125,8 @@ class DealerController extends Controller
             
             $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
-            $data->areas()->sync($validatedData['areas'] ?? []);
-            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
+            $data->auditSync('areas',$validatedData['areas'] ?? []);
+            $data->auditSync('product_brands',$validatedData['product_brands'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

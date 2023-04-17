@@ -94,7 +94,7 @@
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
-                        </div>                    
+                        </div>
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.status") }}<span class="text-danger">*</span></label>
                             <div class="col-md-12">
@@ -157,26 +157,9 @@ $('.add-btn').click(function(){
     let count = $('.area').length + 1;
     
     $('#content').append(`<div class="form-row area">${html.replace(/\[0\]/g, `[${count}]`)}</div>`);
-    document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item, {
+    document.querySelectorAll('form fieldset.image').forEach(item => FilePond.create(item, {
         storeAsFile: true,
-    }));
-        $(this).select2({        		
-            allowClear: true,	
-            ajax: {
-                url: $(this).data('url'),
-                data: function (params) {
-                    return { search: params.term };
-                },
-                processResults: function(data, page) {                								
-                    return { 
-                        results: data.map(item => { return { 
-                            id: item.id,
-                            text: item.name['zh-Hant'] || item.name
-                        } }) 
-                    }
-                },
-            }
-        });
+    }))
 });
 </script>
 @endpush

@@ -10,6 +10,9 @@
             <a class="dropdown-item" href="{{ route('backend.edit_password.index') }}">
                 <i class="si si-users mr-5"></i> {{ __('edit_password') }}
             </a>
+            <a class="dropdown-item" href="{{ route('backend.audits.index') }}">
+                <i class="si si-clock mr-5"></i> 操作紀錄
+            </a>
             <a class="dropdown-item" href="javascript:void(0)" onclick="$('#form').submit()">
                 <i class="si si-logout mr-5"></i> {{ __('sign_out') }}
             </a>

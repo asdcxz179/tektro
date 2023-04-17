@@ -19,7 +19,7 @@ class ProductIconController extends Controller
             //使用多語系        
             'name.*' => ['nullable', 'string', 'max:100'],
             //公用
-            'path' => ['required', 'string'],
+            'path' => ['required'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],      
@@ -118,9 +118,16 @@ class ProductIconController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::findOrFail($id);
-            $data->update(array_merge($validatedData, 
-                $this->dealfile($validatedData['path'], 'path'),                
-            ));
+            foreach (['path'] as $value) {
+                if(isset($validatedData[$value]) && $data->{$value} != 'upload/'.$validatedData[$value]->getClientOriginalName()) {
+                    $validatedData = array_merge($validatedData, 
+                        $this->dealfile($validatedData[$value], $value, $data, $value),                               
+                    );
+                }else {
+                    unset($validatedData[$value]);
+                }
+            }
+            $data->update($validatedData);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

@@ -106,7 +106,9 @@
 $(function() {
     var path = '{{ route('backend.'.$routeNameData.'.index') }}';
     var formEdit = $('#form-edit');
-    document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item))
+    document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item, {
+        storeAsFile: true,
+    }))
     $(".form-group > ul > li:first-child a").click();
     $(".form-group").each(function(){
         let checked = true;

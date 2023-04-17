@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Support\Arr;
+
 
 class Home extends Model implements Auditable
 {
@@ -64,4 +66,12 @@ class Home extends Model implements Auditable
     public function home_images(){
         return $this->hasMany(HomeImage::class);
     } 
+
+    public function transformAudit(array $data): array
+    {
+        if (Arr::has($data, 'new_values.home_type_id')) {
+            $data['new_values']['home_type_id'] = HomeType::find($this->getAttribute('home_type_id'))->name;
+        }
+        return $data;
+    }
 }

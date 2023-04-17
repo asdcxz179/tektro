@@ -89,32 +89,13 @@ class HomeController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::create($validatedData);
-            if(in_array($data->home_type_id, [1, 7, 8])) {
+            if(in_array($data->home_type_id, [1, 2, 4, 5, 6, 7, 8])) {
                 $exists = [];
                 foreach($validatedData['relation'] as &$value){
-                    if(isset($value['id'])) {
-                        $exists[] = $value['id'];
-                        $item = $data->{$data->home_type->relation}()->where('id', $value['id'])->first();
-                        if(isset($value['path']) && $item->path != 'upload/'.$value['path']->getClientOriginalName()) {
-                            if(isset($value['path'])){
-                                $value = array_merge($value, $this->dealfile($value['path'], 'path'));
-                            }
-                        }else {
-                            unset($value['path']);
-                        }
-                        $item->update($value);
-                    }else{
-                        if(isset($value['path'])){
-                            $value = array_merge($value, $this->dealfile($value['path'], 'path'));
-                        }
-                        $item = $data->{$data->home_type->relation}()->create($value);
-                        $exists[] = $item->id;
+                    if(isset($value['path'])){
+                        $value = array_merge($value, $this->dealfile($value['path'], 'path'));
                     }
-                }
-                foreach ($data->{$data->home_type->relation} as $key => $item) {
-                    if(!in_array($item->id, $exists)) {
-                        $item->delete();
-                    }
+                    $item = $data->{$data->home_type->relation}()->create($value);
                 }
             }else {
                 $data->update($validatedData);        
@@ -179,10 +160,8 @@ class HomeController extends Controller
         
         try{
             DB::beginTransaction();
-
             $data = CrudModel::findOrFail($id);
-
-            if(in_array($data->home_type_id, [1, 7, 8])) {
+            if(in_array($data->home_type_id, [1, 2, 4, 5, 6, 7, 8])) {
                 $exists = [];
                 foreach($validatedData['relation'] as &$value){
                     if(isset($value['id'])) {
@@ -218,7 +197,7 @@ class HomeController extends Controller
                 }
                 $data->{$data->home_type->relation}()->hasManySyncable($data, $data->home_type->relation, $validatedData['relation']);
             }
-            
+            $data->update($validatedData);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

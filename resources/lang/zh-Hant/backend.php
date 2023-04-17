@@ -1,6 +1,10 @@
 <?php
 
 return [
+  'lang' => [
+    'zh-Hant' => '中文',
+    'en'  =>  '英文',
+  ],
   'menu' => [
     'seo' => '關鍵字管理',
     'web_setting' =>  '網站設定',
@@ -8,9 +12,22 @@ return [
     'users_setting' => '管理員設定',
     'roles' => '角色',
     'suppliers' => '供應商管理',
+    'messages'  =>  '電子報',
+    'support_files' =>  '技術手冊檔案',
 
     'homes' => '首頁',
     'header_banners' => '選單小圖',
+    'home_products' =>  '首頁產品',
+    'home_news_carousels' =>  '首頁圖文輪播',
+    'home_carousels'  =>  '首頁輪播',
+    'product_images'  =>  '產品圖片',
+    'home_brands' =>  '首頁品牌介紹',
+    'home_webs' =>  '首頁網站描述',
+    'home_videos' =>  '首頁影片',
+    'home_news' =>  '首頁最新消息',
+    'home_images' =>  '首頁圖片',
+    'web_settings'  =>  '網站設定',
+    'product_files' =>  '產品檔案',
 
     'info' => '資訊',
     'news' => '最新消息',
@@ -44,6 +61,15 @@ return [
     'test' => '測試',
     'template' => '模板',
   ],
+  'web_settings'  =>  [
+    '*' =>  [
+      'author'  =>  '作者',
+      'title' =>  '網站標題',
+      'keyword' => '關鍵字',
+      'description' => '描述',
+      'copyright'  =>  '版權宣告',
+    ]
+  ],
   'audits' => [
     'user' => '管理員',
     'event' => '動作',
@@ -63,7 +89,9 @@ return [
   ],
   'roles' => [
     'name' => '角色名稱',
-    'permissions' => '角色權限'
+    'permissions' => '角色權限',
+    'id'  =>  'id',
+    'guard_name'  =>  '群祖名',
   ],
   'users' => [
     'name' => '名稱',
@@ -73,6 +101,7 @@ return [
     'password_error' => '密碼錯誤',
     'password_confirmation' => '密碼確認',
     'status' => '狀態',
+    'id'  =>  'id',
   ],  
   'homes' => [
     'name' => ['*' => '名稱'],
@@ -84,6 +113,7 @@ return [
 
     'sort' => '排序',
     'status' => '狀態',
+    'id'  =>  'id',
 
     'relation' => [
       '*' => [
@@ -105,14 +135,184 @@ return [
       'youtube_key' => 'youtube_key',
     ]  
   ],  
+  'home_products' => [
+    '*' => [
+      'brand' => '品牌',
+      'title' => '標題',
+      'big_title' => '大標題',
+      'small_title' => '小標題',
+      'title' => '標題',
+
+      'youtube_key' => 'youtube_key',
+      'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
+      'link' => '連結',
+      'button_link' =>  '按鈕連結',
+    ],
+    'path' => '圖片',
+    'type'  =>  '類型',
+    'product_id' => '產品', 
+    'sort' => '排序',
+    'id' => 'id',
+    'home_id'  =>  '首頁id',
+    'product_name' => '產品名稱',
+  ],
+  'home_news_carousels' => [
+    '*' => [
+      'brand' => '品牌',
+      'title' => '標題',
+      'big_title' => '大標題',
+      'small_title' => '小標題',
+      'title' => '標題',
+
+      'youtube_key' => 'youtube_key',
+      'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
+      'link' => '連結',
+      'button_link' =>  '按鈕連結',
+    ],
+    'path' => '圖片',
+    'type'  =>  '類型',
+    'product_id' => '產品', 
+    'sort' => '排序',
+    'id' => 'id',
+    'home_id'  =>  '首頁id',
+  ],
+  'home_images' => [
+    '*' => [
+      'brand' => '品牌',
+      'title' => '標題',
+      'big_title' => '大標題',
+      'small_title' => '小標題',
+      'title' => '標題',
+
+      'youtube_key' => 'youtube_key',
+      'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
+      'link' => '連結',
+      'button_link' =>  '按鈕連結',
+    ],
+    'path' => '圖片',
+    'type'  =>  '類型',
+    'product_id' => '產品', 
+    'sort' => '排序',
+    'id' => 'id',
+    'home_id'  =>  '首頁id',
+  ],
+  'home_news' => [
+    '*' => [
+      'brand' => '品牌',
+      'title' => '標題',
+      'big_title' => '大標題',
+      'small_title' => '小標題',
+      'title' => '標題',
+
+      'youtube_key' => 'youtube_key',
+      'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
+      'link' => '連結',
+      'button_link' =>  '按鈕連結',
+    ],
+    'path' => '圖片',
+    'type'  =>  '類型',
+    'product_id' => '產品', 
+    'sort' => '排序',
+    'id' => 'id',
+    'home_id'  =>  '首頁id',
+  ],
+  'home_videos' => [
+    '*' => [
+      'brand' => '品牌',
+      'title' => '標題',
+      'big_title' => '大標題',
+      'small_title' => '小標題',
+      'title' => '標題',
+
+      
+      'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
+      'link' => '連結',
+      'button_link' =>  '按鈕連結',
+    ],
+    'youtube_key' => 'youtube_key',
+    'path' => '圖片',
+    'type'  =>  '類型',
+    'product_id' => '產品', 
+    'sort' => '排序',
+    'id' => 'id',
+    'home_id'  =>  '首頁id',
+  ],
+  'home_webs' => [
+    '*' => [
+      'brand' => '品牌',
+      'title' => '標題',
+      'big_title' => '大標題',
+      'small_title' => '小標題',
+      'title' => '標題',
+
+      'youtube_key' => 'youtube_key',
+      'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
+      'link' => '連結',
+      'button_link' =>  '按鈕連結',
+    ],
+    'path' => '圖片',
+    'type'  =>  '類型',
+    'product_id' => '產品', 
+    'sort' => '排序',
+    'id' => 'id',
+    'home_id'  =>  '首頁id',
+  ],
+  'home_brands' => [
+    '*' => [
+      'brand' => '品牌',
+      'title' => '標題',
+      'big_title' => '大標題',
+      'small_title' => '小標題',
+      'title' => '標題',
+
+      'youtube_key' => 'youtube_key',
+      'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
+      'link' => '連結',
+      'button_link' =>  '按鈕連結',
+    ],
+    'path' => '圖片',
+    'type'  =>  '類型',
+    'product_id' => '產品', 
+    'sort' => '排序',
+    'id' => 'id',
+    'home_id'  =>  '首頁id',
+    'link' => '連結',
+  ],
+  'home_carousels' => [
+    '*' => [
+      'brand' => '品牌',
+      'title' => '標題',
+      'big_title' => '大標題',
+      'small_title' => '小標題',
+      'title' => '標題',
+
+      
+      'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
+      'link' => '連結',
+      'button_link' =>  '按鈕連結',
+    ],
+    'path' => '圖片',
+    'type'  =>  '類型',
+    'product_id' => '產品', 
+    'sort' => '排序',
+    'id' => 'id',
+    'home_id'  =>  '首頁id',
+    'youtube_key' => 'youtube_key',
+  ],
   'header_banners' => [
     'name' => '名稱',
     'path' => '圖片',
   ],  
   'news' => [
+    'id'  =>  'id',
     'name' => ['*' => '名稱'],
     'description' => ['*' => '描述'],
     'content' => ['*' => '內容'],
+    '*' =>  [
+      'name' => '名稱',
+      'description' => '描述',
+      'content' => '內容',
+    ],
 
     'show_date' => '顯示日期',
     'banner' => '封面圖',
@@ -122,10 +322,15 @@ return [
     'status' => '狀態',
   ],
   'talents' => [
+    'id'  =>  'id',
     'name' => ['*' => '名稱'],
     'description' => ['*' => '描述'],
     'content' => ['*' => '內容'],
-
+    '*' =>  [
+      'name' => '名稱',
+      'description' => '描述',
+      'content' => '內容',
+    ],
     'show_date' => '顯示日期',
     'banner' => '封面圖',
     'up_image' => '上方主圖',
@@ -135,6 +340,10 @@ return [
   ],  
   'abouts' => [
     'name' => ['*' => '名稱'],
+    '*' =>  [
+      'name'  =>  '名稱',
+      'content'  => '內容',
+    ],
     'content' => ['*' => '內容'],
 
     'banner' => '選單小圖',
@@ -148,6 +357,12 @@ return [
     'advertise_subtitle' => ['*' => '廣告副標題'],
     'below_advertise_title' => ['*' => '下方廣告標題'],
     'below_advertise_subtitle' => ['*' => '下方廣告副標題'],
+    '*' => [
+      'advertise_title' => '廣告標題',
+      'advertise_subtitle' => '廣告副標題',
+      'below_advertise_title' => '下方廣告標題',
+      'below_advertise_subtitle' => '下方廣告副標題',
+    ],
 
     'banner' => '橫幅',
     'advertise_image' => '廣告圖片',
@@ -167,6 +382,9 @@ return [
       'en' => '英文語系 名稱',
       '*' => '名稱',
     ],
+    '*' =>  [
+      'name'  =>  '名稱',
+    ],
 
     'path' => '圖片',
 
@@ -177,6 +395,9 @@ return [
   ],
   'product_tags' => [
     'name' => ['*' => '名稱'],
+    '*' =>  [
+      'name' => '名稱'
+    ],
     
     'path' => '圖片',
 
@@ -196,10 +417,14 @@ return [
     'product_brands' => '品牌(可多選)',
   ],
   'product_icons' => [
+    'id' => 'id',
     'name' => [
       'zh-Hant' => '中文語系 名稱',
       'en' => '英文語系 名稱',
       '*' => '名稱',
+    ],
+    '*' => [
+      'name' => '名稱',
     ],
 
     'path' => '圖片',
@@ -220,6 +445,19 @@ return [
     'test_reviews' => ['*' => 'TEST & REVIEWS'],
     'related_products' => ['*' => 'RELATED PRODUCTS'],
     'attribute' => ['*' => '功能屬性'],
+    'id'  =>  'id',
+    '*' =>  [
+      'keyword' => '關鍵字',
+      'dealer_link' => '經銷商連結',
+      'name' => '名稱',
+      'description' => '描述',
+      'content' => '內容',
+      'details' => 'DETAILS',
+      'technology' => 'TECHNOLOGY',
+      'test_reviews' => 'TEST & REVIEWS',
+      'related_products' => 'RELATED PRODUCTS',
+      'attribute' => '功能屬性',
+    ],
 
     'banner' => '產品列表小圖',
 
@@ -235,6 +473,9 @@ return [
 
     'product_images' => [
       '*' => '圖片(可多筆)',  
+      'path'  =>  '圖片',
+      'product_id'  =>  '產品id',
+      'id'  =>  'id',
     ],
     'product_file' => '檔案',
     'product_files' => [
@@ -247,9 +488,28 @@ return [
       ]
     ]    
   ],
+  'product_files' => [
+    '*' => [
+      'name' => '名稱',
+      
+    ],
+    'file_name' => '檔案名稱',
+    'path' => '檔案',
+    'product_id'  =>  '產品id',
+    'sort' => '排序',  
+    'id'  =>  'id',
+  ],
+  'product_images' => [
+    '*' => '圖片(可多筆)',  
+    'path'  =>  '圖片',
+    'product_id'  =>  '產品id',
+    'id'  =>  'id',
+  ],
   'product_keywords' => [
     'name' => ['*' => '名稱'],
-
+    '*' => [
+      'name' => '名稱',
+    ],
     'sort' => '排序',
     'status' => '狀態',
 
@@ -260,6 +520,13 @@ return [
     'title' => ['*' => '網站標題'],
     'keyword' => ['*' => '關鍵字'],
     'description' => ['*' => '描述'],
+    '*' => [
+      'author'  =>  '作者',
+      'title' =>  '網站標題',
+      'keyword' => '關鍵字',
+      'description' => '描述',
+      'copyright'  =>  '版權宣告',
+    ]
   ],
   'web_setting' => [
     'title' => ['*' => '網站標題'],
@@ -270,8 +537,10 @@ return [
   ],
   'support_categories' => [
     'name' => ['*' => '名稱'],
-    
-            
+    '*' =>  [
+      'name'  =>  '名稱',
+    ],
+    'id'  =>  'id',
     'sort' => '排序',
     'status' => '狀態',   
   ],
@@ -280,7 +549,10 @@ return [
   ],
   'supports' => [
     'name' => ['*' => '名稱'],
-
+    '*' =>  [
+      'name' => '名稱',
+    ],
+    'id'  =>  'id',
     'sort' => '排序',
     'status' => '狀態',   
 
@@ -298,8 +570,24 @@ return [
       ]
     ]
   ],
+  'support_files' => [
+    '*' => [
+      'name' => '名稱',
+    ],
+    'path' => '檔案',
+    'file_name' => '檔案名稱',
+    'id'  =>  'id',
+    'support_id'  =>  '技術手冊id',
+    'support_file_type_id'  =>  '檔案分類',
+    'sort' => '排序',
+    'status' => '狀態',  
+  ],
   'video_settings' => [
     'name' => ['*' => '名稱'],
+    'id'  =>  'id',
+    '*' =>  [
+      'name'  =>  '名稱',
+    ],
 
     'youtube_key' => 'youtube_key',
     'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',
@@ -310,10 +598,13 @@ return [
   'commons' => [
     'name' => ['*' => '名稱'],
     'content' => ['*' => '內容'],
-
+    '*' =>  [
+      'name' => '名稱',
+      'content' => '內容',
+    ],
     'sort' => '排序',
     'status' => '狀態',
-
+    'id'  =>  'id',
     'product_brands' => '品牌(可多選)',
   ],  
   'contacts' => [
@@ -339,11 +630,16 @@ return [
 
     'sort' => '排序',
     'status' => '狀態',
+    'id'  =>  'id',
   ],   
   'dealers' => [
     'country' => ['*' => '國家'],
     'company' => ['*' => '公司名'],
-
+    '*' =>  [
+      'country' => '國家',
+      'company' => '公司名',
+    ],
+    'id'  =>  'id',
     'phone' => '電話',
     'email' => 'email',
     'website' => 'website',
@@ -358,10 +654,22 @@ return [
     'facebook' => 'Facebook',
     'instagram' => 'Instagram',
     'youtube' => 'Youtube',
+    '*' => [
+      'facebook' => 'Facebook',
+      'instagram' => 'Instagram',
+      'youtube' => 'Youtube',
+    ]
   ],
   'subscription' => [
     'title' => '標題',
     'lang' => '語言',
     'content' => '內容',
+  ],
+  'messages' => [
+    'title' => '標題',
+    'lang' => '語言',
+    'content' => '內容',
+    'emails'  =>  '發送信箱',
+    'id'  =>  'id',
   ],
 ];

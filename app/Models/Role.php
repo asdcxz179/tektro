@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Models\Role as RoleParent;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Role extends RoleParent
+class Role extends RoleParent implements Auditable
 {
     // use \App\Traits\ObserverTrait;
+    use \OwenIt\Auditing\Auditable;
     
     use HasFactory;
 
@@ -17,6 +19,9 @@ class Role extends RoleParent
         'guard_name',
     ];
 
+    protected $auditExclude = [
+        'guard_name',
+    ];
 
     protected $casts = [
         'name' => 'string',

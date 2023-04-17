@@ -17,7 +17,7 @@ class HeaderBannerController extends Controller
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //公用
-            'path' => ['nullable', 'string'],
+            'path' => ['nullable'],
         ];
         $this->messages = []; 
         $this->attributes = Arr::dot(__("backend.{$this->name}"));
@@ -110,9 +110,15 @@ class HeaderBannerController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::findOrFail($id);
-            $data->update(array_merge($validatedData, 
-                $this->dealfile($validatedData['path'], 'path', $data, 'path'),                               
-            ));
+            if(isset($validatedData['path']) && $data->path != 'upload/'.$validatedData['path']->getClientOriginalName()) {
+                $validatedData = array_merge($validatedData, 
+                    $this->dealfile($validatedData['path'], 'path', $data, 'path'),                               
+                );
+            }else {
+                unset($validatedData['path']);
+            }
+
+            $data->update($validatedData);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

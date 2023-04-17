@@ -35,6 +35,8 @@
                 </div>                  
                 <div class="block-content tab-content">
                     <div class="form-row">           
+                        <input type="hidden" value="{{request()->home_type_id}}" name="home_type_id">
+                        <input type="hidden" value="{{$value->id}}" name="relation[1][id]">
                         <div class="form-group col-md-12">
                             <label>{{ __("backend.$routeNameData.home_type_id") }}</label>
                             <select class="js-select2 form-control" disabled name="home_type_id">

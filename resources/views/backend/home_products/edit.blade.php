@@ -235,7 +235,7 @@ $('.add-btn').click(function(){
     let count = $('.area').length;
     
     $('#content').append(`<div class="form-row area">${html.replace(/\[0\]/g, `[${count}]`)}</div>`);
-    document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item, {
+    document.querySelectorAll('form fieldset.image').forEach(item => FilePond.create(item, {
         storeAsFile: true,
     }))
 });

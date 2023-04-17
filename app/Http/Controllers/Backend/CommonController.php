@@ -67,7 +67,7 @@ class CommonController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::create($validatedData);
-            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
+            $data->auditSync('product_brands',$validatedData['product_brands'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -119,7 +119,7 @@ class CommonController extends Controller
 
             $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
-            $data->product_brands()->sync($validatedData['product_brands'] ?? []);
+            $data->auditSync('product_brands',$validatedData['product_brands'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);

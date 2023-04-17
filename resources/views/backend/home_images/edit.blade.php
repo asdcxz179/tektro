@@ -14,7 +14,7 @@
                     <div class="form-row">           
                         <div class="form-group col-md-12">
                             <label>{{ __("backend.$routeNameData.home_type_id") }}</label>
-                            <select class="js-select2 form-control" disabled name="home_type_id">
+                            <select class="js-select2 form-control" disabled>
                                 @foreach($types as $value)
                                 <option value="{{ $value->id }}" {{ $value->id == request()->home_type_id ? 'selected' : '' }}>{{ $value->name }}</option>
                                 @endforeach
@@ -24,7 +24,8 @@
                             @isset($data->relation)
                             @foreach($data->relation as $key => $value)                                                     
                             <div class="add form-row"> 
-                                <input type="hidden" name="relation[{{ $key }}][id]" value="{{ $value->id }}">
+                                <input type="hidden" value="{{request()->home_type_id}}" name="home_type_id">
+                                <input type="hidden" name="relation[1][id]" value="{{ $value->id }}">
                                 <div class="form-group col-md-12">
                                     <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>
                                     <fieldset class="image">
@@ -68,7 +69,9 @@
 $(function() {
     var path = '{{ route('backend.'.$routeNameData.'.index') }}';
     var formEdit = $('#form-edit');
-    document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item))
+    document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item, {
+        storeAsFile: true,
+    }))
     $(".nav-item a").eq(0).click();
     $(".form-group").each(function(){
         let checked = true;

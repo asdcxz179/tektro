@@ -132,8 +132,8 @@
                             <label>{{ __("backend.$routeNameData.status") }}<span class="text-danger">*</span></label>
                             <div class="col-md-12">
                                 <label class="css-control css-control-primary css-switch">
-                                    <input type="checkbox" class="css-control-input" {{ $data->status == 1 ? 'checked' : '' }}>
-                                    <input type="hidden" required name="status" value="{{ $data->status }}">
+                                    <input type="hidden"  name="status" value="{{ $data->status }}">
+                                    <input type="checkbox" class="css-control-input" {{ $data->status == 1 ? 'checked' : '' }} name="status" value="1">
                                     <span class="css-control-indicator"></span>
                                 </label>
                             </div>

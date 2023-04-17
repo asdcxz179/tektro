@@ -13,6 +13,7 @@ class Seo extends Model implements Auditable
     use \OwenIt\Auditing\Auditable;
 
     protected $table = 'seo';
+    public $show_name = '關鍵字管理';
     /**
      * The attributes that are mass assignable.
      *

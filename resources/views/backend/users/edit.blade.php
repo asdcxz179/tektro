@@ -33,7 +33,7 @@
                                 <label>{{ __("backend.$routeNameData.roles") }}<span class="text-danger">*</span></label>
                                 <select data-url="{{ route('backend.roles.select') }}" class="js-select2 form-control" required multiple name="roles[]" data-placeholder="{{ __("backend.$routeNameData.roles") }}">
                                     @foreach($data->roles as $item)
-                                        <option value="{{ $item->name }}" selected>{{ $item->name }}</option>
+                                        <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
                                     @endforeach
                                     <option></option>
                                 </select>

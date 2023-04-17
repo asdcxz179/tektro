@@ -99,7 +99,9 @@
 $(function() {
     var path = '{{ route('backend.'.$routeNameData.'.index') }}';
     var formCreate = $('#form-create');
-    document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item))
+    document.querySelectorAll('fieldset.image').forEach(item => FilePond.create(item,{
+        storeAsFile: true,
+    }))
     $(".form-group > ul > li:first-child a").click();
     formCreate.ajaxForm({
         beforeSubmit: function(arr, $form, options) {

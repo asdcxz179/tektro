@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Support\Arr;
 
 class Product extends Model implements Auditable
 {
@@ -88,5 +89,28 @@ class Product extends Model implements Auditable
     public function product_relevants()
     {
         return $this->morphedByMany(Product::class, 'model', 'product_relations');
+    }
+
+    public function transformAudit(array $data): array
+    {
+        if (Arr::has($data, 'new_values.product_categories')) {
+            $data['old_values']['product_categories'] = implode("|",collect($this->auditCustomOld['product_categories'])->pluck("name.zh-Hant")->toArray());
+            $data['new_values']['product_categories'] = implode("|",$this->getAttribute('product_categories')->pluck('name')->toArray());
+        }
+        if (Arr::has($data, 'new_values.product_icons')) {
+            $data['old_values']['product_icons'] = implode("|",collect($this->auditCustomOld['product_icons'])->pluck("name.zh-Hant")->toArray());
+            $data['new_values']['product_icons'] = implode("|",$this->getAttribute('product_icons')->pluck('name')->toArray());
+        }
+
+        if (Arr::has($data, 'new_values.product_tags')) {
+            $data['old_values']['product_tags'] = implode("|",collect($this->auditCustomOld['product_tags'])->pluck("name.zh-Hant")->toArray());
+            $data['new_values']['product_tags'] = implode("|",$this->getAttribute('product_tags')->pluck('name')->toArray());
+        }
+        if (Arr::has($data, 'new_values.product_relevants')) {
+            $data['old_values']['product_relevants'] = implode("|",collect($this->auditCustomOld['product_relevants'])->pluck("name.zh-Hant")->toArray());
+            $data['new_values']['product_relevants'] = implode("|",$this->getAttribute('product_relevants')->pluck('name')->toArray());
+        }
+
+        return $data;
     }
 }

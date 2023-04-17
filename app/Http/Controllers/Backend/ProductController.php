@@ -30,7 +30,7 @@ class ProductController extends Controller
             'related_products.*' => ['nullable', 'string'],
             'attribute.*' => ['nullable', 'string'],
             //公用
-            'banner' => ['nullable', 'string'],
+            'banner' => ['nullable'],
             //通用
             'sort' => ['required', 'numeric'],
             'status' => ['required', 'boolean'],     
@@ -45,7 +45,7 @@ class ProductController extends Controller
 
             //產品圖片
             'product_images' => ['nullable', 'array'],
-            'product_images.*' => ['nullable', 'string'],
+            'product_images.*' => ['nullable'],
             //產品檔案
             'product_files' => ['nullable', 'array'],
             'product_files.*.id' => ['nullable'],
@@ -184,14 +184,20 @@ class ProductController extends Controller
     {
         $this->authorize('edit '.$this->name);
         $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
-        
         try{
             DB::beginTransaction();
 
             $data = CrudModel::findOrFail($id);
-            $data->update(array_merge($validatedData, 
-                $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),           
-            ));
+            foreach (['banner'] as $value) {
+                if(isset($validatedData[$value]) && $data->{$value} != 'upload/'.$validatedData[$value]->getClientOriginalName()) {
+                    $validatedData = array_merge($validatedData, 
+                        $this->dealfile($validatedData[$value], $value, $data, $value),                               
+                    );
+                }else {
+                    unset($validatedData[$value]);
+                }
+            }
+            $data->update($validatedData);
 
             $data->auditSync('product_categories', $validatedData['product_categories'] ?? []);
             $data->auditSync('product_icons', $validatedData['product_icons'] ?? []);
@@ -199,7 +205,23 @@ class ProductController extends Controller
             $data->auditSync('product_relevants', $validatedData['product_relevants'] ?? []);
 
             $relation = 'product_images';
-            $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
+
+            $exists = [];
+            foreach($validatedData[$relation] as &$value){
+                $item = $data->{$relation}()->where('path',  'upload/'.$value->getClientOriginalName())->first();
+                if(!$item){
+                    $value = array_merge([], $this->dealfile($value, 'path'));
+                    $item = $data->{$relation}()->create($value);
+                }
+                $exists[] = $item->id;
+            }
+            foreach ($data->{$relation} as $key => $item) {
+                if(!in_array($item->id, $exists)) {
+                    $item->delete();
+                }
+            }
+
+            // $data->{$relation}()->hasManySyncable($data, $relation, $this->dealfile($validatedData[$relation], 'path'));
 
             $relation = 'product_files';
             if(isset($validatedData[$relation])){

@@ -440,6 +440,7 @@
                 );       
                 FilePond.setOptions({
                     allowPaste: false,
+                    storeAsFile: true,
                 });
                 
                 $('.summernote').each(function(){

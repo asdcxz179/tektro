@@ -29,9 +29,7 @@
                             </div>  
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.relation.*.small_title") }}({{ $language->name }})</label>
-                                <textarea name="relation[1][small_title][{{ $language->lang }}]" class="form-control" id="" cols="30" rows="10" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">
-                                {{ $value->getTranslation('small_title', $language->lang,false) }}
-                                </textarea>
+                                <textarea name="relation[1][small_title][{{ $language->lang }}]" class="form-control" id="" cols="30" rows="10" placeholder="{{ __("backend.$routeNameData.relation.*.small_title") }}">{{ $value->getTranslation('small_title', $language->lang,false) }}</textarea>
                             </div>
                         </div>
                         @endforeach
@@ -40,10 +38,12 @@
                     @endforeach
                 </div>                  
                 <div class="block-content tab-content">
-                    <div class="form-row">           
+                    <div class="form-row">
+                        <input type="hidden" value="{{request()->home_type_id}}" name="home_type_id">
+                        <input type="hidden" value="{{$value->id}}" name="relation[1][id]">
                         <div class="form-group col-md-12">
                             <label>{{ __("backend.$routeNameData.home_type_id") }}</label>
-                            <select class="js-select2 form-control" disabled name="home_type_id">
+                            <select class="js-select2 form-control" disabled>
                                 @foreach($types as $value)
                                 <option value="{{ $value->id }}" {{ $value->id == request()->home_type_id ? 'selected' : '' }}>{{ $value->name }}</option>
                                 @endforeach

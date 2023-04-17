@@ -23,10 +23,10 @@ class ProductBrandController extends Controller
             'below_advertise_title.*' => ['nullable', 'string', 'max:100'],
             'below_advertise_subtitle.*' => ['nullable', 'string', 'max:255'],
             //公用
-            'banner' => ['nullable', 'string'],
-            'advertise_image' => ['nullable', 'string'],
+            'banner' => ['nullable'],
+            'advertise_image' => ['nullable'],
             'advertise_link' => ['nullable', 'string', 'max:255'],
-            'below_advertise_image' => ['nullable', 'string'],
+            'below_advertise_image' => ['nullable'],
             'below_advertise_switch' => ['nullable', 'string', 'max:100'],
             'below_advertise_link' => ['nullable', 'string', 'max:255'],
             'file' => ['nullable', 'string'],
@@ -149,11 +149,22 @@ class ProductBrandController extends Controller
                 unset($validatedData['file']);
             }
 
-            $data->update(array_merge($validatedData, 
-                $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),
-                $this->dealfile($validatedData['advertise_image'], 'advertise_image', $data, 'advertise_image'),
-                $this->dealfile($validatedData['below_advertise_image'], 'below_advertise_image', $data, 'below_advertise_image'),                              
-            ));
+            foreach (['banner', 'advertise_image', 'below_advertise_image'] as $value) {
+                if(isset($validatedData[$value]) && $data->{$value} != 'upload/'.$validatedData[$value]->getClientOriginalName()) {
+                    $validatedData = array_merge($validatedData, 
+                        $this->dealfile($validatedData[$value], $value, $data, $value),                               
+                    );
+                }else {
+                    unset($validatedData[$value]);
+                }
+            }
+            $data->update($validatedData);
+
+            // $data->update(array_merge($validatedData, 
+            //     $this->dealfile($validatedData['banner'], 'banner', $data, 'banner'),
+            //     $this->dealfile($validatedData['advertise_image'], 'advertise_image', $data, 'advertise_image'),
+            //     $this->dealfile($validatedData['below_advertise_image'], 'below_advertise_image', $data, 'below_advertise_image'),                              
+            // ));
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
