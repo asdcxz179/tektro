@@ -26,10 +26,10 @@
         </div>
         <div class="col-md-5 d-flex justify-content-center flex-column">
             <div class="px-3 px-md-5 py-5" data-aos="fade-up" data-aos-duration="800">
-                <h2 class="title mb-3 mb-md-5">{{$brand->advertise_title}}</h2>
-                <p>{!!nl2br($brand->advertise_subtitle)!!}</p>
-                @if($brand->file_data_name)
-                <a href="{{route('front.download',['name'=>$brand->file_data_name])}}" class="c_btn btn_dark mt-3 mt-md-5" download>{{__('front.category_download')}}</a>
+                <h2 class="title mb-3 mb-md-5">{{$brand->getTranslation('advertise_title', $lang,false)}}</h2>
+                <p>{!!nl2br($brand->getTranslation('advertise_subtitle', $lang,false))!!}</p>
+                @if( $brand->file_data_name)
+                <a href="{{route('front.download',['name'=> $brand->file_data_name])}}" class="c_btn btn_dark mt-3 mt-md-5" download>{{__('front.category_download')}}</a>
                 @endif
             </div>
         </div>
@@ -102,7 +102,7 @@
             <div class="col-10 offset-1 col-md-5 offset-md-2">
                 <h3 class="title text-white mb-4">{{$brand->below_advertise_title}}</h3>
                 <p class="fs-7 fs-md-6 text-white mb-5">
-                    {!!nl2br($brand->below_advertise_subtitle)!!}
+                    {!!nl2br($brand->getTranslation('below_advertise_subtitle', $lang,false))!!}
                 </p>
                 @if($brand->below_advertise_link)
                 <a href="{{str_replace('zh-Hant',$lang,$brand->below_advertise_link)}}" class="c_btn @if($brand->below_advertise_switch=='黑') btn_dark @else btn_white @endif ">{{__('front.see_more')}}</a>

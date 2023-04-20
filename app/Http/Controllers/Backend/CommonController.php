@@ -19,6 +19,7 @@ class CommonController extends Controller
             //使用多語系        
             'name.*' => ['nullable', 'string'],
             'content.*' => ['nullable', 'string'],
+            'show.*' => ['nullable', 'numeric'],
             //公用
             //通用
             'sort' => ['required', 'numeric', 'max:127'],

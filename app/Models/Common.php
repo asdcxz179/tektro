@@ -25,7 +25,7 @@ class Common extends Model implements Auditable
     protected $fillable = [
         'name',
         'content',
-
+        'show',
         'sort',
         'status',
     ];    
@@ -38,6 +38,7 @@ class Common extends Model implements Auditable
     public $translatable = [
         'name',
         'content',
+        'show',
     ];
 
     public function product_brands()

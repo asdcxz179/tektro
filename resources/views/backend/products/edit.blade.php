@@ -38,8 +38,8 @@
                                 <input type="text" value="{{ $data->getTranslation('description', $language->lang,false) }}" name="description[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.description.*") }}">
                             </div>
                             <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.dealer_link.*") }}</label>
-                                <input type="text" value="{{ $data->getTranslation('dealer_link', $language->lang,false) }}" name="dealer_link[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.dealer_link.*") }}">
+                                <label>{{ __("backend.$routeNameData.*.dealer_link") }}</label>
+                                <input type="text" value="{{ $data->getTranslation('dealer_link', $language->lang,false) }}" name="dealer_link[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.*.dealer_link") }}">
                             </div>
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.attribute.*") }}</label>

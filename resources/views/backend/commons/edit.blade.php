@@ -28,7 +28,17 @@
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.content.*") }}</label>                                
                                 <textarea name="content[{{ $language->lang }}]" class="form-control summernote">{{ $data->getTranslation('content', $language->lang,false) }}</textarea>
-                            </div>                            
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>{{ __("backend.$routeNameData.*.show") }}<span class="text-danger">*</span></label>
+                                <div class="col-md-12">
+                                    <label class="css-control css-control-primary css-switch">
+                                        <input type="checkbox" class="css-control-input" {{ $data->getTranslation('show', $language->lang,false) == 1 ? 'checked' : '' }}>
+                                        <input type="hidden" required name="show[{{ $language->lang }}]" value="{{ $data->getTranslation('show', $language->lang,false) }}">
+                                        <span class="css-control-indicator"></span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     @endforeach

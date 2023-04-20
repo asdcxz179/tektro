@@ -103,6 +103,9 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
             //常見問題            
             Route::resource('/commons', Controllers\Backend\CommonController::class);  
             Route::put('/commons/status/{common}', [Controllers\Backend\CommonController::class, 'status'])->name('commons.status');
+
+            //保固條款
+            Route::resource('/warranty_settings', Controllers\Backend\WarrantyController::class);
         });   
 
         //聯絡我們
@@ -126,6 +129,8 @@ Route::group(['as' => 'backend.', 'prefix' => 'backend'],function () {
         Route::resource('/seo', Controllers\Backend\SeoController::class);
         //網站管理
         Route::resource('/web_setting', Controllers\Backend\WebSettingController::class);
+
+        
 
 
         //地區

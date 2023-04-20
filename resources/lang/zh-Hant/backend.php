@@ -14,6 +14,8 @@ return [
     'suppliers' => '供應商管理',
     'messages'  =>  '電子報',
     'support_files' =>  '技術手冊檔案',
+    'warranty_settings' => '保固條款',
+    'warranties' => '保固條款',
 
     'homes' => '首頁',
     'header_banners' => '選單小圖',
@@ -363,7 +365,7 @@ return [
       'below_advertise_title' => '下方廣告標題',
       'below_advertise_subtitle' => '下方廣告副標題',
     ],
-
+    'file_data_name'  =>  '檔案名稱',
     'banner' => '橫幅',
     'advertise_image' => '廣告圖片',
     'advertise_link' => '廣告連結',
@@ -436,14 +438,14 @@ return [
   ],  
   'products' => [
     'keyword' => ['*' => '關鍵字'],
-    'dealer_link' => ['*' => '經銷商連結'],
+    'dealer_link' => '經銷商連結',
     'name' => ['*' => '名稱'],
     'description' => ['*' => '描述'],
     'content' => ['*' => '內容'],
     'details' => ['*' => 'DETAILS'],
     'technology' => ['*' => 'TECHNOLOGY'],
     'test_reviews' => ['*' => 'TEST & REVIEWS'],
-    'related_products' => ['*' => 'RELATED PRODUCTS'],
+    'related_products' => 'RELATED PRODUCTS',
     'attribute' => ['*' => '功能屬性'],
     'id'  =>  'id',
     '*' =>  [
@@ -582,6 +584,17 @@ return [
     'sort' => '排序',
     'status' => '狀態',  
   ],
+  'warranties' => [
+    '*' => [
+      'content' => '內容',
+    ],
+    'content' => '內容',
+  ],
+  'warranty_settings' => [
+    '*' => [
+      'content' => '內容',
+    ],
+  ],
   'video_settings' => [
     'name' => ['*' => '名稱'],
     'id'  =>  'id',
@@ -601,7 +614,9 @@ return [
     '*' =>  [
       'name' => '名稱',
       'content' => '內容',
+      'show'  =>  '顯示',
     ],
+    'show'  =>  '顯示',
     'sort' => '排序',
     'status' => '狀態',
     'id'  =>  'id',

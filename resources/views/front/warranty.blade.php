@@ -24,7 +24,8 @@
     <div class="row mb-12 mb-md-20">
         <div class="offset-md-1 col-md-10">
             <div class="html_editor">
-                <p>
+                {!!$warranty->content!!}
+                <!-- <p>
                 {{__('front.terms1')}}
                 </p>
                 <br>
@@ -33,7 +34,7 @@
                 <p>{{__('front.terms4')}}</p>
                 <br>
                 <h5>{{__('front.terms5')}}</h5>
-                <p>{{__('front.terms6')}}</p>
+                <p>{{__('front.terms6')}}</p> -->
             </div>
         </div>
     </div>

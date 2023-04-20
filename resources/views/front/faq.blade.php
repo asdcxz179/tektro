@@ -51,6 +51,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" role="tabpanel" id="qaFilterAll">
                         @foreach($all as $faq)
+                        @if($faq->getTranslation('show', $lang,false))
                         <!-- tektro accordion start -->
                         <div class="accordion_primary accordion accordion-flush" id="collapseFilterTektro">
                             <div class="accordion-item">
@@ -66,6 +67,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                         @endforeach
                     </div>
                     @foreach($brands as $brand)
@@ -73,6 +75,7 @@
                         <!-- tektro accordion start -->
                         <div class="accordion_primary accordion accordion-flush" id="collapseFilterTektro">
                             @foreach($brand->faqs as $key => $faq)
+                            @if($faq->getTranslation('show', $lang,false))
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-heading01">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq_{{$brand->id}}_{{$faq->id}}" aria-expanded="false" aria-controls="faq_{{$brand->id}}_{{$faq->id}}">
@@ -85,6 +88,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                             @endforeach
                         </div>
                         <!-- tektro accordion end -->

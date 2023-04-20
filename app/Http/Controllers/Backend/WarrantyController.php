@@ -1,14 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Seo;
-use App\Models\Warranty;
+use App\Models\Warranty as crudModel;
+use Illuminate\Support\Arr;
 
 class WarrantyController extends Controller
 {
+    public function __construct() {
+        $this->name = 'warranties';
+        $this->view = 'backend.'.$this->name;
+        $this->rules = [            
+            //使用多語系        
+            'content.*' => ['nullable', 'string'],
+            //公用
+        ];
+        $this->messages = []; 
+        $this->attributes = Arr::dot(__("backend.{$this->name}"));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +27,10 @@ class WarrantyController extends Controller
      */
     public function index()
     {
-        $data['seo'] = Seo::where(['name' => 'warranty'])->first();
-        $data['warranty'] = Warranty::first();
-        return view('front.warranty',$data);
+        $this->authorize('edit '.$this->name);
+        $data = CrudModel::findOrFail(1);
+        
+        return view($this->view.'.edit',compact('data'));
     }
 
     /**
@@ -73,7 +85,17 @@ class WarrantyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->authorize('edit '.$this->name);
+        $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
+        
+        try{
+            $data = CrudModel::findOrFail(1);
+            $data->update($validatedData);
+            return response()->json(['message' => __('edit').__('success')]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => $e->getMessage()],422);
+        }
     }
 
     /**

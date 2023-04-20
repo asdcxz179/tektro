@@ -29,8 +29,8 @@ class ProductBrandController extends Controller
             'below_advertise_image' => ['nullable'],
             'below_advertise_switch' => ['nullable', 'string', 'max:100'],
             'below_advertise_link' => ['nullable', 'string', 'max:255'],
-            'file' => ['nullable', 'string'],
-            'file_exist' => ['nullable', 'string'],
+            'file' => ['nullable'],
+            'file_exist' => ['nullable'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],        

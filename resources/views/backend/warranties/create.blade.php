@@ -23,33 +23,24 @@
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.name.*") }}</label>
                                 <input type="text" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
-                            </div>
+                            </div>                        
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.content.*") }}</label>                                
                                 <textarea name="content[{{ $language->lang }}]" class="form-control summernote"></textarea>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>{{ __("backend.$routeNameData.*.show") }}<span class="text-danger">*</span></label>
-                                <div class="col-md-12">
-                                    <label class="css-control css-control-primary css-switch">
-                                        <input type="checkbox" class="css-control-input" checked>
-                                        <input type="hidden" required name="show[{{ $language->lang }}]" value="1">
-                                        <span class="css-control-indicator"></span>
-                                    </label>
-                                </div>
-                            </div>
+                            </div>  
                         </div>
                     </div>
                     @endforeach
                 </div>
                 <div class="block-content tab-content">
-                    <div class="form-row">
+                    <div class="form-row">                      
                         <div class="form-group col-md-12">
-                            <label>{{ __("backend.$routeNameData.product_brands") }}</label>
-                            <select data-url="{{ route('backend.product_brands.select') }}" class="js-select2 form-control" multiple name="product_brands[]" data-placeholder="{{ __("backend.$routeNameData.product_brands") }}">
-                                <option></option>
-                            </select>
-                        </div>                                                 
+                            <label>{{ __("backend.$routeNameData.banner") }}</label>    
+                            <div class="text-danger">{{ __('suggested_size', ['width' => 860, 'height' => 560]) }}</div>
+                            <fieldset class="image">
+                                <input type="file" name="banner" accept="image/*" />    
+                            </fieldset>  
+                        </div>                                                                                                   
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
@@ -93,7 +84,8 @@ $(function() {
         complete: function() {
             formCreate.find('button[type=submit]').attr('disabled',false);
         }
-    }); 
+    });
+    
 });
 </script>
 @endpush

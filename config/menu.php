@@ -27,6 +27,7 @@ return [
             [ 'active' => 'assist/supports*'                       ,'name' => 'supports'                , 'title' => 'supports'             , 'routeId' => 'support'            , 'permissions' => 'supports' ],
             [ 'active' => 'assist/video_settings*'                 ,'name' => 'video_settings'          , 'title' => 'video_settings'       , 'routeId' => 'video_setting'      , 'permissions' => 'video_settings' ],
             [ 'active' => 'assist/commons*'                        ,'name' => 'commons'                 , 'title' => 'commons'              , 'routeId' => 'common'             , 'permissions' => 'commons' ],            
+            [ 'active' => 'assist/warranty_settings*'              ,'name' => 'warranty_settings'       , 'title' => 'warranty_settings'    , 'routeId' => 'warranty_setting'   , 'permissions' => 'warranty_settings' ],
         ]
     ],            
     [ 'active' => 'connect/*', 'icon' => 'si si-call-in', 'title' => 'connect', 'child' =>
