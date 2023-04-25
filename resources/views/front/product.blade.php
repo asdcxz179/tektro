@@ -226,4 +226,4 @@
         $('.nav-item').eq(0).click();
     })
 </script>
-@endpush/
+@endpush

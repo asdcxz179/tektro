@@ -87,4 +87,11 @@
     </div>
 
 </section>
+<style>
+    .title_h2 {
+        overflow:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
 @endsection

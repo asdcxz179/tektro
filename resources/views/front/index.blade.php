@@ -113,7 +113,7 @@
         <section>
             <div class="duo_bg position-relative">
                 <picture>
-                    <source media="(min-width: 576px)" srcset="{{asset('front/assets/images/index_duo_bg.jpg')}}">
+                    <source media="(min-width: 576px)" srcset="{{asset($module->path??'front/assets/images/index_duo_bg.jpg')}}">
                     <img src="{{asset('front/assets/images/index_duo_bg_s.jpg')}}" alt="img_not_found" class="w-100">
                 </picture>
                 <!-- <img src="assets/images/index_duo_bg.jpg" alt="img_not_found" class="w-100"> -->

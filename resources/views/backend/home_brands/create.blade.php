@@ -58,11 +58,11 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>    
-                                    <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
+                                    <div class="text-danger">{{ __('suggested_size', ['width' => 700, 'height' => 500]) }}</div>
                                     <fieldset class="image">
                                         <input type="file" name="relation[{{ $key }}][path]" accept="image/*" />    
                                     </fieldset>  
-                                </div>                                       
+                                </div>
                             </div>                                 
                         </div>                            
                         @endforeach                       
@@ -70,10 +70,16 @@
                 </div>                       
                 <div class="form-group col-md-12">                                   
                     <div class="form-row">                                                                                                        
+                        <div class="form-group col-md-12">
+                            <label>{{ __("backend.$routeNameData.path") }}</label>    
+                            <fieldset class="image">
+                                <input type="file" name="path" accept="image/*" />    
+                            </fieldset>  
+                        </div>
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
-                        </div>                    
+                        </div>
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.status") }}<span class="text-danger">*</span></label>
                             <div class="col-md-12">

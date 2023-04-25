@@ -44,6 +44,7 @@
                     </div>
                     <div class="form-group col-md-8 filepond-dom">
                         <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>
+                        <div class="text-danger">{{ __('suggested_size', ['width' => 1920, 'height' => 1080]) }}</div>
                         <fieldset class="image">
                             <input type="file" name="relation[0][path]" accept="image/*" />
                         </fieldset>  
@@ -126,7 +127,8 @@
                                                 <input type="text" value="{{ $value->youtube_key }}" name="relation[{{ $key }}][youtube_key]" class="form-control" placeholder="{{ __("backend.$routeNameData.relation.*.youtube_key") }}">
                                             </div>
                                             <div class="form-group col-md-8 filepond-dom">
-                                                <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>                                    
+                                                <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>       
+                                                <div class="text-danger">{{ __('suggested_size', ['width' => 1920, 'height' => 1080]) }}</div>                             
                                                 <fieldset class="image">
                                                     @isset($value->path)
                                                     <input value="{{ asset($value->path) }}" checked type="checkbox" />{{ asset($value->path) }}

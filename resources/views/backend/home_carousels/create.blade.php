@@ -46,7 +46,8 @@
                                     <input type="text" name="relation[1][sort]" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">
                                 </div>                                   
                                 <div class="form-group col-md-8 filepond-dom">
-                                    <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>                                    
+                                    <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>
+                                    <div class="text-danger">{{ __('suggested_size', ['width' => 700, 'height' => 500]) }}</div>
                                     <fieldset class="image">                                
                                         <input type="file" name="relation[1][path]" accept="image/*" />    
                                     </fieldset>  

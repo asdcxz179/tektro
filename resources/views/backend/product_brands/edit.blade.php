@@ -49,7 +49,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label>{{ __("backend.$routeNameData.banner") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
+                            <div class="text-danger">{{ __('suggested_size', ['width' => 1920, 'height' => 400]) }}</div>
                             <fieldset class="image">
                                 @isset($data->banner)
                                 <input value="{{ asset($data->banner) }}" checked type="checkbox" />{{ asset($data->banner) }}
@@ -59,7 +59,7 @@
                         </div>                         
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.advertise_image") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
+                            <div class="text-danger">{{ __('suggested_size', ['width' => 1200, 'height' => 720]) }}</div>
                             <fieldset class="image">
                                 @isset($data->advertise_image)
                                 <input value="{{ asset($data->advertise_image) }}" checked type="checkbox" />{{ asset($data->advertise_image) }}
@@ -74,7 +74,7 @@
                             </div> -->
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.file") }}</label>    
-                                <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
+                                <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 1920, 'height' => 560]) }}</div> -->
                                 <fieldset class="image">                                   
                                     <input type="file" name="file" />    
                                 </fieldset>  
@@ -95,7 +95,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.below_advertise_image") }}</label>    
-                            <!-- <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div> -->
+                            <div class="text-danger">{{ __('suggested_size', ['width' => 1920, 'height' => 560]) }}</div>
                             <fieldset class="image">
                                 @isset($data->below_advertise_image)
                                 <input value="{{ asset($data->below_advertise_image) }}" checked type="checkbox" />{{ asset($data->below_advertise_image) }}

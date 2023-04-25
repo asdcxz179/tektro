@@ -112,6 +112,7 @@ return [
 
     'show_date' => '顯示日期',
     'banner' => '圖片',
+    'path'  =>  '底圖',
 
     'sort' => '排序',
     'status' => '狀態',
@@ -266,6 +267,7 @@ return [
       'big_title' => '大標題',
       'small_title' => '小標題',
       'title' => '標題',
+      'path'  =>  '底圖',
 
       'youtube_key' => 'youtube_key',
       'youtube_key_info' => '分享 → https://youtu.be/fiuA1hZrDtU → 複製fiuA1hZrDtU',

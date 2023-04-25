@@ -22,7 +22,8 @@ class HomeController extends Controller
             'home_type_id' => ['required', 'numeric', 'max:8'],
             //通用
             'sort' => ['nullable', 'numeric', 'max:127'],
-            'status' => ['required', 'boolean'],    
+            'status' => ['required', 'boolean'],
+            'path' => ['nullable'],
 
             //使用多語系        
             'relation.*.big_title.*' => ['nullable', 'string'],
@@ -87,7 +88,9 @@ class HomeController extends Controller
 
         try{
             DB::beginTransaction();
-
+            if(isset($validatedData['path'])){
+                $validatedData = array_merge($validatedData, $this->dealfile($validatedData['path'], 'path'));
+            }
             $data = CrudModel::create($validatedData);
             if(in_array($data->home_type_id, [1, 2, 4, 5, 6, 7, 8])) {
                 $exists = [];
@@ -196,6 +199,11 @@ class HomeController extends Controller
                     }
                 }
                 $data->{$data->home_type->relation}()->hasManySyncable($data, $data->home_type->relation, $validatedData['relation']);
+            }
+            if(isset($validatedData['path'])  && $data->path != 'upload/'.$validatedData['path']->getClientOriginalName()){
+                $validatedData = array_merge($validatedData, $this->dealfile($validatedData['path'], 'path'));
+            }else{
+                $validatedData['path'] = null;
             }
             $data->update($validatedData);
 

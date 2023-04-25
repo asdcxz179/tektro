@@ -21,7 +21,7 @@ class Home extends Model implements Auditable
      */
     protected $fillable = [
         'home_type_id',
-
+        'path',
         'sort',
         'status',  
     ];    
