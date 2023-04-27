@@ -29,7 +29,13 @@
                     @endforeach
                 </div>
                 <div class="block-content tab-content">
-                    <div class="form-row">                       
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>{{ __("backend.$routeNameData.brands") }}</label>
+                            <select data-url="{{ route('backend.product_brands.select') }}" class="js-select2 form-control" multiple name="brands[]" data-placeholder="{{ __("backend.$routeNameData.brands") }}">
+                                <option></option>
+                            </select>
+                        </div>
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">

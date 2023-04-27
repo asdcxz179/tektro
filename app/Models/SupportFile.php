@@ -26,6 +26,7 @@ class SupportFile extends Model implements Auditable
         'file_name',
         'path',
         'sort',
+        'keyword',
     ];    
 
     protected $casts = [
@@ -37,7 +38,10 @@ class SupportFile extends Model implements Auditable
         'support_file_type_id',
     ];
 
-    public $translatable = ['name'];
+    public $translatable = [
+        'name',
+        'keyword',
+    ];
 
     public function transformAudit(array $data): array
     {

@@ -389,6 +389,7 @@ return [
     '*' =>  [
       'name'  =>  '名稱',
     ],
+    'id'  =>  'id',
 
     'path' => '圖片',
 
@@ -543,10 +544,12 @@ return [
     'name' => ['*' => '名稱'],
     '*' =>  [
       'name'  =>  '名稱',
+      'brands'  =>  '品牌',
     ],
     'id'  =>  'id',
     'sort' => '排序',
     'status' => '狀態',   
+    'brands'  =>  '品牌',
   ],
   'support_file_types' => [
     'name' => ['*' => '名稱'],
@@ -558,7 +561,10 @@ return [
     ],
     'id'  =>  'id',
     'sort' => '排序',
-    'status' => '狀態',   
+    'status' => '狀態',  
+    'title' =>  '網站標題',
+      'keyword' => '關鍵字',
+      'description' => '描述', 
 
     'support_category_id' => '技術分類',
 
@@ -571,12 +577,14 @@ return [
     
         'sort' => '排序',
         'status' => '狀態',   
+        'keyword' =>  '站內關鍵字',
       ]
     ]
   ],
   'support_files' => [
     '*' => [
       'name' => '名稱',
+      'keyword' =>  '站內關鍵字',
     ],
     'path' => '檔案',
     'file_name' => '檔案名稱',

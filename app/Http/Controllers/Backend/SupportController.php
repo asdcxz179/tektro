@@ -33,6 +33,7 @@ class SupportController extends Controller
             $this->rules['support_files'.$type->key.'.*.id'] = ['nullable'];
             $this->rules['support_files'.$type->key.'.*.name.*'] = ['nullable', 'string', 'max:100'];
             $this->rules['support_files'.$type->key.'.*.path'] = ['nullable'];
+            $this->rules['support_files'.$type->key.'.*.keyword'] = ['nullable'];
             $this->rules['support_files'.$type->key.'.*.sort'] = ['nullable', 'numeric', 'max:127'];
             $this->rules['support_files'.$type->key.'.*.id'] = ['nullable', 'numeric'];
         }

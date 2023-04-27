@@ -22,6 +22,7 @@ class SupportCategoryController extends Controller
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],   
+            'brands' => ['nullable', 'array'],
         ];
         $this->messages = []; 
         $this->attributes = Arr::dot(__("backend.{$this->name}"));
@@ -64,6 +65,7 @@ class SupportCategoryController extends Controller
             DB::beginTransaction();
 
             $data = CrudModel::create($validatedData);
+            $data->auditSync('brands',$validatedData['brands'] ?? []);
 
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
@@ -115,7 +117,7 @@ class SupportCategoryController extends Controller
 
             $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
-
+            $data->auditSync('brands',$validatedData['brands'] ?? []);
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
         } catch (Exception $e) {

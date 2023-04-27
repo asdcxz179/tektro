@@ -24,6 +24,7 @@ class ProductFile extends Model implements Auditable
         'file_name',
         'path',
         'sort',
+        'keyword',
     ];    
 
     protected $casts = [

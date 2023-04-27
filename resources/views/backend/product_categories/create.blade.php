@@ -35,7 +35,7 @@
                             <select data-url="{{ route('backend.product_brands.select') }}" class="js-select2 form-control" multiple name="product_brands[]" data-placeholder="{{ __("backend.$routeNameData.product_brands") }}">
                                 <option></option>
                             </select>
-                        </div>                          
+                        </div>
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.path") }}</label>    
                             <div class="text-danger">{{ __('suggested_size', ['width' => 60, 'height' => 60]) }}</div>

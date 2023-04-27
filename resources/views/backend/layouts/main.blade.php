@@ -379,10 +379,12 @@
                             count = $(`#${ item } tbody tr:last td`).eq(0).find('[name]').attr('name').match(/.*\[(?<lastcount>\d*)\].*/).groups.lastcount;
                         }
 
-                        let addDom = [];
+                        var addDom = [];
                         add.children('div').each(function(){
-                            let name = $(this).find('[name]').attr('name').replace(0, parseInt(count) + 1)
-                            $(this).find('[name]').attr('name', name).attr('disabled', false);
+                            $(this).find('[name]').each(function(){
+                                let name = $(this).attr('name').replace(0, parseInt(count) + 1)
+                                $(this).attr('name', name).attr('disabled', false);
+                            })
                             addDom.push($(this).html()) 
                         })
 

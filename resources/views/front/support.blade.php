@@ -33,25 +33,40 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <h5 class="page_aside_title bg-dark text-white fs-6 mb-0">{{__('front.category')}}</h5>
-                <ul class="nav nav-fill page_aside bg-white flex-column mb-5 mb-md-0">
+                <div class="mb-5">
+                    <h5 class="page_aside_title bg-dark text-white fs-6 mb-0">{{__('front.brand')}}</h5>
+                    <ul class="nav nav-fill page_aside bg-white flex-column mb-5 mb-md-0">
                     <li class="nav-item">
-                        <button class="page_aside_filter nav-link active" data-bs-toggle="tab" data-bs-target="#downloadFilterAll" type="button" role="tab" aria-selected="false">{{__('front.all')}}</button>
-                    </li>
-                    @foreach($categories as $key => $category)
-                    @if($category->supports->count()>0)
-                    <li class="nav-item">
-                        <button class="page_aside_filter nav-link" data-bs-toggle="tab" data-bs-target="#support_{{$key}}" type="button" role="tab" aria-selected="false">{{$category->name}}</button>
-                    </li>
-                    @endif
-                    @endforeach
-                </ul>
+                            <a href="{{route('front.support.show',['support' => 'all','lang'=>$lang])}}" class="page_aside_filter nav-link @if(request()->support == 'all') active @endif">{{__('front.all')}}</a>
+                        </li>
+                        @foreach($brands as $brand)
+                        <li class="nav-item">
+                            <a href="{{route('front.support.show',['support' => $brand->id,'lang'=>$lang])}}" class="page_aside_filter nav-link @if(request()->support == $brand->id) active @endif">{{$brand->name}}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="page_aside_title bg-dark text-white fs-6 mb-0">{{__('front.category')}}</h5>
+                    <ul class="nav nav-fill page_aside bg-white flex-column mb-5 mb-md-0">
+                        <li class="nav-item">
+                            <button class="page_aside_filter nav-link active" data-bs-toggle="tab" data-bs-target="#downloadFilterAll" type="button" role="tab" aria-selected="false">{{__('front.all')}}</button>
+                        </li>
+                        @foreach($categories as $key => $category)
+                        @if($category->search_supports->count()>0)
+                        <li class="nav-item">
+                            <button class="page_aside_filter nav-link" data-bs-toggle="tab" data-bs-target="#support_{{$key}}" type="button" role="tab" aria-selected="false">{{$category->name}}</button>
+                        </li>
+                        @endif
+                        @endforeach
+                    </ul>
+                </div>
             </div>
             <div class="col-md-8 offset-md-1">
                 <div class="tab-content">
                     <div class="tab-pane fade show active" role="tabpanel" id="downloadFilterAll">
                         @foreach($categories as $key => $category)
-                            @foreach($category->supports as $key2 => $type)
+                            @foreach($category->search_supports as $key2 => $type)
                             <div class="accordion_primary accordion accordion-flush" id="type_{{$key2}}">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingOne">
@@ -102,7 +117,7 @@
                     @foreach($categories as $key => $category)
                         <div class="tab-pane fade" role="tabpanel" id="support_{{$key}}">
                             <div class="accordion_primary accordion accordion-flush" id="collapseFilterOne">
-                                @foreach($category->supports as $key2 => $type)
+                                @foreach($category->search_supports as $key2 => $type)
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="flush-headingOne">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sub_filter_{{$key}}_{{$key2}}" aria-expanded="false" aria-controls="sub_filter_{{$key}}_{{$key2}}">

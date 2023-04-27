@@ -49,18 +49,42 @@
                                 </div>
                             </div>            
                             <div class="add d-none">
-                                @foreach($languageData as $language) 
-                                <div><input type="text" disabled name="support_files{{ $type->key }}[0][name][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.support_files.*.name") }}"></div>
-                                @endforeach  
-                                <div><input type="number" disabled step="1" disabled name="support_files{{ $type->key }}[0][sort]" class="form-control"  placeholder="{{ __("backend.$routeNameData.support_files.*.sort") }}"></div>                                
-                                <div><input type="file" disabled name="support_files{{ $type->key }}[0][path]"/></div>                                
+                                <div>
+                                    <div class="row">
+                                        @foreach($languageData as $language)
+                                        <div class="col-md-12 mb-1">
+                                            <label>{{ $language->name }}</label>
+                                            <input type="text" disabled name="support_files{{ $type->key }}[0][name][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.support_files.*.name") }}">
+                                        </div>
+                                        @endforeach 
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        @foreach($languageData as $language)
+                                        <div class="col-md-12 mb-1">
+                                            <label>{{ $language->name }}</label>
+                                            <input type="text" disabled name="support_files{{ $type->key }}[0][keyword][{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.support_files.*.keyword") }}">
+                                        </div>
+                                        @endforeach 
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="pt-1">
+                                        <input type="number" disabled step="1" disabled name="support_files{{ $type->key }}[0][sort]" class="form-control mt-4"  placeholder="{{ __("backend.$routeNameData.support_files.*.sort") }}">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="pt-1">
+                                        <input type="file" disabled name="support_files{{ $type->key }}[0][path]" class="mt-4"/>
+                                    </div>
+                                </div>
                             </div>               
                             <table class="display table" style="width:100%">
                                 <thead>
                                     <tr>
-                                        @foreach($languageData as $language)
-                                        <th>{{ __("backend.$routeNameData.support_files.*.name") }}({{ $language->name }})</th>
-                                        @endforeach 
+                                        <th>{{ __("backend.$routeNameData.support_files.*.name") }}</th>
+                                        <th width="400px">{{ __("backend.$routeNameData.support_files.*.keyword") }}<br><span class="text-danger ml-1">(多個關鍵字請用","分隔，例:手把,齒輪)</span></th>
                                         <th>{{ __("backend.$routeNameData.support_files.*.sort") }}</th>
                                         <th>{{ __("backend.$routeNameData.support_files.*.path") }}</th>
                                         <th>{{ __('option') }}</th>
