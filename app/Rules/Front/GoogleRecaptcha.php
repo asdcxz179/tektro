@@ -54,6 +54,6 @@ class GoogleRecaptcha implements Rule
      */
     public function message()
     {
-        return __('front.contact.recaptcha');
+        return __('front.contact.recaptcha.error');
     }
 }

@@ -71,7 +71,7 @@
                                 </li>
                                 @endforeach
                             </ul>
-                            <a href="@if($product->dealer_link){{$product->dealer_link}}@else{{route('front.global.index',['lang'=>$lang])}}@endif" class="c_btn btn_dark">{{__('front.FIND A DEALER')}}</a>
+                            <a href="@if($product->dealer_link){{$product->dealer_link}}@else{{route('front.global.index',['lang'=>$lang])}}@endif" class="c_btn btn_dark">{{__('front.Contact Us')}}</a>
                         </div>
                     </div>
                 </div>
@@ -133,19 +133,19 @@
                             <div class="row">
                                 <div class="col-12">
                                     <ul class="row">
-                                        @foreach($product->product_relevants as $product)
+                                        @foreach($product->product_relevants as $item)
                                         <li class="col-6 col-md-3">
-                                            <a href="{{route('front.product.show',['lang'=>$lang,'product'=>$product->id])}}" class="box p-4">
+                                            <a href="{{route('front.product.show',['lang'=>$lang,'product'=>$item->id])}}" class="box p-4">
                                                 <div class="ratio_outer mb-2 mb-md-4" style="padding-bottom: 100%;">
-                                                    <div class="ratio_inner bg-cover" style="background-image: url('{{asset($product->banner)}}');">
+                                                    <div class="ratio_inner bg-cover" style="background-image: url('{{asset($item->banner)}}');">
                                                         <div class="box_img_overlay">
-                                                            <span class="text-white fw-bold mb-3">{{$product->name}}</span>
+                                                            <span class="text-white fw-bold mb-3">{{$item->name}}</span>
                                                             <div href="#" class="c_btn btn_outline_white">{{__('front.VIEW ALL')}}</div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h2 class="box_title">{{$product->name}}</h2>
-                                                <span class="box_text">{{$product->description}}</span>
+                                                <h2 class="box_title">{{$item->name}}</h2>
+                                                <span class="box_text">{{$item->description}}</span>
                                             </a>
                                         </li>
                                         @endforeach

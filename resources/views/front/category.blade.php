@@ -14,7 +14,7 @@
                     <li class="text-white-50">{{__('front.brand_product')}}</li>
                     @if($brand)
                     <li class="text-white-50">
-                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->id])}}" class="text-white-50">{{$brand->name}}</a>
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->code])}}" class="text-white-50">{{$brand->name}}</a>
                     </li>
                     @endif
                     <li class="text-white text-truncate">{{$category->name}}</li>

@@ -28,6 +28,7 @@ class News extends Model implements Auditable
 
         'sort',
         'status',
+        'show',
     ];    
 
     protected $casts = [
@@ -39,5 +40,6 @@ class News extends Model implements Auditable
         'name',
         'description',
         'content',
+        'show',
     ];
 }

@@ -20,7 +20,7 @@ class Support extends Model implements Auditable
     protected $fillable = [
         'support_category_id',
         'name',
-        
+        'show',
         'sort',
         'status',  
     ];    
@@ -32,6 +32,7 @@ class Support extends Model implements Auditable
 
     public $translatable = [
         'name',
+        'show',
     ];
 
 

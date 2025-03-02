@@ -87,32 +87,33 @@
                                             <div class="p-md-4">
                                                 <span class="bg-primary text-white p-2 rounded-1 fs-7 mb-4 d-inline-block">{{__('front.manual')}}</span>
                                                 <ul>
+                                                    <!-- sub accordion start -->
+                                                    <li class="mb-3">
+                                                        <div class="accordion-item border-0">
+                                                            <h2 class="accordion-header" id="subHeadingOne">
+                                                                <button class="accordion-button collapsed sub p-0" type="button" data-bs-toggle="collapse"
+                                                                    data-bs-target="#subFilter_0_0" aria-expanded="false" aria-controls="subFilter_0_0">
+                                                                    <i class="bx bxs-file-pdf me-1"></i> Accordion Item
+                                                                </button>
+                                                            </h2>
+                                                            <div id="subFilter_0_0" class="accordion-collapse collapse" aria-labelledby="subHeadingOne"
+                                                                data-bs-parent="#accordionFlushExample">
+                                                                <div class="accordion-body">
+                                                                    <a href="#" class="d-block py-2" target="_blank">PDF file1</a>
+                                                                    <a href="#" class="d-block py-2" target="_blank">PDF file2</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <!-- sub accordion end-->
                                                     @foreach($type->support_files->filter(function($item){
                                                         return $item->getTranslation('show', request()->lang,false);
                                                     }) as $key3 => $sub)
-                                                        @if($sub->support_file_type_id == 1 && ($sub->files->count() > 0))
+                                                        @if($sub->support_file_type_id == 1 && $sub->path)
                                                         <li class="mb-3">
-                                                            <div class="accordion-item border-0">
-                                                                <h2 class="accordion-header" id="subHeadingOne">
-                                                                    <button class="accordion-button collapsed sub p-0" type="button" data-bs-toggle="collapse"
-                                                                        data-bs-target="#subFilter_{{$key}}_{{$key2}}_{{$key3}}" aria-expanded="false" aria-controls="subFilter_{{$key}}_{{$key2}}_{{$key3}}">
-                                                                        <i class="bx bxs-file-pdf me-1"></i>{{$sub->name}}
-                                                                    </button>
-                                                                </h2>
-                                                                <div id="subFilter_{{$key}}_{{$key2}}_{{$key3}}" class="accordion-collapse collapse" aria-labelledby="subHeadingOne"
-                                                                    data-bs-parent="#subFilter_{{$key}}_{{$key2}}_{{$key3}}">
-                                                                    <div class="accordion-body">
-                                                                        @foreach($sub->files as $file)
-                                                                        <a target="_blank" href="{{route('front.download',['name'=>$file->file_name])}}" class="d-block py-2" target="_blank">{{$file->file_name}}</a>
-                                                                        @endforeach
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        {{-- <li class="mb-3">
                                                             <i class='bx bxs-file-pdf'></i>
                                                             <a target="_blank" href="{{route('front.download',['name'=>$sub->file_name])}}">{{$sub->name}}</a>
-                                                        </li> --}}
+                                                        </li>
                                                         @endif
                                                     @endforeach
                                                 </ul>
@@ -127,29 +128,11 @@
                                                     @foreach($type->support_files->filter(function($item){
                                                         return $item->getTranslation('show', request()->lang,false);
                                                     }) as $key3 => $sub)
-                                                        @if($sub->support_file_type_id == 2 && ($sub->files->count() > 0))
+                                                        @if($sub->support_file_type_id == 2 && $sub->path)
                                                         <li class="mb-3">
-                                                            <div class="accordion-item border-0">
-                                                                <h2 class="accordion-header" id="subHeadingOne">
-                                                                    <button class="accordion-button collapsed sub p-0" type="button" data-bs-toggle="collapse"
-                                                                        data-bs-target="#subFilter_{{$key}}_{{$key2}}_{{$key3}}" aria-expanded="false" aria-controls="subFilter_{{$key}}_{{$key2}}_{{$key3}}">
-                                                                        <i class="bx bxs-file-pdf me-1"></i>{{$sub->name}}
-                                                                    </button>
-                                                                </h2>
-                                                                <div id="subFilter_{{$key}}_{{$key2}}_{{$key3}}" class="accordion-collapse collapse" aria-labelledby="subHeadingOne"
-                                                                    data-bs-parent="#subFilter_{{$key}}_{{$key2}}_{{$key3}}">
-                                                                    <div class="accordion-body">
-                                                                        @foreach($sub->files as $file)
-                                                                        <a target="_blank" href="{{route('front.download',['name'=>$file->file_name])}}" class="d-block py-2" target="_blank">{{$file->file_name}}</a>
-                                                                        @endforeach
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        {{-- <li class="mb-3">
                                                             <i class='bx bxs-file-pdf'></i>
                                                             <a target="_blank" href="{{route('front.download',['name'=>$sub->file_name])}}">{{$sub->name}}</a>
-                                                        </li> --}}
+                                                        </li>
                                                         @endif
                                                     @endforeach
                                                 </ul>
@@ -187,29 +170,11 @@
                                                     @foreach($type->support_files->filter(function($item){
                                                         return $item->getTranslation('show', request()->lang,false);
                                                     }) as $key3 => $sub)
-                                                        @if($sub->support_file_type_id == 1 && ($sub->files->count() > 0))
+                                                        @if($sub->support_file_type_id == 1 && $sub->path)
                                                         <li class="mb-3">
-                                                            <div class="accordion-item border-0">
-                                                                <h2 class="accordion-header" id="subHeadingOne">
-                                                                    <button class="accordion-button collapsed sub p-0" type="button" data-bs-toggle="collapse"
-                                                                        data-bs-target="#subFilter_{{$key}}_{{$key2}}_{{$key3}}" aria-expanded="false" aria-controls="subFilter_{{$key}}_{{$key2}}_{{$key3}}">
-                                                                        <i class="bx bxs-file-pdf me-1"></i>{{$sub->name}}
-                                                                    </button>
-                                                                </h2>
-                                                                <div id="subFilter_{{$key}}_{{$key2}}_{{$key3}}" class="accordion-collapse collapse" aria-labelledby="subHeadingOne"
-                                                                    data-bs-parent="#subFilter_{{$key}}_{{$key2}}_{{$key3}}">
-                                                                    <div class="accordion-body">
-                                                                        @foreach($sub->files as $file)
-                                                                        <a target="_blank" href="{{route('front.download',['name'=>$file->file_name])}}" class="d-block py-2" target="_blank">{{$file->file_name}}</a>
-                                                                        @endforeach
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        {{-- <li class="mb-3">
                                                             <i class='bx bxs-file-pdf'></i>
                                                             <a target="_blank" href="{{route('front.download',['name'=>$sub->file_name])}}">{{$sub->name}}</a>
-                                                        </li> --}}
+                                                        </li>
                                                         @endif
                                                     @endforeach
                                                 </ul>
@@ -225,29 +190,11 @@
                                                     @foreach($type->support_files->filter(function($item){
                                                         return $item->getTranslation('show', request()->lang,false);
                                                     }) as $key3 => $sub)
-                                                        @if($sub->support_file_type_id == 2 && ($sub->files->count() > 0))
+                                                        @if($sub->support_file_type_id == 2 && $sub->path)
                                                         <li class="mb-3">
-                                                            <div class="accordion-item border-0">
-                                                                <h2 class="accordion-header" id="subHeadingOne">
-                                                                    <button class="accordion-button collapsed sub p-0" type="button" data-bs-toggle="collapse"
-                                                                        data-bs-target="#subFilter_{{$key}}_{{$key2}}_{{$key3}}" aria-expanded="false" aria-controls="subFilter_{{$key}}_{{$key2}}_{{$key3}}">
-                                                                        <i class="bx bxs-file-pdf me-1"></i>{{$sub->name}}
-                                                                    </button>
-                                                                </h2>
-                                                                <div id="subFilter_{{$key}}_{{$key2}}_{{$key3}}" class="accordion-collapse collapse" aria-labelledby="subHeadingOne"
-                                                                    data-bs-parent="#subFilter_{{$key}}_{{$key2}}_{{$key3}}">
-                                                                    <div class="accordion-body">
-                                                                        @foreach($sub->files as $file)
-                                                                        <a target="_blank" href="{{route('front.download',['name'=>$file->file_name])}}" class="d-block py-2" target="_blank">{{$file->file_name}}</a>
-                                                                        @endforeach
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        {{-- <li class="mb-3">
                                                             <i class='bx bxs-file-pdf'></i>
                                                             <a target="_blank" href="{{route('front.download',['name'=>$sub->file_name])}}">{{$sub->name}}</a>
-                                                        </li> --}}
+                                                        </li>
                                                         @endif
                                                     @endforeach
                                                 </ul>

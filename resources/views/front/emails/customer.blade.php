@@ -123,9 +123,7 @@
 					<tr>
 						<td>
 							<h1 style="font-size: 18px;margin-bottom: 40px;line-height: 1.5;">
-								Dear Customer/Manager,
-								<br>
-								Thank you for your inquiry. We have received the request for TEKTRO/TRP, and we are actively working on addressing your needs.
+								{!!__('front.contact.email.title')!!}
 							</h1>
 						</td>
 					</tr>

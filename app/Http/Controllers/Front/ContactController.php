@@ -21,7 +21,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $data['areas'] = Area::all();
+        $data['areas'] = Area::orderBy('sort','asc')->get();
         $data['seo'] = Seo::where(['name' => 'contact'])->first();
         return view('front.contact',$data);
     }
@@ -47,7 +47,7 @@ class ContactController extends Controller
         $result = Contact::create($request->all());
         if($result) {
             Session::push('result',true);
-            $emails = ContactSetting::where('status',1)->where('id',$request->area_id)->get()->pluck('email')->toArray();
+            $emails = ContactSetting::where('status',1)->where('area_id',$request->area_id)->get()->pluck('email')->toArray();
             $area = Area::where('id',$request->area_id)->first();
             // Mail::to($emails)->send(new AutoMail);
             if($emails) {
@@ -62,7 +62,7 @@ class ContactController extends Controller
                 ], function ($m) use ($request, $emails) {
                     $m->to($emails)->subject($request->question);
                 });
-                // Mail::raw(__('front.contact.question').":".$request->question."\r\n".__('front.contact.area').":".$area->name."\r\n".__('front.contact.country').":".$request->country."\r\n".__('front.contact.email').":".$request->email."\r\n".__('front.contact.phone').":".$request->phone."\r\n".__('front.contact.content').":".$request->content, function($message) use ($request, $emails){
+                // Mail::raw(__('front.contact.question').":".$request->question."\r\n".__('front.contact.area').":".$area->name."\r\n".__('front.contact.country').":".$request->country."\r\n".__('front.contact.name').":".$request->name."\r\n".__('front.contact.email').":".$request->email."\r\n".__('front.contact.phone').":".$request->phone."\r\n".__('front.contact.content').":".$request->content."\r\n".__('front.contact.remark').":", function($message) use ($request, $emails){
                 //     $message->to($emails)->subject($request->question);
                 // });
             }

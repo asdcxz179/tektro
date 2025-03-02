@@ -48,12 +48,17 @@ class BrandController extends Controller
      */
     public function show($lang,$id)
     {
+        $trans = [
+            'Tektro' => 1,
+            'Trp' => 2,
+        ];
+        $id = $trans[$id]??1;
         $data['brand']  =   ProductBrand::find($id);
         switch ($id) {
-            case '1':
+            case 'Tektro':
                 $data['seo'] = Seo::where(['name' => 'tektro_product'])->first();
                 break;
-            case '2':
+            case 'Trp':
                 $data['seo'] = Seo::where(['name' => 'trp_product'])->first();
                 break;
         }

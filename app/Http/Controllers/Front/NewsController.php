@@ -16,7 +16,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $data['news'] = News::where('status',1)->orderby('sort')->get();
+        $data['news'] = News::where('status',1)->orderby('sort')->get()->filter(function($item) {
+            return $item->getTranslation('show', request()->lang,false);
+        });
         $data['seo'] = Seo::where(['name' => 'news'])->first();
         return view('front.news',$data);
     }

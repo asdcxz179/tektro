@@ -12,7 +12,11 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
+    'jquery.validation' =>  'messages_zh_TW',
+    'Please select a continent' =>  '請選擇洲別',
+    'Please select a country'   =>  '請選擇國家',
+    'Please complete'  =>  '請填寫這個欄位',
+    'submit success'    =>  '感謝您的來信。',
     'title' =>  [
         'index' =>  'TEKTRO｜彥豪｜自行車煞車製造',
         'news'  =>  '最新消息 | 彥豪｜自行車煞車製造商',
@@ -37,9 +41,13 @@ return [
     'contact.email'     => '信箱',
     'contact.phone'     => '聯絡電話',
     'contact.content'   => '訊息',
+    'contact.remark'    => '備註',
     'contact.captcha'   => '驗證碼',
     'contact.recaptcha' =>  'Google recaptcha',
     'contact.recaptcha.error' =>  '驗證失敗',
+    'contact.email.title'   =>  '尊敬的客戶/經理，
+    <br>
+    感謝您的查詢。 我們已收到 TEKTRO/TRP 的請求，我們正在積極努力滿足您的需求。',
 
     'home'              =>  '首頁',
     'information'       =>  '資訊',
@@ -55,6 +63,11 @@ return [
     'video_share'       =>  '影音分享',
     'common_question'   =>  '常見問題',
     'warranty_terms'    =>  '保固條款',
+    'tou'    =>  '服務條款',
+    'tou_app'    =>  'APP 服務條款',
+    'back'    =>  '回上一頁',
+    'policy'    =>  '隱私權政策',
+    'policy_app'    =>  'APP 隱私權政策',
     'contact'           =>  '聯絡',
     'contact_form'      =>  '聯絡表單',
     'global_base'       =>  '全球據點',
@@ -83,12 +96,13 @@ return [
     'maintenance'       =>  '維護修繕',
     'other problems'    =>  '其他問題',
     'confirm send'      =>  '確認送出',
+    'confirm'           =>  '確定',
     'please input text' =>  '請輸入文字',
     'search'            =>  '搜尋',
     'please input keyword'=>    '請輸入關鍵字',
     'category'          =>  '類別',
     'all'               =>  '全部',
-    'FIND A DEALER'     =>  '尋找經銷商',
+    'Contact Us'     =>  '聯絡我們',
     'area'              =>  '地區',
     'brand'             =>  '品牌',
     'CONTINUE READING'  =>  '繼續閱讀',
@@ -107,7 +121,7 @@ return [
     'total'             =>  '共有',
     'item'              =>  '筆',
     'manual'            =>  '使用手冊',
-    'BOM List'          =>  'BOM 清單',
+    'BOM List'          =>  '維修零件表',
     'terms1'            =>  'Tektro USA 提供自原始零售購買之日起兩年的材料和/或工藝製造缺陷保修。 因安裝、調整或維護不當、缺乏維護、改裝、碰撞或被 Tektro USA 認定為過度或濫用而造成的損壞不在本保修範圍內。
     Tektro USA 接受自原始購買日期起 30 天內的退貨。 物品必須處於全新狀態，並帶有所有原始包裝、手冊、附件和原始收據。',
     'terms2'            =>  '退貨手續',
@@ -119,4 +133,6 @@ return [
     'search_record'     =>  '搜尋紀錄',
 
     'category_download' =>  '型錄下載',
+
+    'Find a Distributor or Warranty Center' => "尋找經銷商或保固中心"
 ];

@@ -75,4 +75,17 @@ class ProductBrand extends Model implements Auditable
     {
         return $this->morphedByMany(ProductTag::class, 'model', 'product_relations');
     }     
+
+    public function getCodeAttribute() {
+        $id = $this->id;
+        switch ($this->id) {
+            case 1:
+                $id = 'Tektro';
+                break;
+            case 2:
+                $id = 'Trp';
+                break;
+        }
+        return $id;
+    }
 }

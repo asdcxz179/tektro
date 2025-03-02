@@ -2,17 +2,13 @@
 <html lang="zh-TW">
 
 <head>
-    @if(env('APP_ENV') != 'production')
-    <meta name="robots" content="noindex">
-    <meta name="googlebot" content="noindex">
-    @endif
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@if(isset($seo) && $seo->getTranslation('title', $lang,false)){{$seo->getTranslation('title', $lang,false)}}@else{{$web_setting->getTranslation('title', $lang,false)}}@endif</title>
-    <meta name="description" content="@if(isset($seo) && $seo->getTranslation('description', $lang,false)){{$seo->getTranslation('description', $lang,false)}}@else{{$web_setting->getTranslation('description', $lang,false)}}@endif">
-    <meta name="keywords" content="@if(isset($seo) && $seo->getTranslation('keyword', $lang,false)){{$seo->getTranslation('keyword', $lang,false)}}@else{{$web_setting->getTranslation('keyword', $lang,false)}}@endif">
-    <meta name="author" content="{{$web_setting->getTranslation('author', $lang,false)}}">
+    <title>@if(isset($seo) && $seo->getTranslation('title', $lang,false)){{$seo->getTranslation('title', $lang,false)}}@else{{$web_setting?->getTranslation('title', $lang,false)}}@endif</title>
+    <meta name="description" content="@if(isset($seo) && $seo->getTranslation('description', $lang,false)){{$seo->getTranslation('description', $lang,false)}}@else{{$web_setting?->getTranslation('description', $lang,false)}}@endif">
+    <meta name="keywords" content="@if(isset($seo) && $seo->getTranslation('keyword', $lang,false)){{$seo->getTranslation('keyword', $lang,false)}}@else{{$web_setting?->getTranslation('keyword', $lang,false)}}@endif">
+    <meta name="author" content="{{$web_setting?->getTranslation('author', $lang,false)}}">
     <link rel="shortcut icon" href="{{asset('front/assets/images/favicon3.ico')}}">
 
     <!-- bootstrap -->
@@ -44,6 +40,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.js"></script>
     @yield('og')
     @stack('style')
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2SMC50QY51"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-2SMC50QY51');
+    </script>
+
+   
 </head>
 
 <body>
@@ -57,10 +65,10 @@
                     <div class="">
                         <div class="brand_logo">
                             <div class="d-flex align-items-center">
-                                <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block"><img src="{{asset('front/assets/images/TEKTRO_w.png')}}"
+                                <a id="tektro-logo" href="{{route('front.brand.show',['lang'=>$lang,'brand'=>'Tektro'])}}" class="link-tektro d-block"><img src="{{asset('front/assets/images/TEKTRO_w.png')}}"
                                         alt="TEKTRO logo"></a>
                                 <div class="logo_divider"></div>
-                                <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block"><img src="{{asset('front/assets/images/TRP_w.svg')}}"
+                                <a id="trp-logo" href="{{route('front.brand.show',['lang'=>$lang,'brand'=>'Trp'])}}" class="link-trp d-block"><img src="{{asset('front/assets/images/TRP_w.svg')}}"
                                         alt="TRP logo"></a>
                             </div>
 
@@ -93,9 +101,10 @@
                                                         <li class="menu_item_has_child info_li" data-target="info_new">
                                                             <a href="{{route('front.news.index',['lang'=>$lang])}}" class="page_link">{{__('front.news')}}</a>
                                                         </li>
-                                                        <li class="menu_item_has_child info_li" data-target="info_recruit">
+                                                                            {{-- @Ivan MODIFIED 2025/02/14 --}}
+                                                        {{-- <li class="menu_item_has_child info_li" data-target="info_recruit">
                                                             <a href="{{route('front.recruit.index',['lang'=>$lang])}}" class="page_link">{{__('front.recruit')}}</a>
-                                                        </li>
+                                                        </li> --}}
                                                     </ul>
                                                 </div>
                                                 <div class="col-4">
@@ -154,7 +163,7 @@
                                                     <ul class="ps-0 page_link_group productLink">
                                                         @foreach($brands as $brand)
                                                         <li class="menu_item_has_child" data-id="brand_{{$brand->id}}">
-                                                            <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->id])}}" class="page_link">
+                                                            <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->code])}}" class="page_link">
                                                                 {{$brand->name}}
                                                                 <i class='bx bxs-chevron-right align-middle ms-2'></i>
                                                             </a>
@@ -337,11 +346,11 @@
 
             <div class="msb_widget brand_logo text-center">
                 <div class="d-flex align-items-center">
-                    <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block">
+                    <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>'Tektro'])}}" class="link-tektro d-block">
                         <img src="{{asset('front/assets/images/TEKTRO_w.png')}}" alt="TEKTRO logo">
                     </a>
                     <div class="logo_divider"></div>
-                    <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block">
+                    <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>'Trp'])}}" class="link-trp d-block">
                         <img src="{{asset('front/assets/images/TRP_w.svg')}}" alt="TRP logo">
                     </a>
                 </div>
@@ -386,9 +395,10 @@
                             <li>
                                 <a href="{{route('front.news.index',['lang'=>$lang])}}">{{__('front.news')}}</a>
                             </li>
-                            <li>
+                                                {{-- @Ivan MODIFIED 2025/02/14 --}}
+                            {{-- <li>
                                 <a href="{{route('front.recruit.index',['lang'=>$lang])}}">{{__('front.recruit')}}</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -566,9 +576,10 @@
                     <div>
                         <a href="{{route('front.news.index',['lang'=>$lang])}}" class="footer_link">{{__('front.news')}}</a>
                     </div>
-                    <div>
+                    {{-- @Ivan MODIFIED 2025/02/14 --}}
+                    {{-- <div>
                         <a href="{{route('front.recruit.index',['lang'=>$lang])}}" class="footer_link">{{__('front.recruit')}}</a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="d-none d-md-block col-2">
                     <h5 class="fs-6 fw-bold mb-4">{{__('front.about_us')}}</h5>
@@ -582,7 +593,7 @@
                     <h5 class="fs-6 fw-bold mb-4">{{__('front.brand_product')}}</h5>
                     @foreach($brands as $brand)
                     <div>
-                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->id])}}" class="footer_link">{{$brand->name}}</a>
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>$brand->code])}}" class="footer_link">{{$brand->name}}</a>
                     </div>
                     @endforeach
                 </div>
@@ -614,11 +625,11 @@
             <div class="row mb-3">
                 <div class="col-12 d-none d-md-flex footer_logo_group justify-content-between align-items-center mb-4">
                     <div class="d-flex align-items-center">
-                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block">
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>'Tektro'])}}" class="link-tektro d-block">
                             <img src="{{asset('front/assets/images/TEKTRO_w.png')}}" alt="TEKTRO logo">
                         </a>
                         <div class="logo_divider"></div>
-                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block">
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>'Trp'])}}" class="link-trp d-block">
                             <img src="{{asset('front/assets/images/TRP_w.svg')}}" alt="TRP logo">
                         </a>
                     </div>
@@ -658,7 +669,10 @@
                         </a>
                         @endif
                     </div>
-                    <div class="text-white fs-7 opacity-50 text-center">{{$web_setting->getTranslation('copyright', $lang,false)}}
+                    <div class="text-white fs-7 opacity-50 text-center">
+                        {{$web_setting->getTranslation('copyright', $lang,false)}} 
+
+                            <a href="https://www.masoudesign.com.tw/" style="color:#fff !important; visibility: hidden"></a>
                     </div>
                 </div>
             </div>
@@ -682,18 +696,9 @@
                 $("[id^=brand]").hide();
                 $(`#${$(this).data('id')}`).show();
             });
+            
 
-            $('.index_banner_slick').slick({
-                dots: false,
-                arrows: true,
-                infinite: true,
-                // speed: 300,
-                // fade: true,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                // autoplay: true,
-                // autoplaySpeed: 4000
-            });
+            
 
             $('.index_news_slick').slick({
                 dots: false,
@@ -766,6 +771,38 @@
             $(`#${target}`).show();
         });
     </script>
+
+{{-- @Ivan MODIFIED 2025/02/14 --}}
+<style>
+    #trp-logo,#tektro-logo {
+        transition: transform 0.3s ease-in-out;
+    }
+</style>
+<script async>
+    const trpLogo = document.querySelector('#trp-logo')
+    const tektroLogo = document.querySelector('#tektro-logo')
+
+    if (trpLogo) {
+        trpLogo.addEventListener('mouseover', () => {
+            trpLogo.style.transform = "scale(1.1)";
+        });
+
+        trpLogo.addEventListener('mouseout', () => {
+            trpLogo.style.transform = "scale(1)";
+        });
+    }
+
+    if (tektroLogo) {
+        tektroLogo.addEventListener('mouseover', () => {
+            tektroLogo.style.transform = "scale(1.1)";
+        });
+
+        tektroLogo.addEventListener('mouseout', () => {
+            tektroLogo.style.transform = "scale(1)";
+        });
+    }
+</script>
+
     @stack('javascript')
 </body>
 

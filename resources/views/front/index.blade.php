@@ -25,17 +25,17 @@
                             </div>
                         </div>
                     @elseif($carousel->type == 'video')
-                        <div id="player_carousel_{{$carousel->youtube_key}}" class=" iframe_video d-block"></div>
+                        <div id="player_carousel_{{$carousel->youtube_key}}" class=" iframe_video banner_iframe_video d-block"></div>
                         <script>
                             $(document).ready(function(){
-                                players['player_carousel_{{$carousel->youtube_key}}'] = '{{$carousel->youtube_key}}';
+                                carousel_players['player_carousel_{{$carousel->youtube_key}}'] = '{{$carousel->youtube_key}}';
                             });
                         </script>
                     @endif
                 </div>
                 @endforeach
             </div>
-            <img src="{{asset('front/assets/images/divider001.svg')}}" alt="" class="w-100 position-absolute bottom-0">
+            <img src="{{asset('front/assets/images/divider001.svg')}}" alt="" class="w-100 position-absolute" style="bottom: -1px;">
         </section>
         <!-- top banner end -->
         @break
@@ -82,7 +82,7 @@
         @break
         @case(3)
         <div style="margin-top: -4px;">
-            <div id="player_{{$module->home_videos[0]->youtube_key}}" class="iframe_video d-block"></div>
+            <div id="player_{{$module->home_videos[0]->youtube_key}}" class="iframe_video d-block video_area"></div>
             <!-- <iframe class="iframe_video" src="https://www.youtube.com/embed/{{$module->home_videos[0]->youtube_key}}?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
         </div>
         <script>
@@ -113,7 +113,7 @@
         <section>
             <div class="duo_bg position-relative">
                 <picture>
-                    <source media="(min-width: 576px)" srcset="{{asset($module->path??'front/assets/images/index_duo_bg.jpg')}}">
+                    <source media="(min-width: 576px)" srcset="{{asset($module->path??'front/assets/images/index_bg.webp')}}">
                     <img src="{{asset('front/assets/images/index_duo_bg_s.jpg')}}" alt="img_not_found" class="w-100">
                 </picture>
                 <!-- <img src="assets/images/index_duo_bg.jpg" alt="img_not_found" class="w-100"> -->
@@ -259,7 +259,7 @@
         <!-- new product end -->
         
 <!-- newsletter -->
-<section class="newsletter jarallax bg-cover" style="background-image: url('{{asset('front/assets/images/index_newsletter.png')}}');">
+<section class="newsletter jarallax bg-cover" style="background-image: url('{{asset('front/assets/images/index_newsletter.webp')}}');">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -295,6 +295,8 @@
     const firstScriptTag = document.getElementsByTagName('script')[0]
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     var players = {};
+    var carousel_players = {};
+
     function onYouTubeIframeAPIReady() {
         Object.keys(players).map((key) => {
             setTimeout(() => {
@@ -305,24 +307,97 @@
                         loop: 1,
                         controls:0,
                         playlist:players[key],
+                        autohide:1,
                     },
+                    events: {
+                        'onReady': function(){
+                            $(window).scroll(function(){
+                                let window_top = $(window).scrollTop();
+                                let window_bottom = $(window).scrollTop() + $(window).height();
+                                Object.keys(players).map((key) => {
+                                    let video = $(`#${key}`);
+                                    let iframe_top = video.offset().top;
+                                    let iframe_bottom = video.offset().top + video.height();
+                                    if(window_bottom > iframe_top && window_top < iframe_bottom) {
+                                        players[key].playVideo();
+                                    }else{
+                                        players[key].pauseVideo();
+                                    }
+                                });
+                            });
+                        },
+                    }
                 });
             }, 100);
         });
-        $(window).scroll(function(){
-            let window_top = $(window).scrollTop();
-            let window_bottom = $(window).scrollTop() + $(window).height();
-            Object.keys(players).map((key) => {
-                let video = $(`#${key}`);
-                let iframe_top = video.offset().top;
-                let iframe_bottom = video.offset().top + video.height();
-                if(window_bottom > iframe_top && window_top < iframe_bottom) {
-                    players[key].playVideo();
-                }else{
-                    players[key].pauseVideo();
+        Object.keys(carousel_players).map((key) => {
+            setTimeout(() => {
+                carousel_players[key] = new YT.Player(key, {
+                    videoId: carousel_players[key],
+                    playerVars: {
+                        'playsinline': 1,
+                        loop: 1,
+                        controls:0,
+                        playlist:carousel_players[key],
+                        autohide:1,
+                    },
+                    events: {
+                        'onReady': function(){
+                            $(window).scroll(function(){
+                                let window_top = $(window).scrollTop();
+                                let window_bottom = $(window).scrollTop() + $(window).height();
+                                Object.keys(carousel_players).map((key) => {
+                                    let video = $(`#${key}`);
+                                    let iframe_top = video.offset().top;
+                                    let iframe_bottom = video.offset().top + video.height();
+                                    if(window_bottom > iframe_top && window_top < iframe_bottom) {
+                                        carousel_players[key].playVideo();
+                                    }else{
+                                        carousel_players[key].pauseVideo();
+                                    }
+                                });
+                            });
+                        },
+                    }
+                });
+            }, 100);
+        });
+
+        // $('.index_banner_slick').on('init', function(event, slick, direction){
+        //     let video = $(slick.$slides[0]).find('.iframe_video');
+        //     if(video.length > 0) {
+        //         setTimeout(() => {
+        //             // carousel_players[video.attr('id')].mute();
+        //             carousel_players[video.attr('id')].playVideo();
+        //         }, 1000);
+        //     }
+        // })
+
+        $('.index_banner_slick').slick({
+            dots: false,
+            arrows: true,
+            infinite: true,
+            // speed: 300,
+            // fade: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            // autoplay: true,
+            // autoplaySpeed: 4000
+        });
+
+        $('.index_banner_slick').on('afterChange', function(event, slick, direction){
+            slick.$slides.map((index) => {
+                let search = $(slick.$slides[index]).find('.iframe_video');
+                if(search.length > 0) {
+                    carousel_players[search.attr('id')].pauseVideo();
                 }
             });
-        });
+            let video = $(slick.$slides[direction]).find('.iframe_video');
+            if(video.length > 0) {
+                carousel_players[video.attr('id')].unMute();
+                carousel_players[video.attr('id')].playVideo();
+            }
+        })
     }
 </script>
 @endpush
@@ -332,6 +407,16 @@
         width:100%;
         /* height: calc(100vw/1.77); */
         height: calc(100vw * 0.5625 / 1.007);
+    }
+    @media(max-width: 1399px) {
+        .iframe_video.banner_iframe_video{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100vh * 16/9);
+            height: 100vh;
+        }
     }
 </style>
 @endpush

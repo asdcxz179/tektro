@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 
-class Talents extends Model implements Auditable
+class SupportItemFile extends Model implements Auditable
 {
     use HasFactory;
-    use \Spatie\Translatable\HasTranslations;
     use \OwenIt\Auditing\Auditable;
 
     /**
@@ -18,28 +17,14 @@ class Talents extends Model implements Auditable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'description',
-        'content',
-
-        'show_date',
-        'banner',
-        'up_image',
-
+        'support_files_id',
+        'file_name',
+        'path',
         'sort',
-        'status',
-        'show',
-    ];    
+    ];  
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
-    ];
-
-    public $translatable = [
-        'name',
-        'description',
-        'content',
-        'show',
     ];
 }

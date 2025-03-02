@@ -23,13 +23,13 @@
 <section class="container">
     <div class="row mb-12 mb-md-25">
         <div class="col-10 offset-1">
-            <h2 class="text-center title mb-4 mb-md-5">{{__('front.FIND A DEALER')}}</h2>
+            <h2 class="text-center title mb-4 mb-md-5">{{__('front.Find a Distributor or Warranty Center')}}</h2>
             <form action="" method="" class="global_form_group">
 
                 <div class="mb-4 mb-md-4">
                     <div class="d-flex align-items-md-center justify-content-md-center flex-column flex-md-row">
                         <!-- <label class="form-label fw-bold d-block ">地區</label> -->
-                        <div class="text-nowrap me-md-5 mb-2 mb-md-0 fw-bold fs-6">{{__('front.area')}}</div>
+                        <div class="text-nowrap w-15 mb-2 mb-md-0 fw-bold fs-6">{{__('front.area')}}</div>
                         <select class="form-select" aria-label="Default select" data-live-search="true" name="area">
                             <option selected value="">{{__('front.all')}}</option>
                             @foreach($areas as $area)
@@ -41,7 +41,7 @@
                 <div class="mb-4 mb-md-5">
                     <!-- <label class="form-label fw-bold">品牌</label> -->
                     <div class="d-flex align-items-md-center justify-content-md-center flex-column flex-md-row">
-                        <div class="text-nowrap me-md-5 mb-2 mb-md-0 fw-bold fs-6">{{__('front.brand')}}</div>
+                        <div class="text-nowrap w-15 mb-2 mb-md-0 fw-bold fs-6">{{__('front.brand')}}</div>
                         <select class="form-select" aria-label="Default select" data-live-search="true" name="brand">
                             <option selected value="">{{__('front.all')}}</option>
                             @foreach($brands as $brand)

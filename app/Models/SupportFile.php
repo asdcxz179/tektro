@@ -24,9 +24,10 @@ class SupportFile extends Model implements Auditable
         'support_file_type_id',
         'name',
         'file_name',
-        'path',
+        // 'path',
         'sort',
         'keyword',
+        'show',
     ];    
 
     protected $casts = [
@@ -41,6 +42,7 @@ class SupportFile extends Model implements Auditable
     public $translatable = [
         'name',
         'keyword',
+        'show',
     ];
 
     public function transformAudit(array $data): array
@@ -50,5 +52,9 @@ class SupportFile extends Model implements Auditable
             $data['new_values']['support_file_type_name'] = SupportFileType::find($this->getAttribute('support_file_type_id'))->name;
         }
         return $data;
+    }
+
+    public function files() {
+        return $this->hasMany(SupportItemFile::class, 'support_files_id', 'id');
     }
 }

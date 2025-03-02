@@ -4,31 +4,42 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Talents as crudModel;
+use App\Models\Support as crudModel;
+use App\Models\SupportFileType;
 use DataTables;
 use Exception;
 use DB;
 use Illuminate\Support\Arr;
 
-class TalentsController extends Controller
+class SupportController extends Controller
 {
     public function __construct() {
-        $this->name = 'talents';
+        $this->name = 'supports';
         $this->view = 'backend.'.$this->name;
         $this->rules = [            
             //使用多語系        
-            'name.*' => ['nullable', 'string'],
-            'description.*' => ['nullable', 'string'],
-            'content.*' => ['nullable', 'string'],
+            'name.*' => ['nullable', 'string', 'max:100'],
             'show.*' => ['nullable', 'numeric'],
             //公用
-            'show_date' => ['nullable', 'date'],
-            'banner' => ['nullable'],
-            'up_image' => ['nullable'],
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],     
+            //分類
+            'support_category_id' => ['nullable', 'string'],
         ];
+        $support_files_type_data = SupportFileType::all();
+        foreach($support_files_type_data as $type){
+            //檔案
+            $this->rules['support_files'.$type->key] = ['nullable', 'array'];
+            $this->rules['support_files'.$type->key.'.*.id'] = ['nullable'];
+            $this->rules['support_files'.$type->key.'.*.name.*'] = ['nullable', 'string', 'max:100'];
+            $this->rules['support_files'.$type->key.'.*.path'] = ['nullable'];
+            $this->rules['support_files'.$type->key.'.*.keyword'] = ['nullable'];
+            $this->rules['support_files'.$type->key.'.*.show'] = ['nullable'];
+            $this->rules['support_files'.$type->key.'.*.sort'] = ['nullable', 'numeric', 'max:127'];
+            $this->rules['support_files'.$type->key.'.*.id'] = ['nullable', 'numeric'];
+        }
+
         $this->messages = []; 
         $this->attributes = Arr::dot(__("backend.{$this->name}"));
     }
@@ -52,7 +63,7 @@ class TalentsController extends Controller
     public function create()
     {
         $this->authorize('create '.$this->name);
-        return view($this->view.'.create');
+        return view($this->view.'.create')->with('support_files_type_data', SupportFileType::all());
     }
 
     /**
@@ -63,17 +74,32 @@ class TalentsController extends Controller
      */
     public function store(Request $request)
     {
+        ini_set("memory_limit","800M");
         $this->authorize('create '.$this->name);
         $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
 
         try{
             DB::beginTransaction();
 
-            $data = CrudModel::create(array_merge($validatedData, 
-                $this->dealfile($validatedData['banner'], 'banner'),
-                $this->dealfile($validatedData['up_image'], 'up_image'),
-            ));
+            $data = CrudModel::create($validatedData);
 
+            $support_files_type_data = SupportFileType::all();
+            foreach($support_files_type_data as $type){
+                $relation = 'support_files';
+                if(isset($validatedData[$relation.$type->key])) {
+                    foreach($validatedData[$relation.$type->key] as &$value){
+                        if($value['path']){
+                            $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                        }else{
+                            unset($value['path']);
+                        }
+                        $value['support_file_type_id'] = $type->id;
+                    }
+                    $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation.$type->key], [], ['support_file_type_id' => $type->id]);      
+                }else{
+                    $data->{$relation}()->hasManySyncable($data, $relation, [], [], ['support_file_type_id' => $type->id]);
+                }        
+            }            ;
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
         } catch (Exception $e) {
@@ -104,7 +130,7 @@ class TalentsController extends Controller
     { 
         $this->authorize('edit '.$this->name);
         $data = CrudModel::findOrFail($id);
-        return view($this->view.'.edit',compact('data'));
+        return view($this->view.'.edit',compact('data'))->with('support_files_type_data', SupportFileType::all());
     }
 
     /**
@@ -116,23 +142,33 @@ class TalentsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        ini_set("memory_limit","800M");
         $this->authorize('edit '.$this->name);
         $validatedData = $request->validate($this->rules, $this->messages, $this->attributes);
         
         try{
             DB::beginTransaction();
-
+            
             $data = CrudModel::findOrFail($id);
-            foreach (['banner', 'up_image'] as $value) {
-                if(isset($validatedData[$value]) && $data->{$value} != 'upload/'.$validatedData[$value]->getClientOriginalName()) {
-                    $validatedData = array_merge($validatedData, 
-                        $this->dealfile($validatedData[$value], $value, $data, $value),                               
-                    );
-                }else {
-                    unset($validatedData[$value]);
+            $data->update($validatedData);
+
+            $support_files_type_data = SupportFileType::all();
+            foreach($support_files_type_data as $type){
+                $relation = 'support_files';
+                if(isset($validatedData[$relation.$type->key])) {
+                    foreach($validatedData[$relation.$type->key] as &$value){
+                        if($value['path']){
+                            $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                        }else{
+                            unset($value['path']);
+                        }
+                        $value['support_file_type_id'] = $type->id;
+                    }
+                    $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation.$type->key], [], ['support_file_type_id' => $type->id]);      
+                }else{
+                    $data->{$relation}()->hasManySyncable($data, $relation, [], [], ['support_file_type_id' => $type->id]);
                 }
             }
-            $data->update($validatedData);
 
             DB::commit();
             return response()->json(['message' => __('edit').__('success')]);
@@ -185,5 +221,5 @@ class TalentsController extends Controller
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()],422);
         }
-    }    
+    }          
 }

@@ -12,6 +12,11 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'jquery.validation' =>  '',
+    'Please select a continent' =>  'Please select a continent.',
+    'Please select a country'   =>  'Please select a country.',
+    'Please complete'  =>  'Please complete.',
+    'submit success'    =>  'Thank you for your inquiry..',
     'title' =>  [
         'index' =>  'TEKTRO BRAKE SYSTEMS',
         'news'  =>  'Latest News | TEKTRO',
@@ -37,6 +42,11 @@ return [
     'contact.phone'     => 'Phone',
     'contact.content'   => 'Message',
     'contact.captcha'   => 'Verification Code',
+    'contact.recaptcha' =>  'Google recaptcha',
+    'contact.recaptcha.error' =>  'Valid Error',
+    'contact.email.title'   =>  'Dear Customer/Manager,
+    <br>
+    Thank you for your inquiry. We have received the request for TEKTRO/TRP, and we are actively working on addressing your needs.',
 
     'home'              =>  'Home',
     'information'       =>  'Information',
@@ -52,6 +62,11 @@ return [
     'video_share'       =>  'Video',
     'common_question'   =>  'FAQ',
     'warranty_terms'    =>  'Warranty',
+    'tou'    =>  'Terms of Use',
+    'tou_app'    =>  'APP Terms of Use',
+    'back'    =>  'Back',
+    'policy'    =>  'Privacy Policy',
+    'policy_app'    =>  'APP Privacy Policy',
     'contact'           =>  'Contact',
     'contact_form'      =>  'Contact Us',
     'global_base'       =>  'Global Base',
@@ -80,12 +95,13 @@ return [
     'maintenance'       =>  'Warranty',
     'other problems'    =>  'Others',
     'confirm send'      =>  'Send',
+    'confirm'           =>  'Confirm',
     'please input text' =>  'Please input text',
     'search'            =>  'Search',
     'please input keyword'=>    'Please input KeyWord',
     'category'          =>  'Category',
     'all'               =>  'All',
-    'FIND A DEALER'     =>  'FIND A DEALER',
+    'Contact Us'     =>  'Contact Us',
     'area'              =>  'Area',
     'brand'             =>  'Brand',
     'CONTINUE READING'  =>  'CONTINUE READING',
@@ -104,7 +120,7 @@ return [
     'total'             =>  'Total',
     'item'              =>  'data',
     'manual'            =>  'Manual',
-    'BOM List'          =>  'BOM List',
+    'BOM List'          =>  'Spare Parts Guidance',
     'terms1'            =>  'Tektro USA offers a two year warranty against manufacturing defects in materials and/or workmanship from the date of original retail purchase. Damage resulting from improper installation, adjustment or maintenance, lack of maintenance, alterations, crashes, or use as determined by Tektro USA to be excessive or abusive is not covered under this warranty.
     Tektro USA accepts returns within 30 days of original purchase date. Item must be in new condition with all original packaging, manuals, accessories, and with original receipt.',
     'terms2'            =>  'RETURN PROCEDURE',
@@ -116,4 +132,6 @@ return [
     'search_record'     =>  'Search Record',
 
     'category_download' =>  'Catalog Download',
+
+    'Find a Distributor or Warranty Center' => "Find a Distributor or Warranty Center"
 ];

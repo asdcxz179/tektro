@@ -94,12 +94,12 @@
             <div class="">
                 <div class="brand_logo">
                     <div class="d-flex align-items-center">
-                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>1])}}" class="link-tektro d-block">
-                            <img src="https://tektro.henryegg8.com/front/assets/images/TEKTRO_w.png" alt="TEKTRO logo">
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>'Tektro'])}}" class="link-tektro d-block">
+                            <img src="https://tektro.com/front/assets/images/TEKTRO_w.png" alt="TEKTRO logo">
                         </a>
                         <div class="logo_divider"></div>
-                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>2])}}" class="link-trp d-block">
-                            <img src="https://tektro.henryegg8.com/front/assets/images/TRP_w.svg" alt="TRP logo">
+                        <a href="{{route('front.brand.show',['lang'=>$lang,'brand'=>'Trp'])}}" class="link-trp d-block">
+                            <img src="https://tektro.com/front/assets/images/TRP_w.svg" alt="TRP logo">
                         </a>
                     </div>
                 </div>

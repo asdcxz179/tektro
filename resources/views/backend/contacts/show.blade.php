@@ -38,7 +38,7 @@
                         </div>                                                              
                         <div class="form-group col-md-12">
                             <label>{{ __("backend.$routeNameData.content") }}</label>                            
-                            <textarea disabled name="content" class="form-control">{{ $data->content }}</textarea>
+                            <textarea disabled name="content" class="form-control" style="height:250px;">{{ $data->content }}</textarea>
                         </div>
                         <div class="form-group col-md-12">
                             <label>{{ __("backend.$routeNameData.remark") }}</label>                            

@@ -101,14 +101,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="parent d-flex">
-                                        <div class="mr-2">
-                                            <a href="javascript:void(0)" class="text-success file_add" name="support_files{{ $type->key }}[0][path][$i][file]">
-                                                <i class="fa fa-plus"></i>
-                                            </a>
-                                        </div>
-                                        <div class="file_area">
-                                        </div>
+                                    <div class="pt-1">
+                                        <input type="file" disabled name="support_files{{ $type->key }}[0][path]" class="mt-4"/>
                                     </div>
                                 </div>
                             </div>               
@@ -183,4 +177,3 @@ $(function() {
 });
 </script>
 @endpush
-@include('backend.supports.js')

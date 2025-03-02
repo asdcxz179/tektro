@@ -22,8 +22,13 @@ class Lang
      */
     public function handle(Request $request, Closure $next)
     {
+        if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) && !$request->lang) {
+            if(preg_match("/^zh/", $_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+                return redirect()->route('front.index',['lang'=> 'zh-Hant']);
+            }
+        }
         if(!$request->lang) {
-            return redirect()->route('front.index',['lang'=>'zh-Hant']);
+            return redirect()->route('front.index',['lang'=>'en']);
         }
         App::setLocale($request->lang??'zh-Hant');
         if(isset($this->languageList[config('app.locale')])) {

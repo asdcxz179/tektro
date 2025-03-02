@@ -21,11 +21,11 @@
 <section class="container mb-15">
     <div class="row">
         <div class="col-10 offset-1 col-lg-6 offset-lg-3">
-            <form action="{{route('front.contact.store',['lang'=>$lang])}}" method="POST" >
+            <form action="{{route('front.contact.store',['lang'=>$lang])}}" method="POST" id="contact">
                 @csrf
                 <div class="mb-4">
-                    <label class="form-label fw-bold">{{__('front.contact.question')}}<span class="text-danger">*</span></label>
-                    <select class="form-select js-select2" aria-label="Default select" data-live-search="true" name="question">
+                    <label class="form-label fw-bold me-1">{{__('front.contact.question')}}<span class="text-danger">*</span></label>
+                    <select class="form-select js-select2" aria-label="Default select" data-live-search="true" name="question" required id="question">
                         <option value="{{__('front.installation technical issues')}}">{{__('front.installation technical issues')}}</option>
                         <option value="{{__('front.product problem')}}">{{__('front.product problem')}}</option>
                         <option value="{{__('front.customer service')}}">{{__('front.customer service')}}</option>
@@ -37,8 +37,9 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold">{{__('front.contact.area')}}<span class="text-danger">*</span></label>
-                    <select class="form-select js-select2" aria-label="Default select" data-live-search="true" name="area_id">
+                    <label class="form-label fw-bold me-1">{{__('front.contact.area')}}<span class="text-danger">*</span></label>
+                    <select class="form-select js-select2" aria-label="Default select" data-live-search="true" name="area_id" required id="area_id">
+                        <option value="">{{__('front.Please select a continent')}}</option>
                         @foreach($areas as $area)
                         <option value="{{$area->id}}">{{$area->name}}</option>
                         @endforeach
@@ -49,6 +50,7 @@
                 </div>
                 <div class="mb-4">
                     <select class="d-none" aria-label="Default select" data-live-search="true" id="country_template">
+                        
                         <optgroup label="Africa" id="area_3">
                             <option value="Algeria" label="Algeria">Algeria</option>
                             <option value="Angola" label="Angola">Angola</option>
@@ -312,8 +314,9 @@
                             <option value="Wallis and Futuna" label="Wallis and Futuna">Wallis and Futuna</option>
                         </optgroup>
                     </select>
-                    <label class="form-label fw-bold">{{__('front.contact.country')}}<span class="text-danger">*</span></label>
-                    <select class="form-select js-select2" aria-label="Default select" data-live-search="true" name="country">
+                    <label class="form-label fw-bold  me-1">{{__('front.contact.country')}}<span class="text-danger">*</span></label>
+                    <select class="form-select js-select2" aria-label="Default select" data-live-search="true" name="country" required id="country">
+                        <option value="" label="{{__('front.Please select a country')}}">{{__('front.Please select a country')}}</option>
                         <optgroup id="country-optgroup-Africa" label="Africa" >
                             <option value="Algeria" label="Algeria">Algeria</option>
                             <option value="Angola" label="Angola">Angola</option>
@@ -590,38 +593,38 @@
                     <!-- select with search end -->
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold" for="contactsFormName">{{__('front.contact.name')}}<span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="name" id="contactsFormName" placeholder="" aria-label="" value="{{old('name')}}">
+                    <label class="form-label fw-bold me-1">{{__('front.contact.name')}}<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="name" id="contactsFormName" placeholder="" aria-label="" value="{{old('name')}}" required>
                     @error('name')
                         <span class="text-danger" style="font-size:14px;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold" for="contactsFormEmail">{{__('front.contact.email')}}<span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" name="email" id="contactsFormEmail" placeholder="example@mail.com" aria-label="" value="{{old('email')}}">
+                    <label class="form-label fw-bold me-1" for="contactsFormEmail">{{__('front.contact.email')}}<span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" name="email" id="contactsFormEmail" placeholder="example@mail.com" aria-label="" value="{{old('email')}}" required>
                     @error('email')
                         <span class="text-danger" style="font-size:14px;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold" for="contactsFormTel">{{__('front.contact.phone')}}</label>
+                    <label class="form-label fw-bold me-1" for="contactsFormTel">{{__('front.contact.phone')}}</label>
                     <input type="tel" class="form-control" name="phone" id="contactsFormTel" placeholder="" aria-label="" value="{{old('phone')}}">
                     @error('phone')
                         <span class="text-danger" style="font-size:14px;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label class="form-label fw-bold" for="contactsFormDetails">{{__('front.contact.content')}}<span class="text-danger">*</span></label>
-                    <textarea class="form-control" name="content" id="contactsFormDetails" placeholder="{{__('front.please input text')}}" aria-label="" rows="5">{{old('content')}}</textarea>
+                    <label class="form-label fw-bold me-1" for="contactsFormDetails">{{__('front.contact.content')}}<span class="text-danger">*</span></label>
+                    <textarea class="form-control" name="content" id="contactsFormDetails" placeholder="{{__('front.please input text')}}" aria-label="" rows="5" required>{{old('content')}}</textarea>
                     @error('content')
                         <span class="text-danger" style="font-size:14px;">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="col-md-12 mb-4">
-                    <label class="form-label fw-bold" for="contactsFormCaptcha">{{__('front.contact.captcha')}}<span class="text-danger">*</span></label>
+                    <label class="form-label fw-bold me-1" for="contactsFormCaptcha">{{__('front.contact.captcha')}}<span class="text-danger">*</span></label>
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="captcha" id="contactsFormCaptcha" placeholder="" aria-label="">
+                            <input type="text" class="form-control" name="captcha" id="contactsFormCaptcha" placeholder="" aria-label="" required>
                             @error('captcha')
                                 <span class="text-danger" style="font-size:14px;">{{ $message }}</span>
                             @enderror
@@ -650,11 +653,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header border-0">
-                <p>感謝您的來信</p>
+                <p></p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-footer border-0">
-                <button type="button" class="c_btn btn_dark" data-bs-dismiss="modal" aria-label="Close">確定</button>
+                <button type="button" class="c_btn btn_dark" data-bs-dismiss="modal" aria-label="Close">{{__('front.confirm')}}</button>
             </div>
         </div>
     </div>
@@ -662,9 +665,22 @@
 @endsection
 @push('style')
 <link rel="stylesheet" href="{{asset('js/plugins/select2/css/select2.min.css')}}">
+<style>
+    .grecaptcha-badge { 
+        visibility: hidden;
+    }
+    .error {
+        color: red;
+        margin-top: 5px;
+    }
+</style>
 @endpush
 @push('javascript')
 <script src="{{asset('js/plugins/select2/js/select2.min.js')}}"></script>
+<script src="{{asset('js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+@if(__('front.jquery.validation'))
+<script src="{{asset('js/plugins/jquery-validation/localization/'.__('front.jquery.validation').'.min.js')}}"></script>
+@endif
 <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.RECAPTCHA_SITE_KEY') }}"></script>
 <script>
     grecaptcha.ready(function() {
@@ -675,9 +691,14 @@
 </script> 
 <script>
     $('.js-select2').select2();
+    // $('.js-select2').on('select2:select', function (e) {
+    //     $(e.target).change();
+    //     var data = e.params.data;
+    //     console.log(data);
+    // });
     $('select[name="area_id"]').change(function(){
-        console.log($(`#country_template #area_${$(this).val()}`)[0].outerHTML);
-        $('select[name="country"]').html($(`#country_template #area_${$(this).val()}`)[0].outerHTML);
+        // console.log($(`#country_template #area_${$(this).val()}`)[0].outerHTML);
+        $('select[name="country"]').html(`<option value="" label="{{__('front.Please select a country')}}">{{__('front.Please select a country')}}</option>`+$(`#country_template #area_${$(this).val()}`)[0].outerHTML);
         $('select[name="country"]').select2();
     });
 	$(document).ready(function(){
@@ -685,12 +706,37 @@
             $('#message').modal('show');
             $('#message p').text('{{__('front.submit success')}}');
 		@elseif(Session::get('result') && !Session::get('result')[0])
-            $('#message').modal('show');
             $('#message p').text('{{__('front.submit error')}}');
 		@endif
 	});
 	@php
 		Session::pull('result');
 	@endphp
+    $.extend( $.validator.messages, {
+        required: "{{__('front.Please complete')}}",
+    } );
+        $("#contact").validate({
+            rules: {
+				area_id: "required",
+                country: "required",
+                contactsFormName: "required",
+                contactsFormEmail: "required",
+                contactsFormTel: "required",
+                contactsFormDetails: "required",
+                contactsFormCaptcha: "required",
+			},
+			messages: {
+				area_id: "{{__('front.Please select a continent')}}",
+                country: "{{__('front.Please select a country')}}",
+                contactsFormName: "{{__('front.Please complete')}}",
+                contactsFormEmail: "{{__('front.Please complete')}}",
+                contactsFormTel: "{{__('front.Please complete')}}",
+                contactsFormDetails: "{{__('front.Please complete')}}",
+                contactsFormCaptcha: "{{__('front.Please complete')}}",
+			},
+            errorPlacement: function(error, element) {
+                element.parents('.mb-4').find('.form-label').after(error);
+            }
+        });
 </script>
 @endpush

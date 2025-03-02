@@ -20,6 +20,7 @@
                     @foreach($languageData as $language) 
                     <div class="tab-pane" id="btabs{{ $language->name }}" role="tabpanel">
                         <div class="form-row">
+                            
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.name.*") }}</label>
                                 <input type="text" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
@@ -27,11 +28,22 @@
                             <div class="form-group col-md-6">
                                 <label>{{ __("backend.$routeNameData.description.*") }}</label>
                                 <input type="text" name="description[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.description.*") }}">
-                            </div>                            
+                            </div>   
+                            <div class="form-group col-md-6">
+                                <label>{{ __("backend.$routeNameData.*.show") }}<span class="text-danger">*</span></label>
+                                <div class="col-md-12">
+                                    <label class="css-control css-control-primary css-switch">
+                                        <input type="checkbox" class="css-control-input" checked>
+                                        <input type="hidden" required name="show[{{ $language->lang }}]" value="1">
+                                        <span class="css-control-indicator"></span>
+                                    </label>
+                                </div>
+                            </div>                         
                             <div class="form-group col-md-12">
                                 <label>{{ __("backend.$routeNameData.content.*") }}</label>                                
                                 <textarea name="content[{{ $language->lang }}]" class="form-control summernote"></textarea>
                             </div>  
+                            
                         </div>
                     </div>
                     @endforeach

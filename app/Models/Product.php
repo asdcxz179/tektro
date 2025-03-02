@@ -58,7 +58,7 @@ class Product extends Model implements Auditable
     }   
 
     public function files(){
-        return $this->hasMany(ProductFile::class)->whereNotNull('path')->orderby('sort','asc');
+        return $this->hasMany(ProductFile::class, 'product_id', 'id')->whereNotNull('path')->orderby('sort','asc');
     } 
 
     public function product_files(){

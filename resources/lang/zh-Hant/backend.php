@@ -319,6 +319,7 @@ return [
       'name' => '名稱',
       'description' => '描述',
       'content' => '內容',
+      'show'  =>  '顯示',
     ],
 
     'show_date' => '顯示日期',
@@ -337,6 +338,7 @@ return [
       'name' => '名稱',
       'description' => '描述',
       'content' => '內容',
+      'show'  =>  '顯示',
     ],
     'show_date' => '顯示日期',
     'banner' => '封面圖',
@@ -561,6 +563,7 @@ return [
     'name' => ['*' => '名稱'],
     '*' =>  [
       'name' => '名稱',
+      'show'  =>  '顯示',
     ],
     'id'  =>  'id',
     'sort' => '排序',
@@ -577,7 +580,7 @@ return [
         'name' => '名稱',
         'file_name' => '檔案名稱',
         'path' => '檔案',
-    
+        'show'  =>  '顯示',
         'sort' => '排序',
         'status' => '狀態',   
         'keyword' =>  '站內關鍵字',
@@ -588,6 +591,7 @@ return [
     '*' => [
       'name' => '名稱',
       'keyword' =>  '站內關鍵字',
+      'show'  =>  '顯示',
     ],
     'path' => '檔案',
     'file_name' => '檔案名稱',

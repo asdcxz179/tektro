@@ -20,6 +20,7 @@ class NewsController extends Controller
             'name.*' => ['nullable', 'string'],
             'description.*' => ['nullable', 'string'],
             'content.*' => ['nullable', 'string'],
+            'show.*' => ['nullable', 'numeric'],
             //公用
             'show_date' => ['nullable', 'date'],
             'banner' => ['nullable', ],

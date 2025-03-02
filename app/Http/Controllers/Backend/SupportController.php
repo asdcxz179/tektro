@@ -19,6 +19,7 @@ class SupportController extends Controller
         $this->rules = [            
             //使用多語系        
             'name.*' => ['nullable', 'string', 'max:100'],
+            'show.*' => ['nullable', 'numeric'],
             //公用
             //通用
             'sort' => ['required', 'numeric', 'max:127'],
@@ -32,8 +33,9 @@ class SupportController extends Controller
             $this->rules['support_files'.$type->key] = ['nullable', 'array'];
             $this->rules['support_files'.$type->key.'.*.id'] = ['nullable'];
             $this->rules['support_files'.$type->key.'.*.name.*'] = ['nullable', 'string', 'max:100'];
-            $this->rules['support_files'.$type->key.'.*.path'] = ['nullable'];
+            $this->rules['support_files'.$type->key.'.*.path.*'] = ['nullable'];
             $this->rules['support_files'.$type->key.'.*.keyword'] = ['nullable'];
+            $this->rules['support_files'.$type->key.'.*.show'] = ['nullable'];
             $this->rules['support_files'.$type->key.'.*.sort'] = ['nullable', 'numeric', 'max:127'];
             $this->rules['support_files'.$type->key.'.*.id'] = ['nullable', 'numeric'];
         }
@@ -64,6 +66,8 @@ class SupportController extends Controller
         return view($this->view.'.create')->with('support_files_type_data', SupportFileType::all());
     }
 
+    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -85,19 +89,20 @@ class SupportController extends Controller
             foreach($support_files_type_data as $type){
                 $relation = 'support_files';
                 if(isset($validatedData[$relation.$type->key])) {
-                    foreach($validatedData[$relation.$type->key] as &$value){
-                        if($value['path']){
-                            $value = array_merge($value, $this->dealfile($value['path'], 'path'));
-                        }else{
-                            unset($value['path']);
+                    foreach($validatedData[$relation.$type->key] as $item){
+                        $item['support_file_type_id'] = $type->id;
+                        $file = $data->{$relation}()->create($item);
+                        if(isset($item['path'])) {
+                            foreach($item['path'] as $path) {
+                                if($path['file']){
+                                    $file_item = $this->dealfile($path['file'], 'path');
+                                    $file->files()->create($file_item);
+                                }
+                            }
                         }
-                        $value['support_file_type_id'] = $type->id;
                     }
-                    $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation.$type->key], [], ['support_file_type_id' => $type->id]);      
-                }else{
-                    $data->{$relation}()->hasManySyncable($data, $relation, [], [], ['support_file_type_id' => $type->id]);
-                }        
-            }            ;
+                }
+            }
             DB::commit();
             return response()->json(['message' => __('create').__('success')]);
         } catch (Exception $e) {
@@ -146,7 +151,7 @@ class SupportController extends Controller
         
         try{
             DB::beginTransaction();
-
+            
             $data = CrudModel::findOrFail($id);
             $data->update($validatedData);
 
@@ -154,18 +159,52 @@ class SupportController extends Controller
             foreach($support_files_type_data as $type){
                 $relation = 'support_files';
                 if(isset($validatedData[$relation.$type->key])) {
-                    foreach($validatedData[$relation.$type->key] as &$value){
-                        if($value['path']){
-                            $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                    $temp = collect($validatedData[$relation.$type->key]);
+                    $deleteIds = array_diff($data->{$relation}->pluck('id')->toArray(), $temp->pluck('id')->toArray());
+                    foreach($validatedData[$relation.$type->key] as $item){
+                        $item['support_file_type_id'] = $type->id;
+                        if(!isset($item['id'])) {
+                            $file = $data->{$relation}()->create($item);
                         }else{
-                            unset($value['path']);
+                            $file = $data->{$relation}()->where('id', $item['id'])->first();
+                            $file->update($item);
                         }
-                        $value['support_file_type_id'] = $type->id;
+                        if(isset($item['path'])) {
+                            $file_deleteIds = array_diff($file->files()->pluck('id')->toArray(), collect($item['path'])->pluck('id')->toArray());
+                            foreach($item['path'] as $path) {
+                                if($path['file']){
+                                    $file_item = $this->dealfile($path['file'], 'path');
+                                    if(isset($path['id'])) {
+                                        $file->files()->where('id',$path['id'])->update($file_item);
+                                    }else{
+                                        $file->files()->create($file_item);
+                                    }
+                                }
+                            }
+                            foreach ($file_deleteIds as $id) {
+                                $file->files()->where('id', $id)->delete();
+                            }
+                        }
                     }
-                    $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation.$type->key], [], ['support_file_type_id' => $type->id]);      
+                    foreach ($deleteIds as $id) {
+                        $data->{$relation}()->where('id', $id)->where('support_file_type_id', $type->id)->delete();
+                    }
                 }else{
-                    $data->{$relation}()->hasManySyncable($data, $relation, [], [], ['support_file_type_id' => $type->id]);
+                    $data->{$relation}()->where(['support_file_type_id' => $type->id])->delete();
                 }
+                // if(isset($validatedData[$relation.$type->key])) {
+                //     foreach($validatedData[$relation.$type->key] as &$value){
+                //         if($value['path']){
+                //             $value = array_merge($value, $this->dealfile($value['path'], 'path'));
+                //         }else{
+                //             unset($value['path']);
+                //         }
+                //         $value['support_file_type_id'] = $type->id;
+                //     }
+                //     $data->{$relation}()->hasManySyncable($data, $relation, $validatedData[$relation.$type->key], [], ['support_file_type_id' => $type->id]);      
+                // }else{
+                //     $data->{$relation}()->hasManySyncable($data, $relation, [], [], ['support_file_type_id' => $type->id]);
+                // }
             }
 
             DB::commit();

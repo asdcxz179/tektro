@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\SupportFile;
-use App\Models\ProductBrand;
-use Barryvdh\DomPDF\Facade\Pdf;
-// use Barryvdh\DomPDF\App;
+use App\Models\Seo;
+use App\Models\Warranty;
 
-class DownloadController extends Controller
+class PolicyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +16,9 @@ class DownloadController extends Controller
      */
     public function index()
     {
-        //
+        $data['seo'] = Seo::where(['name' => 'policy'])->first();
+        $data['warranty'] = Warranty::first();
+        return view('front.policy',$data);
     }
 
     /**
@@ -50,29 +50,7 @@ class DownloadController extends Controller
      */
     public function show($id)
     {
-        $support = \App\Models\SupportItemFile::where('file_name',$id)->first();
-        if(!$support) {
-            $brand = ProductBrand::where('file_data_name',$id)->first();
-            $file = $brand->file;
-        }else {
-            $file = $support->path;
-        }
-
-        // $pdf = PDF::loadView('pdf', ['title' => $support->file_name]); // 假設您有一個名為 'template' 的 Blade 模板
-
-        // return $pdf->setPaper('a4')
-        //         ->setOption('title', $support->file_name) // 設置 PDF 標題
-        //         ->loadFile(public_path($file))
-        //         ->stream($support->file_name);
-        // header('Content-type: application/pdf');
-        // header("Content-Disposition: attachment; filename={$support->file_name}'");
-        //$support->file_name
-        // Pdf::loadFile(public_path($file));
-        // $pdf = App::make(public_path($file));
-        // $pdf->loadHTML('<h1>Test</h1>');
-        // return $pdf->stream();
-
-        return response()->file(public_path($file));
+        //
     }
 
     /**

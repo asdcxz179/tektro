@@ -103,14 +103,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="parent d-flex">
-                                        <div class="mr-2">
-                                            <a href="javascript:void(0)" class="text-success file_add" name="support_files{{ $type->key }}[0][path][$i][file]">
-                                                <i class="fa fa-plus"></i>
-                                            </a>
-                                        </div>
-                                        <div class="file_area">
-                                        </div>
+                                    <div class="pt-1">
+                                        <input type="file" disabled name="support_files{{ $type->key }}[0][path]" class="mt-4"/>
                                     </div>
                                 </div>
                             </div>               
@@ -172,28 +166,11 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="parent d-flex">
-                                                <div class="mr-2">
-                                                    <a href="javascript:void(0)" class="text-success file_add" name="support_files{{ $type->key }}[{{$key}}][path][$i][file]">
-                                                        <i class="fa fa-plus"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="file_area">
-                                                    @foreach($value->files as $sort => $item)
-                                                    <div class="pt-1 d-flex mb-1 file_item">
-                                                        <div>
-                                                            <input type="file" name="support_files{{ $type->key }}[{{$key}}][path][{{$sort}}][file]" class=" files"/>
-                                                            <input type="hidden" name="support_files{{ $type->key }}[{{$key}}][path][{{$sort}}][id]" value="{{$item->id}}"/>
-                                                            <div class="mt-2"><h6>{{ $item->file_name }}<h6></div>
-                                                        </div>
-                                                        <div>
-                                                            <a href="javascript:void(0)" class="file_delete text-danger">
-                                                                <i class="fa fa-times"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    @endforeach
-                                                </div>
+                                            <div class="pt-1">
+                                                <input type="file" name="support_files{{ $type->key }}[{{ $key }}][path]" class="mt-4"/>
+                                                @isset($value->path)
+                                                <div class="mt-2"><h6>{{ $value->file_name }}<h6></div>
+                                                @endisset
                                             </div>
                                         </td>                                    
                                         <td>
@@ -275,4 +252,3 @@ $(function() {
 });
 </script>    
 @endpush
-@include('backend.supports.js')

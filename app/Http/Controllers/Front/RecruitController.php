@@ -15,7 +15,12 @@ class RecruitController extends Controller
      */
     public function index()
     {
-        $data['talents'] = Talents::where('status',1)->orderby('sort')->get();
+        // @Ivan MODIFIED 2025/02/14
+        return redirect('/');
+
+        $data['talents'] = Talents::where('status',1)->orderby('sort')->get()->filter(function($item) {
+            return $item->getTranslation('show', request()->lang,false);
+        });
         return view('front.recruit',$data);
     }
 
