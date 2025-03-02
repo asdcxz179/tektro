@@ -106,7 +106,7 @@ return [
     'id'  =>  'id',
   ],  
   'homes' => [
-    'name' => ['*' => '名稱'],
+    'name' => ['*' => '標題'],
     'description' => ['*' => '描述'],
     'home_type_id' => '模組',
 
@@ -117,9 +117,12 @@ return [
     'sort' => '排序',
     'status' => '狀態',
     'id'  =>  'id',
-
+    '*' => [
+      'name'  =>  '標題',
+    ],
     'relation' => [
       '*' => [
+        
         'brand' => '品牌',
         'title' => '標題',
         'big_title' => '大標題',

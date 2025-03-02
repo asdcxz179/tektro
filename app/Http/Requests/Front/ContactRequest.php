@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Front;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Front\GoogleRecaptcha;
 
 class ContactRequest extends FormRequest
 {
@@ -23,6 +24,7 @@ class ContactRequest extends FormRequest
             'email'     =>  'required|email',
             'content'   =>  'required|string',
             'captcha'   =>  'required|string|captcha',
+            'google_recaptcha' => ['required', 'string', new GoogleRecaptcha()],
         ];
     }
 
@@ -36,6 +38,7 @@ class ContactRequest extends FormRequest
             'email'     =>  __('front.contact.email'),
             'content'   =>  __('front.contact.content'),
             'captcha'   =>  __('front.contact.captcha'),
+            'google_recaptcha'   =>  __('front.contact.google_recaptcha'),
         ];
     }
 }

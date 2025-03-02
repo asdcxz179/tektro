@@ -11,7 +11,7 @@ use Illuminate\Support\Arr;
 class Home extends Model implements Auditable
 {
     use HasFactory;
-    // use \Spatie\Translatable\HasTranslations;
+    use \Spatie\Translatable\HasTranslations;
     use \OwenIt\Auditing\Auditable;
     
     /**
@@ -23,12 +23,17 @@ class Home extends Model implements Auditable
         'home_type_id',
         'path',
         'sort',
-        'status',  
+        'status',
+        'name',
     ];    
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
+    public $translatable = [
+        'name',
     ];
 
     public function home_type(){

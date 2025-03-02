@@ -33,6 +33,7 @@
                     </div>
                     <div class="form-group col-md-8 filepond-dom">
                         <label>{{ __("backend.$routeNameData.relation.*.path") }}</label>
+                        <div class="text-danger">{{ __('suggested_size', ['width' => 700, 'height' => 500]) }}</div>
                         <fieldset class="image">
                             <input type="file" name="relation[0][path]" accept="image/*" />
                         </fieldset>  
@@ -74,7 +75,32 @@
                             </div>
                             <div id="content">
                             </div>
-                        </div>                                                                                         
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="form-row mb-3">
+                                <div class="form-group col-md-12">
+                                    <ul class="nav nav-tabs nav-tabs-block border" data-toggle="tabs" role="tablist">
+                                        @foreach($languageData as $language) 
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#btabs{{ $language->name }}">{{ $language->name }}</a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    <div class="block-content tab-content border ">
+                                        @foreach($languageData as $language) 
+                                        <div class="tab-pane" id="btabs{{ $language->name }}" role="tabpanel">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label>{{ __("backend.$routeNameData.name.*") }}</label>
+                                                    <input type="text" name="name[{{ $language->lang }}]" class="form-control" placeholder="{{ __("backend.$routeNameData.name.*") }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group col-md-6">
                             <label>{{ __("backend.$routeNameData.sort") }}<span class="text-danger">*</span></label>
                             <input type="text" required name="sort" class="form-control" placeholder="{{ __("backend.$routeNameData.sort") }}" value="0">

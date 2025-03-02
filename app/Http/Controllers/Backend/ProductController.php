@@ -207,11 +207,13 @@ class ProductController extends Controller
             $relation = 'product_images';
 
             $exists = [];
-            foreach($validatedData[$relation] as &$value){
+            foreach($validatedData[$relation] as $key => &$value){
                 $item = $data->{$relation}()->where('path',  'upload/'.$value->getClientOriginalName())->first();
                 if(!$item){
-                    $value = array_merge([], $this->dealfile($value, 'path'));
+                    $value = array_merge(['sort' => $key], $this->dealfile($value, 'path'));
                     $item = $data->{$relation}()->create($value);
+                }else{
+                    $item->update(['sort' => $key]);
                 }
                 $exists[] = $item->id;
             }

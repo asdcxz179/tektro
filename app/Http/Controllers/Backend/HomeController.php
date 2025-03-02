@@ -24,6 +24,8 @@ class HomeController extends Controller
             'sort' => ['nullable', 'numeric', 'max:127'],
             'status' => ['required', 'boolean'],
             'path' => ['nullable'],
+            'name' => ['nullable','array'],
+            'name.*' => ['nullable','string'],
 
             //使用多語系        
             'relation.*.big_title.*' => ['nullable', 'string'],

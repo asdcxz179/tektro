@@ -2,6 +2,10 @@
 <html lang="zh-TW">
 
 <head>
+    @if(env('APP_ENV') != 'production')
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
+    @endif
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,10 +21,10 @@
     <link rel="stylesheet" href="{{asset('front/assets/css/bootstrap-utilities.css')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/bootstrap.css')}}">
     <!-- bootstrap end -->
-    <link rel="stylesheet" href="{{asset('front/assets/css/base.css?v3')}}">
+    <link rel="stylesheet" href="{{asset('front/assets/css/base.css?v7')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/slick-theme.css')}}">
-    <link rel="stylesheet" href="{{asset('front/assets/css/custom.css?v21')}}">
+    <link rel="stylesheet" href="{{asset('front/assets/css/custom.css?v28')}}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Poppins:wght@400;700&display=swap;" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">

@@ -31,7 +31,7 @@ class SearchController extends Controller
                                     })->where(['status'=>1])->get();
         $data['supports'] = SupportCategory::whereHas('supports',function($query) use ($lang,$word){
                                                     $query->whereHas('support_files',function($query) use ($lang,$word) {
-                                                        $query->where("name->{$lang}",'like',"%{$word}%");
+                                                        $query->where("name->{$lang}",'like',"%{$word}%")->orwhere("keyword->{$lang}",'like',"%{$word}%");
                                                     });
                                                 })->where(['status'=>1])->get();
         $data['videos'] = VideoSetting::where(function($query) use($lang,$word) {

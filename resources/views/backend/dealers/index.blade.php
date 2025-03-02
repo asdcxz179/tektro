@@ -32,8 +32,8 @@ $(function() {
             { data: 'null', title: '#', bSearchable: false, bSortable: false, render: function ( data, type, row , meta ) {
                 return  meta.row + 1;
             }},
-            { data: 'country.zh-Hant', title: '{{ __("backend.$routeNameData.country.*") }}', defaultContent: '' },
-            { data: 'company.zh-Hant', title: '{{ __("backend.$routeNameData.company.*") }}', defaultContent: '' },
+            { data: 'country.zh-Hant', name: 'country->zh-Hant', title: '{{ __("backend.$routeNameData.country.*") }}', defaultContent: '' },
+            { data: 'company.zh-Hant', name: 'company->zh-Hant', title: '{{ __("backend.$routeNameData.company.*") }}', defaultContent: '' },
             { 
                 data: 'sort', title: '{{ __("backend.$routeNameData.sort") }}',
                 render: function ( data, type, row ) {   

@@ -38,6 +38,8 @@ return [
     'contact.phone'     => '聯絡電話',
     'contact.content'   => '訊息',
     'contact.captcha'   => '驗證碼',
+    'contact.recaptcha' =>  'Google recaptcha',
+    'contact.recaptcha.error' =>  '驗證失敗',
 
     'home'              =>  '首頁',
     'information'       =>  '資訊',

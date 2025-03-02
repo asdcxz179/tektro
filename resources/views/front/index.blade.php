@@ -169,11 +169,11 @@
         <!-- 可編輯輪播圖 start -->
         <section class="py-5">
             <div class="container" data-aos="fade-up" data-aos-duration="800">
-                <!-- <div class="row justify-content-center mb-5">
+                <div class="row justify-content-center mb-5">
                     <div class="col-11 px-0">
-                        <h3 class="title fw-normal text-center text-md-start">可編輯輪播圖</h3>
+                        <h3 class="title fw-normal text-center text-md-start">{{$module->getTranslation('name', $lang,false)}}</h3>
                     </div>
-                </div> -->
+                </div>
                 <div class="index_news_slick nav_dark mb-15">
                     @foreach($module->home_news_carousels as $item)
                     <div class="index_news_slick_item">
@@ -211,7 +211,7 @@
             <div class="row">
                 <div class="col-12">
                     <ul class="row justify-content-center">
-                        <h3 class="title fw-normal text-center mb-5">{{__('front.new_products')}}</h3>
+                        <h3 class="title fw-normal text-center mb-5">{{$module->getTranslation('name', $lang,false)}}</h3>
                         @foreach($module->home_products as $product)
                         <li class="col-6 col-md-3">
                             @if($product->type =='upload')
@@ -221,7 +221,7 @@
                                         style="background-image: url('{{asset($product->path)}}');">
                                         <div class="box_img_overlay">
                                             <span class="text-white fw-bold mb-3">{{$product->big_title}}</span>
-                                            <div href="#" class="c_btn btn_outline_white">{{__('front.VIEW ALL')}}</div>
+                                            <div href="{{($product->button_link)?$product->button_link:'#'}}" class="c_btn btn_outline_white">{{__('front.VIEW ALL')}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -236,7 +236,7 @@
                                         style="background-image: url('{{asset($product->product->banner)}}');">
                                         <div class="box_img_overlay">
                                             <span class="text-white fw-bold mb-3">{{$product->product->name}}</span>
-                                            <div href="#" class="c_btn btn_outline_white">{{__('front.VIEW ALL')}}</div>
+                                            <div href="{{route('front.product.show',['lang'=>$lang,'product'=>$product->product_id])}}" class="c_btn btn_outline_white">{{__('front.VIEW ALL')}}</div>
                                         </div>
                                     </div>
                                 </div>

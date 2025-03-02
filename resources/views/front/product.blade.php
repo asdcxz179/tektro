@@ -97,7 +97,7 @@
                                 role="tab" aria-selected="false">{{__('front.TEST & REVIEWS')}}</button>
                         </li>
                         @endif
-                        @if($product->product_relevants)
+                        @if($product->product_relevants->count()>0)
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#related" type="button"
                                 role="tab" aria-selected="false">{{__('front.RELATED PRODUCTS')}}</button>

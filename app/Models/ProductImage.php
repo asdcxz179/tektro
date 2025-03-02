@@ -20,6 +20,7 @@ class ProductImage extends Model implements Auditable
     protected $fillable = [
         'product_id',
         'path',
+        'sort',
     ];    
 
     protected $casts = [

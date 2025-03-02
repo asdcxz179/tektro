@@ -63,16 +63,10 @@
                 <div class="col-sm-6 col-md-4 mb-3 mb-md-5  listBox moreBox"  @if($key>8) style="display: none;" @endif>
                     <h5 class="fw-bold text-uppercase mb-3 fs-6">{{$dealer->country}}</h5>
                     <ul class="list_group">
-                        <li>{{$dealer->company}}</li>
-                        @if($dealer->phone)
-                        <li><div style="display:flex"><div class="me-1">Tel: </div><div style="word-break: break-all;flex: 4;">{!!nl2br($dealer->phone)!!}</div></div></li>
-                        @endif
-                        @if($dealer->email)
-                        <li><div style="display:flex"><div class="me-1">E-mail: </div><div style="word-break: break-all;flex: 4;">{!!nl2br($dealer->email)!!}</div></div></li>
-                        @endif
-                        @if($dealer->website)
-                        <li>Website: {{$dealer->website}}</li> 
-                        @endif
+                        <li @if(!$dealer->company) class="d-none" @endif>{{$dealer->company}}</li>
+                        <li @if(!$dealer->phone) class="d-none" @endif><div style="display:flex"><div class="me-1"></div><div style="word-break: break-all;flex: 4;">{!!nl2br($dealer->phone)!!}</div></div></li>
+                        <li @if(!$dealer->email) class="d-none" @endif><div style="display:flex"><div class="me-1"></div><div style="word-break: break-all;flex: 4;">{!!nl2br($dealer->email)!!}</div></div></li>
+                        <li @if(!$dealer->website) class="d-none" @endif>{{$dealer->website}}</li> 
                     </ul>
                 </div>
                 @endforeach

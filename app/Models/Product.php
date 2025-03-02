@@ -54,7 +54,7 @@ class Product extends Model implements Auditable
     ];
 
     public function product_images(){
-        return $this->hasMany(ProductImage::class);
+        return $this->hasMany(ProductImage::class)->orderBy('sort')->orderBy('id');
     }   
 
     public function files(){

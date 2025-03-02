@@ -51,9 +51,20 @@ class ContactController extends Controller
             $area = Area::where('id',$request->area_id)->first();
             // Mail::to($emails)->send(new AutoMail);
             if($emails) {
-                Mail::raw(__('front.contact.question').":".$request->question."\r\n".__('front.contact.area').":".$area->name."\r\n".__('front.contact.country').":".$request->country."\r\n".__('front.contact.email').":".$request->email."\r\n".__('front.contact.phone').":".$request->phone."\r\n".__('front.contact.content').":".$request->content, function($message) use ($request, $emails){
-                    $message->to($emails)->subject($request->question);
+                Mail::send('front.emails.customer', [
+                    'question'  =>  $request->question,
+                    'area'      =>  $area->name,
+                    'country'   =>  $request->country,
+                    'name'      =>  $request->name,
+                    'email'     =>  $request->email,
+                    'phone'     =>  $request->phone,
+                    'content'   =>  $request->content,
+                ], function ($m) use ($request, $emails) {
+                    $m->to($emails)->subject($request->question);
                 });
+                // Mail::raw(__('front.contact.question').":".$request->question."\r\n".__('front.contact.area').":".$area->name."\r\n".__('front.contact.country').":".$request->country."\r\n".__('front.contact.email').":".$request->email."\r\n".__('front.contact.phone').":".$request->phone."\r\n".__('front.contact.content').":".$request->content, function($message) use ($request, $emails){
+                //     $message->to($emails)->subject($request->question);
+                // });
             }
             return redirect()->route('front.contact.index',['lang'=>$request->lang]);
         }else{

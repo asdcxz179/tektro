@@ -631,6 +631,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12 mb-4">
+                    <input type="hidden" name="google_recaptcha" id="ctl-recaptcha-token">
+                    @error('google_recaptcha')
+                        <span class="text-danger" style="font-size:14px;">{{ $message }}</span>
+                    @enderror
+                </div>
                 <div class="row mt-5">
                     <div class="d-flex justify-content-center">
                         <input type="submit" value="{{__('front.confirm send')}}" class="c_btn btn_dark">
@@ -640,12 +646,33 @@
         </div>
     </div>
 </section>
+<div class="modal" tabindex="-1" id="message">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <p>感謝您的來信</p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="c_btn btn_dark" data-bs-dismiss="modal" aria-label="Close">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @push('style')
 <link rel="stylesheet" href="{{asset('js/plugins/select2/css/select2.min.css')}}">
 @endpush
 @push('javascript')
 <script src="{{asset('js/plugins/select2/js/select2.min.js')}}"></script>
+<script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.RECAPTCHA_SITE_KEY') }}"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('{{ config("services.recaptcha.RECAPTCHA_SITE_KEY") }}').then(function(token) {
+            document.getElementById('ctl-recaptcha-token').value = token;
+        });
+    });
+</script> 
 <script>
     $('.js-select2').select2();
     $('select[name="area_id"]').change(function(){
@@ -655,9 +682,11 @@
     });
 	$(document).ready(function(){
 		@if(Session::get('result') && Session::get('result')[0])
-			alert('Submit Success');
+            $('#message').modal('show');
+            $('#message p').text('{{__('front.submit success')}}');
 		@elseif(Session::get('result') && !Session::get('result')[0])
-			alert('Submit Error');
+            $('#message').modal('show');
+            $('#message p').text('{{__('front.submit error')}}');
 		@endif
 	});
 	@php

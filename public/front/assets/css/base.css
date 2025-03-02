@@ -585,7 +585,7 @@ body {
     z-index: 999;
     display: none;
     position: fixed;
-    padding-top: 30px;
+    padding-top: 31px;
     -webkit-transform: translateY(50px);
     transform: translateY(50px);
     -webkit-transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
@@ -889,7 +889,7 @@ body {
 |   custom_header
 -----------------------------------------------*/
 .custom_header .header_content_wrap {
-    padding: 20px 40px;
+    padding: 22px 40px;
     min-height: 80px;
     position: relative;
 }
@@ -923,7 +923,7 @@ body {
     width: calc(100% - 40px);
     height: 2px;
     background-color: var(--bs-primary);
-    bottom: -20px;
+    bottom: -22px;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
